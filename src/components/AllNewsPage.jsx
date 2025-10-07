@@ -49,45 +49,45 @@ export default function AllNewsPage() {
                         }}
                     >
                         {/* Tabs */}
-                        <div style={{ display: "flex", gap: 24 }}>
-                            {/* 전체 뉴스 */}
-                            <span
-                                onClick={() => navigate("/news/전체 뉴스")}
-                                style={{
-                                    fontWeight: currentPath === "/news/전체 뉴스" ? 700 : 400,
-                                    color: currentPath === "/news/전체 뉴스" ? "#111827" : "#6b7280",
-                                    borderBottom:
-                                        currentPath === "/news/전체 뉴스" ? "2px solid #111827" : "none",
-                                    paddingBottom: currentPath === "/news/전체 뉴스" ? 4 : 0,
-                                    cursor: "pointer",
-                                }}
-                            >
-                                전체 뉴스
-                            </span>
+                        
+    <div style={{ display: "flex", gap: 24, marginBottom: 20 }}>
+      {/* 전체 뉴스 */}
+      <span
+        onClick={() => navigate("/news/전체 뉴스")}
+        style={{
+          fontWeight: currentPath === "/news/전체 뉴스" ? 700 : 400,
+          color: currentPath === "/news/전체 뉴스" ? "#111827" : "#6b7280",
+          borderBottom:
+            currentPath === "/news/전체 뉴스" ? "2px solid #111827" : "none",
+          paddingBottom: currentPath === "/news/전체 뉴스" ? 4 : 0,
+          cursor: "pointer",
+        }}
+      >
+        전체 뉴스
+      </span>
 
-                            {/* 대사관·총영사관 소식 */}
-                            <span
-                                onClick={() => navigate("/news/대사관•총영사관 소식")}
-                                style={{
-                                    fontWeight:
-                                        currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
-                                    color:
-                                        currentPath === "/news/대사관•총영사관 소식"
-                                            ? "#111827"
-                                            : "#6b7280",
-                                    borderBottom:
-                                        currentPath === "/news/대사관•총영사관 소식"
-                                            ? "2px solid #111827"
-                                            : "none",
-                                    paddingBottom:
-                                        currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
-                                    cursor: "pointer",
-                                }}
-                            >
-                                대사관·총영사관 소식
-                            </span>
-                        </div>
-
+      {/* 대사관·총영사관 소식 */}
+      <span
+        onClick={() => navigate("/news/대사관•총영사관 소식")}
+        style={{
+          fontWeight:
+            currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
+          color:
+            currentPath === "/news/대사관•총영사관 소식"
+              ? "#111827"
+              : "#6b7280",
+          borderBottom:
+            currentPath === "/news/대사관•총영사관 소식"
+              ? "2px solid #111827"
+              : "none",
+          paddingBottom:
+            currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
+          cursor: "pointer",
+        }}
+      >
+        대사관·총영사관 소식
+      </span>
+    </div>
                         {/* Search box */}
                         <div
                             style={{

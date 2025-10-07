@@ -1,0 +1,354 @@
+
+.register-section {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+padding: 150px 0;
+ background-size: cover;      
+  background-repeat: no-repeat; 
+  background-position: center;
+   
+}
+
+.register-box {
+  background: rgba(255, 255, 255, 0.075); /* nền trong suốt */
+  backdrop-filter: blur(5px); /* làm mờ phía sau */
+  -webkit-backdrop-filter: blur(10px); /* hỗ trợ Safari */
+  padding: 30px 120px;
+  border-radius: 16px;
+  width: 600px;
+  box-shadow: 0 4px 20px rgba(172, 172, 172, 0.6);
+  color: #fff;
+  text-align: center;
+}
+
+.register-logo img {
+  width: auto;
+  height: 170px;
+  margin-bottom: 15px;
+}
+
+.register-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.register-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.register-tab.active {
+  font-family: 'Times New Roman', Times, serif;
+  background: #ECC689 80%;
+  color: #233D4D;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.register-tab.inactive {
+  font-family: 'Times New Roman', Times, serif;
+  background: #868686a4;
+  color: #ECC689;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.register-field label {
+    font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #ECC689;
+}
+
+.register-field input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.register-password {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.register-password input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 6px 0 0 6px;
+}
+
+.register-toggle {
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  
+  border-radius: 0 6px 6px 0;
+}
+
+.register-hint { 
+  font-family: 'Times New Roman', Times, serif;
+  background: rgba(255, 255, 255, 0.226); /* nền trong suốt */
+  backdrop-filter: blur(10px); /* làm mờ phía sau */
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 13px;
+  padding: 10px 25px;
+  color: #464646;
+  margin-top: 15px;
+  margin-bottom:5px;
+  border-radius: 10px;
+}
+
+.register-check {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.register-submit {
+    font-family: 'Times New Roman', Times, serif;
+  background: #ECC689;
+  color: #233D4D;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.register-submit:hover {
+  background: #e8c55a;
+}
+
+.register-social {
+  margin-top: 20px;
+}
+
+.register-social-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.register-social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.register-social-icons img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.register-apps {
+ margin-top: 30px;  /* thay vì margin-bottom */
+ margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.register-apps img {
+  height: 35px;
+}
+
+input[type="checkbox"] {
+  appearance: none; /* bỏ style mặc định */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ECC689; /* viền vàng */
+ 
+  cursor: pointer;
+  position: relative;
+}
+
+/* Khi tick vào */
+input[type="checkbox"]:checked {
+  background-color: #ECC689; /* nền vàng */
+  border-color: #ECC689;
+}
+
+/* Vẽ dấu tích */
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  font-size: 14px;
+  color: black; /* màu dấu tích */
+  position: absolute;
+  top: 0;
+  left: 3px;
+}
+/*  */
+
+.modal {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  .modal-content {
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    width: 400px;
+  }
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border-radius: 6px;
+    border: none;
+  }
+  .modal-content button {
+    padding: 10px 20px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 6px;
+    background: #d1b97f;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+   .body-ath {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -120px;
+ 
+}
+
+.auth-box {
+  background: rgba(255, 255, 255, 0.247);   /* nền tối trong suốt */
+  padding: 40px 80px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  width: 550px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.8);
+}
+
+.auth-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.auth-register-msg {
+  font-family: 'Times New Roman', Times, serif;
+  display: inline-block;
+  background: #ECC689;
+  color: #233D4D;
+  padding: 12px 50px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.auth-form {
+  text-align: left;
+}
+
+.auth-group {
+  margin-bottom: 20px;
+}
+
+.auth-group label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  background: #fff;
+  color: #000;
+}
+
+.auth-password {
+  position: relative;
+}
+
+.auth-password input {
+  padding-right: 40px;
+}
+
+.auth-toggle {
+  position: absolute;
+  right: 10px;
+  top: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+
+.auth-btn-login {
+    font-family: 'Times New Roman', Times, serif;
+  background: #ECC689;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  width: 60%;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #233D4D;
+  margin-left: 85px;
+}
+
+.auth-footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.auth-footer img {
+  height: 35px;
+  cursor: pointer;
+}

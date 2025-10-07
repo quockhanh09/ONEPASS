@@ -51,9 +51,10 @@ import Service from "./components/Service";
 import News from "./components/News";
 import Register from "./signup-in/Register";
 import Login from "./signup-in/Login";
-import Letter from "./components/Letter";
+import Consult from "./components/Consult.jsx";
 import AllNewsPage from "./components/AllNewsPage";
 import ConsulateNews from "./components/ConsulateNews";
+import NewsDetail from "./components/NewDeatail.jsx";
 
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -923,11 +924,12 @@ const handleSubmit = async () => {
           <Route path="/Introduction" element={<Introduction />} />
           <Route path="/Service" element={<Service />} />
           <Route path="/News" element={<News />} />
-          <Route path="/Letter" element={<Letter />} />
+          <Route path="/Consult" element={<Consult />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/news/전체 뉴스" element={<AllNewsPage />} />
           <Route path="/news/대사관•총영사관 소식" element={<ConsulateNews />} />
+          <Route path="/news전체 뉴스/NewsDetail" element={<NewsDetail />} />
         </Routes>
         <Countdown />
         {/* ===== FOOTER ===== */}

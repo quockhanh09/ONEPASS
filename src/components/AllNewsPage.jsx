@@ -49,45 +49,45 @@ export default function AllNewsPage() {
                         }}
                     >
                         {/* Tabs */}
-                        
-    <div style={{ display: "flex", gap: 24, marginBottom: 20 }}>
-      {/* 전체 뉴스 */}
-      <span
-        onClick={() => navigate("/news/전체 뉴스")}
-        style={{
-          fontWeight: currentPath === "/news/전체 뉴스" ? 700 : 400,
-          color: currentPath === "/news/전체 뉴스" ? "#111827" : "#6b7280",
-          borderBottom:
-            currentPath === "/news/전체 뉴스" ? "2px solid #111827" : "none",
-          paddingBottom: currentPath === "/news/전체 뉴스" ? 4 : 0,
-          cursor: "pointer",
-        }}
-      >
-        전체 뉴스
-      </span>
 
-      {/* 대사관·총영사관 소식 */}
-      <span
-        onClick={() => navigate("/news/대사관•총영사관 소식")}
-        style={{
-          fontWeight:
-            currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
-          color:
-            currentPath === "/news/대사관•총영사관 소식"
-              ? "#111827"
-              : "#6b7280",
-          borderBottom:
-            currentPath === "/news/대사관•총영사관 소식"
-              ? "2px solid #111827"
-              : "none",
-          paddingBottom:
-            currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
-          cursor: "pointer",
-        }}
-      >
-        대사관·총영사관 소식
-      </span>
-    </div>
+                        <div style={{ display: "flex", gap: 24, marginBottom: 20 }}>
+                            {/* 전체 뉴스 */}
+                            <span
+                                onClick={() => navigate("/news/전체 뉴스")}
+                                style={{
+                                    fontWeight: currentPath === "/news/전체 뉴스" ? 700 : 400,
+                                    color: currentPath === "/news/전체 뉴스" ? "#111827" : "#6b7280",
+                                    borderBottom:
+                                        currentPath === "/news/전체 뉴스" ? "2px solid #111827" : "none",
+                                    paddingBottom: currentPath === "/news/전체 뉴스" ? 4 : 0,
+                                    cursor: "pointer",
+                                }}
+                            >
+                                전체 뉴스
+                            </span>
+
+                            {/* 대사관·총영사관 소식 */}
+                            <span
+                                onClick={() => navigate("/news/대사관•총영사관 소식")}
+                                style={{
+                                    fontWeight:
+                                        currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
+                                    color:
+                                        currentPath === "/news/대사관•총영사관 소식"
+                                            ? "#111827"
+                                            : "#6b7280",
+                                    borderBottom:
+                                        currentPath === "/news/대사관•총영사관 소식"
+                                            ? "2px solid #111827"
+                                            : "none",
+                                    paddingBottom:
+                                        currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
+                                    cursor: "pointer",
+                                }}
+                            >
+                                대사관·총영사관 소식
+                            </span>
+                        </div>
                         {/* Search box */}
                         <div
                             style={{
@@ -145,7 +145,10 @@ export default function AllNewsPage() {
                         }}
                     >
                         {/* 1 */}
-                        <div>
+                        <div
+                            onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")}
+                            style={{ cursor: "pointer" }}
+                        >
                             <img
                                 src={n1}
                                 alt="추석 연휴 휴무 안내"
@@ -173,7 +176,7 @@ export default function AllNewsPage() {
                                 안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...
                             </p>
                             <a
-                                href="#"
+                                href="/news전체 뉴스/NewsDetail"
                                 style={{
                                     fontSize: 14,
                                     color: "#2563eb",
@@ -185,6 +188,7 @@ export default function AllNewsPage() {
                                 →
                             </a>
                         </div>
+
 
                         {/* 2 */}
                         <div>

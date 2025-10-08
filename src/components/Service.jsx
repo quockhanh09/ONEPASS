@@ -837,14 +837,7 @@ function Service() {
       businessTable1Desc: "정관, 사업자등록증, 법인등기부등본, 기업재무제표(재무제표, 감사보고서 등), 은행잔고증명서, 납세사실증명, 회사 서약서, 각종 계약증 및 위임장 등",
       businessTable2Title: "수출입",
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
-      interfaceStyles: {
-        titleColor: "#2B3A67",
-        descColor: "#555",
-        buttonColor: "#D6B97B",
-        tableBgColor: "#2c4d9e",
-        tableTextColor: "#fff",
-        bgColor: "#fff",
-      },
+     
     },
   ]);
 

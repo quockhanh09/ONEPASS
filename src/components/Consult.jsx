@@ -7,6 +7,71 @@ import iconKakao from "../assets/img/iconTalk.png";
 import iconNaver from "../assets/img/iconna.png";
 
 export default function Consult() {
+
+  const [serviceContents, setServiceContents] = useState([
+    {
+      title: "인증 센터",
+
+    },
+
+  ]);
+
+  const [activeIndex, setActiveIndex] = useState(""); // 👉 mặc định chọn "인증 센터"
+
+  const [countryCode, setCountryCode] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name || !phone || !email || !agree) {
+      alert("모든 항목을 입력하고 동의해 주세요.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvandichvu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: serviceContents[activeIndex]?.title,
+          HoTen: name,
+          Email: email,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(`❌ 오류 발생: ${data.error || "Server error"}`);
+        console.error("Server Error:", data);
+        return;
+      }
+
+      alert("✅ 상담 신청 완료되었습니다!");
+      console.log("✅ Server response:", data);
+
+      // Reset form
+      setName("");
+      setPhone("");
+      setEmail("");
+      setAgree(false);
+    } catch (err) {
+      console.error("❌ Lỗi khi kết nối server:", err);
+      alert("❌ 서버 연결 실패 (Server connection failed)");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const [activeTab, setActiveTab] = useState("sns");
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,21 +87,7 @@ export default function Consult() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("https://your-backend.com/api/contact", {
-        type: activeTab,
-        ...formData,
-      });
-      alert("✅ Gửi thành công!");
-      console.log(res.data);
-      setFormData({ name: "", email: "", phone: "", message: "", visitDate: "" });
-    } catch (error) {
-      console.error("❌ Lỗi gửi form:", error);
-      alert("Gửi thất bại. Vui lòng thử lại.");
-    }
-  };
+
 
   const tabButton = (id, label) => (
     <button
@@ -135,6 +186,7 @@ export default function Consult() {
           borderRadius: 8,
           padding: "75px 80px",
           border: "1px solid #e5e7eb",
+
         }}
       >
         <h3 style={{ fontSize: 32, fontWeight: 700, marginBottom: 14 }}>
@@ -186,11 +238,12 @@ export default function Consult() {
         <div
           onClick={() => setChecked(!checked)}
           style={{
-            fontSize: 18, color: "#111827", marginTop: 18,marginLeft:10, display: "flex", alignItems: "center", fontWeight: 500, cursor: "pointer", userSelect: "none",
+            fontSize: 18, color: "#111827", marginTop: 18, marginLeft: 10, display: "flex", alignItems: "center", fontWeight: 500, cursor: "pointer", userSelect: "none",
           }}
         >
           <span
-            style={{  display: "inline-block", width: 16,  height: 16,  border: "2px solid #111827", borderRadius: "50%", marginRight: 8, position: "relative", transition: "all 0.2s ease",
+            style={{
+              display: "inline-block", width: 16, height: 16, border: "2px solid #111827", borderRadius: "50%", marginRight: 8, position: "relative", transition: "all 0.2s ease",
             }}
           >
             {checked && (
@@ -225,7 +278,7 @@ export default function Consult() {
         </div>
 
         {/* Contact */}
-      <div style={{ fontSize: 18, color: "#111827", lineHeight: 1.8 ,textAlign:"center"}}>
+        <div style={{ fontSize: 18, color: "#111827", lineHeight: 1.8, textAlign: "center" }}>
           <p>
             <strong>전화 걸기:</strong> (+82) 51-715-0607
           </p>
@@ -242,71 +295,923 @@ export default function Consult() {
 
 
   const phoneForm = (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "40px auto", textAlign: "center" }}>
-      <h2 style={{ fontSize: 22, fontWeight: "bold", marginBottom: 10 }}>전화 상담</h2>
-      <p style={{ color: "#6b7280", fontSize: 14, marginBottom: 20 }}>
-        전화번호를 입력하고 상담 신청을 해주세요.
-      </p>
+    <div
+      style={{
+        maxWidth: 1200,
+        margin: "60px auto",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        gap: 40,
+      }}
+    >
+      {/* Left */}
+      <div style={{ flex: 1, minWidth: 340, maxWidth: 460 }}>
+        <h3
+          style={{
+            color: "#1d4ed8",
+            fontWeight: 700,
+            fontSize: 24,
+            marginBottom: 14,
+          }}
+        >
+          전화 상담
+        </h3>
+        <h2
+          style={{
+            fontSize: 32,
+            fontWeight: 800,
+            lineHeight: 1.5,
+            marginBottom: 18,
+            color: "#111827",
+          }}
+        >
+          언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.
+        </h2>
+        <p
+          style={{
+            color: "#6b7280",
+            fontSize: 18,
+            lineHeight: 1.8,
+            letterSpacing: "-0.2px",
+          }}
+        >
+          전화를 통해서 급한 문제를 빠르게 해결할 수 있습니다.
+          전문 상담사와 바로 연결하여 상담 받을 수 있습니다.
+        </p>
+      </div>
 
-      <input name="name" value={formData.name} onChange={handleChange} placeholder="이름" style={inputStyle} />
-      <input name="phone" value={formData.phone} onChange={handleChange} placeholder="전화번호" style={inputStyle} />
-      <textarea
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="상담 내용"
-        style={{ ...inputStyle, height: 100 }}
-      ></textarea>
+      {/* Right */}
 
-      <button type="submit" style={buttonStyle}>
-        <i className="fa-solid fa-phone" style={{ marginRight: 6 }}></i> 상담 신청
-      </button>
-    </form>
+      <div
+        style={{
+          maxWidth: 640,
+          width: "100%",
+          background: "#f4f4f4",
+          borderRadius: 8,
+          padding: "60px 80px",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28, }}>
+          상담 신청
+        </h2>
+        <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
+        <form onSubmit={handleSubmit}>
+          {/* 서비스 선택 */}
+          <div style={{ marginBottom: 20 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+                fontSize: 18,
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                서비스 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                value={serviceContents[0].title}
+                readOnly
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+              *필수입력입니다
+            </div>
+          </div>
+
+          {/* 이름 */}
+          <div style={{ marginBottom: 20, fontSize: 18, }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                이름 <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="이름을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+              *필수입력입니다
+            </div>
+          </div>
+
+          {/* 이메일 */}
+          <div style={{ marginBottom: 20, fontSize: 18, }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>이메일</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="이메일을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+              *필수입력입니다
+            </div>
+          </div>
+
+          {/* 전화번호 */}
+          <div style={{ marginBottom: 20, fontSize: 18, }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                전화번호 <span style={{ color: "red" }}>*</span>
+              </label>
+              <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
+                style={{
+                  width: 90,
+                  border: "none",
+                  outline: "none",
+                  padding: "12px 0",
+                  background: "transparent",
+                }}
+              >
+                <option value="선택">선택</option>
+                <option value="+82">+82</option>
+                <option value="+84">+84</option>
+              </select>
+              <input
+                type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="전화번호"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  padding: "12px 0",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+              *필수입력입니다
+            </div>
+          </div>
+
+          {/* 개인정보 동의 */}
+          <div style={{ marginBottom: 22, fontSize: 18, }}>
+            <label
+              style={{ fontSize: 18, display: "flex", alignItems: "center" }}
+            >
+              <input
+                type="radio"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
+                style={{
+                  marginRight: 6,
+                  width: 16,
+                  height: 16,
+                  accentColor: "#000",
+                }}
+              />
+              개인정보 수집 및 이용 동의
+            </label>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "28px 0",
+            }}
+          >
+            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+            <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>
+              or
+            </span>
+            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+          </div>
+          {/* Info liên hệ */}
+          <div
+            style={{
+              fontSize: 18,
+              lineHeight: 1.8,
+              marginBottom: 26,
+              textAlign: "center",
+            }}
+          >
+            <div>
+              <strong>전화 걸기:</strong> (+82) 51-715-0607
+            </div>
+            <div>
+              <strong>이메일 보내기:</strong> Onepass.kr@gmail.com
+            </div>
+            <div style={{ color: "#444" }}>
+              <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00,
+              주말 공휴일 휴무)
+            </div>
+          </div>
+
+          {/* Nút submit */}
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              background: "#d9c4a4",
+              color: "#ffffffff",
+              padding: "16px",
+              border: "none",
+              borderRadius: 4,
+              fontWeight: 600,
+              fontSize: 18,
+              cursor: "pointer",
+            }}
+          >
+            상담 신청
+          </button>
+        </form>
+      </div>
+
+    </div>
+
   );
 
   const emailForm = (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "40px auto", textAlign: "center" }}>
-      <h2 style={{ fontSize: 22, fontWeight: "bold", marginBottom: 10 }}>이메일 상담</h2>
-      <p style={{ color: "#6b7280", fontSize: 14, marginBottom: 20 }}>이메일로 문의를 보내주세요.</p>
+    <div
+      style={{
+        maxWidth: 1200,
+        margin: "60px auto",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        gap: 40,
+      }}
+    >
+      {/* Left */}
+      <div style={{ flex: 1, minWidth: 340, maxWidth: 460 }}>
+        <h3
+          style={{
+            color: "#1d4ed8",
+            fontWeight: 700,
+            fontSize: 24,
+            marginBottom: 14,
+          }}
+        >
+          전화 상담
+        </h3>
+        <h2
+          style={{
+            fontSize: 32,
+            fontWeight: 800,
+            lineHeight: 1.5,
+            marginBottom: 18,
+            color: "#111827",
+          }}
+        >
+          언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.
+        </h2>
+        <p
+          style={{
+            color: "#6b7280",
+            fontSize: 18,
+            lineHeight: 1.8,
+            letterSpacing: "-0.2px",
+          }}
+        >
+          전화를 통해서 급한 문제를 빠르게 해결할 수 있습니다.
+          전문 상담사와 바로 연결하여 상담 받을 수 있습니다.
+        </p>
+      </div>
 
-      <input name="name" value={formData.name} onChange={handleChange} placeholder="이름" style={inputStyle} />
-      <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="이메일" style={inputStyle} />
-      <textarea
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="문의 내용"
-        style={{ ...inputStyle, height: 100 }}
-      ></textarea>
+      {/* Right */}
 
-      <button type="submit" style={buttonStyle}>
-        <i className="fa-solid fa-paper-plane" style={{ marginRight: 6 }}></i> 보내기
-      </button>
-    </form>
+      <div
+        style={{
+          maxWidth: 640,
+          width: "100%",
+          background: "#f4f4f4",
+          borderRadius: 8,
+          padding: "60px 80px",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28 }}>상담 신청</h2>
+        <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
+
+        <form>
+          {/* 서비스 선택 */}
+          <div style={{ marginBottom: 20 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+                fontSize: 18,
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                서비스 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                value="서비스 이름"
+                readOnly
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 이름 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                이름 <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="이름을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 이메일 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
+              <input
+                type="email"
+                placeholder="이메일을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 전화번호 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                전화번호 <span style={{ color: "red" }}>*</span>
+              </label>
+              <select
+                style={{
+                  width: 90,
+                  border: "none",
+                  outline: "none",
+                  padding: "12px 0",
+                  background: "transparent",
+                }}
+              >
+                <option value="선택">선택</option>
+                <option value="+82">+82</option>
+                <option value="+84">+84</option>
+              </select>
+              <input
+                type="text"
+                placeholder="전화번호"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  padding: "12px 0",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 제목 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>제목<span style={{ color: "red" }}>*</span></label>
+              <input
+                type="email"
+                placeholder="제목을 입력해주세요 "
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>내용<span style={{ color: "red" }}>*</span></label>
+              <input
+                type="email"
+                placeholder="상담 내용을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          <div style={{ marginBottom: 20, fontSize: 18, marginTop: 50 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 개인정보 동의 */}
+          <div style={{ marginBottom: 22, fontSize: 18 }}>
+            <label style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
+              <input
+                type="radio"
+                name="agree"
+                style={{
+                  marginRight: 6,
+                  width: 16,
+                  height: 16,
+                  accentColor: "#000",
+                }}
+              />
+              개인정보 수집 및 이용 동의
+            </label>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "28px 0",
+            }}
+          >
+            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+            <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>or</span>
+            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+          </div>
+
+          {/* Info liên hệ */}
+          <div
+            style={{
+              fontSize: 18,
+              lineHeight: 1.8,
+              marginBottom: 26,
+              textAlign: "center",
+            }}
+          >
+            <div>
+              <strong>전화 걸기:</strong> (+82) 51-715-0607
+            </div>
+            <div>
+              <strong>이메일 보내기:</strong> Onepass.kr@gmail.com
+            </div>
+            <div style={{ color: "#444" }}>
+              <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
+            </div>
+          </div>
+
+          {/* Nút submit */}
+          <button
+            type="button"
+            style={{
+              width: "100%",
+              background: "#d9c4a4",
+              color: "#fff",
+              padding: "16px",
+              border: "none",
+              borderRadius: 4,
+              fontWeight: 600,
+              fontSize: 18,
+              cursor: "pointer",
+            }}
+          >
+            상담 신청
+          </button>
+        </form>
+      </div>
+
+    </div>
   );
 
   const visitForm = (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "40px auto", textAlign: "center" }}>
-      <h2 style={{ fontSize: 22, fontWeight: "bold", marginBottom: 10 }}>방문 상담</h2>
-      <p style={{ color: "#6b7280", fontSize: 14, marginBottom: 20 }}>
-        방문 예약을 원하시면 아래 양식을 작성해주세요.
-      </p>
+    <div
+      style={{
+        maxWidth: 1200,
+        margin: "60px auto",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        gap: 40,
+      }}
+    >
+      {/* Left */}
+      <div style={{ flex: 1, minWidth: 340, maxWidth: 460 }}>
+        <h3
+          style={{
+            color: "#1d4ed8",
+            fontWeight: 700,
+            fontSize: 24,
+            marginBottom: 14,
+          }}
+        >
+          이메일 상담
+        </h3>
+        <h2
+          style={{
+            fontSize: 32,
+            fontWeight: 800,
+            lineHeight: 1.5,
+            marginBottom: 18,
+            color: "#111827",
+          }}
+        >
+          언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.
+        </h2>
+        <p
+          style={{
+            color: "#6b7280",
+            fontSize: 18,
+            lineHeight: 1.8,
+            letterSpacing: "-0.2px",
+          }}
+        >
+          문의사항을 남겨주시고 문의 내용을 확인하여 3영업일 이내에 답변을 드립니다.
 
-      <input name="name" value={formData.name} onChange={handleChange} placeholder="이름" style={inputStyle} />
-      <input name="phone" value={formData.phone} onChange={handleChange} placeholder="전화번호" style={inputStyle} />
-      <input type="date" name="visitDate" value={formData.visitDate} onChange={handleChange} style={inputStyle} />
-      <textarea
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="상담 목적"
-        style={{ ...inputStyle, height: 100 }}
-      ></textarea>
+        </p>
+      </div>
 
-      <button type="submit" style={buttonStyle}>
-        <i className="fa-solid fa-calendar-check" style={{ marginRight: 6 }}></i> 예약하기
-      </button>
-    </form>
+      {/* Right */}
+
+      <div
+        style={{
+          maxWidth: 640,
+          width: "100%",
+          background: "#f4f4f4",
+          borderRadius: 8,
+          padding: "60px 80px",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28 }}>상담 신청</h2>
+        <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
+
+        <form>
+          {/* 서비스 선택 */}
+          <div style={{ marginBottom: 20 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+                fontSize: 18,
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                서비스 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                value="서비스 이름"
+                readOnly
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 이름 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                이름 <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="이름을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 이메일 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
+              <input
+                type="email"
+                placeholder="이메일을 입력해주세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  padding: "12px 0",
+                  outline: "none",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 전화번호 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000000ff",
+              }}
+            >
+              <label style={{ width: 120, fontWeight: 600 }}>
+                전화번호 <span style={{ color: "red" }}>*</span>
+              </label>
+              <select
+                style={{
+                  width: 90,
+                  border: "none",
+                  outline: "none",
+                  padding: "12px 0",
+                  background: "transparent",
+                }}
+              >
+                <option value="선택">선택</option>
+                <option value="+82">+82</option>
+                <option value="+84">+84</option>
+              </select>
+              <input
+                type="text"
+                placeholder="전화번호"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  padding: "12px 0",
+                  background: "transparent",
+                }}
+              />
+            </div>
+            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
+          </div>
+
+          {/* 제목 */}
+          <div style={{ marginBottom: 20, fontSize: 18 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                paddingBottom: 6,
+              }}
+            >
+              {/* 날짜 선택 */}
+              <label style={{ fontWeight: 700, marginRight: 8 }}>
+                날짜 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+
+              {/* input chọn ngày */}
+              <input
+                type="date"
+                placeholder="yyyy/mm/dd"
+                style={{
+                  border: "none",
+                  outline: "none",
+                  background: "transparent",
+                  fontSize: 16,
+                  marginRight: 6,
+                  marginLeft:30,
+                  position: "relative",
+                  colorScheme: "light",
+                }}
+                onFocus={(e) => e.target.showPicker?.()} // mở picker khi click
+              />
+
+              {/* 시간 */}
+              <label style={{ fontWeight: 700, marginRight: 8 }}>시간</label>
+
+              {/* input chọn giờ */}
+              <input
+                type="time"
+                style={{
+                  border: "none",
+                  outline: "none",
+                  background: "transparent",
+                  fontSize: 18,
+                  marginRight: 6,
+                }}
+              />
+
+              {/* icon lịch (chỉ 1 cái cuối) */}
+              <i className="" style={{ fontSize: 18 }}></i>
+            </div>
+
+            <div
+              style={{
+                fontSize: 12,
+                color: "red",
+                marginTop: 4,
+                marginLeft: 120,
+              }}
+            >
+              *필수입력입니다
+            </div>
+          </div>
+
+
+
+          {/* 개인정보 동의 */}
+          <div style={{ marginBottom: 22, fontSize: 18 }}>
+            <label style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
+              <input
+                type="radio"
+                name="agree"
+                style={{
+                  marginRight: 6,
+                  width: 16,
+                  height: 16,
+                  accentColor: "#000",
+                }}
+              />
+              개인정보 수집 및 이용 동의
+            </label>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "28px 0",
+            }}
+          >
+            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+            <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>or</span>
+            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+          </div>
+
+          {/* Info liên hệ */}
+          <div
+            style={{
+              fontSize: 18,
+              lineHeight: 1.8,
+              marginBottom: 26,
+              textAlign: "center",
+            }}
+          >
+            <div>
+              <strong>전화 걸기:</strong> (+82) 51-715-0607
+            </div>
+            <div>
+              <strong>이메일 보내기:</strong> Onepass.kr@gmail.com
+            </div>
+            <div style={{ color: "#444" }}>
+              <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
+            </div>
+          </div>
+
+          {/* Nút submit */}
+          <button
+            type="button"
+            style={{
+              width: "100%",
+              background: "#d9c4a4",
+              color: "#fff",
+              padding: "16px",
+              border: "none",
+              borderRadius: 4,
+              fontWeight: 600,
+              fontSize: 18,
+              cursor: "pointer",
+            }}
+          >
+            상담 신청
+          </button>
+        </form>
+      </div>
+
+    </div>
   );
   const tabs = [
     { id: "sns", label: "SNS 채팅 상담" },

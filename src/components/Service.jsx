@@ -611,13 +611,66 @@ const services = [
   { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률" },
   { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "기타 서비스" },
 ];
-
+    
 function Service() {
   const [activeIndex, setActiveIndex] = useState(0); // 👉 mặc định chọn "인증 센터"
   const [hoverIndex, setHoverIndex] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
+  const [countryCode, setCountryCode] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // 👉 thêm state này
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+
+    if (!name || !phone || !email || !agree) {
+      alert("모든 항목을 입력하고 동의해 주세요.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvandichvu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: serviceContents[activeIndex]?.title,
+          HoTen: name,
+          Email: email,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(`❌ 오류 발생: ${data.error || "Server error"}`);
+        console.error("Server Error:", data);
+        return;
+      }
+
+      alert("✅ 상담 신청 완료되었습니다!");
+      console.log("✅ Server response:", data);
+
+      // Reset form
+      setName("");
+      setPhone("");
+      setEmail("");
+      setAgree(false);
+    } catch (err) {
+      console.error("❌ Lỗi khi kết nối server:", err);
+      alert("❌ 서버 연결 실패 (Server connection failed)");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState("korea");
   const tabStyle = (tab) => ({
@@ -2874,7 +2927,7 @@ function Service() {
             </h2>
 
             {/* FORM */}
-            <form>
+            <form onSubmit={handleSubmit}>
               {/* 서비스 선택 */}
               <div style={{ marginBottom: 20 }}>
                 <div
@@ -2920,6 +2973,9 @@ function Service() {
                   </label>
                   <input
                     type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    on
                     placeholder="이름을 입력해주세요"
                     style={{
                       flex: 1,
@@ -2947,6 +3003,8 @@ function Service() {
                   <label style={{ width: 120, fontWeight: 600 }}>이메일</label>
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="이메일을 입력해주세요"
                     style={{
                       flex: 1,
@@ -2975,6 +3033,8 @@ function Service() {
                     전화번호 <span style={{ color: "red" }}>*</span>
                   </label>
                   <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)} 
                     style={{
                       width: 90,
                       border: "none",
@@ -2983,10 +3043,14 @@ function Service() {
                       background: "transparent",
                     }}
                   >
-                    <option>선택</option>
+                    <option value="선택">선택</option>
+                    <option value="+82">+82</option>
+                    <option value="+84">+84</option>
                   </select>
                   <input
                     type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     placeholder="전화번호"
                     style={{
                       flex: 1,
@@ -3007,7 +3071,8 @@ function Service() {
                 <label style={{ fontSize: 14, display: "flex", alignItems: "center" }}>
                   <input
                     type="radio"
-                    name="agree"
+                    checked={agree}
+                    onChange={(e) => setAgree(e.target.checked)}
                     style={{
                       marginRight: 6,
                       width: 16,

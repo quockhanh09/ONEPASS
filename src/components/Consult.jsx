@@ -7,7 +7,20 @@ import iconKakao from "../assets/img/iconTalk.png";
 import iconNaver from "../assets/img/iconna.png";
 
 export default function Consult() {
-
+    const [selected, setSelected] = useState("");
+  const [open, setOpen] = useState(false);
+  const list = [
+    "인증 센터",
+    "결혼 이민",
+    "출생신고 대행",
+    "출입국 행정 대행",
+    "신분증명 서류 대행",
+    "입양 절차 대행",
+    "비자 대행",
+    "법률 컨설팅",
+    "B2B 서비스",
+    "기타",
+  ];
   const [serviceContents, setServiceContents] = useState([
     {
       title: "인증 센터",
@@ -360,35 +373,74 @@ export default function Consult() {
         <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
         <form onSubmit={handleSubmit}>
           {/* 서비스 선택 */}
-          <div style={{ marginBottom: 20 }}>
+     <div style={{ marginBottom: 20, position: "relative" }}>
+      <div
+        onClick={() => setOpen(!open)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          borderBottom: "1px solid #000",
+          fontSize: 18,
+          cursor: "pointer",
+        }}
+      >
+        <label style={{ width: 120, fontWeight: 600 }}>
+          서비스 선택 <span style={{ color: "red" }}>*</span>
+        </label>
+        <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+          <span style={{ color: selected ? "#000" : "#999" }}>
+            {selected || "서비스 선택"}
+          </span>
+          <i
+            className="fa-solid fa-chevron-down"
+            style={{
+              transition: ".2s",
+              transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
+        </div>
+      </div>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 120,
+            right: 0,
+            background: "#fff",
+            border: "1px solid #ccc",
+            borderRadius: 4,
+            zIndex: 10,
+          }}
+        >
+          {list.map((v) => (
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-                fontSize: 18,
+              key={v}
+              onClick={() => {
+                setSelected(v);
+                setOpen(false);
               }}
+              style={{
+                padding: "10px 12px",
+                fontSize: 16,
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+              onMouseLeave={(e) => (e.target.style.background = "#fff")}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
-                서비스 선택 <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                value={serviceContents[0].title}
-                readOnly
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-              />
+              {v}
             </div>
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-              *필수입력입니다
-            </div>
-          </div>
+          ))}
+        </div>
+      )}
+
+      {!selected && (
+        <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+          *필수입력입니다
+        </div>
+      )}
+    </div>
 
           {/* 이름 */}
           <div style={{ marginBottom: 20, fontSize: 18, }}>
@@ -638,33 +690,74 @@ export default function Consult() {
 
         <form>
           {/* 서비스 선택 */}
-          <div style={{ marginBottom: 20 }}>
+         <div style={{ marginBottom: 20, position: "relative" }}>
+      <div
+        onClick={() => setOpen(!open)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          borderBottom: "1px solid #000",
+          fontSize: 18,
+          cursor: "pointer",
+        }}
+      >
+        <label style={{ width: 120, fontWeight: 600 }}>
+          서비스 선택 <span style={{ color: "red" }}>*</span>
+        </label>
+        <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+          <span style={{ color: selected ? "#000" : "#999" }}>
+            {selected || "서비스 선택"}
+          </span>
+          <i
+            className="fa-solid fa-chevron-down"
+            style={{
+              transition: ".2s",
+              transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
+        </div>
+      </div>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 120,
+            right: 0,
+            background: "#fff",
+            border: "1px solid #ccc",
+            borderRadius: 4,
+            zIndex: 10,
+          }}
+        >
+          {list.map((v) => (
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-                fontSize: 18,
+              key={v}
+              onClick={() => {
+                setSelected(v);
+                setOpen(false);
               }}
+              style={{
+                padding: "10px 12px",
+                fontSize: 16,
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+              onMouseLeave={(e) => (e.target.style.background = "#fff")}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
-                서비스 선택 <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                value="서비스 이름"
-                readOnly
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-              />
+              {v}
             </div>
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
-          </div>
+          ))}
+        </div>
+      )}
+
+      {!selected && (
+        <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+          *필수입력입니다
+        </div>
+      )}
+    </div>
 
           {/* 이름 */}
           <div style={{ marginBottom: 20, fontSize: 18 }}>
@@ -958,33 +1051,74 @@ export default function Consult() {
 
         <form>
           {/* 서비스 선택 */}
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 20, position: "relative" }}>
+      <div
+        onClick={() => setOpen(!open)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          borderBottom: "1px solid #000",
+          fontSize: 18,
+          cursor: "pointer",
+        }}
+      >
+        <label style={{ width: 120, fontWeight: 600 }}>
+          서비스 선택 <span style={{ color: "red" }}>*</span>
+        </label>
+        <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+          <span style={{ color: selected ? "#000" : "#999" }}>
+            {selected || "서비스 선택"}
+          </span>
+          <i
+            className="fa-solid fa-chevron-down"
+            style={{
+              transition: ".2s",
+              transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
+        </div>
+      </div>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 120,
+            right: 0,
+            background: "#fff",
+            border: "1px solid #ccc",
+            borderRadius: 4,
+            zIndex: 10,
+          }}
+        >
+          {list.map((v) => (
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-                fontSize: 18,
+              key={v}
+              onClick={() => {
+                setSelected(v);
+                setOpen(false);
               }}
+              style={{
+                padding: "10px 12px",
+                fontSize: 16,
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+              onMouseLeave={(e) => (e.target.style.background = "#fff")}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
-                서비스 선택 <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                type="text"
-                value="서비스 이름"
-                readOnly
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-              />
+              {v}
             </div>
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
-          </div>
+          ))}
+        </div>
+      )}
+
+      {!selected && (
+        <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+          *필수입력입니다
+        </div>
+      )}
+    </div>
 
           {/* 이름 */}
           <div style={{ marginBottom: 20, fontSize: 18 }}>

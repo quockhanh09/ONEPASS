@@ -88,8 +88,7 @@ function Header() {
             </span>
             <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#fff", fontWeight: 600, fontSize: 22, letterSpacing: 1 }}>KO</a>
             <span className="lang-sep" style={{ color: "#fff", fontWeight: 600, fontSize: 18, margin: "0 8px" }}>/</span>
-            <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#fff", fontWeight: 600, fontSize: 22, letterSpacing: 1 }}>EN</a>
-            <span className="lang-sep" style={{ color: "#fff", fontWeight: 600, fontSize: 18, margin: "0 8px" }}>/</span>
+           
             <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "#fff", fontWeight: 600, fontSize: 22, letterSpacing: 1 }}>VI</a>
           </div>
         </div>

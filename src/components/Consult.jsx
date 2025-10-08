@@ -36,9 +36,11 @@ export default function Consult() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
+  const [title, setTitle] = useState("");
+  const [content, setContent]= useState("");
   const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
+  const [service, setService] = useState("");
+  const handleSubmit = async (e) => {  // Gọi Điện
     e.preventDefault();
 
     if (!name || !phone || !email || !agree) {
@@ -49,11 +51,11 @@ export default function Consult() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvandichvu", {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          TenDichVu: serviceContents[activeIndex]?.title,
+          TenDichVu: service,
           HoTen: name,
           Email: email,
           MaVung: countryCode,
@@ -84,7 +86,104 @@ export default function Consult() {
       setLoading(false);
     }
   };
+  const handleSubmit1 = async (e) => { // Email
+    e.preventDefault();
 
+    if (!name || !phone || !email || !agree) {
+      alert("모든 항목을 입력하고 동의해 주세요.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:3000/api/tuvanemail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: service,
+          TenHinhThuc: "Email",
+          HoTen: name,
+          Email: email,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+          TieuDe: title,
+          NoiDung: content,
+
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(`❌ 오류 발생: ${data.error || "Server error"}`);
+        console.error("Server Error:", data);
+        return;
+      }
+
+      alert("✅ 상담 신청 완료되었습니다!");
+      console.log("✅ Server response:", data);
+
+      // Reset form
+      setName("");
+      setPhone("");
+      setEmail("");
+      setAgree(false);
+      setContent("");
+      setTitle("")
+    } catch (err) {
+      console.error("❌ Lỗi khi kết nối server:", err);
+      alert("❌ 서버 연결 실패 (Server connection failed)");
+    } finally {
+      setLoading(false);
+    }
+  };
+    const handleSubmit2 = async (e) => { // Trực Tiếp
+      e.preventDefault();
+
+      if (!name || !phone || !email || !agree) {
+        alert("모든 항목을 입력하고 동의해 주세요.");
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvantructiep", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            TenDichVu: serviceContents[activeIndex]?.title,
+            HoTen: name,
+            Email: email,
+            MaVung: countryCode,
+            SoDienThoai: phone,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          alert(`❌ 오류 발생: ${data.error || "Server error"}`);
+          console.error("Server Error:", data);
+          return;
+        }
+
+        alert("✅ 상담 신청 완료되었습니다!");
+        console.log("✅ Server response:", data);
+
+        // Reset form
+        setName("");
+        setPhone("");
+        setEmail("");
+        setAgree(false);
+      } catch (err) {
+        console.error("❌ Lỗi khi kết nối server:", err);
+        alert("❌ 서버 연결 실패 (Server connection failed)");
+      } finally {
+        setLoading(false);
+      }
+    };
   const [activeTab, setActiveTab] = useState("sns");
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -419,6 +518,7 @@ export default function Consult() {
               key={v}
               onClick={() => {
                 setSelected(v);
+                setService(v);
                 setOpen(false);
               }}
               style={{
@@ -688,7 +788,7 @@ export default function Consult() {
         <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28 }}>상담 신청</h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
 
-        <form>
+        <form onSubmit={handleSubmit1}>
           {/* 서비스 선택 */}
          <div style={{ marginBottom: 20, position: "relative" }}>
       <div
@@ -736,6 +836,7 @@ export default function Consult() {
               key={v}
               onClick={() => {
                 setSelected(v);
+                setService(v);
                 setOpen(false);
               }}
               style={{
@@ -773,6 +874,8 @@ export default function Consult() {
               </label>
               <input
                 type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="이름을 입력해주세요"
                 style={{
                   flex: 1,
@@ -798,6 +901,8 @@ export default function Consult() {
               <label style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="이메일을 입력해주세요"
                 style={{
                   flex: 1,
@@ -824,6 +929,8 @@ export default function Consult() {
                 전화번호 <span style={{ color: "red" }}>*</span>
               </label>
               <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
                 style={{
                   width: 90,
                   border: "none",
@@ -838,6 +945,8 @@ export default function Consult() {
               </select>
               <input
                 type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 placeholder="전화번호"
                 style={{
                   flex: 1,
@@ -862,7 +971,9 @@ export default function Consult() {
             >
               <label style={{ width: 120, fontWeight: 600 }}>제목<span style={{ color: "red" }}>*</span></label>
               <input
-                type="email"
+                type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 placeholder="제목을 입력해주세요 "
                 style={{
                   flex: 1,
@@ -887,7 +998,9 @@ export default function Consult() {
             >
               <label style={{ width: 120, fontWeight: 600 }}>내용<span style={{ color: "red" }}>*</span></label>
               <input
-                type="email"
+                type="text"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 placeholder="상담 내용을 입력해주세요"
                 style={{
                   flex: 1,

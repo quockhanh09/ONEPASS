@@ -914,7 +914,7 @@ export default function Consult() {
             marginBottom: 14,
           }}
         >
-          이메일 상담
+          방문 상담
         </h3>
         <h2
           style={{
@@ -935,9 +935,10 @@ export default function Consult() {
             letterSpacing: "-0.2px",
           }}
         >
-          문의사항을 남겨주시고 문의 내용을 확인하여 3영업일 이내에 답변을 드립니다.
+          예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다.
 
         </p>
+        <p style={{color:"#384D8D"}}>찾아오시는 길 보기 <i class="bi bi-arrow-right"></i></p>
       </div>
 
       {/* Right */}

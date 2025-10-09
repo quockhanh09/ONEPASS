@@ -130,15 +130,15 @@ function Header() {
               margin: 0,
               listStyle: "none"
             }}>
-              <li><Link to="/services/translate">인증 센터</Link></li>
-              <li><Link to="/services/marriage">결혼 이민</Link></li>
-              <li><Link to="/services/birth">출생신고</Link></li>
-              <li><Link to="/services/adoption">입양 • 자녀 인지</Link></li>
-              <li><Link to="/services/id">신분증명 서류</Link></li>
-              <li><Link to="/services/immigration">출출입국 행정</Link></li>
-              <li><Link to="/services/visa">비자 대행</Link></li>
-              <li><Link to="/services/legal">법률 컨설팅</Link></li>
-              <li><Link to="/services/b2b">B2B 서비스</Link></li>
+              <li><Link to="/Service">인증 센터</Link></li>
+              <li><Link to="/Service">결혼 이민</Link></li>
+              <li><Link to="/Service">출생신고</Link></li>
+              <li><Link to="/Service">입양 • 자녀 인지</Link></li>
+              <li><Link to="/Service">신분증명 서류</Link></li>
+              <li><Link to="/Service">출출입국 행정</Link></li>
+              <li><Link to="/Service">비자 대행</Link></li>
+              <li><Link to="/Service">법률 컨설팅</Link></li>
+              <li><Link to="/Service">B2B 서비스</Link></li>
             </ul>
           </div>
         </div>
@@ -162,10 +162,10 @@ function Header() {
               margin: 0,
               listStyle: "none"
             }}>
-              <li><Link to="/support/status">진행 현황 조회</Link></li>
-              <li><Link to="/support/contact">Contact</Link></li>
-              <li><Link to="/support/terms">이용약관</Link></li>
-              <li><Link to="/support/privacy">개인 정보 처리 방침</Link></li>
+              <li><Link to="/Consult">진행 현황 조회</Link></li>
+              <li><Link to="/Consult">Contact</Link></li>
+              <li><Link to="/Consult">이용약관</Link></li>
+              <li><Link to="/Consult">개인 정보 처리 방침</Link></li>
             </ul>
           </div>
         </div>

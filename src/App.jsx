@@ -45,7 +45,7 @@ import { motion } from "framer-motion";
 import Header from "./components/Header";
 import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
-import Contact from "./components/Contact";
+import Support from "./components/Support";
 import Introduction from "./components/Introduction";
 import Service from "./components/Service";
 import News from "./components/News";
@@ -376,67 +376,67 @@ function App() {
     }
   ];
 
-  const items = [
-    { id: 1, name: "페이스북", icon: fbIcon },
-    { id: 2, name: "카카오톡", icon: kakaotalkIcon },
-    { id: 3, name: "Zalo", icon: zaloIcon },
-    { id: 4, name: "네이버", icon: naverIcon },
-  ];
+ const items = [
+  { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+  { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+  { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me" },
+  { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+];
   const [activeId, setActiveId] = useState(null);
   const [hoverId, setHoverId] = useState(null);
   const effectiveId = hoverId ?? activeId;
   const [scrolled, setScrolled] = useState(false);
   const [service, setService] = useState("");
-    const [countryCode, setCountryCode] = useState("");
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [agree, setAgree] = useState(false);
-    const [loading, setLoading] = useState(false);
+  const [countryCode, setCountryCode] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // --- Xử lý gửi form ---
-const handleSubmit = async () => {
-  if (!service || !name || !phone || !agree) {
-    alert("모든 항목을 입력하고 동의해 주세요.");
-    return;
-  }
-
-  setLoading(true);
-
-  try {
-    const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvan", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        TenDichVu: service,
-        HoTen: name,
-        MaVung: countryCode,
-        SoDienThoai: phone,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      alert(`❌ 오류 발생: ${data.error || "Server error"}`);
-      console.error("Server Error:", data);
+  const handleSubmit = async () => {
+    if (!service || !name || !phone || !agree) {
+      alert("모든 항목을 입력하고 동의해 주세요.");
       return;
     }
 
-    alert("✅ 상담 신청 완료되었습니다!");
-    console.log("✅ Server response:", data);
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: service,
+          HoTen: name,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(`❌ 오류 발생: ${data.error || "Server error"}`);
+        console.error("Server Error:", data);
+        return;
+      }
+
+      alert("✅ 상담 신청 완료되었습니다!");
+      console.log("✅ Server response:", data);
 
 
-    setService("");
-    setName("");
-    setPhone("");
-    setAgree(false);
-  } catch (err) {
-    console.error("❌ Lỗi khi kết nối server:", err);
-    alert("❌ 서버 연결 실패 (Server connection failed)");
-  } finally {
-    setLoading(false);
-  }
-};
+      setService("");
+      setName("");
+      setPhone("");
+      setAgree(false);
+    } catch (err) {
+      console.error("❌ Lỗi khi kết nối server:", err);
+      alert("❌ 서버 연결 실패 (Server connection failed)");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Router>
@@ -585,6 +585,9 @@ const handleSubmit = async () => {
                           fontSize: 16,
                           width: 100,
                         }}
+                        required
+                        pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                        title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
                       />
 
                       <label style={{ fontSize: 16 }}>전화번호</label>
@@ -601,7 +604,7 @@ const handleSubmit = async () => {
                           width: 90,
                         }}
                       >
-                       <option value="">선택</option>
+                        <option value="">선택</option>
                         <option value="+82">+82</option>
                         <option value="+84">+84</option>
                       </select>
@@ -615,7 +618,21 @@ const handleSubmit = async () => {
                           border: "none",
                           fontSize: 16,
                           width: 120,
-                        }} 
+                        }}
+                        pattern={
+                          countryCode === "+82"
+                            ? "[0-9]{9,11}"
+                            : countryCode === "+84"
+                              ? "[0-9]{9,10}"
+                              : ".*"
+                        }
+                        title={
+                          countryCode === "+82"
+                            ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                            : countryCode === "+84"
+                              ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                              : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                        }
                       />
 
                       <label
@@ -667,9 +684,10 @@ const handleSubmit = async () => {
                           className={`social-btn ${isExpanded ? "expanded" : ""}`}
                           onMouseEnter={() => setHoverId(item.id)}
                           onMouseLeave={() => setHoverId(null)}
-                          onClick={() =>
-                            setActiveId((prev) => (prev === item.id ? null : item.id))
-                          }
+                          onClick={() => {
+                            setActiveId((prev) => (prev === item.id ? null : item.id));
+                            window.open(item.link, "_blank");
+                          }}
                         >
                           <img src={item.icon} alt={item.name} className="icon" />
                           <span className="label">{item.name}</span>
@@ -920,7 +938,7 @@ const handleSubmit = async () => {
             }
           />
 
-          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Support" element={<Support />} />
           <Route path="/Introduction" element={<Introduction />} />
           <Route path="/Service" element={<Service />} />
           <Route path="/News" element={<News />} />

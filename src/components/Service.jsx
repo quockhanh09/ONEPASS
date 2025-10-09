@@ -2722,7 +2722,7 @@ function Service() {
     }
   };
 
-  const visibleCount = 8; // số icon hiển thị mỗi lần
+  const visibleCount = 9; // số icon hiển thị mỗi lần
 
   const handleClick = (i) => {
     setActiveIndex(i);
@@ -2766,26 +2766,10 @@ function Service() {
               margin: "0 auto",
             }}
           >
-            {/* Prev button */}
-            <button
-              onClick={() => setStartIndex(Math.max(0, startIndex - 1))}
-              disabled={startIndex === 0}
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: "50%",
-                border: "none",
-                background: startIndex === 0 ? "#ccc" : "#2B3A67",
-                color: "#fff",
-                cursor: startIndex === 0 ? "not-allowed" : "pointer",
-                flexShrink: 0,
-              }}
-            >
-              <i className="bi bi-arrow-left"></i>
-            </button>
+          
 
             {/* Icons container */}
-            <div style={{ display: "flex", gap: 40, overflow: "hidden" }}>
+            <div style={{ display: "flex", gap: 40}}>
               {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
                 const realIndex = startIndex + i;
 
@@ -2839,30 +2823,7 @@ function Service() {
             </div>
 
             {/* Next button */}
-            <button
-              onClick={() =>
-                setStartIndex(
-                  Math.min(services.length - visibleCount, startIndex + 1)
-                )
-              }
-              disabled={startIndex + visibleCount >= services.length}
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: "50%",
-                border: "none",
-                background:
-                  startIndex + visibleCount >= services.length ? "#ccc" : "#2B3A67",
-                color: "#fff",
-                cursor:
-                  startIndex + visibleCount >= services.length
-                    ? "not-allowed"
-                    : "pointer",
-                flexShrink: 0,
-              }}
-            >
-              <i className="bi bi-arrow-right"></i>
-            </button>
+            
           </div>
         </div>
 

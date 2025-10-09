@@ -66,7 +66,7 @@ function Header() {
 
               <li>
                 <Link
-                  to="/support"
+                  to="/Support"
                   onClick={() => setActiveMenu("support")}
                   onMouseEnter={() => setActiveMenu("support")}
                 >

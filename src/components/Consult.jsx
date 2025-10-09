@@ -5,6 +5,7 @@ import iconMess from "../assets/img/iconmess.png";
 import iconZalo from "../assets/img/iconzalo.png";
 import iconKakao from "../assets/img/iconTalk.png";
 import iconNaver from "../assets/img/iconna.png";
+import { em } from "framer-motion/client";
 
 export default function Consult() {
     const [selected, setSelected] = useState("");
@@ -30,6 +31,7 @@ export default function Consult() {
   ]);
 
   const [activeIndex, setActiveIndex] = useState(""); // 👉 mặc định chọn "인증 센터"
+  const [showPopup, setShowPopup] = useState(false);
 
   const [countryCode, setCountryCode] = useState("");
   const [name, setName] = useState("");
@@ -38,8 +40,11 @@ export default function Consult() {
   const [agree, setAgree] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent]= useState("");
+  const [date, setDate]= useState("");
+  const [time, setTime]= useState("");
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState("");
+  const [showTimePopup, setShowTimePopup] = useState(false);
   const handleSubmit = async (e) => {  // Gọi Điện
     e.preventDefault();
 
@@ -51,11 +56,12 @@ export default function Consult() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
+  const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           TenDichVu: service,
+          TenHinhThuc:"Gọi điện",
           HoTen: name,
           Email: email,
           MaVung: countryCode,
@@ -70,8 +76,9 @@ export default function Consult() {
         console.error("Server Error:", data);
         return;
       }
-
-      alert("✅ 상담 신청 완료되었습니다!");
+      
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 5000); 
       console.log("✅ Server response:", data);
 
       // Reset form
@@ -97,7 +104,7 @@ export default function Consult() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/tuvanemail", {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvanemail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -121,7 +128,9 @@ export default function Consult() {
         return;
       }
 
-      alert("✅ 상담 신청 완료되었습니다!");
+     
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 5000); 
       console.log("✅ Server response:", data);
 
       // Reset form
@@ -138,10 +147,32 @@ export default function Consult() {
       setLoading(false);
     }
   };
-    const handleSubmit2 = async (e) => { // Trực Tiếp
-      e.preventDefault();
+  const handleTimeChange = (e) => {
+  const value = e.target.value;
 
-      if (!name || !phone || !email || !agree) {
+  // Giới hạn giờ làm việc
+  if (value < "09:00" || value > "18:00") {
+    setShowTimePopup(true);
+    setTimeout(() => setShowTimePopup(false), 5000);
+    return;
+  }
+
+  // Loại trừ giờ nghỉ trưa 12:00–13:00
+  if (value >= "12:00" && value < "13:00") {
+    setShowTimePopup(true);
+    setTimeout(() => setShowTimePopup(false), 5000);
+    return;
+  }
+
+  // Nếu hợp lệ → lưu giá trị
+  setTime(value);
+};
+  const handleSubmit2 = async (e) => { // Trực Tiếp
+      e.preventDefault();
+      const formattedDate = date
+      ? new Date(date).toLocaleDateString("en-GB") 
+      : "";
+      if (!name || !phone || !email || !date || !time || !agree) {
         alert("모든 항목을 입력하고 동의해 주세요.");
         return;
       }
@@ -153,11 +184,14 @@ export default function Consult() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            TenDichVu: serviceContents[activeIndex]?.title,
+            TenDichVu: service,
+            TenHinhThuc: "Trực tiếp",
             HoTen: name,
             Email: email,
             MaVung: countryCode,
             SoDienThoai: phone,
+            ChonNgay:formattedDate,
+            Gio:time
           }),
         });
 
@@ -169,13 +203,16 @@ export default function Consult() {
           return;
         }
 
-        alert("✅ 상담 신청 완료되었습니다!");
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 5000); 
         console.log("✅ Server response:", data);
 
         // Reset form
         setName("");
         setPhone("");
         setEmail("");
+        setDate("");
+        setTime("");
         setAgree(false);
       } catch (err) {
         console.error("❌ Lỗi khi kết nối server:", err);
@@ -566,6 +603,9 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
+                required
+                pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -595,6 +635,8 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                title=" Vui lòng nhập địa chỉ email hợp lệ"
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -630,7 +672,7 @@ export default function Consult() {
                 <option value="+84">+84</option>
               </select>
               <input
-                type="text"
+                type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="전화번호"
@@ -641,6 +683,20 @@ export default function Consult() {
                   padding: "12px 0",
                   background: "transparent",
                 }}
+                 pattern={
+                          countryCode === "+82"
+                            ? "[0-9]{9,11}"
+                            : countryCode === "+84"
+                            ? "[0-9]{9,10}"
+                            : ".*" 
+                        }
+                        title={
+                        countryCode === "+82"
+                          ?  "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                          : countryCode === "+84"
+                          ?   "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                          : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                      }
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -884,6 +940,9 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
+                required
+                pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -911,6 +970,8 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                title=" Vui lòng nhập địa chỉ email hợp lệ"
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -944,7 +1005,7 @@ export default function Consult() {
                 <option value="+84">+84</option>
               </select>
               <input
-                type="text"
+                type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="전화번호"
@@ -955,6 +1016,20 @@ export default function Consult() {
                   padding: "12px 0",
                   background: "transparent",
                 }}
+                pattern={
+                          countryCode === "+82"
+                            ? "[0-9]{9,11}"
+                            : countryCode === "+84"
+                            ? "[0-9]{9,10}"
+                            : ".*" 
+                        }
+                        title={
+                        countryCode === "+82"
+                          ?  "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                          : countryCode === "+84"
+                          ?   "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                          : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                      }
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -1032,6 +1107,8 @@ export default function Consult() {
               <input
                 type="radio"
                 name="agree"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
                 style={{
                   marginRight: 6,
                   width: 16,
@@ -1077,7 +1154,7 @@ export default function Consult() {
 
           {/* Nút submit */}
           <button
-            type="button"
+            type="submit"
             style={{
               width: "100%",
               background: "#d9c4a4",
@@ -1162,7 +1239,7 @@ export default function Consult() {
         <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28 }}>상담 신청</h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
 
-        <form>
+        <form onSubmit={handleSubmit2}>
           {/* 서비스 선택 */}
           <div style={{ marginBottom: 20, position: "relative" }}>
       <div
@@ -1210,6 +1287,7 @@ export default function Consult() {
               key={v}
               onClick={() => {
                 setSelected(v);
+                setService(v)
                 setOpen(false);
               }}
               style={{
@@ -1247,6 +1325,8 @@ export default function Consult() {
               </label>
               <input
                 type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="이름을 입력해주세요"
                 style={{
                   flex: 1,
@@ -1255,6 +1335,9 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
+                required
+                pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -1272,6 +1355,8 @@ export default function Consult() {
               <label style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="이메일을 입력해주세요"
                 style={{
                   flex: 1,
@@ -1280,6 +1365,8 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                title=" Vui lòng nhập địa chỉ email hợp lệ"
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -1298,6 +1385,8 @@ export default function Consult() {
                 전화번호 <span style={{ color: "red" }}>*</span>
               </label>
               <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
                 style={{
                   width: 90,
                   border: "none",
@@ -1311,7 +1400,9 @@ export default function Consult() {
                 <option value="+84">+84</option>
               </select>
               <input
-                type="text"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 placeholder="전화번호"
                 style={{
                   flex: 1,
@@ -1320,6 +1411,20 @@ export default function Consult() {
                   padding: "12px 0",
                   background: "transparent",
                 }}
+                  pattern={
+                          countryCode === "+82"
+                            ? "[0-9]{9,11}"
+                            : countryCode === "+84"
+                            ? "[0-9]{9,10}"
+                            : ".*" 
+                        }
+                        title={
+                        countryCode === "+82"
+                          ?  "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                          : countryCode === "+84"
+                          ?   "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                          : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                      }
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -1343,6 +1448,8 @@ export default function Consult() {
               {/* input chọn ngày */}
               <input
                 type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 placeholder="yyyy/mm/dd"
                 style={{
                   border: "none",
@@ -1363,6 +1470,12 @@ export default function Consult() {
               {/* input chọn giờ */}
               <input
                 type="time"
+                value={time}
+                onChange={handleTimeChange}
+                min="09:00"
+                max="18:00"
+                
+
                 style={{
                   border: "none",
                   outline: "none",
@@ -1396,6 +1509,8 @@ export default function Consult() {
               <input
                 type="radio"
                 name="agree"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
                 style={{
                   marginRight: 6,
                   width: 16,
@@ -1441,7 +1556,7 @@ export default function Consult() {
 
           {/* Nút submit */}
           <button
-            type="button"
+            type="submit"
             style={{
               width: "100%",
               background: "#d9c4a4",
@@ -1549,6 +1664,71 @@ export default function Consult() {
               ))}
             </div>
           </div>
+     <>
+  <style>
+{`
+      @keyframes pushDown {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        60% {
+          transform: translateY(10px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    `}
+  </style>
+
+    {showPopup && (
+    <div
+      style={{
+        position: "fixed",
+        top: "20px",
+        right: "20px",
+        background: "#4CAF50",
+        color: "white",
+        padding: "16px 30px",
+        borderRadius: "8px",
+        fontSize: "20px",
+        fontWeight: 600,
+        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+        animation: "pushDown 0.5s ease-out",
+        zIndex: 9999,
+      }}
+    >
+        상담 신청 완료되었습니다!
+    </div>
+    
+  )}
+  
+  {showTimePopup && (
+    <div
+      style={{
+        position: "fixed",
+        top: "20px",
+        right: "20px",
+        background: "#f87171", // đỏ nhẹ
+        color: "white",
+        padding: "16px 28px",
+        borderRadius: "8px",
+        fontSize: "18px",
+        fontWeight: 600,
+        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+        animation: "pushDown 0.4s ease-out",
+        zIndex: 9999,
+      }}
+    >
+      근무 시간은 09:00~18:00 입니다 (점심시간 12:00~13:00 제외) 
+    </div>
+  )}
+</>
+
+
 
 
           {/* Content */}

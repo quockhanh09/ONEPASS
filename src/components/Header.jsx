@@ -130,12 +130,12 @@ function Header() {
               margin: 0,
               listStyle: "none"
             }}>
-              <li><Link to="/services/translate">번역, 공증 • 인증</Link></li>
+              <li><Link to="/services/translate">인증 센터</Link></li>
               <li><Link to="/services/marriage">결혼 이민</Link></li>
-              <li><Link to="/services/birth">출생 • 사망 신고</Link></li>
+              <li><Link to="/services/birth">출생신고</Link></li>
               <li><Link to="/services/adoption">입양 • 자녀 인지</Link></li>
               <li><Link to="/services/id">신분증명 서류</Link></li>
-              <li><Link to="/services/immigration">출입국 • 국적 행정</Link></li>
+              <li><Link to="/services/immigration">출출입국 행정</Link></li>
               <li><Link to="/services/visa">비자 대행</Link></li>
               <li><Link to="/services/legal">법률 컨설팅</Link></li>
               <li><Link to="/services/b2b">B2B 서비스</Link></li>

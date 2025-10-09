@@ -603,13 +603,13 @@ const tabContents8 = {
 const services = [
   { icon: certIcon, hoverIcon: certHover, activeIcon: certActive, title: "인증 센터" },
   { icon: marriageIcon, hoverIcon: marriageHover, activeIcon: marriageActive, title: "결혼 이민" },
-  { icon: birthIcon, hoverIcon: birthHover, activeIcon: birthActive, title: "출생 · 사망 신고" },
+  { icon: birthIcon, hoverIcon: birthHover, activeIcon: birthActive, title: "출생신고" },
   { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "출입국 행정" },
   { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "신분증명 서류" },
-  { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 절차 대행" },
+  { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
   { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
-  { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률" },
-  { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "기타 서비스" },
+  { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
+  { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
 ];
     
 function Service() {

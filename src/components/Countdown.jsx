@@ -12,7 +12,7 @@ function Countdown() {
 
   // Địa chỉ để nhúng map
   const [address] = useState(
-    "(48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벡산이센텀클래스원)"
+    "(48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)"
   );
 
   const mapQuery = encodeURIComponent("Centumdong-ro 99, Haeundae-gu, Busan");
@@ -42,6 +42,7 @@ function Countdown() {
               borderRadius: 12,
               overflow: "hidden",
               boxShadow: "0 2px 16px rgba(10,20,40,0.06)",
+              marginLeft:20
             }}
           >
             <iframe
@@ -59,21 +60,21 @@ function Countdown() {
           {/* Khối thông tin phải */}
           <div
             style={{
-              flex: "1 1 420px",
-              minWidth: 360,
-              maxWidth: 560,
+              flex: "1 1 520px",
+              minWidth: 460,
+              maxWidth: 660,
               color: "#0B2447",
             }}
           >
             <div
               style={{
                 color: "#2F4D90",
-                fontWeight: 800,
-                fontSize: 18,
+                fontWeight: 600,
+                fontSize: 24,
                 marginBottom: 10,
               }}
             >
-              찾아오시는 길
+             CONTACT
             </div>
             <h3
               style={{
@@ -83,9 +84,7 @@ function Countdown() {
                 margin: "0 0 18px 0",
               }}
             >
-              고객과 함께 걸어온 발자취,
-              <br />
-              끝까지 함께 하겠습니다.
+              상담이 필요하시면 원패스를 찾아주세요
             </h3>
             <div
               style={{

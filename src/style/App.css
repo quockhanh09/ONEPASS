@@ -15,7 +15,8 @@
 
 /* ============= LEFT TIMELINE ============= */
 .sv-left-wrap {
-  position: relative;
+  position: absolute;
+  left: 200px;
   width: 220px;
   padding-left: 5px; /* khoảng cho line/dot */
   box-sizing: border-box;

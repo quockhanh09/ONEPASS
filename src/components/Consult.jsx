@@ -8,7 +8,7 @@ import iconNaver from "../assets/img/iconna.png";
 import { em } from "framer-motion/client";
 
 export default function Consult() {
-    const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
   const list = [
     "인증 센터",
@@ -39,9 +39,9 @@ export default function Consult() {
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
   const [title, setTitle] = useState("");
-  const [content, setContent]= useState("");
-  const [date, setDate]= useState("");
-  const [time, setTime]= useState("");
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState("");
   const [showTimePopup, setShowTimePopup] = useState(false);
@@ -56,12 +56,12 @@ export default function Consult() {
     setLoading(true);
 
     try {
-  const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           TenDichVu: service,
-          TenHinhThuc:"Gọi điện",
+          TenHinhThuc: "Gọi điện",
           HoTen: name,
           Email: email,
           MaVung: countryCode,
@@ -76,9 +76,9 @@ export default function Consult() {
         console.error("Server Error:", data);
         return;
       }
-      
+
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 5000); 
+      setTimeout(() => setShowPopup(false), 5000);
       console.log("✅ Server response:", data);
 
       // Reset form
@@ -128,9 +128,9 @@ export default function Consult() {
         return;
       }
 
-     
+
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 5000); 
+      setTimeout(() => setShowPopup(false), 5000);
       console.log("✅ Server response:", data);
 
       // Reset form
@@ -148,79 +148,79 @@ export default function Consult() {
     }
   };
   const handleTimeChange = (e) => {
-  const value = e.target.value;
+    const value = e.target.value;
 
-  // Giới hạn giờ làm việc
-  if (value < "09:00" || value > "18:00") {
-    setShowTimePopup(true);
-    setTimeout(() => setShowTimePopup(false), 5000);
-    return;
-  }
+    // Giới hạn giờ làm việc
+    if (value < "09:00" || value > "18:00") {
+      setShowTimePopup(true);
+      setTimeout(() => setShowTimePopup(false), 5000);
+      return;
+    }
 
-  // Loại trừ giờ nghỉ trưa 12:00–13:00
-  if (value >= "12:00" && value < "13:00") {
-    setShowTimePopup(true);
-    setTimeout(() => setShowTimePopup(false), 5000);
-    return;
-  }
+    // Loại trừ giờ nghỉ trưa 12:00–13:00
+    if (value >= "12:00" && value < "13:00") {
+      setShowTimePopup(true);
+      setTimeout(() => setShowTimePopup(false), 5000);
+      return;
+    }
 
-  // Nếu hợp lệ → lưu giá trị
-  setTime(value);
-};
+    // Nếu hợp lệ → lưu giá trị
+    setTime(value);
+  };
   const handleSubmit2 = async (e) => { // Trực Tiếp
-      e.preventDefault();
-      const formattedDate = date
-      ? new Date(date).toLocaleDateString("en-GB") 
+    e.preventDefault();
+    const formattedDate = date
+      ? new Date(date).toLocaleDateString("en-GB")
       : "";
-      if (!name || !phone || !email || !date || !time || !agree) {
-        alert("모든 항목을 입력하고 동의해 주세요.");
+    if (!name || !phone || !email || !date || !time || !agree) {
+      alert("모든 항목을 입력하고 동의해 주세요.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvantructiep", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: service,
+          TenHinhThuc: "Trực tiếp",
+          HoTen: name,
+          Email: email,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+          ChonNgay: formattedDate,
+          Gio: time
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(`❌ 오류 발생: ${data.error || "Server error"}`);
+        console.error("Server Error:", data);
         return;
       }
 
-      setLoading(true);
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 5000);
+      console.log("✅ Server response:", data);
 
-      try {
-        const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvantructiep", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            TenDichVu: service,
-            TenHinhThuc: "Trực tiếp",
-            HoTen: name,
-            Email: email,
-            MaVung: countryCode,
-            SoDienThoai: phone,
-            ChonNgay:formattedDate,
-            Gio:time
-          }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          alert(`❌ 오류 발생: ${data.error || "Server error"}`);
-          console.error("Server Error:", data);
-          return;
-        }
-
-        setShowPopup(true);
-        setTimeout(() => setShowPopup(false), 5000); 
-        console.log("✅ Server response:", data);
-
-        // Reset form
-        setName("");
-        setPhone("");
-        setEmail("");
-        setDate("");
-        setTime("");
-        setAgree(false);
-      } catch (err) {
-        console.error("❌ Lỗi khi kết nối server:", err);
-        alert("❌ 서버 연결 실패 (Server connection failed)");
-      } finally {
-        setLoading(false);
-      }
-    };
+      // Reset form
+      setName("");
+      setPhone("");
+      setEmail("");
+      setDate("");
+      setTime("");
+      setAgree(false);
+    } catch (err) {
+      console.error("❌ Lỗi khi kết nối server:", err);
+      alert("❌ 서버 연결 실패 (Server connection failed)");
+    } finally {
+      setLoading(false);
+    }
+  };
   const [activeTab, setActiveTab] = useState("sns");
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -344,45 +344,49 @@ export default function Consult() {
         <div style={{ height: 1, background: "#d1d5db", marginBottom: 24 }}></div>
 
         {[
-          { text: "메신저를 이용하여 실시간 채팅 상담", img: iconMess },
-          { text: "카카오톡을 이용하여 실시간 채팅 상담", img: iconKakao },
-          { text: "Zalo를 이용하여 실시간 채팅 상담", img: iconZalo },
-          { text: "네이버톡을 이용하여 실시간 채팅 상담", img: iconNaver },
+          { text: "메신저를 이용하여 실시간 채팅 상담", img: iconMess, link: "https://www.messenger.com/t/803644846172440/?messaging_source=source%3Apages%3Amessage_shortlink&source_id=1441792&recurring_notification=0" },
+          { text: "카카오톡을 이용하여 실시간 채팅 상담", img: iconKakao, link: "https://pf.kakao.com/_BHALn/chat" },
+          { text: "Zalo를 이용하여 실시간 채팅 상담", img: iconZalo, link: "" },
+          { text: "네이버톡을 이용하여 실시간 채팅 상담", img: iconNaver, link: "" },
         ].map((item, i) => (
-          <button
+          <a
             key={i}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-              background: "#fff",
-              border: "1px solid #e5e7eb",
-              borderRadius: 9999,
-              padding: "20px 60px",
-              marginBottom: 12,
-              cursor: "pointer",
-              fontSize: 18,
-              color: "#374151",
-              fontWeight: 500,
-              boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
-              transition: "all 0.2s ease",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.background = "#f3f4f6";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.background = "#fff";
-            }}
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
           >
-            <span>{item.text}</span>
-            <img
-              src={item.img}
-              alt=""
-              style={{ width: 30, height: 30, objectFit: "contain" }}
-            />
-          </button>
+            <button
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
+                background: "#fff",
+                border: "1px solid #e5e7eb",
+                borderRadius: 9999,
+                padding: "20px 60px",
+                marginBottom: 12,
+                cursor: "pointer",
+                fontSize: 18,
+                color: "#374151",
+                fontWeight: 500,
+                boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                transition: "all 0.2s ease",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.background = "#f3f4f6")}
+              onMouseOut={(e) => (e.currentTarget.style.background = "#fff")}
+            >
+              <span>{item.text}</span>
+              <img
+                src={item.img}
+                alt=""
+                style={{ width: 30, height: 30, objectFit: "contain" }}
+              />
+            </button>
+          </a>
         ))}
+
 
         <div
           onClick={() => setChecked(!checked)}
@@ -509,75 +513,75 @@ export default function Consult() {
         <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
         <form onSubmit={handleSubmit}>
           {/* 서비스 선택 */}
-     <div style={{ marginBottom: 20, position: "relative" }}>
-      <div
-        onClick={() => setOpen(!open)}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid #000",
-          fontSize: 18,
-          cursor: "pointer",
-        }}
-      >
-        <label style={{ width: 120, fontWeight: 600 }}>
-          서비스 선택 <span style={{ color: "red" }}>*</span>
-        </label>
-        <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
-          <span style={{ color: selected ? "#000" : "#999" }}>
-            {selected || "서비스 선택"}
-          </span>
-          <i
-            className="fa-solid fa-chevron-down"
-            style={{
-              transition: ".2s",
-              transform: open ? "rotate(180deg)" : "rotate(0deg)",
-            }}
-          />
-        </div>
-      </div>
-
-      {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "100%",
-            left: 120,
-            right: 0,
-            background: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: 4,
-            zIndex: 10,
-          }}
-        >
-          {list.map((v) => (
+          <div style={{ marginBottom: 20, position: "relative" }}>
             <div
-              key={v}
-              onClick={() => {
-                setSelected(v);
-                setService(v);
-                setOpen(false);
-              }}
+              onClick={() => setOpen(!open)}
               style={{
-                padding: "10px 12px",
-                fontSize: 16,
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
                 cursor: "pointer",
               }}
-              onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-              onMouseLeave={(e) => (e.target.style.background = "#fff")}
             >
-              {v}
+              <label style={{ width: 120, fontWeight: 600 }}>
+                서비스 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+              <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: selected ? "#000" : "#999" }}>
+                  {selected || "서비스 선택"}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
             </div>
-          ))}
-        </div>
-      )}
 
-      {!selected && (
-        <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-          *필수입력입니다
-        </div>
-      )}
-    </div>
+            {open && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {list.map((v) => (
+                  <div
+                    key={v}
+                    onClick={() => {
+                      setSelected(v);
+                      setService(v);
+                      setOpen(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {v}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!selected && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입력입니다
+              </div>
+            )}
+          </div>
 
           {/* 이름 */}
           <div style={{ marginBottom: 20, fontSize: 18, }}>
@@ -683,20 +687,20 @@ export default function Consult() {
                   padding: "12px 0",
                   background: "transparent",
                 }}
-                 pattern={
-                          countryCode === "+82"
-                            ? "[0-9]{9,11}"
-                            : countryCode === "+84"
-                            ? "[0-9]{9,10}"
-                            : ".*" 
-                        }
-                        title={
-                        countryCode === "+82"
-                          ?  "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
-                          : countryCode === "+84"
-                          ?   "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                          : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
-                      }
+                pattern={
+                  countryCode === "+82"
+                    ? "[0-9]{9,11}"
+                    : countryCode === "+84"
+                      ? "[0-9]{9,10}"
+                      : ".*"
+                }
+                title={
+                  countryCode === "+82"
+                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    : countryCode === "+84"
+                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                }
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -846,75 +850,75 @@ export default function Consult() {
 
         <form onSubmit={handleSubmit1}>
           {/* 서비스 선택 */}
-         <div style={{ marginBottom: 20, position: "relative" }}>
-      <div
-        onClick={() => setOpen(!open)}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid #000",
-          fontSize: 18,
-          cursor: "pointer",
-        }}
-      >
-        <label style={{ width: 120, fontWeight: 600 }}>
-          서비스 선택 <span style={{ color: "red" }}>*</span>
-        </label>
-        <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
-          <span style={{ color: selected ? "#000" : "#999" }}>
-            {selected || "서비스 선택"}
-          </span>
-          <i
-            className="fa-solid fa-chevron-down"
-            style={{
-              transition: ".2s",
-              transform: open ? "rotate(180deg)" : "rotate(0deg)",
-            }}
-          />
-        </div>
-      </div>
-
-      {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "100%",
-            left: 120,
-            right: 0,
-            background: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: 4,
-            zIndex: 10,
-          }}
-        >
-          {list.map((v) => (
+          <div style={{ marginBottom: 20, position: "relative" }}>
             <div
-              key={v}
-              onClick={() => {
-                setSelected(v);
-                setService(v);
-                setOpen(false);
-              }}
+              onClick={() => setOpen(!open)}
               style={{
-                padding: "10px 12px",
-                fontSize: 16,
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
                 cursor: "pointer",
               }}
-              onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-              onMouseLeave={(e) => (e.target.style.background = "#fff")}
             >
-              {v}
+              <label style={{ width: 120, fontWeight: 600 }}>
+                서비스 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+              <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: selected ? "#000" : "#999" }}>
+                  {selected || "서비스 선택"}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
             </div>
-          ))}
-        </div>
-      )}
 
-      {!selected && (
-        <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-          *필수입력입니다
-        </div>
-      )}
-    </div>
+            {open && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {list.map((v) => (
+                  <div
+                    key={v}
+                    onClick={() => {
+                      setSelected(v);
+                      setService(v);
+                      setOpen(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {v}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!selected && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입력입니다
+              </div>
+            )}
+          </div>
 
           {/* 이름 */}
           <div style={{ marginBottom: 20, fontSize: 18 }}>
@@ -1017,19 +1021,19 @@ export default function Consult() {
                   background: "transparent",
                 }}
                 pattern={
-                          countryCode === "+82"
-                            ? "[0-9]{9,11}"
-                            : countryCode === "+84"
-                            ? "[0-9]{9,10}"
-                            : ".*" 
-                        }
-                        title={
-                        countryCode === "+82"
-                          ?  "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
-                          : countryCode === "+84"
-                          ?   "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                          : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
-                      }
+                  countryCode === "+82"
+                    ? "[0-9]{9,11}"
+                    : countryCode === "+84"
+                      ? "[0-9]{9,10}"
+                      : ".*"
+                }
+                title={
+                  countryCode === "+82"
+                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    : countryCode === "+84"
+                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                }
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -1047,8 +1051,8 @@ export default function Consult() {
               <label style={{ width: 120, fontWeight: 600 }}>제목<span style={{ color: "red" }}>*</span></label>
               <input
                 type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="제목을 입력해주세요 "
                 style={{
                   flex: 1,
@@ -1221,7 +1225,7 @@ export default function Consult() {
           예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다.
 
         </p>
-        <p style={{color:"#384D8D"}}>찾아오시는 길 보기 <i class="bi bi-arrow-right"></i></p>
+        <p style={{ color: "#384D8D" }}>찾아오시는 길 보기 <i class="bi bi-arrow-right"></i></p>
       </div>
 
       {/* Right */}
@@ -1242,74 +1246,74 @@ export default function Consult() {
         <form onSubmit={handleSubmit2}>
           {/* 서비스 선택 */}
           <div style={{ marginBottom: 20, position: "relative" }}>
-      <div
-        onClick={() => setOpen(!open)}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid #000",
-          fontSize: 18,
-          cursor: "pointer",
-        }}
-      >
-        <label style={{ width: 120, fontWeight: 600 }}>
-          서비스 선택 <span style={{ color: "red" }}>*</span>
-        </label>
-        <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
-          <span style={{ color: selected ? "#000" : "#999" }}>
-            {selected || "서비스 선택"}
-          </span>
-          <i
-            className="fa-solid fa-chevron-down"
-            style={{
-              transition: ".2s",
-              transform: open ? "rotate(180deg)" : "rotate(0deg)",
-            }}
-          />
-        </div>
-      </div>
-
-      {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "100%",
-            left: 120,
-            right: 0,
-            background: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: 4,
-            zIndex: 10,
-          }}
-        >
-          {list.map((v) => (
             <div
-              key={v}
-              onClick={() => {
-                setSelected(v);
-                setService(v)
-                setOpen(false);
-              }}
+              onClick={() => setOpen(!open)}
               style={{
-                padding: "10px 12px",
-                fontSize: 16,
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
                 cursor: "pointer",
               }}
-              onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-              onMouseLeave={(e) => (e.target.style.background = "#fff")}
             >
-              {v}
+              <label style={{ width: 120, fontWeight: 600 }}>
+                서비스 선택 <span style={{ color: "red" }}>*</span>
+              </label>
+              <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: selected ? "#000" : "#999" }}>
+                  {selected || "서비스 선택"}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
             </div>
-          ))}
-        </div>
-      )}
 
-      {!selected && (
-        <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-          *필수입력입니다
-        </div>
-      )}
-    </div>
+            {open && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {list.map((v) => (
+                  <div
+                    key={v}
+                    onClick={() => {
+                      setSelected(v);
+                      setService(v)
+                      setOpen(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {v}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!selected && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입력입니다
+              </div>
+            )}
+          </div>
 
           {/* 이름 */}
           <div style={{ marginBottom: 20, fontSize: 18 }}>
@@ -1411,20 +1415,20 @@ export default function Consult() {
                   padding: "12px 0",
                   background: "transparent",
                 }}
-                  pattern={
-                          countryCode === "+82"
-                            ? "[0-9]{9,11}"
-                            : countryCode === "+84"
-                            ? "[0-9]{9,10}"
-                            : ".*" 
-                        }
-                        title={
-                        countryCode === "+82"
-                          ?  "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
-                          : countryCode === "+84"
-                          ?   "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                          : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
-                      }
+                pattern={
+                  countryCode === "+82"
+                    ? "[0-9]{9,11}"
+                    : countryCode === "+84"
+                      ? "[0-9]{9,10}"
+                      : ".*"
+                }
+                title={
+                  countryCode === "+82"
+                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    : countryCode === "+84"
+                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                }
               />
             </div>
             <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
@@ -1457,7 +1461,7 @@ export default function Consult() {
                   background: "transparent",
                   fontSize: 16,
                   marginRight: 6,
-                  marginLeft:30,
+                  marginLeft: 30,
                   position: "relative",
                   colorScheme: "light",
                 }}
@@ -1474,7 +1478,7 @@ export default function Consult() {
                 onChange={handleTimeChange}
                 min="09:00"
                 max="18:00"
-                
+
 
                 style={{
                   border: "none",
@@ -1664,9 +1668,9 @@ export default function Consult() {
               ))}
             </div>
           </div>
-     <>
-  <style>
-{`
+          <>
+            <style>
+              {`
       @keyframes pushDown {
         0% {
           transform: translateY(-100%);
@@ -1682,51 +1686,51 @@ export default function Consult() {
         }
       }
     `}
-  </style>
+            </style>
 
-    {showPopup && (
-    <div
-      style={{
-        position: "fixed",
-        top: "20px",
-        right: "20px",
-        background: "#4CAF50",
-        color: "white",
-        padding: "16px 30px",
-        borderRadius: "8px",
-        fontSize: "20px",
-        fontWeight: 600,
-        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-        animation: "pushDown 0.5s ease-out",
-        zIndex: 9999,
-      }}
-    >
-        상담 신청 완료되었습니다!
-    </div>
-    
-  )}
-  
-  {showTimePopup && (
-    <div
-      style={{
-        position: "fixed",
-        top: "20px",
-        right: "20px",
-        background: "#f87171", // đỏ nhẹ
-        color: "white",
-        padding: "16px 28px",
-        borderRadius: "8px",
-        fontSize: "18px",
-        fontWeight: 600,
-        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-        animation: "pushDown 0.4s ease-out",
-        zIndex: 9999,
-      }}
-    >
-      근무 시간은 09:00~18:00 입니다 (점심시간 12:00~13:00 제외) 
-    </div>
-  )}
-</>
+            {showPopup && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: "20px",
+                  right: "20px",
+                  background: "#4CAF50",
+                  color: "white",
+                  padding: "16px 30px",
+                  borderRadius: "8px",
+                  fontSize: "20px",
+                  fontWeight: 600,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                  animation: "pushDown 0.5s ease-out",
+                  zIndex: 9999,
+                }}
+              >
+                상담 신청 완료되었습니다!
+              </div>
+
+            )}
+
+            {showTimePopup && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: "20px",
+                  right: "20px",
+                  background: "#f87171", // đỏ nhẹ
+                  color: "white",
+                  padding: "16px 28px",
+                  borderRadius: "8px",
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                  animation: "pushDown 0.4s ease-out",
+                  zIndex: 9999,
+                }}
+              >
+                근무 시간은 09:00~18:00 입니다 (점심시간 12:00~13:00 제외)
+              </div>
+            )}
+          </>
 
 
 

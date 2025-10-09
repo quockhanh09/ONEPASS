@@ -1,8 +1,12 @@
 import facebookLogo from "../assets/img/Facebook.svg";
 import youtubeLogo from "../assets/img/Youtube.svg";
 import linkedinLogo from "../assets/img/Linkedin.svg";
+import  tiktokLogo from "../assets/img/tiktok.svg";
+import  nav from "../assets/img/Nav.svg";
+
 import logo from "../assets/img/Logo-name.png";
 import "../style/App.css";
+import { i } from "framer-motion/client";
 
 function Footer() {
   return (
@@ -112,10 +116,13 @@ function Footer() {
               <img src={facebookLogo} alt="Facebook" style={{ width: 28, height: 28, objectFit: "contain" }} />
             </a>
             <a href="#" style={{ color: "#E8EEF9" }}>
-              <img src={linkedinLogo} alt="LinkedIn" style={{ width: 28, height: 28, objectFit: "contain" }} />
+              <img src={tiktokLogo} alt="LinkedIn" style={{ width: 28, height: 28, objectFit: "contain" }} />
             </a>
             <a href="#" style={{ color: "#E8EEF9" }}>
               <img src={youtubeLogo} alt="YouTube" style={{ width: 28, height: 28, objectFit: "contain" }} />
+            </a>
+             <a href="#" style={{ color: "#E8EEF9" }}>
+              <img src={nav} alt="YouTube" style={{ width: 28, height: 28, objectFit: "contain" }} />
             </a>
           </div>
         </div>

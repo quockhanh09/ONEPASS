@@ -8,7 +8,8 @@
 // 4. Added color picker controls for interface customization
 // 5. Updated modal to use editable service titles
 // 6. Each service now has its own unique, customizable UI
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { useState } from "react";
 import vcpcLogo from "../assets/img/vcpc-header.png";
 import meetingImg from "../assets/img/image8.png";
@@ -64,7 +65,7 @@ const steps = [
 ];
 
 const tabContents = {
-  korea: {
+  korea1: {
     title: "한국 내 혼인신고",
     rows: [
       ["결혼 이민", "한국 내 혼인신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
@@ -77,7 +78,7 @@ const tabContents = {
    
     ],
   },
-  vietnam: {
+  vietnam1: {
     title: "혼인관계증명서",
     rows: [
       ["결혼 이민", "한국 내 혼인신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
@@ -89,7 +90,7 @@ const tabContents = {
      
     ],
   },
-  certificate: {
+  certificate1: {
     title: "혼인관계증명서",
     rows: [
       ["결혼 이민", "한국 내 혼인신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
@@ -101,7 +102,7 @@ const tabContents = {
     ],
   },
    
-  cc: {
+  cc1: {
     title: "베트남 귀국절차",
     rows: [
       ["출입국 행정", "베트남 귀국절차", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -112,14 +113,14 @@ const tabContents = {
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
-  visa: {
+  visa1: {
 
   },
 };
 
 
 const tabContents2 = {
-  korea: {
+  korea2: {
     title: "출생 신고",
     rows: [
       ["출생신고", "출생 신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
@@ -131,7 +132,7 @@ const tabContents2 = {
 
     ],
   },
-  vietnam: {
+  vietnam2: {
     title: "베트남 내 혼인신고",
     rows: [
       ["출생신고", "사망 신고", "별도 심사 적용		", "별도 심사 적용", "견적 상담 필요"],
@@ -143,7 +144,7 @@ const tabContents2 = {
 
     ],
   },
-  certificate: {
+  certificate2: {
     title: "사망 신고",
     rows: [
       ["출생신고", "출생 신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
@@ -154,7 +155,7 @@ const tabContents2 = {
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
-  visa: {
+  visa2: {
     title: "혼인관계증명서",
     rows: [
       ["출생신고", "기한 초과 사망신고", "별도 심사 적용	", "별도 심사 적용	", "견적 상담 필요"],
@@ -169,7 +170,7 @@ const tabContents2 = {
 };
 
 const tabContents3 = {
-  korea: {
+  korea3: {
     title: "베트남 국적 포기 신청",
     rows: [
       ["출입국 행정", "베트남 국적 포기 신청", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -288,7 +289,7 @@ const tabContents3 = {
       </div>
     )
   },
-  vietnam: {
+  vietnam3: {
     title: "베트남 국적 유지 신청",
     rows: [
       ["출입국 행정", "베트남 국적 유지 신청", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -301,7 +302,7 @@ const tabContents3 = {
     ],
   },
 
-  certificate: {
+  certificate3: {
     title: "베트남 국적 귀화 신청",
     rows: [
       ["출입국 행정", "베트남 국적 귀화 신청", "별도 심사 적용	", "...일 소요 (업무일 기준)	", "견적 상담 필요"],
@@ -313,7 +314,7 @@ const tabContents3 = {
     ],
   },
 
-  visa: {
+  visa3: {
     title: "시체 등 반입 허가 신청",
     rows: [
       ["출입국 행정", "시체 등 반입 허가 신청", "별도 심사 적용", "...일 소요 (업무일 기준)	", "견적 상담 필요"],
@@ -324,7 +325,7 @@ const tabContents3 = {
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
-  cc: {
+  cc3: {
     title: "베트남 귀국절차",
     rows: [
       ["출입국 행정", "베트남 귀국절차", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -339,7 +340,7 @@ const tabContents3 = {
 
 
 const tabContents4 = {
-  korea: {
+  korea4: {
     title: "일반 여권 발급 • 변경 • 추가",
     rows: [
       ["신분증명 서류", "일반 여권 발급 • 변경 • 추가", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -351,7 +352,7 @@ const tabContents4 = {
     ],
     
   },
-  vietnam: {
+  vietnam4: {
     title: "호적 정보 정정",
     rows: [
       ["신분증명 서류", "호적  정보 정정", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -364,7 +365,7 @@ const tabContents4 = {
     ],
   },
 
-  certificate: {
+  certificate4: {
     title: "베트남 국민 신고  • 업데이트",
     rows: [
       ["신분증명 서류", "베트남 국민 신고 • 업데이트", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -376,7 +377,7 @@ const tabContents4 = {
     ],
   },
 
-  visa: {
+  visa4: {
     title: "베트남 출신 증명서 발급",
     rows: [
       ["신분증명 서류", "베트남 출신 증명서 발급", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -387,7 +388,7 @@ const tabContents4 = {
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
-  cc: {
+  cc4: {
     title: "호적증서 반사오 재발급",
     rows: [
       ["신분증명 서류", "호적증서 반사오 재발급", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -402,7 +403,7 @@ const tabContents4 = {
 
 
 const tabContents5 = {
-  korea: {
+  korea5: {
     title: "보호자 인지 • 해지 신고",
     rows: [
       ["입양 • 자녀 인지", "보호자 인지 • 해지 신고", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -414,7 +415,7 @@ const tabContents5 = {
     ],
     
   },
-  vietnam: {
+  vietnam5: {
     title: "베트남 혼외자 자녀 인지",
     rows: [
       ["입양 • 자녀 인지", "베트남 혼외자 자녀 인지", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -429,7 +430,7 @@ const tabContents5 = {
     ],
   },
 
-  certificate: {
+  certificate5: {
     title: "입양 절차 대행",
     rows: [
       ["입양 • 자녀 인지", "베트남 국민 신고 • 업데이트", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -444,7 +445,7 @@ const tabContents5 = {
 
 
 const tabContents6 = {
-  korea: {
+  korea6: {
     title: "베트남 통행증 발급",
     rows: [
       ["비자 대행", "베트남 통행증 발급", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -456,7 +457,7 @@ const tabContents6 = {
     ],
     
   },
-  vietnam: {
+  vietnam6: {
     title: "초청(단기방문 C-3-1 비자)",
     rows: [
       ["비자 대행", "초청(단기방문 C-3-1 비자)", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -469,7 +470,7 @@ const tabContents6 = {
     ],
   },
 
-  certificate: {
+  certificate6: {
     title: "초청(단기방문 F-1-5 비자)",
     rows: [
       ["비자 대행", "초청(단기방문 F-1-5 비자)", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -481,7 +482,7 @@ const tabContents6 = {
     ],
   },
 
-  visa: {
+  visa6: {
     title: "베트남 출신 증명서 발급",
     rows: [
       ["비자 대행", "베트남 비자면제증 발급", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -492,7 +493,7 @@ const tabContents6 = {
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
-  cc: {
+  cc6: {
     title: "베트남 전자비자 • 성용비자",
     rows: [
       ["비자 대행", "베트남 전자비자 • 상용비자", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
@@ -506,7 +507,7 @@ const tabContents6 = {
 };
 
 const tabContents7 = {
-  korea: {
+  korea7: {
     title: "이혼 소송",
     rows: [
       ["법률 컨설팅", "이혼 소송", "케이스별 상이", "견적 상담 필요"],
@@ -520,7 +521,7 @@ const tabContents7 = {
     ],
     
   },
-  vietnam: {
+  vietnam7: {
     title: "노동 관련 소송",
     rows: [
       ["법률 컨설팅", "이혼 소송", "케이스별 상이", "견적 상담 필요"],
@@ -534,7 +535,7 @@ const tabContents7 = {
     ],
   },
 
-  certificate: {
+  certificate7: {
     title: "불법 체류자 관련 컨설팅",
      rows: [
       ["법률 컨설팅", "이혼 소송", "케이스별 상이", "견적 상담 필요"],
@@ -550,7 +551,7 @@ const tabContents7 = {
 };
 
 const tabContents8 = {
-  korea: {
+  korea8: {
     title: "법인 • 지사 • 대표사무실 설립",
     rows: [
       ["B2B 서비스", "법인 • 지사 • 대표사무실 설립", "별도 심사 적용	", "견적 상담 필요"],
@@ -564,7 +565,7 @@ const tabContents8 = {
     ],
     
   },
-  vietnam: {
+  vietnam8: {
     title: "노동 허가서, 임시 거주증 발급",
     rows: [
       ["B2B 서비스", "노동 허가서, 임시 거주증 발급", "별도 심사 적용	", "견적 상담 필요"],
@@ -578,7 +579,7 @@ const tabContents8 = {
     ],
   },
 
-  certificate: {
+  certificate8: {
     title: "수입 허가서",
      rows: [
       ["B2B 서비스", "수입 허가서", "별도 심사 적용", "견적 상담 필요"],
@@ -592,7 +593,7 @@ const tabContents8 = {
     ],
 
   },
-  visa: {
+  visa8: {
     title: "베트남 출신 증명서 발급",
     rows: [
       ["B2B 서비스", "B2B 바이어매칭", "별도 심사 적용", "견적 상담 필요"],
@@ -613,6 +614,11 @@ const services = [
 ];
     
 function Service() {
+  
+const location = useLocation();
+  const incomingTabKey = location.state?.tabKey || null;
+  // incoming service index from App (0-based)
+  const incomingServiceIndex = typeof location.state?.serviceIndex === 'number' ? location.state.serviceIndex : null;
   const [activeIndex, setActiveIndex] = useState(0); // 👉 mặc định chọn "인증 센터"
   const [hoverIndex, setHoverIndex] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
@@ -622,11 +628,19 @@ function Service() {
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [submittedServiceForm, setSubmittedServiceForm] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
+    setSubmittedServiceForm(true);
 
     if (!name || !phone || !email || !agree) {
+      if (!name) setNameError(true);
+      if (!phone) setPhoneError(true);
+      if (!email) setEmailError(true);
       alert("모든 항목을 입력하고 동의해 주세요.");
       return;
     }
@@ -670,20 +684,142 @@ function Service() {
     }
   };
 
+    
+
 
   const [showModal, setShowModal] = useState(false);
-  const [activeTab, setActiveTab] = useState("korea");
-  const tabStyle = (tab) => ({
-    flex: 1, // mỗi tab chiếm đều 1 phần
-    padding: "12px 0", // chỉ padding trên dưới
-    fontSize: 14,
-    fontWeight: activeTab === tab ? "600" : "400",
-    color: activeTab === tab ? "#111827" : "#9ca3af",
-    border: "none",
-    background: "transparent",
-    cursor: "pointer",
-    borderBottom: activeTab === tab ? "3px solid #111827" : "3px solid transparent",
-  });
+  const [activeTab, setActiveTab] = useState("korea1");
+const [activeTab2, setActiveTab2] = useState("korea2");
+const [activeTab3, setActiveTab3] = useState("korea3");
+const [activeTab4, setActiveTab4] = useState("korea4");
+const [activeTab5, setActiveTab5] = useState("korea5");
+const [activeTab6, setActiveTab6] = useState("korea6");
+const [activeTab7, setActiveTab7] = useState("korea7");
+const [activeTab8, setActiveTab8] = useState("korea8");
+
+    // handle navigation state coming from App (tabKey and serviceIndex)
+    useEffect(() => {
+      if (incomingTabKey || incomingServiceIndex !== null) {
+        // map legacy a1..a36 keys (from App.jsx) to serviceIndex + inner tab name
+        const aKeyMap = {
+          a1: { index: 0 }, a2: { index: 0 },
+          a3: { index: 1, tab: 'korea1' }, a4: { index: 1, tab: 'vietnam1' }, a5: { index: 1, tab: 'certificate1' }, a6: { index: 1, tab: 'cc1' }, a7: { index: 1, tab: 'visa1' },
+          a8: { index: 2, tab: 'korea2' }, a9: { index: 2, tab: 'vietnam2' }, a10: { index: 2, tab: 'certificate2' }, a11: { index: 2, tab: 'visa2' },
+          a12: { index: 3, tab: 'korea3' }, a13: { index: 3, tab: 'vietnam3' }, a14: { index: 3, tab: 'certificate3' }, a15: { index: 3, tab: 'visa3' }, a16: { index: 3, tab: 'cc3' },
+          a17: { index: 4, tab: 'korea4' }, a18: { index: 4, tab: 'vietnam4' }, a19: { index: 4, tab: 'certificate4' }, a20: { index: 4, tab: 'visa4' }, a21: { index: 4, tab: 'cc4' },
+          a22: { index: 5, tab: 'korea5' }, a23: { index: 5, tab: 'vietnam5' }, a24: { index: 5, tab: 'certificate5' },
+          a25: { index: 6, tab: 'korea6' }, a26: { index: 6, tab: 'vietnam6' }, a27: { index: 6, tab: 'certificate6' }, a28: { index: 6, tab: 'visa6' }, a29: { index: 6, tab: 'cc6' },
+          a30: { index: 7, tab: 'korea7' }, a31: { index: 7, tab: 'vietnam7' }, a32: { index: 7, tab: 'certificate7' },
+          a33: { index: 8, tab: 'korea8' }, a34: { index: 8, tab: 'vietnam8' }, a35: { index: 8, tab: 'certificate8' }, a36: { index: 8, tab: 'visa8' },
+        };
+
+        // if incomingTabKey is like 'a3', prefer mapping
+        if (incomingTabKey && /^a\d+$/i.test(incomingTabKey)) {
+          const key = incomingTabKey.toLowerCase();
+          const mapped = aKeyMap[key];
+          if (mapped) {
+            if (typeof mapped.index === 'number') setActiveIndex(mapped.index);
+            if (mapped.tab) {
+              switch (mapped.index) {
+                case 0:
+                  setActiveTab(mapped.tab);
+                  break;
+                case 1:
+                  setActiveTab(mapped.tab);
+                  break;
+                case 2:
+                  setActiveTab2(mapped.tab);
+                  break;
+                case 3:
+                  setActiveTab3(mapped.tab);
+                  break;
+                case 4:
+                  setActiveTab4(mapped.tab);
+                  break;
+                case 5:
+                  setActiveTab5(mapped.tab);
+                  break;
+                case 6:
+                  setActiveTab6(mapped.tab);
+                  break;
+                case 7:
+                  setActiveTab7(mapped.tab);
+                  break;
+                case 8:
+                  setActiveTab8(mapped.tab);
+                  break;
+                default:
+                  break;
+              }
+            }
+            window.scrollTo(0, 0);
+            return;
+          }
+        }
+        // if a service index was provided, activate that left-side service
+        if (incomingServiceIndex !== null) {
+          setActiveIndex(incomingServiceIndex);
+        }
+
+        if (incomingTabKey) {
+          const match = incomingTabKey.match(/(\D+)(\d+)/);
+          if (match) {
+            const [, type, numStr] = match;
+            const num = Number(numStr);
+
+            switch (num) {
+              case 1:
+                setActiveTab(incomingTabKey);
+                break;
+              case 2:
+                setActiveTab2(incomingTabKey);
+                break;
+              case 3:
+                setActiveTab3(incomingTabKey);
+                break;
+              case 4:
+                setActiveTab4(incomingTabKey);
+                break;
+              case 5:
+                setActiveTab5(incomingTabKey);
+                break;
+              case 6:
+                setActiveTab6(incomingTabKey);
+                break;
+              case 7:
+                setActiveTab7(incomingTabKey);
+                break;
+              case 8:
+                setActiveTab8(incomingTabKey);
+                break;
+              default:
+                break;
+            }
+          }
+        }
+
+        window.scrollTo(0, 0);
+      }
+    }, [incomingTabKey, incomingServiceIndex]);
+
+
+  const tabStyle = (tab) => {
+    const isActive = (
+      activeTab === tab || activeTab2 === tab || activeTab3 === tab || activeTab4 === tab ||
+      activeTab5 === tab || activeTab6 === tab || activeTab7 === tab || activeTab8 === tab
+    );
+    return {
+      flex: 1, // mỗi tab chiếm đều 1 phần
+      padding: "12px 0", // chỉ padding trên dưới
+      fontSize: 14,
+      fontWeight: isActive ? "600" : "400",
+      color: isActive ? "#111827" : "#9ca3af",
+      border: "none",
+      background: "transparent",
+      cursor: "pointer",
+      borderBottom: isActive ? "3px solid #111827" : "3px solid transparent",
+    };
+  };
 
   const currentTab = tabContents[activeTab];
   // UI CHANGE: Added serviceContents state to store editable content for each service
@@ -1132,6 +1268,7 @@ function Service() {
         );
       // Service 1: 결혼 이민 - Side-by-Side Layout with image and content
       case 1:
+        if (!tabContents[activeTab]) return null;
         return (
           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -1149,19 +1286,19 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
-                한국 내 혼인신고
+              <button style={tabStyle("korea1")} onClick={() => setActiveTab("korea1")}>
+                한국 내 혼인 신고
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
-                혼인관계증명서
+              <button style={tabStyle("vietnam1")} onClick={() => setActiveTab("vietnam1")}>
+               혼인관계증명서 발급 신청
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
-                혼인요건인증서
+              <button style={tabStyle("certificate1")} onClick={() => setActiveTab("certificate1")}>
+                혼인요건인증서 발급 신청
               </button>
-              <button style={tabStyle("cc")} onClick={() => setActiveTab("cc")}>
-                결혼 재신고
+              <button style={tabStyle("cc1")} onClick={() => setActiveTab("cc1")}>
+                혼인 재신고
               </button>
-               <button style={tabStyle("visa")} onClick={() => setActiveTab("visa")}>
+               <button style={tabStyle("visa1")} onClick={() => setActiveTab("visa1")}>
                 결혼이민 비자신청
               </button>
             </div>
@@ -1199,7 +1336,7 @@ function Service() {
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1274,7 +1411,7 @@ function Service() {
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
-                                width: "250px",
+                                width: "220px",
                                 height: "160px",
                                 boxShadow: "0 6px 16px rgba(0, 0, 0, 0.37)",
                                 display: "flex",
@@ -1320,29 +1457,32 @@ function Service() {
               )}
             </div>
 
-            {/* Notes */}
-            <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
-                <li style={{ marginBottom: 8 }}>
-                  의사소통 능력 필수: 예비 배우자(신부/신랑) 비자 신청 시점까지 한국어능력 공인 시험 성적표, 한국어 과정 이수,
-                  60점 이상 취득하거나 TOPIK 1급 이상 성적표 제출하여야 합니다.
-                </li>
-                <li style={{ marginBottom: 8 }}>
-                  서류 유효기간 (3개월 원칙): 혼인 신고를 위해 제출하는 대부분의 서류는 3개월 이내에 발급된 것이어야 합니다.
-                </li>
-                <li style={{ marginBottom: 8 }}>
-                  한국 내 혼인신고는 주민센터에서 접수 가능하며, 관할 구청 또는 시청 민원실에서 확인할 수 있습니다.
-                </li>
-                <li>
-                  혼인신고가 완료되면 혼인관계증명서를 발급받아야 하며, 이후 베트남 공관에 제출해야 합니다.
-                </li>
-              </ul>
-            </div>
+            {/* Notes (only show for korea1 tab) */}
+            {activeTab === "korea1" && (
+              <div style={{ marginTop: 80 }}>
+                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
+                <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
+                  <li style={{ marginBottom: 8 }}>
+                    의사소통 능력 필수: 예비 배우자(신부/신랑) 비자 신청 시점까지 한국어능력 공인 시험 성적표, 한국어 과정 이수,
+                    60점 이상 취득하거나 TOPIK 1급 이상 성적표 제출하여야 합니다.
+                  </li>
+                  <li style={{ marginBottom: 8 }}>
+                    서류 유효기간 (3개월 원칙): 혼인 신고를 위해 제출하는 대부분의 서류는 3개월 이내에 발급된 것이어야 합니다.
+                  </li>
+                  <li style={{ marginBottom: 8 }}>
+                    한국 내 혼인신고는 주민센터에서 접수 가능하며, 관할 구청 또는 시청 민원실에서 확인할 수 있습니다.
+                  </li>
+                  <li>
+                    혼인신고가 완료되면 혼인관계증명서를 발급받아야 하며, 이후 베트남 공관에 제출해야 합니다.
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         );
       // Service 2: 출생 · 사망 신고 - Card-based Layout with centered card design
       case 2:
+        if (!tabContents2[activeTab2]) return null;
         return (
           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -1360,16 +1500,16 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
+              <button style={tabStyle("korea2")} onClick={() => setActiveTab2("korea2")}>
                 출생신고
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
+              <button style={tabStyle("vietnam2")} onClick={() => setActiveTab2("vietnam2")}>
                 기한 초과 출생신고
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
+              <button style={tabStyle("certificate2")} onClick={() => setActiveTab2("certificate2")}>
                 사망 신고
               </button>
-              <button style={tabStyle("visa")} onClick={() => setActiveTab("visa")}>
+              <button style={tabStyle("visa2")} onClick={() => setActiveTab2("visa2")}>
                 기한 초과 사망신고
               </button>
             </div>
@@ -1377,9 +1517,9 @@ function Service() {
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents2[activeTab].title &&
-                (!tabContents2[activeTab].rows || tabContents2[activeTab].rows.length === 0) &&
-                (!tabContents2[activeTab].steps2 || tabContents2[activeTab].steps2.length === 0)) ? (
+              {(!tabContents2[activeTab2].title &&
+                (!tabContents2[activeTab2].rows || tabContents2[activeTab2].rows.length === 0) &&
+                (!tabContents2[activeTab2].steps2 || tabContents2[activeTab2].steps2.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -1396,18 +1536,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents2[activeTab].title && (
+                  {tabContents2[activeTab2].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents2[activeTab].title}
+                      {tabContents2[activeTab2].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents2[activeTab].rows && tabContents2[activeTab].rows.length > 0 && (
+                  {tabContents2[activeTab2].rows && tabContents2[activeTab2].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1415,7 +1555,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents2[activeTab].rows.map((row, i) => (
+                        {tabContents2[activeTab2].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -1454,7 +1594,7 @@ function Service() {
                   )}
 
                   {/* Steps */}
-                  {tabContents2[activeTab].steps2 && tabContents2[activeTab].steps2.length > 0 && (
+                  {tabContents2[activeTab2].steps2 && tabContents2[activeTab2].steps2.length > 0 && (
                     <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2
                         style={{
@@ -1476,7 +1616,7 @@ function Service() {
                           gap: "28px",
                         }}
                       >
-                        {tabContents2[activeTab].steps2.map((step, index) => (
+                        {tabContents2[activeTab2].steps2.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
                             <div
                               style={{
@@ -1516,7 +1656,7 @@ function Service() {
                                 {step.text}
                               </p>
                             </div>
-                            {index < tabContents2[activeTab].steps2.length - 1 && (
+                            {index < tabContents2[activeTab2].steps2.length - 1 && (
                               <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>
                             )}
                           </div>
@@ -1528,33 +1668,37 @@ function Service() {
               )}
             </div>
 
-            {/* Notes */}
-            <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
-                <li style={{ marginBottom: 8 }}>
-                  대한민국 복수국적 허용 기간: 만 20세 이전에 복수국적을 취득한 자녀의 경우, 만 22세까지 복수국적 유지가 허용됩니다. (단, 외국 국적 불행사 서약서를 기한 내에 제출한 경우에 한함).
-                </li>
-                <li style={{ marginBottom: 8 }}>
-                  필수 선행 절차: 본 출생 등록 및 국적 관련 절차는 자녀의 대한민국 여권이 발급된 후에 진행이 가능합니다. 여권 발급이 선행되어야 함을 유의해 주십시오.
-                </li>
-                <li style={{ marginBottom: 8 }}>
-                  복수국적자의 입출국 혜택: 자녀에게 복수국적(이중국적)이 부여될 경우, 대한민국과 베트남 양국 모두 사증(비자) 발급 없이 자유롭게 입출국이 가능합니다.
-                </li>
-                <li>
-                  원패스 소요 기간: 당사에 서류 전달일(접수일)을 기준으로 약 2주의 기간이 소요됩니다. (공휴일은 기간 산정에서 제외됩니다.)
-                </li>
-              </ul>
-            </div>
+            {/* Notes (only show for korea2 or vietnam2) */}
+            {(activeTab2 === "korea2" || activeTab2 === "vietnam2") && (
+              <div style={{ marginTop: 80 }}>
+                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
+                <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
+                  <li style={{ marginBottom: 8 }}>
+                    대한민국 복수국적 허용 기간: 만 20세 이전에 복수국적을 취득한 자녀의 경우, 만 22세까지 복수국적 유지가 허용됩니다. (단, 외국 국적 불행사 서약서를 기한 내에 제출한 경우에 한함).
+                  </li>
+                  <li style={{ marginBottom: 8 }}>
+                    필수 선행 절차: 본 출생 등록 및 국적 관련 절차는 자녀의 대한민국 여권이 발급된 후에 진행이 가능합니다. 여권 발급이 선행되어야 함을 유의해 주십시오.
+                  </li>
+                  <li style={{ marginBottom: 8 }}>
+                    복수국적자의 입출국 혜택: 자녀에게 복수국적(이중국적)이 부여될 경우, 대한민국과 베트남 양국 모두 사증(비자) 발급 없이 자유롭게 입출국이 가능합니다.
+                  </li>
+                  <li>
+                    원패스 소요 기간: 당사에 서류 전달일(접수일)을 기준으로 약 2주의 기간이 소요됩니다. (공휴일은 기간 산정에서 제외됩니다.)
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         );
 
       // Service 3: 출입국 행정 - Timeline Layout with step-by-step process visualization
       case 3:
+        if (!tabContents3[activeTab3]) return null;
         return (
+          
           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출입국 • 국적 행정</h1>
+            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출입국 행정</h1>
             <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
               초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.
@@ -1568,29 +1712,29 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
+              <button style={tabStyle("korea3")} onClick={() => setActiveTab3("korea3")}>
                 베트남 국적 포기 신청
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
+              <button style={tabStyle("vietnam3")} onClick={() => setActiveTab3("vietnam3")}>
                 베트남 국적 유지 신청
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
+              <button style={tabStyle("certificate3")} onClick={() => setActiveTab3("certificate3")}>
                 베트남 국적 귀화 신청
               </button>
-              <button style={tabStyle("visa")} onClick={() => setActiveTab("visa")}>
-                시체 등 반입 허가 신청
+              <button style={tabStyle("visa3")} onClick={() => setActiveTab3("visa3")}>
+                베트남으로 시체, 유해, 유골 반입 허가 신청
               </button>
-              <button style={tabStyle("cc")} onClick={() => setActiveTab("cc")}>
-                베트남 귀국절차 
+              <button style={tabStyle("cc3")} onClick={() => setActiveTab3("cc3")}>
+                베트남 국적 사실 확인 
               </button>
             </div>
 
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents3[activeTab].title &&
-                (!tabContents3[activeTab].rows || tabContents3[activeTab].rows.length === 0) &&
-                (!tabContents3[activeTab].steps || tabContents3[activeTab].steps.length === 0)) ? (
+              {(!tabContents3[activeTab3].title &&
+                (!tabContents3[activeTab3].rows || tabContents3[activeTab3].rows.length === 0) &&
+                (!tabContents3[activeTab3].steps || tabContents3[activeTab3].steps.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -1607,18 +1751,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents3[activeTab].title && (
+                  {tabContents3[activeTab3].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents3[activeTab].title}
+                      {tabContents3[activeTab3].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents3[activeTab].rows && tabContents3[activeTab].rows.length > 0 && (
+                  {tabContents3[activeTab3].rows && tabContents3[activeTab3].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1626,7 +1770,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents3[activeTab].rows.map((row, i) => (
+                        {tabContents3[activeTab3].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -1666,7 +1810,7 @@ function Service() {
 
 
                   {/* Steps */}
-                  {tabContents3[activeTab].steps && tabContents3[activeTab].steps.length > 0 && (
+                  {tabContents3[activeTab3].steps && tabContents3[activeTab3].steps.length > 0 && (
                     <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2
                         style={{
@@ -1688,7 +1832,7 @@ function Service() {
                           gap: "28px",
                         }}
                       >
-                        {tabContents3[activeTab].steps.map((step, index) => (
+                        {tabContents3[activeTab3].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
                             <div
                               style={{
@@ -1728,7 +1872,7 @@ function Service() {
                                 {step.text}
                               </p>
                             </div>
-                            {index < tabContents3[activeTab].steps.length - 1 && (
+                            {index < tabContents3[activeTab3].steps.length - 1 && (
                               <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>
                             )}
                           </div>
@@ -1742,12 +1886,13 @@ function Service() {
 
 
             {/* Extra Content */}
-            {tabContents3[activeTab].extraContent && tabContents3[activeTab].extraContent}
+            {tabContents3[activeTab3].extraContent && tabContents3[activeTab3].extraContent}
           </div>
         );
 
       // Service 4: 신분증명 서류 - Document Grid Layout with icon-based service cards
       case 4:
+        if (!tabContents4[activeTab4]) return null;
         return (
            <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -1764,19 +1909,19 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
+              <button style={tabStyle("korea4")} onClick={() => setActiveTab4("korea4")}>
                 일반 여권 발급 • 변경 • 추가
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
-                호적 정보 정정
+              <button style={tabStyle("vietnam4")} onClick={() => setActiveTab4("vietnam4")}>
+                호적 변경 • 정정 • 추가, 민족 재확인, 성별 재확인 등
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
+              <button style={tabStyle("certificate4")} onClick={() => setActiveTab4("certificate4")}>
                 베트남 국민 신고 • 업데이트
               </button>
-              <button style={tabStyle("visa")} onClick={() => setActiveTab("visa")}>
+              <button style={tabStyle("visa4")} onClick={() => setActiveTab4("visa4")}>
                 베트남 출신 증명서 발급
               </button>
-              <button style={tabStyle("cc")} onClick={() => setActiveTab("cc")}>
+              <button style={tabStyle("cc4")} onClick={() => setActiveTab4("cc4")}>
                 호적증서 반사오 재발급
               </button>
             </div>
@@ -1784,9 +1929,9 @@ function Service() {
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents4[activeTab].title &&
-                (!tabContents4[activeTab].rows || tabContents4[activeTab].rows.length === 0) &&
-                (!tabContents4[activeTab].steps || tabContents4[activeTab].steps.length === 0)) ? (
+              {(!tabContents4[activeTab4].title &&
+                (!tabContents4[activeTab4].rows || tabContents4[activeTab4].rows.length === 0) &&
+                (!tabContents4[activeTab4].steps || tabContents4[activeTab4].steps.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -1803,18 +1948,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents4[activeTab].title && (
+                  {tabContents4[activeTab4].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents4[activeTab].title}
+                      {tabContents4[activeTab4].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents4[activeTab].rows && tabContents4[activeTab].rows.length > 0 && (
+                  {tabContents4[activeTab4].rows && tabContents4[activeTab4].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1822,7 +1967,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents4[activeTab].rows.map((row, i) => (
+                        {tabContents4[activeTab4].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -1862,7 +2007,7 @@ function Service() {
 
 
                   {/* Steps */}
-                  {tabContents4[activeTab].steps && tabContents4[activeTab].steps.length > 0 && (
+                  {tabContents4[activeTab4].steps && tabContents4[activeTab4].steps.length > 0 && (
                     <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2
                         style={{
@@ -1884,7 +2029,7 @@ function Service() {
                           gap: "28px",
                         }}
                       >
-                        {tabContents4[activeTab].steps.map((step, index) => (
+                        {tabContents4[activeTab4].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
                             <div
                               style={{
@@ -1924,7 +2069,7 @@ function Service() {
                                 {step.text}
                               </p>
                             </div>
-                            {index < tabContents4[activeTab].steps.length - 1 && (
+                            {index < tabContents4[activeTab4].steps.length - 1 && (
                               <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>
                             )}
                           </div>
@@ -1935,15 +2080,13 @@ function Service() {
                 </>
               )}
             </div>
-                <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              
-            </div>
+                
           </div>
         );
 
       // Service 5: 입양 절차 대행 - Process Flow Layout with numbered steps
       case 5:
+        if (!tabContents5[activeTab5]) return null;
         return (
           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -1960,13 +2103,13 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
-                보호자 인지 • 해지 신고
+              <button style={tabStyle("korea5")} onClick={() => setActiveTab5("korea5")}>
+                보호자 신청 • 해지 신고 
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
-               베트남 혼외자 자녀 인지
+              <button style={tabStyle("vietnam5")} onClick={() => setActiveTab5("vietnam5")}>
+               혼외자 자녀 인지
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
+              <button style={tabStyle("certificate5")} onClick={() => setActiveTab5("certificate5")}>
                 입양 절차 대행
               </button>
               
@@ -1975,9 +2118,9 @@ function Service() {
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents5[activeTab].title &&
-                (!tabContents5[activeTab].rows || tabContents5[activeTab].rows.length === 0) &&
-                (!tabContents5[activeTab].steps || tabContents5[activeTab].steps.length === 0)) ? (
+              {(!tabContents5[activeTab5].title &&
+                (!tabContents5[activeTab5].rows || tabContents5[activeTab5].rows.length === 0) &&
+                (!tabContents5[activeTab5].steps || tabContents5[activeTab5].steps.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -1994,18 +2137,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents5[activeTab].title && (
+                  {tabContents5[activeTab5].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents5[activeTab].title}
+                      {tabContents5[activeTab5].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents5[activeTab].rows && tabContents5[activeTab].rows.length > 0 && (
+                  {tabContents5[activeTab5].rows && tabContents5[activeTab5].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2013,7 +2156,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents5[activeTab].rows.map((row, i) => (
+                        {tabContents5[activeTab5].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -2053,7 +2196,7 @@ function Service() {
 
 
                   {/* Steps */}
-                  {tabContents5[activeTab].steps && tabContents5[activeTab].steps.length > 0 && (
+                  {tabContents5[activeTab5].steps && tabContents5[activeTab5].steps.length > 0 && (
                 <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
   <h2
     style={{
@@ -2078,7 +2221,7 @@ function Service() {
           gap: "28px",
         }}
       >
-        {tabContents5[activeTab].steps.slice(row * 3, row * 3 + 3).map((step, index) => (
+        {tabContents5[activeTab5].steps.slice(row * 3, row * 3 + 3).map((step, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
             <div
               style={{
@@ -2130,15 +2273,13 @@ function Service() {
                 </>
               )}
             </div>
-                <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              
-            </div>
+               
           </div>
         );
 
       // Service 6: 비자 대행 - Application Form Layout with side-by-side design
       case 6:
+        if (!tabContents6[activeTab6]) return null;
         return (
              <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -2156,29 +2297,29 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
+              <button style={tabStyle("korea6")} onClick={() => setActiveTab6("korea6")}>
                 베트남 통행증 발급
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
+              <button style={tabStyle("vietnam6")} onClick={() => setActiveTab6("vietnam6")}>
                 초청(단기방문 C-3-1 비자)
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
+              <button style={tabStyle("certificate6")} onClick={() => setActiveTab6("certificate6")}>
                 초청(단기방문 F-1-5 비자)
               </button>
-              <button style={tabStyle("visa")} onClick={() => setActiveTab("visa")}>
+              <button style={tabStyle("visa6")} onClick={() => setActiveTab6("visa6")}>
                 베트남 비자면제증 발급
               </button>
-              <button style={tabStyle("cc")} onClick={() => setActiveTab("cc")}>
-                베트남 전자비자 • 성용비자
+              <button style={tabStyle("cc6")} onClick={() => setActiveTab6("cc6")}>
+                베트남 전자비자 • 상용비자 발급 
               </button>
             </div>
 
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents6[activeTab].title &&
-                (!tabContents6[activeTab].rows || tabContents6[activeTab].rows.length === 0) &&
-                (!tabContents6[activeTab].steps || tabContents6[activeTab].steps.length === 0)) ? (
+              {(!tabContents6[activeTab6].title &&
+                (!tabContents6[activeTab6].rows || tabContents6[activeTab6].rows.length === 0) &&
+                (!tabContents6[activeTab6].steps || tabContents6[activeTab6].steps.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -2195,18 +2336,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents6[activeTab].title && (
+                  {tabContents6[activeTab6].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents6[activeTab].title}
+                      {tabContents6[activeTab6].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents6[activeTab].rows && tabContents6[activeTab].rows.length > 0 && (
+                  {tabContents6[activeTab6].rows && tabContents6[activeTab6].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2214,7 +2355,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents6[activeTab].rows.map((row, i) => (
+                        {tabContents6[activeTab6].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -2254,7 +2395,7 @@ function Service() {
 
 
                   {/* Steps */}
-                  {tabContents6[activeTab].steps && tabContents6[activeTab].steps.length > 0 && (
+                  {tabContents6[activeTab6].steps && tabContents6[activeTab6].steps.length > 0 && (
                     <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2
                         style={{
@@ -2276,7 +2417,7 @@ function Service() {
                           gap: "28px",
                         }}
                       >
-                        {tabContents6[activeTab].steps.map((step, index) => (
+                        {tabContents6[activeTab6].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
                             <div
                               style={{
@@ -2316,7 +2457,7 @@ function Service() {
                                 {step.text}
                               </p>
                             </div>
-                            {index < tabContents6[activeTab].steps.length - 1 && (
+                            {index < tabContents6[activeTab6].steps.length - 1 && (
                               <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>
                             )}
                           </div>
@@ -2327,15 +2468,13 @@ function Service() {
                 </>
               )}
             </div>
-                <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              
-            </div>
+                
           </div>
         );
 
       // Service 7: 법률 - Legal Services Layout with service grid cards
       case 7:
+          if (!tabContents7[activeTab7]) return null;
         return (
          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -2353,14 +2492,14 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
+              <button style={tabStyle("korea7")} onClick={() => setActiveTab7("korea7")}>
                 이혼 소송
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
+              <button style={tabStyle("vietnam7")} onClick={() => setActiveTab7("vietnam7")}>
                노동 관련 소송
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
-                불법 체류자 관련 컨설팅
+              <button style={tabStyle("certificate7")} onClick={() => setActiveTab7("certificate7")}>
+                체류자 관련 컨설팅
               </button>
              
             </div>
@@ -2368,9 +2507,9 @@ function Service() {
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents7[activeTab].title &&
-                (!tabContents7[activeTab].rows || tabContents7[activeTab].rows.length === 0) &&
-                (!tabContents7[activeTab].steps || tabContents7[activeTab].steps.length === 0)) ? (
+              {(!tabContents7[activeTab7].title &&
+                (!tabContents7[activeTab7].rows || tabContents7[activeTab7].rows.length === 0) &&
+                (!tabContents7[activeTab7].steps || tabContents7[activeTab7].steps.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -2387,18 +2526,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents7[activeTab].title && (
+                  {tabContents7[activeTab7].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents7[activeTab].title}
+                      {tabContents7[activeTab7].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents7[activeTab].rows && tabContents7[activeTab].rows.length > 0 && (
+                  {tabContents7[activeTab7].rows && tabContents7[activeTab7].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간",  "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간",  "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2406,7 +2545,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents7[activeTab].rows.map((row, i) => (
+                        {tabContents7[activeTab7].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -2446,7 +2585,7 @@ function Service() {
 
 
                   {/* Steps */}
-                  {tabContents7[activeTab].steps && tabContents7[activeTab].steps.length > 0 && (
+                  {tabContents7[activeTab7].steps && tabContents7[activeTab7].steps.length > 0 && (
                     <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2
                         style={{
@@ -2468,7 +2607,7 @@ function Service() {
                           gap: "28px",
                         }}
                       >
-                        {tabContents7[activeTab].steps.map((step, index) => (
+                        {tabContents7[activeTab7].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
                             <div
                               style={{
@@ -2508,7 +2647,7 @@ function Service() {
                                 {step.text}
                               </p>
                             </div>
-                            {index < tabContents7[activeTab].steps.length - 1 && (
+                            {index < tabContents7[activeTab7].steps.length - 1 && (
                               <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>
                             )}
                           </div>
@@ -2519,15 +2658,13 @@ function Service() {
                 </>
               )}
             </div>
-                <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              
-            </div>
+                
           </div>
         );
 
       // Service 8: 기타 서비스 - Flexible Layout with dual cards and contact section
       case 8:
+         if (!tabContents8[activeTab8]) return null;
         return (
            <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -2544,17 +2681,17 @@ function Service() {
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea")} onClick={() => setActiveTab("korea")}>
-                법인 • 지사 • 대표사무실 설립
+              <button style={tabStyle("korea8",activeTab8)} onClick={() => setActiveTab8("korea8")}  tabKey="a33">
+                베트남 • 한국에서 법인 • 지사 • 대표 사무실 설립
               </button>
-              <button style={tabStyle("vietnam")} onClick={() => setActiveTab("vietnam")}>
-               노동 허가서, 임시 거주증 발급
+              <button style={tabStyle("vietnam8",activeTab8)} onClick={() => setActiveTab8("vietnam8")}  tabKey="a34">
+               베트남 • 한국 내 노동 허가서, 임시 거주증 발급
               </button>
-              <button style={tabStyle("certificate")} onClick={() => setActiveTab("certificate")}>
-                수입 허가서
+              <button style={tabStyle("certificate8",activeTab8)} onClick={() => setActiveTab8("certificate8")}  tabKey="a35">
+                수출입 허가서
               </button>
-               <button style={tabStyle("visa")} onClick={() => setActiveTab("visa")}>
-                B2B 바이어매칭
+               <button style={tabStyle("visa8",activeTab8)} onClick={() => setActiveTab8("visa8")} tabKey="a36">
+                B2B 바이어 매칭
               </button>
              
             </div>
@@ -2562,9 +2699,9 @@ function Service() {
             {/* Table */}
             {/* Nội dung Tab */}
             <div style={{ marginTop: "40px" }}>
-              {(!tabContents8[activeTab].title &&
-                (!tabContents8[activeTab].rows || tabContents8[activeTab].rows.length === 0) &&
-                (!tabContents8[activeTab].steps || tabContents8[activeTab].steps.length === 0)) ? (
+              {(!tabContents8[activeTab8].title &&
+                (!tabContents8[activeTab8].rows || tabContents8[activeTab8].rows.length === 0) &&
+                (!tabContents8[activeTab8].steps || tabContents8[activeTab8].steps.length === 0)) ? (
                 // Placeholder
                 <div
                   style={{
@@ -2581,18 +2718,18 @@ function Service() {
               ) : (
                 <>
                   {/* Title */}
-                  {tabContents8[activeTab].title && (
+                  {tabContents8[activeTab8].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents8[activeTab].title}
+                      {tabContents8[activeTab8].title}
                     </h2>
                   )}
 
                   {/* Table */}
-                  {tabContents8[activeTab].rows && tabContents8[activeTab].rows.length > 0 && (
+                  {tabContents8[activeTab8].rows && tabContents8[activeTab8].rows.length > 0 && (
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수수기간",  "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "심사기간", "수속시간",  "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2600,7 +2737,7 @@ function Service() {
                         </tr>
                       </thead>
                       <tbody>
-                        {tabContents8[activeTab].rows.map((row, i) => (
+                        {tabContents8[activeTab8].rows.map((row, i) => (
                           <tr
                             key={i}
                             style={{
@@ -2640,7 +2777,7 @@ function Service() {
 
 
                   {/* Steps */}
-                  {tabContents8[activeTab].steps && tabContents8[activeTab].steps.length > 0 && (
+                  {tabContents8[activeTab8].steps && tabContents8[activeTab8].steps.length > 0 && (
                     <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2
                         style={{
@@ -2662,7 +2799,7 @@ function Service() {
                           gap: "28px",
                         }}
                       >
-                        {tabContents8[activeTab].steps.map((step, index) => (
+                        {tabContents8[activeTab8].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
                             <div
                               style={{
@@ -2702,7 +2839,7 @@ function Service() {
                                 {step.text}
                               </p>
                             </div>
-                            {index < tabContents8[activeTab].steps.length - 1 && (
+                            {index < tabContents8[activeTab8].steps.length - 1 && (
                               <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>
                             )}
                           </div>
@@ -2713,10 +2850,7 @@ function Service() {
                 </>
               )}
             </div>
-                <div style={{ marginTop: 80 }}>
-              <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
-              
-            </div>
+                
           </div>
         );
     }
@@ -2739,7 +2873,7 @@ function Service() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "top center",
-        minHeight: "50vh",
+        minHeight: "40vh",
         width: "100vw",
         paddingTop: "120px",
       }}>
@@ -2769,7 +2903,7 @@ function Service() {
           
 
             {/* Icons container */}
-            <div style={{ display: "flex", gap: 40}}>
+            <div style={{ display: "flex", gap: 30}}>
               {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
                 const realIndex = startIndex + i;
 
@@ -2801,8 +2935,8 @@ function Service() {
                       src={currentIcon}
                       alt={item.title}
                       style={{
-                        width: 100,
-                        height: 100,
+                        width: 80,
+                        height: 80,
                         transition: "opacity 0.3s",
                       }}
                     />
@@ -2874,7 +3008,7 @@ function Service() {
                 fontWeight: 700,
                 marginBottom: 28,
                 borderBottom: "1px solid #000",
-                paddingBottom: 10,
+                paddingBottom: 30,
               }}
             >
               상담 신청
@@ -2908,9 +3042,12 @@ function Service() {
                     }}
                   />
                 </div>
-                <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                  *필수입력입니다
-                </div>
+                { /* show only after submit attempt */ }
+                {submittedServiceForm && !serviceContents[activeIndex]?.title && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
+                    *필수입입입니다
+                  </div>
+                )}
               </div>
 
               {/* 이름 */}
@@ -2928,7 +3065,7 @@ function Service() {
                   <input
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => { setName(e.target.value); if (e.target.value.trim()) setNameError(false); }}
                     on
                     placeholder="이름을 입력해주세요"
                     style={{
@@ -2940,9 +3077,11 @@ function Service() {
                     }}
                   />
                 </div>
-                <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                  *필수입력입니다
-                </div>
+                {nameError && submittedServiceForm && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
+                    *필수입입니다
+                  </div>
+                )}
               </div>
 
               {/* 이메일 */}
@@ -2958,7 +3097,7 @@ function Service() {
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => { setEmail(e.target.value); if (e.target.value.trim()) setEmailError(false); }}
                     placeholder="이메일을 입력해주세요"
                     style={{
                       flex: 1,
@@ -2969,9 +3108,11 @@ function Service() {
                     }}
                   />
                 </div>
-                <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                  *필수입력입니다
-                </div>
+                {emailError && submittedServiceForm && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
+                    *필수입입니다
+                  </div>
+                )}
               </div>
 
               {/* 전화번호 */}
@@ -2990,7 +3131,7 @@ function Service() {
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)} 
                     style={{
-                      width: 90,
+                      width: 60,
                       border: "none",
                       outline: "none",
                       padding: "12px 0",
@@ -3004,7 +3145,7 @@ function Service() {
                   <input
                     type="text"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => { setPhone(e.target.value); if (e.target.value.trim()) setPhoneError(false); }}
                     placeholder="전화번호"
                     style={{
                       flex: 1,
@@ -3012,12 +3153,15 @@ function Service() {
                       outline: "none",
                       padding: "12px 0",
                       background: "transparent",
+                      marginLeft: 8,
                     }}
                   />
                 </div>
-                <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                  *필수입력입니다
-                </div>
+                {phoneError && submittedServiceForm && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
+                    *필수입입니다
+                  </div>
+                )}
               </div>
 
               {/* 개인정보 동의 */}

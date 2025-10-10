@@ -105,8 +105,8 @@ function Header() {
           <div className="newsroom-tab">NEWSROOM</div>
           <div className="submenu-links">
             <ul>
-              <li><Link to="/news/new">신규 뉴스</Link></li>
-              <li><Link to="/news/embassy">대사관·총영사관 소식</Link></li>
+              <li><Link to="/news/전체 뉴스">전체뉴스</Link></li>
+              <li><Link to="/news/대사관•총영사관 소식">대사관·총영사관 소식</Link></li>
             </ul>
           </div>
         </div>
@@ -130,15 +130,15 @@ function Header() {
               margin: 0,
               listStyle: "none"
             }}>
-              <li><Link to="/Service">인증 센터</Link></li>
-              <li><Link to="/Service">결혼 이민</Link></li>
-              <li><Link to="/Service">출생신고</Link></li>
-              <li><Link to="/Service">입양 • 자녀 인지</Link></li>
-              <li><Link to="/Service">신분증명 서류</Link></li>
-              <li><Link to="/Service">출출입국 행정</Link></li>
-              <li><Link to="/Service">비자 대행</Link></li>
-              <li><Link to="/Service">법률 컨설팅</Link></li>
-              <li><Link to="/Service">B2B 서비스</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 0 }}>인증 센터</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 1 }}>결혼 이민</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 2 }}>출생신고</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 3 }}>출입국 행정</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 4 }}>신분증명 서류</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 5 }}>입양 • 자녀 인지</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 6 }}>비자 대행</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 7 }}>법률 컨설팅</Link></li>
+              <li><Link to="/Service" state={{ serviceIndex: 8 }}>B2B 서비스</Link></li>
             </ul>
           </div>
         </div>
@@ -162,10 +162,10 @@ function Header() {
               margin: 0,
               listStyle: "none"
             }}>
-              <li><Link to="/Consult">진행 현황 조회</Link></li>
-              <li><Link to="/Consult">Contact</Link></li>
-              <li><Link to="/Consult">이용약관</Link></li>
-              <li><Link to="/Consult">개인 정보 처리 방침</Link></li>
+              <li><Link to="/Support" state={{ tab: "profile-search" }}>진행 현황 조회</Link></li>
+              <li><Link to="/Support" state={{ tab: "contact" }}>Contact</Link></li>
+              <li><Link to="/Support" state={{ tab: "Terms-of-Use" }}>이용약관</Link></li>
+              <li><Link to="/Support" state={{ tab: "personal-information" }}>개인 정보 처리 방침</Link></li>
             </ul>
           </div>
         </div>

@@ -191,8 +191,12 @@ export default function AllNewsPage() {
 
 
                         {/* 2 */}
-                        <div>
+                        <div
+                            onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")}
+                            style={{ cursor: "pointer" }}
+                        >
                             <img
+                            
                                 src={n2}
                                 alt="베트남 총영사관 개소"
                                 style={{
@@ -219,7 +223,7 @@ export default function AllNewsPage() {
                                 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...
                             </p>
                             <a
-                                href="#"
+                                href="/news전체%20뉴스/NewsDetail2"
                                 style={{
                                     fontSize: 14,
                                     color: "#2563eb",
@@ -233,7 +237,10 @@ export default function AllNewsPage() {
                         </div>
 
                         {/* 3 */}
-                        <div>
+                        <div
+                            onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")}
+                            style={{ cursor: "pointer" }}
+                        >
                             <img
                                 src={n3}
                                 alt="원패스(One Pass) 업무 개시"
@@ -261,7 +268,7 @@ export default function AllNewsPage() {
                                 2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다. 베트남 행정 절차 대행 및 솔루션 전문 회사 원패스...
                             </p>
                             <a
-                                href="#"
+                                href="/news전체%20뉴스/NewsDetail3"
                                 style={{
                                     fontSize: 14,
                                     color: "#2563eb",

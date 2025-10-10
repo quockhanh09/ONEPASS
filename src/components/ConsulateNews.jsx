@@ -213,7 +213,7 @@ export default function ConsulateNews() {
                                     marginBottom: 8,
                                 }}
                             >
-                                “쑥쑥안(안녕하세요)”…주부산 베트남총영사관 문화 행사
+                                “씬짜오(안녕하세요)”…주부산 베트남총영사관 문화 행사
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
                                 부산에 주베트남 총영사관이 들어섰다. 지난 8월 13일 부산 롯데호텔에서 주부산 베트남 총...

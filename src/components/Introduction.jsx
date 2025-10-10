@@ -46,7 +46,7 @@ function Introduction() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "top center",
-        minHeight: "50vh",
+        minHeight: "40vh",
         width: "100vw",
         paddingTop: "120px",
       }}>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import vcpcLogo from "../assets/img/vcpc-header.png";
 import meetingImg from "../assets/img/image8.png";
 import heroBg from "../assets/img/herobanner-1.png";
@@ -17,6 +18,16 @@ function Support() {
 
 
   const [activeTab, setActiveTab] = useState("profile-search");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location && location.state && location.state.tab) {
+      const tab = location.state.tab;
+      const allowed = ["profile-search", "contact", "Terms-of-Use", "personal-information"];
+      if (allowed.includes(tab)) setActiveTab(tab);
+    }
+  }, [location]);
 
   // --- DANH SÁCH CÁC TAB ---
   const tabs = [
@@ -365,7 +376,7 @@ function Support() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "top center",
-          minHeight: "50vh",
+          minHeight: "40vh",
           width: "100vw",
           paddingTop: "120px",
         }}

@@ -450,6 +450,15 @@ span {
   background: transparent;  /* trong suốt */
 }
 
+/* When the header becomes sticky (class added by JS), make background black */
+.header--sticky {
+  --background-color: #000000;
+  background-color: var(--background-color) !important;
+  background: #000000 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  color: #fff;
+}
+
 .header .logo {
   line-height: 1;
 }
@@ -562,6 +571,46 @@ span {
   border-radius: 20px;
   overflow: hidden;
   transform: translateX(22%);
+}
+
+/* Ensure submenu keeps its intended background when header becomes sticky/black */
+.header--sticky .submenu {
+  background: transparent; /* let submenu elements control their background */
+  position: absolute;
+  /* place slightly below the main menu area inside .header-inner */
+  top: calc(100% + 0px);
+  left: 50%;
+  /* move a bit to the right: subtract negative offset inside translateX */
+  transform: translateX(calc(-50% + 300px));
+  z-index: 10001; /* above the header's z-index */
+}
+
+.header--sticky .submenu-links {
+  background: #2c4d9e !important; /* keep the blue panel visible above black header */
+  position: relative;
+  z-index: 10002;
+}
+
+.header--sticky .newsroom-tab {
+  position: relative;
+  z-index: 10003;
+}
+
+/* Make header-inner the positioning context when header is sticky */
+.header--sticky .header-inner {
+  position: relative;
+}
+
+/* Responsive: on small screens don't absolute-position the submenu (keep normal flow) */
+@media (max-width: 768px) {
+  .header--sticky .submenu {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    margin-top: 10px;
+  }
 }
 
 .newsroom-tab {

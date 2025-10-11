@@ -36,21 +36,22 @@ function Header() {
   return (
     <header
       id="header"
-      className=" d-flex align-items-center center-x"
+      className={`header d-flex align-items-center center-x ${isSticky ? 'header--sticky' : ''}`}
       style={{
         position: isSticky ? "fixed" : "absolute",
-        top: isSticky ? 8 : 16,
-        width: "calc(100% - 40px)",
-        maxWidth: 1300,
-        padding: "8px 20px",
+        left: 0,
+        top: isSticky ? 0 : 16,
+        width: "100%",
         zIndex: 9999,
         margin: 0,
-        borderRadius: 40,
-        flexDirection: "column",
-        alignItems: "stretch",
-        transition: "top 0.18s ease, transform 0.18s ease"
+        padding: 0,
+        borderRadius: 0,
+        transition: "top 0.18s ease, background-color 0.2s ease",
+         transform: "translateX(0px)",
       }}
     >
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+  <div className="header-inner" style={{ width: "calc(100% - 40px)", maxWidth: 1300, padding: "8px 20px", borderRadius: 40 }}>
       {/* Logo */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
         <Link to="/" className="logo-link" >
@@ -192,6 +193,8 @@ function Header() {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </header>
   );
 }

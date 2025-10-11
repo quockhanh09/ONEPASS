@@ -128,13 +128,13 @@ function Footer() {
           }}
         >
           {/* Left: Logo + Info */}
-          <div style={{ flex: 1.4, minWidth: 320, display: "flex", flexDirection: "column", gap: 18 }}>
+          <div style={{ flex: 1.4, minWidth: 400, display: "flex", flexDirection: "column", gap: 18 ,transform: "translateX(-60px)"}}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <img src={logo} alt="Logo" style={{ width: 180 }} />
             </div>
             <div style={{ color: "#E8EEF9", fontSize: 16, fontWeight: 400, lineHeight: 1.9 }}>
               <div>TEL / FAX : (+82) 51-715-0607</div>
-              <div>대표자: 이종섭</div>
+              <div>대표자: 이종섭 thành 주소: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)</div>
               <div>사업자등록번호: 740-87-03727</div>
             </div>
             <div style={{ color: "#AFC4E8", fontSize: 13, marginTop: 24 }}>

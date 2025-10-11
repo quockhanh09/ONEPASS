@@ -68,47 +68,47 @@ const tabContents = {
   korea1: {
     title: "한국 내 혼인신고",
     rows: [
-      ["결혼 이민", "한국 내 혼인신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
+      ["결혼 이민", "한국 내 혼인신고", "별도 상담", "견적 상담 필요"],
     ],
     steps1: [
       { id: 1, text: "베트남 배유자 측 서류 준비" },
       { id: 2, text: "한국인 배우자 측 서류 준비" },
       { id: 3, text: "재외 공관에서 혼인요건인증서 발급" },
       { id: 4, text: "국내 혼인신고 후 베트남 혼인신고" },
-   
+
     ],
   },
   vietnam1: {
     title: "혼인관계증명서",
     rows: [
-      ["결혼 이민", "한국 내 혼인신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
+      ["결혼 이민", "혼인관계증명서",  "별도 상담", "견적 상담 필요"],
     ],
     steps1: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "검토 및 발급 신청 (원패스)	" },
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
-     
+
     ],
   },
   certificate1: {
-    title: "혼인관계증명서",
+    title: "혼인요건인증서",
     rows: [
-      ["결혼 이민", "한국 내 혼인신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
+      ["결혼 이민", "혼인요건인증서", "별도 상담", "견적 상담 필요"],
     ],
     steps1: [
-       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
+      { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "검토 및 발급 신청 (원패스)	" },
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
-   
+
   cc1: {
-    title: "베트남 귀국절차",
+    title: "결혼 재신고",
     rows: [
-      ["출입국 행정", "베트남 귀국절차", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["결혼 이민", "결혼 재신고", "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
-       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
+      { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "검토 및 발급 신청 (원패스)	" },
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
@@ -123,7 +123,7 @@ const tabContents2 = {
   korea2: {
     title: "출생 신고",
     rows: [
-      ["출생신고", "출생 신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
+      ["출생신고", "출생 신고",  "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -133,9 +133,9 @@ const tabContents2 = {
     ],
   },
   vietnam2: {
-    title: "베트남 내 혼인신고",
+    title: "기한 초과 출생신고",
     rows: [
-      ["출생신고", "사망 신고", "별도 심사 적용		", "별도 심사 적용", "견적 상담 필요"],
+      ["출생신고", "기한 초과 출생신고",  "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -147,7 +147,7 @@ const tabContents2 = {
   certificate2: {
     title: "사망 신고",
     rows: [
-      ["출생신고", "출생 신고", "별도 심사 적용", "별도 심사 적용", "견적 상담 필요"],
+      ["출생신고", "사망 신고", "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -156,9 +156,9 @@ const tabContents2 = {
     ],
   },
   visa2: {
-    title: "혼인관계증명서",
+    title: "기한 초과 사망신고",
     rows: [
-      ["출생신고", "기한 초과 사망신고", "별도 심사 적용	", "별도 심사 적용	", "견적 상담 필요"],
+      ["출생신고", "기한 초과 사망신고", "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -166,14 +166,14 @@ const tabContents2 = {
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
- 
+
 };
 
 const tabContents3 = {
   korea3: {
     title: "베트남 국적 포기 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 포기 신청", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 포기 신청",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수 (고객님 → 원패스)" },
@@ -197,7 +197,7 @@ const tabContents3 = {
                   padding: "30px 50px",
                   width: "260px",
                   verticalAlign: "top",
-                  fontSize:16,
+                  fontSize: 16,
                 }}
               >
                 베트남 국적 포기 의무 <br /> (필수 포기 대상)
@@ -230,9 +230,9 @@ const tabContents3 = {
                   fontWeight: "600",
                   padding: "30px 40px",
                   verticalAlign: "center",
-                  alignItems:"center",
-                  justifyContent:"center",
-                  textAlign:"center"
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center"
                 }}
               >
                 베트남 국적 포기 대상자 <br /> (주요 사례)
@@ -292,7 +292,7 @@ const tabContents3 = {
   vietnam3: {
     title: "베트남 국적 유지 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 유지 신청", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 유지 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -305,7 +305,7 @@ const tabContents3 = {
   certificate3: {
     title: "베트남 국적 귀화 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 귀화 신청", "별도 심사 적용	", "...일 소요 (업무일 기준)	", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 귀화 신청",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -317,7 +317,7 @@ const tabContents3 = {
   visa3: {
     title: "시체 등 반입 허가 신청",
     rows: [
-      ["출입국 행정", "시체 등 반입 허가 신청", "별도 심사 적용", "...일 소요 (업무일 기준)	", "견적 상담 필요"],
+      ["출입국 행정", "시체 등 반입 허가 신청",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -326,9 +326,9 @@ const tabContents3 = {
     ],
   },
   cc3: {
-    title: "베트남 귀국절차",
+    title: "베트남 국적 사실 확인",
     rows: [
-      ["출입국 행정", "베트남 귀국절차", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 사실 확인", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -343,19 +343,19 @@ const tabContents4 = {
   korea4: {
     title: "일반 여권 발급 • 변경 • 추가",
     rows: [
-      ["신분증명 서류", "일반 여권 발급 • 변경 • 추가", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["신분증명 서류", "일반 여권 발급 • 변경 • 추가",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "서류 검토 및 공식 접수 (원패스)" },
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
-    
+
   },
   vietnam4: {
     title: "호적 정보 정정",
     rows: [
-      ["신분증명 서류", "호적  정보 정정", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["신분증명 서류", "호적  정보 정정", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -368,7 +368,7 @@ const tabContents4 = {
   certificate4: {
     title: "베트남 국민 신고  • 업데이트",
     rows: [
-      ["신분증명 서류", "베트남 국민 신고 • 업데이트", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["신분증명 서류", "베트남 국민 신고 • 업데이트", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -380,7 +380,7 @@ const tabContents4 = {
   visa4: {
     title: "베트남 출신 증명서 발급",
     rows: [
-      ["신분증명 서류", "베트남 출신 증명서 발급", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["신분증명 서류", "베트남 출신 증명서 발급",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -391,7 +391,7 @@ const tabContents4 = {
   cc4: {
     title: "호적증서 반사오 재발급",
     rows: [
-      ["신분증명 서류", "호적증서 반사오 재발급", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["신분증명 서류", "호적증서 반사오 재발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -404,21 +404,21 @@ const tabContents4 = {
 
 const tabContents5 = {
   korea5: {
-    title: "보호자 인지 • 해지 신고",
+    title: "보호자 신청 • 해지 신고",
     rows: [
-      ["입양 • 자녀 인지", "보호자 인지 • 해지 신고", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["입양 • 자녀 인지", "보호자 신청 • 해지 신고",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "서류 검토 및 공식 접수 (원패스)" },
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
-    
+
   },
   vietnam5: {
     title: "베트남 혼외자 자녀 인지",
     rows: [
-      ["입양 • 자녀 인지", "베트남 혼외자 자녀 인지", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["입양 • 자녀 인지", "베트남 혼외자 자녀 인지",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "혼인신고 후 혼인이 성립한 날로부터 200일 이전에 출산 (혹인 혼인신고 전)" },
@@ -433,7 +433,7 @@ const tabContents5 = {
   certificate5: {
     title: "입양 절차 대행",
     rows: [
-      ["입양 • 자녀 인지", "베트남 국민 신고 • 업데이트", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["입양 • 자녀 인지", "입양 절차 대행",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -448,19 +448,19 @@ const tabContents6 = {
   korea6: {
     title: "베트남 통행증 발급",
     rows: [
-      ["비자 대행", "베트남 통행증 발급", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["비자 대행", "베트남 통행증 발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "서류 검토 및 공식 접수 (원패스)" },
       { id: 3, text: "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
-    
+
   },
   vietnam6: {
     title: "초청(단기방문 C-3-1 비자)",
     rows: [
-      ["비자 대행", "초청(단기방문 C-3-1 비자)", "별도 심사 적용	", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["비자 대행", "초청(단기방문 C-3-1 비자)", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -473,7 +473,7 @@ const tabContents6 = {
   certificate6: {
     title: "초청(단기방문 F-1-5 비자)",
     rows: [
-      ["비자 대행", "초청(단기방문 F-1-5 비자)", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["비자 대행", "초청(단기방문 F-1-5 비자)",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -483,9 +483,9 @@ const tabContents6 = {
   },
 
   visa6: {
-    title: "베트남 출신 증명서 발급",
+    title: "베트남 비자면제증 발급",
     rows: [
-      ["비자 대행", "베트남 비자면제증 발급", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["비자 대행", "베트남 비자면제증 발급",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -496,7 +496,7 @@ const tabContents6 = {
   cc6: {
     title: "베트남 전자비자 • 성용비자",
     rows: [
-      ["비자 대행", "베트남 전자비자 • 상용비자", "별도 심사 적용", "...일 소요 (업무일 기준)", "견적 상담 필요"],
+      ["비자 대행", "베트남 전자비자 • 성용비자",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -510,7 +510,7 @@ const tabContents7 = {
   korea7: {
     title: "이혼 소송",
     rows: [
-      ["법률 컨설팅", "이혼 소송", "케이스별 상이", "견적 상담 필요"],
+      ["법률 컨설팅", "이혼 소송",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -519,12 +519,12 @@ const tabContents7 = {
       { id: 4, text: "비용 설명 및 계약 체결" },
       { id: 5, text: "계약 이행" },
     ],
-    
+
   },
   vietnam7: {
     title: "노동 관련 소송",
     rows: [
-      ["법률 컨설팅", "이혼 소송", "케이스별 상이", "견적 상담 필요"],
+      ["법률 컨설팅", "노동 관련 소송",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -537,8 +537,8 @@ const tabContents7 = {
 
   certificate7: {
     title: "불법 체류자 관련 컨설팅",
-     rows: [
-      ["법률 컨설팅", "이혼 소송", "케이스별 상이", "견적 상담 필요"],
+    rows: [
+      ["법률 컨설팅", "불법 체류자 관련 컨설팅",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -554,21 +554,21 @@ const tabContents8 = {
   korea8: {
     title: "법인 • 지사 • 대표사무실 설립",
     rows: [
-      ["B2B 서비스", "법인 • 지사 • 대표사무실 설립", "별도 심사 적용	", "견적 상담 필요"],
+      ["B2B 서비스", "법인 • 지사 • 대표사무실 설립",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "기업 정보 및 요구사항 파악" },
       { id: 2, text: "원본 서류 준비 및 번역/공증" },
       { id: 3, text: "현지에서 서류 제출 및 신청" },
       { id: 4, text: "심사시간 경과 후 증서 발급" },
-      
+
     ],
-    
+
   },
   vietnam8: {
     title: "노동 허가서, 임시 거주증 발급",
     rows: [
-      ["B2B 서비스", "노동 허가서, 임시 거주증 발급", "별도 심사 적용	", "견적 상담 필요"],
+      ["B2B 서비스", "노동 허가서, 임시 거주증 발급",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -581,24 +581,24 @@ const tabContents8 = {
 
   certificate8: {
     title: "수입 허가서",
-     rows: [
-      ["B2B 서비스", "수입 허가서", "별도 심사 적용", "견적 상담 필요"],
+    rows: [
+      ["B2B 서비스", "수입 허가서",  "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "사전 확인 및 서류 준비" },
       { id: 2, text: "수입 허가 및 검사 절차 (건강기능식품 및 의류 등)" },
       { id: 3, text: "수입 허가 신청 및 승인" },
       { id: 4, text: "수입 신고 및 통관 절차" },
-     
+
     ],
 
   },
   visa8: {
-    title: "베트남 출신 증명서 발급",
+    title: "B2B 바이어 매칭",
     rows: [
-      ["B2B 서비스", "B2B 바이어매칭", "별도 심사 적용", "견적 상담 필요"],
+      ["B2B 서비스", "B2B 바이어 매칭", "별도 상담", "견적 상담 필요"],
     ],
-    
+
   },
 };
 const services = [
@@ -612,10 +612,10 @@ const services = [
   { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
   { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
 ];
-    
+
 function Service() {
-  
-const location = useLocation();
+
+  const location = useLocation();
   const incomingTabKey = location.state?.tabKey || null;
   // incoming service index from App (0-based)
   const incomingServiceIndex = typeof location.state?.serviceIndex === 'number' ? location.state.serviceIndex : null;
@@ -634,7 +634,7 @@ const location = useLocation();
   const [submittedServiceForm, setSubmittedServiceForm] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     setSubmittedServiceForm(true);
 
     if (!name || !phone || !email || !agree) {
@@ -684,123 +684,123 @@ const location = useLocation();
     }
   };
 
-    
+
 
 
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState("korea1");
-const [activeTab2, setActiveTab2] = useState("korea2");
-const [activeTab3, setActiveTab3] = useState("korea3");
-const [activeTab4, setActiveTab4] = useState("korea4");
-const [activeTab5, setActiveTab5] = useState("korea5");
-const [activeTab6, setActiveTab6] = useState("korea6");
-const [activeTab7, setActiveTab7] = useState("korea7");
-const [activeTab8, setActiveTab8] = useState("korea8");
+  const [activeTab2, setActiveTab2] = useState("korea2");
+  const [activeTab3, setActiveTab3] = useState("korea3");
+  const [activeTab4, setActiveTab4] = useState("korea4");
+  const [activeTab5, setActiveTab5] = useState("korea5");
+  const [activeTab6, setActiveTab6] = useState("korea6");
+  const [activeTab7, setActiveTab7] = useState("korea7");
+  const [activeTab8, setActiveTab8] = useState("korea8");
 
-    // handle navigation state coming from App (tabKey and serviceIndex)
-    useEffect(() => {
-      if (incomingTabKey || incomingServiceIndex !== null) {
-        // map legacy a1..a36 keys (from App.jsx) to serviceIndex + inner tab name
-        const aKeyMap = {
-          a1: { index: 0 }, a2: { index: 0 },
-          a3: { index: 1, tab: 'korea1' }, a4: { index: 1, tab: 'vietnam1' }, a5: { index: 1, tab: 'certificate1' }, a6: { index: 1, tab: 'cc1' }, a7: { index: 1, tab: 'visa1' },
-          a8: { index: 2, tab: 'korea2' }, a9: { index: 2, tab: 'vietnam2' }, a10: { index: 2, tab: 'certificate2' }, a11: { index: 2, tab: 'visa2' },
-          a12: { index: 3, tab: 'korea3' }, a13: { index: 3, tab: 'vietnam3' }, a14: { index: 3, tab: 'certificate3' }, a15: { index: 3, tab: 'visa3' }, a16: { index: 3, tab: 'cc3' },
-          a17: { index: 4, tab: 'korea4' }, a18: { index: 4, tab: 'vietnam4' }, a19: { index: 4, tab: 'certificate4' }, a20: { index: 4, tab: 'visa4' }, a21: { index: 4, tab: 'cc4' },
-          a22: { index: 5, tab: 'korea5' }, a23: { index: 5, tab: 'vietnam5' }, a24: { index: 5, tab: 'certificate5' },
-          a25: { index: 6, tab: 'korea6' }, a26: { index: 6, tab: 'vietnam6' }, a27: { index: 6, tab: 'certificate6' }, a28: { index: 6, tab: 'visa6' }, a29: { index: 6, tab: 'cc6' },
-          a30: { index: 7, tab: 'korea7' }, a31: { index: 7, tab: 'vietnam7' }, a32: { index: 7, tab: 'certificate7' },
-          a33: { index: 8, tab: 'korea8' }, a34: { index: 8, tab: 'vietnam8' }, a35: { index: 8, tab: 'certificate8' }, a36: { index: 8, tab: 'visa8' },
-        };
+  // handle navigation state coming from App (tabKey and serviceIndex)
+  useEffect(() => {
+    if (incomingTabKey || incomingServiceIndex !== null) {
+      // map legacy a1..a36 keys (from App.jsx) to serviceIndex + inner tab name
+      const aKeyMap = {
+        a1: { index: 0 }, a2: { index: 0 },
+        a3: { index: 1, tab: 'korea1' }, a4: { index: 1, tab: 'vietnam1' }, a5: { index: 1, tab: 'certificate1' }, a6: { index: 1, tab: 'cc1' }, a7: { index: 1, tab: 'visa1' },
+        a8: { index: 2, tab: 'korea2' }, a9: { index: 2, tab: 'vietnam2' }, a10: { index: 2, tab: 'certificate2' }, a11: { index: 2, tab: 'visa2' },
+        a12: { index: 3, tab: 'korea3' }, a13: { index: 3, tab: 'vietnam3' }, a14: { index: 3, tab: 'certificate3' }, a15: { index: 3, tab: 'visa3' }, a16: { index: 3, tab: 'cc3' },
+        a17: { index: 4, tab: 'korea4' }, a18: { index: 4, tab: 'vietnam4' }, a19: { index: 4, tab: 'certificate4' }, a20: { index: 4, tab: 'visa4' }, a21: { index: 4, tab: 'cc4' },
+        a22: { index: 5, tab: 'korea5' }, a23: { index: 5, tab: 'vietnam5' }, a24: { index: 5, tab: 'certificate5' },
+        a25: { index: 6, tab: 'korea6' }, a26: { index: 6, tab: 'vietnam6' }, a27: { index: 6, tab: 'certificate6' }, a28: { index: 6, tab: 'visa6' }, a29: { index: 6, tab: 'cc6' },
+        a30: { index: 7, tab: 'korea7' }, a31: { index: 7, tab: 'vietnam7' }, a32: { index: 7, tab: 'certificate7' },
+        a33: { index: 8, tab: 'korea8' }, a34: { index: 8, tab: 'vietnam8' }, a35: { index: 8, tab: 'certificate8' }, a36: { index: 8, tab: 'visa8' },
+      };
 
-        // if incomingTabKey is like 'a3', prefer mapping
-        if (incomingTabKey && /^a\d+$/i.test(incomingTabKey)) {
-          const key = incomingTabKey.toLowerCase();
-          const mapped = aKeyMap[key];
-          if (mapped) {
-            if (typeof mapped.index === 'number') setActiveIndex(mapped.index);
-            if (mapped.tab) {
-              switch (mapped.index) {
-                case 0:
-                  setActiveTab(mapped.tab);
-                  break;
-                case 1:
-                  setActiveTab(mapped.tab);
-                  break;
-                case 2:
-                  setActiveTab2(mapped.tab);
-                  break;
-                case 3:
-                  setActiveTab3(mapped.tab);
-                  break;
-                case 4:
-                  setActiveTab4(mapped.tab);
-                  break;
-                case 5:
-                  setActiveTab5(mapped.tab);
-                  break;
-                case 6:
-                  setActiveTab6(mapped.tab);
-                  break;
-                case 7:
-                  setActiveTab7(mapped.tab);
-                  break;
-                case 8:
-                  setActiveTab8(mapped.tab);
-                  break;
-                default:
-                  break;
-              }
-            }
-            window.scrollTo(0, 0);
-            return;
-          }
-        }
-        // if a service index was provided, activate that left-side service
-        if (incomingServiceIndex !== null) {
-          setActiveIndex(incomingServiceIndex);
-        }
-
-        if (incomingTabKey) {
-          const match = incomingTabKey.match(/(\D+)(\d+)/);
-          if (match) {
-            const [, type, numStr] = match;
-            const num = Number(numStr);
-
-            switch (num) {
+      // if incomingTabKey is like 'a3', prefer mapping
+      if (incomingTabKey && /^a\d+$/i.test(incomingTabKey)) {
+        const key = incomingTabKey.toLowerCase();
+        const mapped = aKeyMap[key];
+        if (mapped) {
+          if (typeof mapped.index === 'number') setActiveIndex(mapped.index);
+          if (mapped.tab) {
+            switch (mapped.index) {
+              case 0:
+                setActiveTab(mapped.tab);
+                break;
               case 1:
-                setActiveTab(incomingTabKey);
+                setActiveTab(mapped.tab);
                 break;
               case 2:
-                setActiveTab2(incomingTabKey);
+                setActiveTab2(mapped.tab);
                 break;
               case 3:
-                setActiveTab3(incomingTabKey);
+                setActiveTab3(mapped.tab);
                 break;
               case 4:
-                setActiveTab4(incomingTabKey);
+                setActiveTab4(mapped.tab);
                 break;
               case 5:
-                setActiveTab5(incomingTabKey);
+                setActiveTab5(mapped.tab);
                 break;
               case 6:
-                setActiveTab6(incomingTabKey);
+                setActiveTab6(mapped.tab);
                 break;
               case 7:
-                setActiveTab7(incomingTabKey);
+                setActiveTab7(mapped.tab);
                 break;
               case 8:
-                setActiveTab8(incomingTabKey);
+                setActiveTab8(mapped.tab);
                 break;
               default:
                 break;
             }
           }
+          window.scrollTo(0, 0);
+          return;
         }
-
-        window.scrollTo(0, 0);
       }
-    }, [incomingTabKey, incomingServiceIndex]);
+      // if a service index was provided, activate that left-side service
+      if (incomingServiceIndex !== null) {
+        setActiveIndex(incomingServiceIndex);
+      }
+
+      if (incomingTabKey) {
+        const match = incomingTabKey.match(/(\D+)(\d+)/);
+        if (match) {
+          const [, type, numStr] = match;
+          const num = Number(numStr);
+
+          switch (num) {
+            case 1:
+              setActiveTab(incomingTabKey);
+              break;
+            case 2:
+              setActiveTab2(incomingTabKey);
+              break;
+            case 3:
+              setActiveTab3(incomingTabKey);
+              break;
+            case 4:
+              setActiveTab4(incomingTabKey);
+              break;
+            case 5:
+              setActiveTab5(incomingTabKey);
+              break;
+            case 6:
+              setActiveTab6(incomingTabKey);
+              break;
+            case 7:
+              setActiveTab7(incomingTabKey);
+              break;
+            case 8:
+              setActiveTab8(incomingTabKey);
+              break;
+            default:
+              break;
+          }
+        }
+      }
+
+      window.scrollTo(0, 0);
+    }
+  }, [incomingTabKey, incomingServiceIndex]);
 
 
   const tabStyle = (tab) => {
@@ -858,7 +858,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
       businessTable1Desc: "정관, 사업자등록증, 법인등기부등본, 기업재무제표(재무제표, 감사보고서 등), 은행잔고증명서, 납세사실증명, 회사 서약서, 각종 계약증 및 위임장 등",
       businessTable2Title: "수출입",
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
-      
+
     },
     // Service 2: 출생 · 사망 신고
     {
@@ -973,7 +973,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
       businessTable1Desc: "정관, 사업자등록증, 법인등기부등본, 기업재무제표(재무제표, 감사보고서 등), 은행잔고증명서, 납세사실증명, 회사 서약서, 각종 계약증 및 위임장 등",
       businessTable2Title: "수출입",
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
-     
+
     },
   ]);
 
@@ -1287,18 +1287,18 @@ const [activeTab8, setActiveTab8] = useState("korea8");
               }}
             >
               <button style={tabStyle("korea1")} onClick={() => setActiveTab("korea1")}>
-                한국 내 혼인 신고
+                한국 내 혼인신고
               </button>
               <button style={tabStyle("vietnam1")} onClick={() => setActiveTab("vietnam1")}>
-               혼인관계증명서 발급 신청
+                혼인관계증명서
               </button>
               <button style={tabStyle("certificate1")} onClick={() => setActiveTab("certificate1")}>
-                혼인요건인증서 발급 신청
+                혼인요건인증서
               </button>
               <button style={tabStyle("cc1")} onClick={() => setActiveTab("cc1")}>
-                혼인 재신고
+                결혼 재신고
               </button>
-               <button style={tabStyle("visa1")} onClick={() => setActiveTab("visa1")}>
+              <button style={tabStyle("visa1")} onClick={() => setActiveTab("visa1")}>
                 결혼이민 비자신청
               </button>
             </div>
@@ -1336,7 +1336,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속기간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1501,13 +1501,13 @@ const [activeTab8, setActiveTab8] = useState("korea8");
               }}
             >
               <button style={tabStyle("korea2")} onClick={() => setActiveTab2("korea2")}>
-                출생신고
+                출생 신고
               </button>
               <button style={tabStyle("vietnam2")} onClick={() => setActiveTab2("vietnam2")}>
                 기한 초과 출생신고
               </button>
               <button style={tabStyle("certificate2")} onClick={() => setActiveTab2("certificate2")}>
-                사망 신고
+              사망 신고
               </button>
               <button style={tabStyle("visa2")} onClick={() => setActiveTab2("visa2")}>
                 기한 초과 사망신고
@@ -1547,7 +1547,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1695,7 +1695,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
       case 3:
         if (!tabContents3[activeTab3]) return null;
         return (
-          
+
           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출입국 행정</h1>
@@ -1722,7 +1722,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 베트남 국적 귀화 신청
               </button>
               <button style={tabStyle("visa3")} onClick={() => setActiveTab3("visa3")}>
-                베트남으로 시체, 유해, 유골 반입 허가 신청
+                시체 등 반입 허가 신청
               </button>
               <button style={tabStyle("cc3")} onClick={() => setActiveTab3("cc3")}>
                 베트남 국적 사실 확인 
@@ -1762,7 +1762,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -1894,7 +1894,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
       case 4:
         if (!tabContents4[activeTab4]) return null;
         return (
-           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>신분증명 서류</h1>
             <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
@@ -1913,7 +1913,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 일반 여권 발급 • 변경 • 추가
               </button>
               <button style={tabStyle("vietnam4")} onClick={() => setActiveTab4("vietnam4")}>
-                호적 변경 • 정정 • 추가, 민족 재확인, 성별 재확인 등
+                호적 정보 정정
               </button>
               <button style={tabStyle("certificate4")} onClick={() => setActiveTab4("certificate4")}>
                 베트남 국민 신고 • 업데이트
@@ -1959,7 +1959,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2080,7 +2080,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 </>
               )}
             </div>
-                
+
           </div>
         );
 
@@ -2104,15 +2104,15 @@ const [activeTab8, setActiveTab8] = useState("korea8");
               }}
             >
               <button style={tabStyle("korea5")} onClick={() => setActiveTab5("korea5")}>
-                보호자 신청 • 해지 신고 
+                보호자 신청 • 해지 신고
               </button>
               <button style={tabStyle("vietnam5")} onClick={() => setActiveTab5("vietnam5")}>
-               혼외자 자녀 인지
+                베트남 혼외자 자녀 인지
               </button>
               <button style={tabStyle("certificate5")} onClick={() => setActiveTab5("certificate5")}>
                 입양 절차 대행
               </button>
-              
+
             </div>
 
             {/* Table */}
@@ -2148,7 +2148,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2197,83 +2197,83 @@ const [activeTab8, setActiveTab8] = useState("korea8");
 
                   {/* Steps */}
                   {tabContents5[activeTab5].steps && tabContents5[activeTab5].steps.length > 0 && (
-                <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-  <h2
-    style={{
-      fontFamily: "Afacad, serif",
-      fontSize: "32px",
-      fontWeight: "bold",
-      marginBottom: "30px",
-    }}
-  >
-    진행 절차
-  </h2>
+                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2
+                        style={{
+                          fontFamily: "Afacad, serif",
+                          fontSize: "32px",
+                          fontWeight: "bold",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        진행 절차
+                      </h2>
 
-  {/* Bọc 6 step thành 2 hàng */}
-  <div style={{ display: "flex", flexDirection: "column", gap: "40px", alignItems: "center" }}>
-    {[0, 1].map((row) => (
-      <div
-        key={row}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "28px",
-        }}
-      >
-        {tabContents5[activeTab5].steps.slice(row * 3, row * 3 + 3).map((step, index) => (
-          <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-            <div
-              style={{
-                backgroundColor: "#f0f0f0e8",
-                borderRadius: "16px",
-                width: "320px",
-                height: "202px",
-                boxShadow: "0 6px 16px rgba(0, 0, 0, 0.12)",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "20px",
-                textAlign: "center",
-              }}
-            >
-              <p
-                style={{
-                  fontWeight: "bold",
-                  color: "#111827",
-                  margin: 0,
-                  fontSize: "22px",
-                  alignSelf: "flex-start",
-                  marginLeft: "10px",
-                }}
-              >
-                0{step.id}
-              </p>
-              <p
-                style={{
-                  fontSize: "15px",
-                  color: "#374151",
-                  marginTop: "10px",
-                  lineHeight: "22px",
-                }}
-              >
-                {step.text}
-              </p>
-            </div>
-            {/* Chỉ thêm mũi tên nếu chưa phải step cuối trong hàng */}
-            {index < 2 && <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>}
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-</div>
+                      {/* Bọc 6 step thành 2 hàng */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "40px", alignItems: "center" }}>
+                        {[0, 1].map((row) => (
+                          <div
+                            key={row}
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              gap: "28px",
+                            }}
+                          >
+                            {tabContents5[activeTab5].steps.slice(row * 3, row * 3 + 3).map((step, index) => (
+                              <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
+                                <div
+                                  style={{
+                                    backgroundColor: "#f0f0f0e8",
+                                    borderRadius: "16px",
+                                    width: "320px",
+                                    height: "202px",
+                                    boxShadow: "0 6px 16px rgba(0, 0, 0, 0.12)",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    padding: "20px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <p
+                                    style={{
+                                      fontWeight: "bold",
+                                      color: "#111827",
+                                      margin: 0,
+                                      fontSize: "22px",
+                                      alignSelf: "flex-start",
+                                      marginLeft: "10px",
+                                    }}
+                                  >
+                                    0{step.id}
+                                  </p>
+                                  <p
+                                    style={{
+                                      fontSize: "15px",
+                                      color: "#374151",
+                                      marginTop: "10px",
+                                      lineHeight: "22px",
+                                    }}
+                                  >
+                                    {step.text}
+                                  </p>
+                                </div>
+                                {/* Chỉ thêm mũi tên nếu chưa phải step cuối trong hàng */}
+                                {index < 2 && <span style={{ fontSize: "32px", color: "#1e3a8a" }}>→</span>}
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   )}
                 </>
               )}
             </div>
-               
+
           </div>
         );
 
@@ -2281,12 +2281,12 @@ const [activeTab8, setActiveTab8] = useState("korea8");
       case 6:
         if (!tabContents6[activeTab6]) return null;
         return (
-             <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>비자 대행</h1>
             <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               까다로운 비자 서류 준비부터 접수까지, 모든 절차를 신속하고 정확하게 대행하여 <br />
-                성공적인 비자 발급을 약속드립니다.
+              성공적인 비자 발급을 약속드립니다.
             </p>
 
             <div
@@ -2310,7 +2310,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 베트남 비자면제증 발급
               </button>
               <button style={tabStyle("cc6")} onClick={() => setActiveTab6("cc6")}>
-                베트남 전자비자 • 상용비자 발급 
+                베트남 전자비자 • 성용비자
               </button>
             </div>
 
@@ -2347,7 +2347,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간", "비용", "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2468,20 +2468,20 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 </>
               )}
             </div>
-                
+
           </div>
         );
 
       // Service 7: 법률 - Legal Services Layout with service grid cards
       case 7:
-          if (!tabContents7[activeTab7]) return null;
+        if (!tabContents7[activeTab7]) return null;
         return (
-         <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>법률 컨설팅</h1>
             <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               이혼, 노동, 체류자격 등 법적 문제를 예방하고, <br />
-                발생한 문제를 해결하기 위한 자문합니다.
+              발생한 문제를 해결하기 위한 자문합니다.
             </p>
 
             <div
@@ -2496,12 +2496,12 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 이혼 소송
               </button>
               <button style={tabStyle("vietnam7")} onClick={() => setActiveTab7("vietnam7")}>
-               노동 관련 소송
+                노동 관련 소송
               </button>
               <button style={tabStyle("certificate7")} onClick={() => setActiveTab7("certificate7")}>
-                체류자 관련 컨설팅
+                불법 체류자 관련 컨설팅
               </button>
-             
+
             </div>
 
             {/* Table */}
@@ -2537,7 +2537,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간",  "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2658,15 +2658,15 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 </>
               )}
             </div>
-                
+
           </div>
         );
 
       // Service 8: 기타 서비스 - Flexible Layout with dual cards and contact section
       case 8:
-         if (!tabContents8[activeTab8]) return null;
+        if (!tabContents8[activeTab8]) return null;
         return (
-           <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>B2B 서비스</h1>
             <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
@@ -2681,19 +2681,19 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 width: "100%",
               }}
             >
-              <button style={tabStyle("korea8",activeTab8)} onClick={() => setActiveTab8("korea8")}  tabKey="a33">
-                베트남 • 한국에서 법인 • 지사 • 대표 사무실 설립
+              <button style={tabStyle("korea8", activeTab8)} onClick={() => setActiveTab8("korea8")} tabKey="a33">
+                법인 • 지사 • 대표사무실 설립
               </button>
-              <button style={tabStyle("vietnam8",activeTab8)} onClick={() => setActiveTab8("vietnam8")}  tabKey="a34">
-               베트남 • 한국 내 노동 허가서, 임시 거주증 발급
+              <button style={tabStyle("vietnam8", activeTab8)} onClick={() => setActiveTab8("vietnam8")} tabKey="a34">
+                노동 허가서, 임시 거주증 발급
               </button>
-              <button style={tabStyle("certificate8",activeTab8)} onClick={() => setActiveTab8("certificate8")}  tabKey="a35">
-                수출입 허가서
+              <button style={tabStyle("certificate8", activeTab8)} onClick={() => setActiveTab8("certificate8")} tabKey="a35">
+                수입 허가서
               </button>
-               <button style={tabStyle("visa8",activeTab8)} onClick={() => setActiveTab8("visa8")} tabKey="a36">
+              <button style={tabStyle("visa8", activeTab8)} onClick={() => setActiveTab8("visa8")} tabKey="a36">
                 B2B 바이어 매칭
               </button>
-             
+
             </div>
 
             {/* Table */}
@@ -2729,7 +2729,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
-                          {["업무 분류", "업무 이름", "심사기간", "수속시간",  "상담문의"].map((h, i) => (
+                          {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
@@ -2850,7 +2850,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                 </>
               )}
             </div>
-                
+
           </div>
         );
     }
@@ -2900,10 +2900,10 @@ const [activeTab8, setActiveTab8] = useState("korea8");
               margin: "0 auto",
             }}
           >
-          
+
 
             {/* Icons container */}
-            <div style={{ display: "flex", gap: 30}}>
+            <div style={{ display: "flex", gap: 30 }}>
               {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
                 const realIndex = startIndex + i;
 
@@ -2957,7 +2957,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
             </div>
 
             {/* Next button */}
-            
+
           </div>
         </div>
 
@@ -3042,7 +3042,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                     }}
                   />
                 </div>
-                { /* show only after submit attempt */ }
+                { /* show only after submit attempt */}
                 {submittedServiceForm && !serviceContents[activeIndex]?.title && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
                     *필수입입입니다
@@ -3129,7 +3129,7 @@ const [activeTab8, setActiveTab8] = useState("korea8");
                   </label>
                   <select
                     value={countryCode}
-                    onChange={(e) => setCountryCode(e.target.value)} 
+                    onChange={(e) => setCountryCode(e.target.value)}
                     style={{
                       width: 60,
                       border: "none",

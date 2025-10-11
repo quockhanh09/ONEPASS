@@ -614,10 +614,10 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28, }}>
+        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 10, }}>
           상담 신청
         </h2>
-        <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
+        <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
         <form onSubmit={handleSubmit}>
           {/* 서비스 선택 */}
           <div style={{ marginBottom: 20, position: "relative" }}>
@@ -982,8 +982,8 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28 }}>상담 신청</h2>
-        <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
+        <h2 style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
+        <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
         <form onSubmit={handleSubmit1}>
           {/* 서비스 선택 */}
@@ -1440,8 +1440,8 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 28 }}>상담 신청</h2>
-        <div style={{ height: 1, background: "#000000ff", marginBottom: 24 }}></div>
+        <h2 style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
+        <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
         <form onSubmit={handleSubmit2}>
           {/* 서비스 선택 */}

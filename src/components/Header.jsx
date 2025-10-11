@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
 import logo from "../assets/img/Logo-name.png";
 import iconGlobal from "../assets/img/Icon.svg";
 import { Link, useLocation } from "react-router-dom";
@@ -9,16 +9,37 @@ function Header() {
   const isLoginPage = location.pathname === "/Login";
 
   const [activeMenu, setActiveMenu] = useState(null);
+  const [isSticky, setIsSticky] = useState(false);
 
   if (isLoginPage) return null;
+
+  useEffect(() => {
+    // Toggle sticky state based on scroll position and add/remove .scrolled on body
+    const onScroll = () => {
+      const scrolled = window.scrollY > 16; // when user scrolls past the header area
+      setIsSticky(scrolled);
+      try {
+        if (scrolled) document.body.classList.add("scrolled");
+        else document.body.classList.remove("scrolled");
+      } catch (err) {
+        // ignore in non-browser environments
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // run once to initialise
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header
       id="header"
-      className="header d-flex align-items-center center-x"
+      className=" d-flex align-items-center center-x"
       style={{
-        position: "absolute",
-        top: 16,
+        position: isSticky ? "fixed" : "absolute",
+        top: isSticky ? 8 : 16,
         width: "calc(100% - 40px)",
         maxWidth: 1300,
         padding: "8px 20px",
@@ -26,7 +47,8 @@ function Header() {
         margin: 0,
         borderRadius: 40,
         flexDirection: "column",
-        alignItems: "stretch"
+        alignItems: "stretch",
+        transition: "top 0.18s ease, transform 0.18s ease"
       }}
     >
       {/* Logo */}

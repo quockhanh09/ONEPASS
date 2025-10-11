@@ -107,7 +107,7 @@ const tabContents = {
     rows: [
       ["결혼 이민", "결혼 재신고", "별도 상담", "견적 상담 필요"],
     ],
-    steps2: [
+    steps1: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "검토 및 발급 신청 (원패스)	" },
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
@@ -1371,6 +1371,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -1582,6 +1583,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -1797,6 +1799,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -1994,6 +1997,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -2183,6 +2187,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -2382,6 +2387,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -2572,6 +2578,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -2764,6 +2771,7 @@ function Service() {
                                   fontWeight: "bold",
                                   cursor: "pointer",
                                   marginBottom: 20,
+                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -2903,7 +2911,7 @@ function Service() {
 
 
             {/* Icons container */}
-            <div style={{ display: "flex", gap: 30 }}>
+            <div style={{ display: "flex", gap: 15 }}>
               {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
                 const realIndex = startIndex + i;
 

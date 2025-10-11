@@ -452,9 +452,9 @@ span {
 
 /* When the header becomes sticky (class added by JS), make background black */
 .header--sticky {
-  --background-color: #384D8D;
+  --background-color: #2B3A67;
   background-color: var(--background-color) !important;
-  background: #384D8D !important;
+  background: #2B3A67 !important;
   box-shadow: 0 6px 20px rgba(56,77,141,0.35);
   color: #fff;
 }

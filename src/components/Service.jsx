@@ -11,6 +11,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRef } from "react";
 import vcpcLogo from "../assets/img/vcpc-header.png";
 import meetingImg from "../assets/img/image8.png";
 import heroBg from "../assets/img/herobanner-1.png";
@@ -81,7 +82,7 @@ const tabContents = {
   vietnam1: {
     title: "혼인관계증명서",
     rows: [
-      ["결혼 이민", "혼인관계증명서",  "별도 상담", "견적 상담 필요"],
+      ["결혼 이민", "혼인관계증명서", "별도 상담", "견적 상담 필요"],
     ],
     steps1: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -123,7 +124,7 @@ const tabContents2 = {
   korea2: {
     title: "출생 신고",
     rows: [
-      ["출생신고", "출생 신고",  "별도 상담", "견적 상담 필요"],
+      ["출생신고", "출생 신고", "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -135,7 +136,7 @@ const tabContents2 = {
   vietnam2: {
     title: "기한 초과 출생신고",
     rows: [
-      ["출생신고", "기한 초과 출생신고",  "별도 상담", "견적 상담 필요"],
+      ["출생신고", "기한 초과 출생신고", "별도 상담", "견적 상담 필요"],
     ],
     steps2: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -173,7 +174,7 @@ const tabContents3 = {
   korea3: {
     title: "베트남 국적 포기 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 포기 신청",  "별도 상담", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 포기 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수 (고객님 → 원패스)" },
@@ -305,7 +306,7 @@ const tabContents3 = {
   certificate3: {
     title: "베트남 국적 귀화 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 귀화 신청",  "별도 상담", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 귀화 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -317,7 +318,7 @@ const tabContents3 = {
   visa3: {
     title: "시체 등 반입 허가 신청",
     rows: [
-      ["출입국 행정", "시체 등 반입 허가 신청",  "별도 상담", "견적 상담 필요"],
+      ["출입국 행정", "시체 등 반입 허가 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -343,7 +344,7 @@ const tabContents4 = {
   korea4: {
     title: "일반 여권 발급 • 변경 • 추가",
     rows: [
-      ["신분증명 서류", "일반 여권 발급 • 변경 • 추가",  "별도 상담", "견적 상담 필요"],
+      ["신분증명 서류", "일반 여권 발급 • 변경 • 추가", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -380,7 +381,7 @@ const tabContents4 = {
   visa4: {
     title: "베트남 출신 증명서 발급",
     rows: [
-      ["신분증명 서류", "베트남 출신 증명서 발급",  "별도 상담", "견적 상담 필요"],
+      ["신분증명 서류", "베트남 출신 증명서 발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -406,7 +407,7 @@ const tabContents5 = {
   korea5: {
     title: "보호자 신청 • 해지 신고",
     rows: [
-      ["입양 • 자녀 인지", "보호자 신청 • 해지 신고",  "별도 상담", "견적 상담 필요"],
+      ["입양 • 자녀 인지", "보호자 신청 • 해지 신고", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -418,7 +419,7 @@ const tabContents5 = {
   vietnam5: {
     title: "베트남 혼외자 자녀 인지",
     rows: [
-      ["입양 • 자녀 인지", "베트남 혼외자 자녀 인지",  "별도 상담", "견적 상담 필요"],
+      ["입양 • 자녀 인지", "베트남 혼외자 자녀 인지", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "혼인신고 후 혼인이 성립한 날로부터 200일 이전에 출산 (혹인 혼인신고 전)" },
@@ -433,7 +434,7 @@ const tabContents5 = {
   certificate5: {
     title: "입양 절차 대행",
     rows: [
-      ["입양 • 자녀 인지", "입양 절차 대행",  "별도 상담", "견적 상담 필요"],
+      ["입양 • 자녀 인지", "입양 절차 대행", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -473,7 +474,7 @@ const tabContents6 = {
   certificate6: {
     title: "초청(단기방문 F-1-5 비자)",
     rows: [
-      ["비자 대행", "초청(단기방문 F-1-5 비자)",  "별도 상담", "견적 상담 필요"],
+      ["비자 대행", "초청(단기방문 F-1-5 비자)", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -485,7 +486,7 @@ const tabContents6 = {
   visa6: {
     title: "베트남 비자면제증 발급",
     rows: [
-      ["비자 대행", "베트남 비자면제증 발급",  "별도 상담", "견적 상담 필요"],
+      ["비자 대행", "베트남 비자면제증 발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -496,7 +497,7 @@ const tabContents6 = {
   cc6: {
     title: "베트남 전자비자 • 성용비자",
     rows: [
-      ["비자 대행", "베트남 전자비자 • 성용비자",  "별도 상담", "견적 상담 필요"],
+      ["비자 대행", "베트남 전자비자 • 성용비자", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -510,7 +511,7 @@ const tabContents7 = {
   korea7: {
     title: "이혼 소송",
     rows: [
-      ["법률 컨설팅", "이혼 소송",  "별도 상담", "견적 상담 필요"],
+      ["법률 컨설팅", "이혼 소송", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -524,7 +525,7 @@ const tabContents7 = {
   vietnam7: {
     title: "노동 관련 소송",
     rows: [
-      ["법률 컨설팅", "노동 관련 소송",  "별도 상담", "견적 상담 필요"],
+      ["법률 컨설팅", "노동 관련 소송", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -538,7 +539,7 @@ const tabContents7 = {
   certificate7: {
     title: "불법 체류자 관련 컨설팅",
     rows: [
-      ["법률 컨설팅", "불법 체류자 관련 컨설팅",  "별도 상담", "견적 상담 필요"],
+      ["법률 컨설팅", "불법 체류자 관련 컨설팅", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -554,7 +555,7 @@ const tabContents8 = {
   korea8: {
     title: "법인 • 지사 • 대표사무실 설립",
     rows: [
-      ["B2B 서비스", "법인 • 지사 • 대표사무실 설립",  "별도 상담", "견적 상담 필요"],
+      ["B2B 서비스", "법인 • 지사 • 대표사무실 설립", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "기업 정보 및 요구사항 파악" },
@@ -568,7 +569,7 @@ const tabContents8 = {
   vietnam8: {
     title: "노동 허가서, 임시 거주증 발급",
     rows: [
-      ["B2B 서비스", "노동 허가서, 임시 거주증 발급",  "별도 상담", "견적 상담 필요"],
+      ["B2B 서비스", "노동 허가서, 임시 거주증 발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "초기 정보 수집 및 경청" },
@@ -582,7 +583,7 @@ const tabContents8 = {
   certificate8: {
     title: "수입 허가서",
     rows: [
-      ["B2B 서비스", "수입 허가서",  "별도 상담", "견적 상담 필요"],
+      ["B2B 서비스", "수입 허가서", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "사전 확인 및 서류 준비" },
@@ -613,7 +614,9 @@ const services = [
   { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
 ];
 
-function Service() {
+function Service(props) {
+
+
 
   const location = useLocation();
   const incomingTabKey = location.state?.tabKey || null;
@@ -1508,7 +1511,7 @@ function Service() {
                 기한 초과 출생신고
               </button>
               <button style={tabStyle("certificate2")} onClick={() => setActiveTab2("certificate2")}>
-              사망 신고
+                사망 신고
               </button>
               <button style={tabStyle("visa2")} onClick={() => setActiveTab2("visa2")}>
                 기한 초과 사망신고
@@ -1727,7 +1730,7 @@ function Service() {
                 시체 등 반입 허가 신청
               </button>
               <button style={tabStyle("cc3")} onClick={() => setActiveTab3("cc3")}>
-                베트남 국적 사실 확인 
+                베트남 국적 사실 확인
               </button>
             </div>
 
@@ -2896,85 +2899,86 @@ function Service() {
       <section
         style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "60px 0" }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
-          {/* Carousel Wrapper */}
-          <div
-            style={{
-              width: "1200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 10,
-              margin: "0 auto",
-            }}
-          >
 
 
-            {/* Icons container */}
-            <div style={{ display: "flex", gap: 15 }}>
-              {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
-                const realIndex = startIndex + i;
+        <div
+          style={{
+            position: "sticky",
+            top: 50,
+            zIndex: 1000,
+            background: "#fff",
 
-                let currentIcon = item.icon;
-                if (activeIndex === realIndex) {
-                  currentIcon = item.activeIcon;
-                } else if (hoverIndex === realIndex) {
-                  currentIcon = item.hoverIcon;
-                }
+          }}
+        >
+          <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
+            <div
+              style={{
+                width: "1200px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                margin: "0 auto",
+                padding: "10px 0",
+              }}
+            >
+              {/* Icons container */}
+              <div style={{ display: "flex", gap: 15 }}>
+                {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
+                  const realIndex = startIndex + i;
+                  let currentIcon = item.icon;
+                  if (activeIndex === realIndex) {
+                    currentIcon = item.activeIcon;
+                  } else if (hoverIndex === realIndex) {
+                    currentIcon = item.hoverIcon;
+                  }
 
-                return (
-                  <div
-                    key={realIndex}
-                    onClick={() => handleClick(realIndex)}
-                    onMouseEnter={() => setHoverIndex(realIndex)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                    style={{
-                      width: 120,
-                      height: 140,
-                      textAlign: "center",
-                      cursor: "pointer",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      src={currentIcon}
-                      alt={item.title}
-                      style={{
-                        width: 80,
-                        height: 80,
-                        transition: "opacity 0.3s",
-                      }}
-                    />
+                  return (
                     <div
+                      key={realIndex}
+                      onClick={() => handleClick(realIndex)}
+                      onMouseEnter={() => setHoverIndex(realIndex)}
+                      onMouseLeave={() => setHoverIndex(null)}
                       style={{
-                        marginTop: 12,
-                        fontSize: 15,
-                        fontWeight: activeIndex === realIndex ? 700 : 600,
-                        color: activeIndex === realIndex ? "#2B3A67" : "#222",
-                        whiteSpace: "nowrap",
+                        width: 120,
+                        height: 140,
+                        textAlign: "center",
+                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      {item.title}
+                      <img
+                        src={currentIcon}
+                        alt={item.title}
+                        style={{
+                          width: 80,
+                          height: 80,
+                          transition: "opacity 0.3s",
+                        }}
+                      />
+                      <div
+                        style={{
+                          marginTop: 12,
+                          fontSize: 15,
+                          fontWeight: activeIndex === realIndex ? 700 : 600,
+                          color: activeIndex === realIndex ? "#2B3A67" : "#222",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {item.title}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-
-            {/* Next button */}
-
           </div>
         </div>
-
         {/* DETAILED CONTENT */}
         {renderServiceContent()}
-
-
-
-
 
         {/*  */}
 

@@ -40,6 +40,8 @@ const CARDS = [
 
 function Introduction() {
   const [selected, setSelected] = useState(0);
+  const [calendarDate, setCalendarDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(null);
   return (
     <>
       {/* PHẦN GIỚI THIỆU */}
@@ -73,7 +75,7 @@ function Introduction() {
             alignItems: "center",
             marginBottom: 30
           }}>
-            <h2 style={{ fontSize: 24, fontWeight: 700, color: "#384D8D" }}>전체 뉴스</h2>
+            <h2><a  href="/news/전체 뉴스" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D",textDecoration: "none" }} >전체 뉴스</a></h2>
             <a href="/news/전체 뉴스" style={{ fontSize: 15, color: "#384D8D", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
               더보기 →
             </a>
@@ -87,7 +89,7 @@ function Introduction() {
             justifyContent: "space-between"
           }}>
             {/* Card 1 */}
-            <div style={{ flex: "1 1 30%", minWidth: 300 }}>
+            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n1} alt="추석 연휴 안내"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 30일 | 오전 09:00</p>
@@ -98,7 +100,7 @@ function Introduction() {
             </div>
 
             {/* Card 2 */}
-            <div style={{ flex: "1 1 30%", minWidth: 300 }}>
+            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n2} alt="베트남 총영사관 개소"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 27일 | 오전 09:00</p>
@@ -109,7 +111,7 @@ function Introduction() {
             </div>
 
             {/* Card 3 */}
-            <div style={{ flex: "1 1 30%", minWidth: 300 }}>
+            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n3} alt="원패스 업무 개시 안내"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 25일 | 오전 09:00</p>
@@ -133,9 +135,7 @@ function Introduction() {
               marginBottom: 30,
             }}
           >
-            <h2 style={{ fontSize: 24, fontWeight: 700, color: "#384D8D" }}>
-              대사관•총영사관 소식
-            </h2>
+            <h2><a  href="/news/대사관•총영사관 소식" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D",textDecoration: "none" }} >대사관•총영사관 소식</a></h2>
             <a
               href="/news/대사관•총영사관 소식"
               style={{
@@ -162,13 +162,14 @@ function Introduction() {
           >
             {/* Card 1 */}
             <div
+            onClick={() => (window.location.href = "/news대사관•총영사관 소식/NewsDetail4")}
               style={{
                 width: 380,
                 flexShrink: 0,
               }}
             >
               <img
-                src={n1}
+                src={n4}
                 alt="추석 연휴 안내"
                 style={{
                   width: 380,
@@ -199,13 +200,14 @@ function Introduction() {
 
             {/* Card 2 */}
             <div
+            onClick={() => (window.location.href = "/news대사관•총영사관 소식/NewsDetail5")}
               style={{
                 width: 380,
                 flexShrink: 0,
               }}
             >
               <img
-                src={n2}
+                src={n5}
                 alt="베트남 총영사관 개소"
                 style={{
                   width: 380,
@@ -246,46 +248,84 @@ function Introduction() {
               업무 일정 (휴일 일정)
             </h2>
             <div style={{
-              width: 260,
+              width: 460,
+              maxWidth: '100%',
               background: "#fff",
-              borderRadius: 12,
-              boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-              padding: 16,
-              textAlign: "center"
+              borderRadius: 18,
+              boxShadow: "0 8px 24px rgba(12,20,40,0.08)",
+              border: '1px solid rgba(15,23,42,0.06)',
+              padding: "15px 20px",
+              // explicit height will grow if content overflows; keep auto
+              textAlign: "center",
+              fontFamily: 'Inter, Arial, sans-serif'
             }}>
-              {/* Giả lập Calendar */}
-              <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>10 ▾ | 2025</div>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, color: "#111827" }}>
-                <thead>
-                  <tr>
-                    {["일", "월", "화", "수", "목", "금", "토"].map((d, i) => (
-                      <th key={i} style={{ padding: 4, color: i === 0 ? "#dc2626" : "#374151" }}>{d}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[...Array(5)].map((_, row) => (
-                    <tr key={row}>
-                      {[...Array(7)].map((_, col) => {
-                        const day = row * 7 + col - 1;
-                        return (
-                          <td key={col} style={{
-                            padding: "6px 4px",
-                            color: (col === 0 || col === 6) ? "#dc2626" : "#111827"
-                          }}>
-                            {day > 0 && day <= 31 ? day : ""}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {/* Styled Calendar (matches provided design) */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-start', marginBottom: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: '#0b1220', lineHeight: 1 }}>{calendarDate.getMonth() + 1}</div>
+                  <div style={{ fontSize: 16, color: '#6b7280', fontWeight: 600, lineHeight: 1, transform: 'translateY(1px)' }}>▾</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: '#0b1220', lineHeight: 1 }}>{calendarDate.getFullYear()}</div>
+                  <div style={{ fontSize: 16, color: '#6b7280', fontWeight: 600, lineHeight: 1, transform: 'translateY(1px)' }}>▾</div>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
+                {['일','월','화','수','목','금','토'].map((d,i) => (
+                  <div key={d} style={{ width: 56, fontSize: 13, color: '#9aa4b8', textAlign: 'center', lineHeight: '18px' }}>{d}</div>
+                ))}
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 8, justifyContent: 'center' }}>
+                {(() => {
+                  const year = calendarDate.getFullYear();
+                  const month = calendarDate.getMonth();
+                  const firstDay = new Date(year, month, 1).getDay();
+                  const daysInMonth = new Date(year, month + 1, 0).getDate();
+                  const totalCells = 35; // 6 rows x 7 cols
+                  const cells = [];
+                  for (let i = 0; i < totalCells; i++) {
+                    const dayNum = i - firstDay + 1;
+                    const isValid = dayNum >= 1 && dayNum <= daysInMonth;
+                    const col = i % 7;
+                    const isWeekend = col === 0 || col === 6;
+                    const isSelected = selectedDate && isValid &&
+                      selectedDate.getFullYear() === year &&
+                      selectedDate.getMonth() === month &&
+                      selectedDate.getDate() === dayNum;
+
+                    // show days with larger numbers; weekends and selected day are red, no filled circle
+                    cells.push(
+                      <div
+                        key={i}
+                        onClick={() => isValid && setSelectedDate(new Date(year, month, dayNum))}
+                        style={{
+                          height: 56,
+                          width: 56,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: 16,
+                          fontWeight: isSelected ? 700 : 400,
+                          color: isValid ? (isSelected ? '#ef4444' : (isWeekend ? '#ef4444' : '#111827')) : 'transparent',
+                          cursor: isValid ? 'pointer' : 'default',
+                          borderRadius: 10,
+                          background: 'transparent'
+                        }}
+                      >
+                        {isValid ? dayNum : ''}
+                      </div>
+                    );
+                  }
+                  return cells;
+                })()}
+              </div>
             </div>
           </div>
 
           {/* RIGHT: News */}
-          <div style={{ flex: "0 0 50%" }}>
+          {/* <div style={{ flex: "0 0 50%" }}>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
               법률 관련 뉴스
             </h2>
@@ -316,7 +356,7 @@ function Introduction() {
                 </a>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
     </>

@@ -58,7 +58,7 @@ export default function Consult() {
   const [submittedEmail, setSubmittedEmail] = useState(false);
   const [submittedVisit, setSubmittedVisit] = useState(false);
   const handleTabClick = (tabId) => {
-    
+
     if (name.trim() === "") setNameError(true);
     if (email.trim() === "") setEmailError(true);
     if (phone.trim() === "") setPhoneError(true);
@@ -67,85 +67,85 @@ export default function Consult() {
     setActiveTab(tabId);
   };
   const showTemporaryPopup = (message, isError = false) => {
-  setPopupMessage({ text: message, isError });
-  setShowPopup(true);
-  setTimeout(() => setShowPopup(false), 5000);
-};
-  const handleSubmit = async (e) => {  // Gọi Điện
-  e.preventDefault();
-
-  // mark that user attempted to submit the phone form so errors will render
-  setSubmittedPhone(true);
-
-  const lang = localStorage.getItem("lang") || "ko"; // Lấy ngôn ngữ
-  const messages = {
-    ko: {
-      empty: "모든 항목을 입력하고 동의해 주세요.",
-      success: "상담 신청 완료되었습니다!",
-      fail: "서버 연결 실패 (Server connection failed)",
-    },
-    vi: {
-      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-      success: "Đăng ký tư vấn thành công!",
-      fail: "Kết nối server thất bại",
-    },
-    en: {
-      empty: "Please fill in all fields and agree.",
-      success: "Consultation request submitted!",
-      fail: "Server connection failed",
-    },
+    setPopupMessage({ text: message, isError });
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 5000);
   };
-  
-  // Kiểm tra dữ liệu trống
-  if (!name || !phone || !email || !agree) {
-    if (!name) setNameError(true);
-    if (!phone) setPhoneError(true);
-    if (!email) setEmailError(true);
-    showTemporaryPopup(messages[lang].empty, true);
-    return;
-  }
+  const handleSubmit = async (e) => {  // Gọi Điện
+    e.preventDefault();
 
-  setLoading(true);
+    // mark that user attempted to submit the phone form so errors will render
+    setSubmittedPhone(true);
 
-  try {
-    const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        TenDichVu: service,
-        TenHinhThuc: "Gọi điện",
-        HoTen: name,
-        Email: email,
-        MaVung: countryCode,
-        SoDienThoai: phone,
-      }),
-    });
+    const lang = localStorage.getItem("lang") || "ko"; // Lấy ngôn ngữ
+    const messages = {
+      ko: {
+        empty: "모든 항목을 입력하고 동의해 주세요.",
+        success: "상담 신청 완료되었습니다!",
+        fail: "서버 연결 실패 (Server connection failed)",
+      },
+      vi: {
+        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+        success: "Đăng ký tư vấn thành công!",
+        fail: "Kết nối server thất bại",
+      },
+      en: {
+        empty: "Please fill in all fields and agree.",
+        success: "Consultation request submitted!",
+        fail: "Server connection failed",
+      },
+    };
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("Server Error:", data);
-      showTemporaryPopup(`❌ ${data.error || messages[lang].fail}`, true);
+    // Kiểm tra dữ liệu trống
+    if (!name || !phone || !email || !agree) {
+      if (!name) setNameError(true);
+      if (!phone) setPhoneError(true);
+      if (!email) setEmailError(true);
+      showTemporaryPopup(messages[lang].empty, true);
       return;
     }
 
-    showTemporaryPopup(messages[lang].success);
+    setLoading(true);
 
-    console.log("✅ Server response:", data);
+    try {
+      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: service,
+          TenHinhThuc: "Gọi điện",
+          HoTen: name,
+          Email: email,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+        }),
+      });
 
-    // Reset form
-    setName("");
-    setPhone("");
-    setEmail("");
-    setAgree(false);
+      const data = await response.json();
 
-  } catch (err) {
-    console.error("Lỗi khi kết nối server:", err);
-    showTemporaryPopup(messages[lang].fail, true);
-  } finally {
-    setLoading(false);
-  }
-};
+      if (!response.ok) {
+        console.error("Server Error:", data);
+        showTemporaryPopup(`❌ ${data.error || messages[lang].fail}`, true);
+        return;
+      }
+
+      showTemporaryPopup(messages[lang].success);
+
+      console.log("✅ Server response:", data);
+
+      // Reset form
+      setName("");
+      setPhone("");
+      setEmail("");
+      setAgree(false);
+
+    } catch (err) {
+      console.error("Lỗi khi kết nối server:", err);
+      showTemporaryPopup(messages[lang].fail, true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit1 = async (e) => { // Email
     const lang = localStorage.getItem("lang") || "ko";
@@ -153,22 +153,22 @@ export default function Consult() {
     // mark that user attempted to submit the email form so errors will render
     setSubmittedEmail(true);
     const messages = {
-    ko: {
-      empty: "모든 항목을 입력하고 동의해 주세요.",
-      success: "상담 신청 완료되었습니다!",
-      fail: "서버 연결 실패 (Server connection failed)",
-    },
-    vi: {
-      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-      success: "Đăng ký tư vấn thành công!",
-      fail: "Kết nối server thất bại",
-    },
-    en: {
-      empty: "Please fill in all fields and agree.",
-      success: "Consultation request submitted!",
-      fail: "Server connection failed",
-    },
-  };
+      ko: {
+        empty: "모든 항목을 입력하고 동의해 주세요.",
+        success: "상담 신청 완료되었습니다!",
+        fail: "서버 연결 실패 (Server connection failed)",
+      },
+      vi: {
+        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+        success: "Đăng ký tư vấn thành công!",
+        fail: "Kết nối server thất bại",
+      },
+      en: {
+        empty: "Please fill in all fields and agree.",
+        success: "Consultation request submitted!",
+        fail: "Server connection failed",
+      },
+    };
     if (!name || !phone || !email || !agree || !content || !title) {
       if (!name) setNameError(true);
       if (!phone) setPhoneError(true);
@@ -180,7 +180,7 @@ export default function Consult() {
     }
 
     setLoading(true);
-      try {
+    try {
       const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvanemail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -204,7 +204,7 @@ export default function Consult() {
         return;
       }
 
-      showTemporaryPopup(messages[lang].success); 
+      showTemporaryPopup(messages[lang].success);
       // Reset form
       setName("");
       setPhone("");
@@ -224,45 +224,45 @@ export default function Consult() {
   const handleTimeChange = (e) => {
     const value = e.target.value;
 
-    
+
     if (value < "09:00" || value > "18:00") {
       setShowTimePopup(true);
       setTimeout(() => setShowTimePopup(false), 5000);
       return;
     }
 
-   
+
     if (value >= "12:00" && value < "13:00") {
       setShowTimePopup(true);
       setTimeout(() => setShowTimePopup(false), 5000);
       return;
     }
 
-    
+
     setTime(value);
   };
-  const handleSubmit2 = async (e) => { 
+  const handleSubmit2 = async (e) => {
     const lang = localStorage.getItem("lang") || "ko";
     e.preventDefault();
     // mark that user attempted to submit the visit form so errors will render
     setSubmittedVisit(true);
     const messages = {
-    ko: {
-      empty: "모든 항목을 입력하고 동의해 주세요.",
-      success: "상담 신청 완료되었습니다!",
-      fail: "서버 연결 실패 (Server connection failed)",
-    },
-    vi: {
-      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-      success: "Đăng ký tư vấn thành công!",
-      fail: "Kết nối server thất bại",
-    },
-    en: {
-      empty: "Please fill in all fields and agree.",
-      success: "Consultation request submitted!",
-      fail: "Server connection failed",
-    },
-  };
+      ko: {
+        empty: "모든 항목을 입력하고 동의해 주세요.",
+        success: "상담 신청 완료되었습니다!",
+        fail: "서버 연결 실패 (Server connection failed)",
+      },
+      vi: {
+        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+        success: "Đăng ký tư vấn thành công!",
+        fail: "Kết nối server thất bại",
+      },
+      en: {
+        empty: "Please fill in all fields and agree.",
+        success: "Consultation request submitted!",
+        fail: "Server connection failed",
+      },
+    };
     const formattedDate = date
       ? new Date(date).toLocaleDateString("en-GB")
       : "";
@@ -300,7 +300,7 @@ export default function Consult() {
         return;
       }
 
-      showTemporaryPopup(messages[lang].success); 
+      showTemporaryPopup(messages[lang].success);
       // Reset form
       setName("");
       setPhone("");
@@ -493,36 +493,6 @@ export default function Consult() {
             </button>
           </a>
         ))}
-
-
-        <div
-          onClick={() => setChecked(!checked)}
-          style={{
-            fontSize: 18, color: "#111827", marginTop: 18, marginLeft: 10, display: "flex", alignItems: "center", fontWeight: 500, cursor: "pointer", userSelect: "none",
-          }}
-        >
-          <span
-            style={{
-              display: "inline-block", width: 16, height: 16, border: "2px solid #111827", borderRadius: "50%", marginRight: 8, position: "relative", transition: "all 0.2s ease",
-            }}
-          >
-            {checked && (
-              <span
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  width: 6,
-                  height: 6,
-                  backgroundColor: "#111827",
-                  borderRadius: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              ></span>
-            )}
-          </span>
-          개인정보 수집 및 이용 동의
-        </div>
 
         {/* Divider */}
         <div
@@ -768,11 +738,11 @@ export default function Consult() {
                 title=" Vui lòng nhập địa chỉ email hợp lệ"
               />
             </div>
-          {emailError && submittedPhone && (
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-              *필수입력입니다
-            </div>
-          )}
+            {emailError && submittedPhone && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입력입니다
+              </div>
+            )}
           </div>
 
           {/* 전화번호 */}
@@ -838,7 +808,7 @@ export default function Consult() {
                 }
               />
             </div>
-           {phoneError && submittedPhone && (
+            {phoneError && submittedPhone && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입입니다
               </div>
@@ -1072,7 +1042,7 @@ export default function Consult() {
               <input
                 type="text"
                 value={name}
-                 onChange={(e) => {
+                onChange={(e) => {
                   const value = e.target.value;
                   setName(value);
                   if (value.trim() === "") {
@@ -1094,11 +1064,11 @@ export default function Consult() {
                 title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
               />
             </div>
-              {nameError && submittedEmail && (
-                <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                  *필수입력입니다
-                </div>
-              )}
+            {nameError && submittedEmail && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입력입니다
+              </div>
+            )}
           </div>
 
           {/* 이메일 */}
@@ -1136,10 +1106,10 @@ export default function Consult() {
               />
             </div>
             {emailError && submittedEmail && (
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-              *필수입입니다
-            </div>
-          )}
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입입니다
+              </div>
+            )}
           </div>
 
           {/* 전화번호 */}
@@ -1205,7 +1175,7 @@ export default function Consult() {
                 }
               />
             </div>
-           {phoneError && submittedEmail && (
+            {phoneError && submittedEmail && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입입니다
               </div>
@@ -1218,51 +1188,14 @@ export default function Consult() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                borderBottom: "1px solid #000000ff",
+                borderBottom: "1px solid #000",
+                padding: "4px 0",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>제목<span style={{ color: "red" }}>*</span></label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setTitle(value);
-                  if (value.trim() === "") {
-                    setTitleError(true);
-                  } else {
-                    setTitleError(false);
-                  }
-                }}
-                placeholder="제목을 입력해주세요 "
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-              />
-            </div>
-           
-             {titleError && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입력입니다
-              </div>
-            )}
-          </div>
-
-
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-              <label style={{ width: 120, fontWeight: 600 }}>내용<span style={{ color: "red" }}>*</span></label>
-               <textarea
+              <label style={{ width: 120, fontWeight: 600 }}>
+                내용<span style={{ color: "red" }}>*</span>
+              </label>
+              <textarea
                 value={content}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -1274,23 +1207,28 @@ export default function Consult() {
                   if (content.trim() === "") setContentError(true);
                 }}
                 placeholder="상담 내용을 입력해주세요"
-                rows={3} // số dòng hiển thị
+                rows={2} // 👈 Giảm chiều cao
                 style={{
-                  width: "100%",
+                  flex: "none", // 👈 Ngăn flex tự giãn full chiều ngang
+                  width: "400px", // 👈 Đặt chiều rộng cố định
+                  height: "40px", // 👈 Đặt chiều cao
                   border: "none",
                   outline: "none",
                   background: "transparent",
-                  resize: "vertical",
+                  resize: "none",
                   fontSize: 16,
-                  padding: "8px 0"
+                  padding: "6px 0",
                 }}
-                 />
+              />
             </div>
-               {contentError && (
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-              *필수입력입니다
-            </div>
-          )}
+
+            {contentError && (
+              <div 
+              
+              style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입력입니다
+              </div>
+            )}
           </div>
 
           {/* <div style={{ marginBottom: 20, fontSize: 18, marginTop: 50 }}>
@@ -1530,15 +1468,15 @@ export default function Consult() {
               <input
                 type="text"
                 value={name}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setName(value);
-                    if (value.trim() === "") {
-                      setNameError(true);
-                    } else {
-                      setNameError(false);
-                    }
-                  }}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setName(value);
+                  if (value.trim() === "") {
+                    setNameError(true);
+                  } else {
+                    setNameError(false);
+                  }
+                }}
                 placeholder="이름을 입력해주세요"
                 style={{
                   flex: 1,
@@ -1552,7 +1490,7 @@ export default function Consult() {
                 title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
               />
             </div>
-               {nameError && submittedVisit && (
+            {nameError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입입니다
               </div>
@@ -1572,7 +1510,7 @@ export default function Consult() {
               <input
                 type="email"
                 value={email}
-                  onChange={(e) => {
+                onChange={(e) => {
                   const value = e.target.value;
                   setEmail(value);
                   if (value.trim() === "") {
@@ -1593,11 +1531,11 @@ export default function Consult() {
                 title=" Vui lòng nhập địa chỉ email hợp lệ"
               />
             </div>
-             {emailError && submittedVisit && (
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-              *필수입입니다
-            </div>
-          )}
+            {emailError && submittedVisit && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                *필수입입니다
+              </div>
+            )}
           </div>
 
           {/* 전화번호 */}
@@ -1662,7 +1600,7 @@ export default function Consult() {
                       : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
                 }
               />
-              
+
             </div>
             {phoneError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -1739,7 +1677,7 @@ export default function Consult() {
               <i className="" style={{ fontSize: 18 }}></i>
             </div>
 
-            
+
 
             {dateError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -1877,7 +1815,7 @@ export default function Consult() {
               }}
             >
               {tabs.map((tab) => (
-               <button
+                <button
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
                   style={{
@@ -1931,26 +1869,26 @@ export default function Consult() {
       }
     `}
             </style>
-      {showPopup && (
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            right: "20px",
-            background: popupMessage.isError ? "#f44336" : "#4CAF50", // đỏ nếu lỗi, xanh nếu thành công
-            color: "white",
-            padding: "16px 30px",
-            borderRadius: "8px",
-            fontSize: "20px",
-            fontWeight: 600,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-            zIndex: 9999,
-            animation: "pushDown 0.5s ease-out",
-          }}
-        >
-          {popupMessage.text} {/* Hiển thị nội dung popup động */}
-        </div>
-      )}
+            {showPopup && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: "20px",
+                  right: "20px",
+                  background: popupMessage.isError ? "#f44336" : "#4CAF50", // đỏ nếu lỗi, xanh nếu thành công
+                  color: "white",
+                  padding: "16px 30px",
+                  borderRadius: "8px",
+                  fontSize: "20px",
+                  fontWeight: 600,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                  zIndex: 9999,
+                  animation: "pushDown 0.5s ease-out",
+                }}
+              >
+                {popupMessage.text} {/* Hiển thị nội dung popup động */}
+              </div>
+            )}
 
 
             {showTimePopup && (

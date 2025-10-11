@@ -146,21 +146,21 @@ function Footer() {
           <div style={{ flex: 1, minWidth: 220, display: "flex", flexDirection: "column" }}>
               <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 16 }}>Quick Link’s</div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Link to="/Introduction" style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                <Link to="/Introduction" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                   회사 소개
                 </Link>
-                <Link to="/Service" style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                <Link to="/Service" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                   서비스
                 </Link>
-                <Link to="/News" style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                <Link to="/News" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                   뉴스룸
                 </Link>
                 {/* Support tab: Terms-of-Use */}
-                <Link to="/Support" state={{ tab: "Terms-of-Use" }} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                <Link to="/Support" state={{ tab: "Terms-of-Use" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                   이용약관
                 </Link>
                 {/* Support tab: personal-information */}
-                <Link to="/Support" state={{ tab: "personal-information" }} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                <Link to="/Support" state={{ tab: "personal-information" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                   개인정보처리방침
                 </Link>
               </div>

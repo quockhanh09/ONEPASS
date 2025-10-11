@@ -60,6 +60,8 @@ import ConsulateNews from "./components/ConsulateNews.jsx";
 import NewsDetail from "./components/NewDeatail.jsx";
 import NewsDetail2 from "./components/NewDeatail2.jsx";
 import NewsDetail3 from "./components/NewDeatail3.jsx";
+import NewsDetail4 from "./components/NewDeatail4.jsx";
+import NewsDetail5 from "./components/NewDeatail5.jsx";
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -223,7 +225,7 @@ function App() {
       { img: a10, title: "베트남 국적 유지 신청", desc: " 이중국적 유지를 위한 신고 및 관련 절차를지원", tabKey: "a13" },
       { img: a11, title: "베트남 국적 귀화 신청", desc: "베트남 국적 귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
       { img: a12, title: "베트남으로 시체, 유해, 유골 반입 허가 신청", desc: "베트남으로 시체, 유해, 유골을 반입하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
-      { img: a13, title: "베트남 귀국절차 (베트남 상 주거주 신고)", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
+      { img: a13, title: "베트남 국적 사실 확인", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
     ],
     "신분증명 서류": [
       { img: a14, title: "일반 여권 (재)발급·변경· 추가", desc: "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행", tabKey: "a17" },
@@ -864,7 +866,14 @@ function App() {
                           <div className="sv-cards-grid">
                             {cards.slice(0, 6).map((c, i) => (
                               <div key={i} className="sv-card">
-                                <div className="sv-card-inner">
+                                 <Link
+                                    to="/Service"
+                                    state={{
+                                      // send the top-level service index so Service.jsx can select the correct left icon
+                                      serviceIndex: active,
+                                    }}
+                                    style={{ textDecoration: "none" }}
+                                  ><div className="sv-card-inner">
                                   <div className="sv-card-thumb">
                                     <img
                                       src={c.img}
@@ -876,17 +885,11 @@ function App() {
                                   <div className="sv-card-desc sv-clamp-2">{c.desc}</div>
 
                                   {/* ✳️ Chỉ sửa đoạn này */}
-                                  <Link
-                                    to="/Service"
-                                    state={{
-                                      // send the top-level service index so Service.jsx can select the correct left icon
-                                      serviceIndex: active,
-                                    }}
-                                    style={{ textDecoration: "none" }}
-                                  >
+                                 
                                     <button className="sv-card-arrow">→</button>
-                                  </Link>
+                                  
                                 </div>
+                                </Link>
                               </div>
                             ))}
                           </div>
@@ -1030,6 +1033,8 @@ function App() {
         <Route path="/news전체 뉴스/NewsDetail" element={<NewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail2" element={<NewsDetail2 />} />
         <Route path="/news전체 뉴스/NewsDetail3" element={<NewsDetail3 />} />
+        <Route path="/news대사관•총영사관 소식/NewsDetail4" element={<NewsDetail4 />} />
+        <Route path="/news대사관•총영사관 소식/NewsDetail5" element={<NewsDetail5 />} />
       </Routes>
       <Countdown />
       {/* ===== FOOTER ===== */}

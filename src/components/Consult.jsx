@@ -53,31 +53,62 @@ export default function Consult() {
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState("");
   const [showTimePopup, setShowTimePopup] = useState(false);
-  // submitted flags control when to show the red "*필수입력입니다" messages
+  
   const [submittedPhone, setSubmittedPhone] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState(false);
   const [submittedVisit, setSubmittedVisit] = useState(false);
+  
   const handleTabClick = (tabId) => {
+  setSelected("");
+  setName("");
+  setEmail("");
+  setPhone("");
+  setAgree(false);
+  setTitle("");
+  setContent("");
+  setDate("");
+  setTime("");
 
-    if (name.trim() === "") setNameError(true);
-    if (email.trim() === "") setEmailError(true);
-    if (phone.trim() === "") setPhoneError(true);
+  setNameError(false);
+  setEmailError(false);
+  setPhoneError(false);
+  setDateError(false);
+  setTitleError(false);
+  setContentError(false);
 
-    // Sau đó mới chuyển tab
-    setActiveTab(tabId);
-  };
+  
+  setSubmittedPhone(false);
+  setSubmittedEmail(false);
+  setSubmittedVisit(false);
+
+  if (tabId === "phone") {
+    setSubmittedPhone(true);
+  } else if (tabId === "email") {
+    setSubmittedEmail(true);
+  } else if (tabId === "visit") {
+    setSubmittedVisit(true);
+  }
+
+  if (name.trim() === "") setNameError(true);
+  if (email.trim() === "") setEmailError(true);
+  if (phone.trim() === "") setPhoneError(true);
+  if (date.trim() === "") setDateError(true);
+
+  setActiveTab(tabId);
+};
+
+
   const showTemporaryPopup = (message, isError = false) => {
     setPopupMessage({ text: message, isError });
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 5000);
   };
   const handleSubmit = async (e) => {  // Gọi Điện
-    e.preventDefault();
+  e.preventDefault();
 
-    // mark that user attempted to submit the phone form so errors will render
-    setSubmittedPhone(true);
+  setSubmittedPhone(true);
 
-    const lang = localStorage.getItem("lang") || "ko"; // Lấy ngôn ngữ
+  const lang = localStorage.getItem("lang") || "ko"; 
     const messages = {
       ko: {
         empty: "모든 항목을 입력하고 동의해 주세요.",
@@ -96,11 +127,26 @@ export default function Consult() {
       },
     };
 
-    // Kiểm tra dữ liệu trống
-    if (!name || !phone || !email || !agree) {
-      if (!name) setNameError(true);
-      if (!phone) setPhoneError(true);
-      if (!email) setEmailError(true);
+
+    let hasError = false;
+
+    if (!name.trim()) {
+      setNameError(true);
+      hasError = true;
+    }
+    if (!phone.trim()) {
+      setPhoneError(true);
+      hasError = true;
+    }
+    if (!email.trim()) {
+      setEmailError(true);
+      hasError = true;
+    }
+    if (!agree) {
+      hasError = true;
+    }
+
+    if (hasError) {
       showTemporaryPopup(messages[lang].empty, true);
       return;
     }
@@ -131,13 +177,14 @@ export default function Consult() {
 
       showTemporaryPopup(messages[lang].success);
 
-      console.log("✅ Server response:", data);
-
       // Reset form
       setName("");
       setPhone("");
       setEmail("");
       setAgree(false);
+      setNameError(false);
+      setPhoneError(false);
+      setEmailError(false);
 
     } catch (err) {
       console.error("Lỗi khi kết nối server:", err);
@@ -147,10 +194,10 @@ export default function Consult() {
     }
   };
 
+
   const handleSubmit1 = async (e) => { // Email
     const lang = localStorage.getItem("lang") || "ko";
     e.preventDefault();
-    // mark that user attempted to submit the email form so errors will render
     setSubmittedEmail(true);
     const messages = {
       ko: {
@@ -692,9 +739,8 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
-                required
                 pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
+                title="이름은 두 글자 이상이어야 한다"
               />
             </div>
             {nameError && submittedPhone && (
@@ -735,14 +781,14 @@ export default function Consult() {
                   background: "transparent",
                 }}
                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                title=" Vui lòng nhập địa chỉ email hợp lệ"
+                title="유효한 이메일 주소를 입력해 주세요"
               />
             </div>
-            {emailError && submittedPhone && (
+            {/* {emailError && submittedPhone && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입력입니다
               </div>
-            )}
+            )} */}
           </div>
 
           {/* 전화번호 */}
@@ -801,10 +847,10 @@ export default function Consult() {
                 }
                 title={
                   countryCode === "+82"
-                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    ? "한국 전화번호는 9~11자리여야 합니다."
                     : countryCode === "+84"
-                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                      ? "베트남 전화번호는 9~10자리여야 합니다."
+                      : "국가 코드를 먼저 선택하세요."
                 }
               />
             </div>
@@ -1059,9 +1105,8 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
-                required
                 pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
+                title="이름은 최소 2자 이상이어야 합니다"
               />
             </div>
             {nameError && submittedEmail && (
@@ -1102,7 +1147,7 @@ export default function Consult() {
                   background: "transparent",
                 }}
                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                title=" Vui lòng nhập địa chỉ email hợp lệ"
+                title="유효한 이메일 주소를 입력해 주세요"
               />
             </div>
             {emailError && submittedEmail && (
@@ -1168,10 +1213,10 @@ export default function Consult() {
                 }
                 title={
                   countryCode === "+82"
-                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    ? "한국 전화번호는 9자리에서 11자리 사이여야 합니다."
                     : countryCode === "+84"
-                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                      ? "베트남 전화번호는 9-10자리 숫자여야 한다."
+                      : "전화번호를 입력하기 전에 국가 코드를 선택하세요."
                 }
               />
             </div>
@@ -1222,7 +1267,7 @@ export default function Consult() {
               />
             </div>
 
-            {contentError && (
+            {contentError &&  submittedEmail && (
               <div 
               
               style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
@@ -1485,9 +1530,8 @@ export default function Consult() {
                   outline: "none",
                   background: "transparent",
                 }}
-                required
                 pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
+                title="이름은 최소 2자 이상이어야 합니다."
               />
             </div>
             {nameError && submittedVisit && (
@@ -1528,7 +1572,7 @@ export default function Consult() {
                   background: "transparent",
                 }}
                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                title=" Vui lòng nhập địa chỉ email hợp lệ"
+                title="유효한 이메일 주소를 입력해 주세요"
               />
             </div>
             {emailError && submittedVisit && (
@@ -1594,10 +1638,10 @@ export default function Consult() {
                 }
                 title={
                   countryCode === "+82"
-                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    ? "한국 전화번호는 9~11자리여야 합니다."
                     : countryCode === "+84"
-                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                      ? "베트남 전화번호는 9~10자리여야 합니다."
+                      : "국가 코드를 먼저 선택하세요."
                 }
               />
 

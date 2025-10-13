@@ -3,7 +3,7 @@ import logo from "../assets/img/Logo-name.png";
 import iconGlobal from "../assets/img/Icon.svg";
 import { Link, useLocation } from "react-router-dom";
 import "../style/App.css";
-
+import { useLanguage } from "../LanguageContext";
 function Header() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/Login";
@@ -33,7 +33,7 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const [language, setLanguage] = useState("KO"); // 👈 ngôn ngữ mặc định là KO
+  const { language, setLanguage } = useLanguage();// 👈 ngôn ngữ mặc định là KO
 
   const menuTexts = {
     KO: {
@@ -44,11 +44,11 @@ function Header() {
       support: "SUPPORT",
     },
     VI: {
-      about: "GIỚI THIỆU",
-      newsroom: "TIN TỨC",
-      services: "DỊCH VỤ",
-      consult: "TƯ VẤN",
-      support: "HỖ TRỢ",
+      about: "ABOUT US",
+      newsroom: "NEWSROOM",
+      services: "SERVICES",
+      consult: "CONSULT",
+      support: "SUPPORT",
     },
   };
 
@@ -86,16 +86,6 @@ function Header() {
 
                   <li>
                     <Link
-                      to="/news"
-                      onClick={() => setActiveMenu("newsroom")}
-                      onMouseEnter={() => setActiveMenu("newsroom")}
-                    >
-                      {menuTexts[language].newsroom}
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
                       to="/Service"
                       onClick={() => setActiveMenu("services")}
                       onMouseEnter={() => setActiveMenu("services")}
@@ -105,6 +95,17 @@ function Header() {
                   </li>
 
                   <li><Link to="/Consult">{menuTexts[language].consult}</Link></li>
+
+                  <li>
+                    <Link
+                      to="/news"
+                      onClick={() => setActiveMenu("newsroom")}
+                      onMouseEnter={() => setActiveMenu("newsroom")}
+                    >
+                      {menuTexts[language].newsroom}
+                    </Link>
+                  </li>
+
 
                   <li>
                     <Link
@@ -162,6 +163,8 @@ function Header() {
               </div>
             </div>
           </div>
+
+
 
           {/* Submenu NEWSROOM */}
           {activeMenu === "newsroom" && (

@@ -501,7 +501,7 @@ export default function Consult() {
           { text: "메신저를 이용하여 실시간 채팅 상담", img: iconMess, link: "https://www.messenger.com/t/803644846172440/?messaging_source=source%3Apages%3Amessage_shortlink&source_id=1441792&recurring_notification=0" },
           { text: "카카오톡을 이용하여 실시간 채팅 상담", img: iconKakao, link: "https://pf.kakao.com/_BHALn/chat" },
           { text: "Zalo를 이용하여 실시간 채팅 상담", img: iconZalo, link: "" },
-          { text: "네이버톡을 이용하여 실시간 채팅 상담", img: iconNaver, link: "" },
+          { text: "네이버톡을 이용하여 실시간 채팅 상담", img: iconNaver, link: "https://talk.naver.com/ct/w3ou8nh#nafullscreen" },
         ].map((item, i) => (
           <a
             key={i}

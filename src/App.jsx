@@ -62,6 +62,8 @@ import NewsDetail2 from "./components/NewDeatail2.jsx";
 import NewsDetail3 from "./components/NewDeatail3.jsx";
 import NewsDetail4 from "./components/NewDeatail4.jsx";
 import NewsDetail5 from "./components/NewDeatail5.jsx";
+
+import { useLanguage } from "./LanguageContext.jsx";
 import "./style/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -94,7 +96,7 @@ import icMail from "./assets/img/10.png";
 const eventImages = [event1, event2, event3, event4];
 
 function App() {
-
+  const { language } = useLanguage();
   const newsData = {
     copyright: [
       {
@@ -409,7 +411,7 @@ function App() {
   const items = [
     { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
     { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
-    { id: 3, name: "Zalo", icon: zaloIcon, link: "" },
+    { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
     { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
   ];
   const [activeId, setActiveId] = useState(null);
@@ -434,9 +436,9 @@ function App() {
 
   const handleSubmit = async () => {
     if (!service || !name || !phone || !agree) {
-    showTemporaryPopup("모든 항목을 입력하고 동의해 주세요.", true);
-    return;
-  }
+      showTemporaryPopup("모든 항목을 입력하고 동의해 주세요.", true);
+      return;
+    }
 
     setLoading(true);
 
@@ -455,7 +457,7 @@ function App() {
       const data = await response.json();
 
       if (!response.ok) {
-       showTemporaryPopup(`오류 발생: ${data.error || "Server error"}`, true);
+        showTemporaryPopup(`오류 발생: ${data.error || "Server error"}`, true);
         console.error("Server Error:", data);
         return;
       }
@@ -514,8 +516,8 @@ function App() {
                 >
                   {/* Hero content: title + centered search (matches provided design) */}
                   <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
-                    <h1 style={{ color: '#fff', fontSize: 56, fontWeight: 800, letterSpacing: 2, textTransform: 'uppercase', margin: 0, textAlign: 'center' }}>
-                      ONE PASS, 한번에 PASS
+                    <h1 style={{ color: '#fff', fontSize: 56, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', margin: 0, textAlign: 'center' }}>
+                      {language === "VI" ? (<>ONE PASS GIẢI PHÁP NHANH,<br /> KẾT QUẢ CHẮC</>) : ("ONE PASS, 한번에 PASS")}
                     </h1>
 
                     <div style={{ width: '64%', maxWidth: 920 }}>
@@ -562,7 +564,9 @@ function App() {
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                       <span style={{ fontSize: 16 }}>📞</span>
-                      <span style={{ fontWeight: 700, fontSize: 16 }}>전화번호</span>
+                      <span style={{ fontWeight: 700, fontSize: 16 }}>
+                        {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}
+                      </span>
                     </div>
                     <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
                       (+82) 051-715-0607
@@ -583,7 +587,7 @@ function App() {
                       height: "100%",
                     }}
                   >
-                    <label style={{ fontSize: 16 }}>서비스 선택</label>
+                    <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}</label>
                     <select
                       value={service}
                       onChange={(e) => setService(e.target.value)}
@@ -600,22 +604,22 @@ function App() {
                         marginRight: 15
                       }}
                     >
-                      <option value="">서비스 선택</option>
-                      <option value="인증 센터">인증 센터</option>
-                      <option value="결혼 이민">결혼 이민</option>
-                      <option value="출생신고 대행">출생신고 대행</option>
-                      <option value="출입국 행정 대행">출입국 행정 대행</option>
-                      <option value="신분증명 서류 대행">신분증명 서류 대행</option>
-                      <option value="입양 절차 대행">입양 절차 대행</option>
-                      <option value="비자 대행">비자 대행</option>
-                      <option value="법률 컨설팅">법률 컨설팅</option>
-                      <option value="B2B 서비스">B2B 서비스</option>
-                      <option value="기타">기타</option>
+                      <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
+                      <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+                      <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
+                      <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
+                      <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
+                      <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
+                      <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
+                      <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
+                      <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
+                      <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
+                      <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>
                     </select>
 
-                    <label style={{ fontSize: 16, marginLeft: 15, }}>이름</label>
+                    <label style={{ fontSize: 16, marginLeft: 15, }}>{language === "VI" ? (<>Họ tên</>) : ("이름")}</label>
                     <input
-                      placeholder="이름"
+                      placeholder={language === "VI" ? ("Họ tên") : ("이름")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       style={{
@@ -634,7 +638,7 @@ function App() {
                       title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
                     />
 
-                    <label style={{ fontSize: 16 }}>전화번호</label>
+                    <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화번호")}</label>
                     <select
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
@@ -650,13 +654,13 @@ function App() {
                         boxSizing: "border-box",
                       }}
                     >
-                      <option value="">선택</option>
+                      <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
                       <option value="+82">+82</option>
                       <option value="+84">+84</option>
                     </select>
 
                     <input
-                      placeholder="전화번호"
+                      placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       style={{
@@ -701,7 +705,7 @@ function App() {
                         onChange={(e) => setAgree(e.target.checked)}
                         style={{ marginRight: 6 }}
                       />
-                      개인정보 수집 및 이용 동의
+                      {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
                     </label>
                   </div>
 
@@ -723,7 +727,13 @@ function App() {
                       opacity: loading ? 0.7 : 1,
                     }}
                   >
-                    {loading ? "전송 중..." : "상담 신청"}
+                    {loading
+                      ? language === "VI"
+                        ? "Đang gửi..."
+                        : "전송 중..."
+                      : language === "VI"
+                        ? "Tư vấn"
+                        : "상담 신청"}
                   </div>
                 </div>
 
@@ -866,29 +876,29 @@ function App() {
                           <div className="sv-cards-grid">
                             {cards.slice(0, 6).map((c, i) => (
                               <div key={i} className="sv-card">
-                                 <Link
-                                    to="/Service"
-                                    state={{
-                                      // send the top-level service index so Service.jsx can select the correct left icon
-                                      serviceIndex: active,
-                                    }}
-                                    style={{ textDecoration: "none" }}
-                                  ><div className="sv-card-inner">
-                                  <div className="sv-card-thumb">
-                                    <img
-                                      src={c.img}
-                                      alt={c.title}
-                                      style={{ borderRadius: "8px", marginBottom: "12px" }}
-                                    />
-                                  </div>
-                                  <div className="sv-card-title">{c.title}</div>
-                                  <div className="sv-card-desc sv-clamp-2">{c.desc}</div>
+                                <Link
+                                  to="/Service"
+                                  state={{
+                                    // send the top-level service index so Service.jsx can select the correct left icon
+                                    serviceIndex: active,
+                                  }}
+                                  style={{ textDecoration: "none" }}
+                                ><div className="sv-card-inner">
+                                    <div className="sv-card-thumb">
+                                      <img
+                                        src={c.img}
+                                        alt={c.title}
+                                        style={{ borderRadius: "8px", marginBottom: "12px" }}
+                                      />
+                                    </div>
+                                    <div className="sv-card-title">{c.title}</div>
+                                    <div className="sv-card-desc sv-clamp-2">{c.desc}</div>
 
-                                  {/* ✳️ Chỉ sửa đoạn này */}
-                                 
+                                    {/* ✳️ Chỉ sửa đoạn này */}
+
                                     <button className="sv-card-arrow">→</button>
-                                  
-                                </div>
+
+                                  </div>
                                 </Link>
                               </div>
                             ))}
@@ -920,8 +930,8 @@ function App() {
                             idx === 0
                               ? "/news전체 뉴스/NewsDetail"
                               : idx === 1
-                              ? "/news전체 뉴스/NewsDetail2"
-                              : "/news전체 뉴스/NewsDetail3"
+                                ? "/news전체 뉴스/NewsDetail2"
+                                : "/news전체 뉴스/NewsDetail3"
                           }
                           style={{ textDecoration: 'none' }}
                         >
@@ -996,19 +1006,19 @@ function App() {
                               <img src={c.img} alt="" style={{ width: 128, height: 128, objectFit: 'contain' }} />
                             </div>
                           </div>
-                                <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
-                                {/* Navigate to Consult and open the corresponding tab */}
-                                <Link to="/Consult" state={{ tab: c.title === '전화 상담' ? 'phone' : c.title === '방문 상담' ? 'visit' : c.title === '채팅 상담' ? 'sns' : c.title === '채팅 상담' || c.title === '채팅 상담' ? 'sns' : c.title === '이메일 상담' ? 'email' : 'sns' }} style={{ textDecoration: 'none' }}>
-                                  <button
-                                    onClick={(e) => {
-                                      e.currentTarget.style.transform = 'translateX(-10px)';
-                                      setTimeout(() => (e.currentTarget.style.transform = 'translateX(0)'), 150);
-                                    }}
-                                    style={{ marginTop: 'auto', background: 'transparent', border: 'none', color: '#2F4D90', fontSize: 22, padding: 0, cursor: 'pointer', alignSelf: 'flex-start', transition: 'transform .15s ease' }}
-                                  >
-                                    →
-                                  </button>
-                                </Link>
+                          <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
+                          {/* Navigate to Consult and open the corresponding tab */}
+                          <Link to="/Consult" state={{ tab: c.title === '전화 상담' ? 'phone' : c.title === '방문 상담' ? 'visit' : c.title === '채팅 상담' ? 'sns' : c.title === '채팅 상담' || c.title === '채팅 상담' ? 'sns' : c.title === '이메일 상담' ? 'email' : 'sns' }} style={{ textDecoration: 'none' }}>
+                            <button
+                              onClick={(e) => {
+                                e.currentTarget.style.transform = 'translateX(-10px)';
+                                setTimeout(() => (e.currentTarget.style.transform = 'translateX(0)'), 150);
+                              }}
+                              style={{ marginTop: 'auto', background: 'transparent', border: 'none', color: '#2F4D90', fontSize: 22, padding: 0, cursor: 'pointer', alignSelf: 'flex-start', transition: 'transform .15s ease' }}
+                            >
+                              →
+                            </button>
+                          </Link>
                         </div>
                       )
                     })}
@@ -1039,7 +1049,7 @@ function App() {
       <Countdown />
       {/* ===== FOOTER ===== */}
       <Footer />
-        {showPopup && (
+      {showPopup && (
         <div
           style={{
             position: "fixed",

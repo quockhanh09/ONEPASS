@@ -62,7 +62,7 @@ const steps = [
   { id: "02", text: "전문 번역 (원패스)" },
   { id: "03", text: "교정 및 품질 검토 (원패스)" },
   { id: "04", text: "공증 촉탁 대행 (원패스 → 공증 기관)" },
-  { id: "04", text: "완료 서류 전달 (원패스 → 고객님)" },
+  { id: "05", text: "완료 서류 전달 (원패스 → 고객님)" },
 ];
 
 const tabContents = {
@@ -72,7 +72,7 @@ const tabContents = {
       ["결혼 이민", "한국 내 혼인신고", "별도 상담", "견적 상담 필요"],
     ],
     steps1: [
-      { id: 1, text: "베트남 배유자 측 서류 준비" },
+      { id: 1, text: "베트남 배우자 측 서류 준비" },
       { id: 2, text: "한국인 배우자 측 서류 준비" },
       { id: 3, text: "재외 공관에서 혼인요건인증서 발급" },
       { id: 4, text: "국내 혼인신고 후 베트남 혼인신고" },
@@ -830,7 +830,7 @@ function Service(props) {
   const [serviceContents, setServiceContents] = useState([
     // Service 0: 인증 센터
     {
-      title: "인증 센터",
+      title: "영사 확인 • 사실인증",
       mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
       personalTitle: "개인서류",
       personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",
@@ -847,20 +847,7 @@ function Service(props) {
     },
     // Service 1: 결혼 이민
     {
-      title: "결혼 이민",
-      mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
-      personalTitle: "개인서류",
-      personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",
-      personalTable1Title: "호적 서류",
-      personalTable1Desc: "호적등본(가족관계증명서, 혼인관계증명서, 기본증명서 등), 제적등본, 출생증명서, 범죄경력조회",
-      personalTable2Title: "각종 증명 서류",
-      personalTable2Desc: "정부 기관 및 학교 등에서 발행하는 각종 증명서(졸업증명서, 성적증명서 등), 경력증명서, 각종 자격증 및 면허증 등",
-      businessTitle: "개인서류",
-      businessDesc: "계약서, 해외투자, 해외지사설립 등 일반기업, 공기업 등 기업관련 전서류 번역  및 공증 • 인증",
-      businessTable1Title: "회사 서류(해외투자 • 지사설립)",
-      businessTable1Desc: "정관, 사업자등록증, 법인등기부등본, 기업재무제표(재무제표, 감사보고서 등), 은행잔고증명서, 납세사실증명, 회사 서약서, 각종 계약증 및 위임장 등",
-      businessTable2Title: "수출입",
-      businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
+      
 
     },
     // Service 2: 출생 · 사망 신고

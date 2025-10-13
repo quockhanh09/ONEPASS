@@ -847,7 +847,7 @@ function Service(props) {
     },
     // Service 1: 결혼 이민
     {
-      
+
 
     },
     // Service 2: 출생 · 사망 신고
@@ -1323,16 +1323,30 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents[activeTab].rows && tabContents[activeTab].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table
+                      style={{
+                        width: "100%",
+                        borderCollapse: "collapse",
+                        fontSize: 14,
+                        tableLayout: "fixed", // ⚡ làm cho các cột có độ rộng bằng nhau
+                      }}
+                    >
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속기간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th
+                              key={i}
+                              style={{
+                                padding: "14px 16px", // ⚡ đồng nhất với td
+                                width: `${100 / 5}%`, // ⚡ chia đều 5 cột
+                              }}
+                            >
                               {h}
                             </th>
                           ))}
                         </tr>
                       </thead>
+
                       <tbody>
                         {tabContents[activeTab].rows.map((row, i) => (
                           <tr
@@ -1344,11 +1358,23 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td
+                                key={j}
+                                style={{
+                                  padding: "14px 16px",
+                                  width: `${100 / 5}%`, // ⚡ giống th
+                                  wordBreak: "keep-all",
+                                }}
+                              >
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
+                            <td
+                              style={{
+                                padding: "14px 16px",
+                                width: `${100 / 5}%`,
+                              }}
+                            >
                               <button
                                 onClick={() => setShowModal(true)}
                                 style={{
@@ -1360,8 +1386,6 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
                                 }}
                               >
                                 상담 신청
@@ -1371,6 +1395,7 @@ function Service(props) {
                         ))}
                       </tbody>
                     </table>
+
                   )}
 
                   {/* Steps */}
@@ -1535,11 +1560,14 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents2[activeTab2].rows && tabContents2[activeTab2].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th key={i} style={{
+                              padding: "14px 16px",
+                              width: `${100 / 5}%`,
+                            }}>
                               {h}
                             </th>
                           ))}
@@ -1556,7 +1584,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px", width: `${100 / 5}%`, // ⚡ giống th
+                                wordBreak: "keep-all",
+                              }}>
                                 {col}
                               </td>
                             ))}
@@ -1751,11 +1782,14 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents3[activeTab3].rows && tabContents3[activeTab3].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th key={i} style={{
+                              padding: "14px 16px", // ⚡ đồng nhất với td
+                              width: `${100 / 5}%`,
+                            }}>
                               {h}
                             </th>
                           ))}
@@ -1772,7 +1806,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px", // ⚡ đồng nhất với td
+                                width: `${100 / 5}%`,
+                              }}>
                                 {col}
                               </td>
                             ))}
@@ -1949,11 +1986,14 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents4[activeTab4].rows && tabContents4[activeTab4].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th key={i} style={{
+                              padding: "14px 16px",
+                              width: `${100 / 5}%`,
+                            }}>
                               {h}
                             </th>
                           ))}
@@ -1970,7 +2010,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px",
+                                width: `${100 / 5}%`,
+                              }}>
                                 {col}
                               </td>
                             ))}
@@ -2139,7 +2182,7 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents5[activeTab5].rows && tabContents5[activeTab5].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
@@ -2160,7 +2203,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px", padding: "14px 16px",
+                                width: `${100 / 5}%`,
+                              }}>
                                 {col}
                               </td>
                             ))}
@@ -2339,11 +2385,14 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents6[activeTab6].rows && tabContents6[activeTab6].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th key={i} style={{
+                              padding: "14px 16px",
+                              width: `${100 / 5}%`,
+                            }}>
                               {h}
                             </th>
                           ))}
@@ -2360,7 +2409,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px",
+                                width: `${100 / 5}%`,
+                              }}>
                                 {col}
                               </td>
                             ))}
@@ -2530,11 +2582,14 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents7[activeTab7].rows && tabContents7[activeTab7].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th key={i} style={{
+                              padding: "14px 16px",
+                              width: `${100 / 5}%`,
+                            }}>
                               {h}
                             </th>
                           ))}
@@ -2551,7 +2606,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px",
+                                width: `${100 / 5}%`,
+                              }}>
                                 {col}
                               </td>
                             ))}
@@ -2723,11 +2781,14 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents8[activeTab8].rows && tabContents8[activeTab8].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
                       <thead>
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th key={i} style={{
+                              padding: "14px 16px",
+                              width: `${100 / 5}%`,
+                            }}>
                               {h}
                             </th>
                           ))}
@@ -2744,7 +2805,10 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{ padding: "14px 16px" }}>
+                              <td key={j} style={{
+                                padding: "14px 16px",
+                                width: `${100 / 5}%`,
+                              }}>
                                 {col}
                               </td>
                             ))}

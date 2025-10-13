@@ -94,7 +94,10 @@ function Header() {
                     </Link>
                   </li>
 
-                  <li><Link to="/Consult">{menuTexts[language].consult}</Link></li>
+                  <li><Link to="/Consult"
+                    onClick={() => setActiveMenu("consult")}
+                      onMouseEnter={() => setActiveMenu("consult")}
+                  >{menuTexts[language].consult}</Link></li>
 
                   <li>
                     <Link
@@ -164,8 +167,6 @@ function Header() {
             </div>
           </div>
 
-
-
           {/* Submenu NEWSROOM */}
           {activeMenu === "newsroom" && (
             <div
@@ -179,6 +180,33 @@ function Header() {
                 <ul>
                   <li><Link to="/news/전체 뉴스">전체뉴스</Link></li>
                   <li><Link to="/news/대사관•총영사관 소식">대사관·총영사관 소식</Link></li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+
+          {activeMenu === "consult" && (
+            <div
+              className="submenu"
+              style={{ marginTop: 10 }}
+              onMouseEnter={() => setActiveMenu("consult")}
+              onMouseLeave={() => setActiveMenu(null)}
+            >
+              <div className="newsroom-tab">CONSULT</div>
+              <div className="submenu-links">
+                <ul style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "8px",
+                  padding: 0,
+                  margin: 0,
+                  listStyle: "none"
+                }}>
+                  <li><Link to="/Consult" state={{ tab: "sns" }}>SNS 채팅 상담</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "phone" }}>전화 상담</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "email" }}>이메일 상담</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "visit" }}>방문 상담</Link></li>
                 </ul>
               </div>
             </div>

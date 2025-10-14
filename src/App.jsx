@@ -759,8 +759,6 @@ function App() {
                 </div>
               </section>
 
-
-
               <section id="about" className="about section" style={{ background: "#ffffffff", padding: "40px 0" }}>
                 <div style={{
                   maxWidth: "1300px",

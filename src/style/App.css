@@ -286,7 +286,6 @@
   --nav-dropdown-color: #444444;
   /* Used for navigation links of the dropdown items in the navigation menu. */
   --nav-dropdown-hover-color: #ff4a17;
-  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
   --sm-black: #000;
   --sm-pink: #FFE1E9;
   --sm-dark-pink: #ff7214;
@@ -316,7 +315,7 @@
   --page-padding: 156px;
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
 
 .light-background {
   --background-color: #f1f4fa;
@@ -482,33 +481,6 @@ span {
 }
 
 
-
-@media (max-width: 1200px) {
-  .header .logo {
-    order: 1;
-  }
-
-  .header .cta-btn {
-    order: 2;
-    margin: 0 15px 0 0;
-    padding: 6px 15px;
-  }
-
-  .header .navmenu {
-    order: 3;
-  }
-}
-
-.scrolled .header {
-  box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
-}
-
-/* Global Header on Scroll
-------------------------------*/
-.scrolled .header {
-  --background-color: #60636D;
-
-}
 
 /*--------------------------------------------------------------
 # Navigation Menu

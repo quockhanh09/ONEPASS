@@ -838,7 +838,7 @@ function Service(props) {
       personalTable1Desc: "호적등본(가족관계증명서, 혼인관계증명서, 기본증명서 등), 제적등본, 출생증명서, 범죄경력조회",
       personalTable2Title: "각종 증명 서류",
       personalTable2Desc: "정부 기관 및 학교 등에서 발행하는 각종 증명서(졸업증명서, 성적증명서 등), 경력증명서, 각종 자격증 및 면허증 등",
-      businessTitle: "개인서류",
+      businessTitle: "기업서류",
       businessDesc: "계약서, 해외투자, 해외지사설립 등 일반기업, 공기업 등 기업관련 전서류 번역  및 공증 • 인증",
       businessTable1Title: "회사 서류(해외투자 • 지사설립)",
       businessTable1Desc: "정관, 사업자등록증, 법인등기부등본, 기업재무제표(재무제표, 감사보고서 등), 은행잔고증명서, 납세사실증명, 회사 서약서, 각종 계약증 및 위임장 등",

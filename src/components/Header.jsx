@@ -7,11 +7,12 @@ import { useLanguage } from "../LanguageContext";
 function Header() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/Login";
-
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [isSticky, setIsSticky] = useState(false);
 
   if (isLoginPage) return null;
+
 
   useEffect(() => {
     // Toggle sticky state based on scroll position and add/remove .scrolled on body
@@ -96,7 +97,7 @@ function Header() {
 
                   <li><Link to="/Consult"
                     onClick={() => setActiveMenu("consult")}
-                      onMouseEnter={() => setActiveMenu("consult")}
+                    onMouseEnter={() => setActiveMenu("consult")}
                   >{menuTexts[language].consult}</Link></li>
 
                   <li>
@@ -122,6 +123,20 @@ function Header() {
                 </ul>
               </div>
             </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="mobile-menu-btn"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                display: "none", // ẩn mặc định
+              }}
+            >
+              <span style={{ fontSize: 28, color: "#fff" }}>☰</span>
+            </button>
 
             {/* Ngôn ngữ */}
             <div
@@ -166,6 +181,60 @@ function Header() {
               </div>
             </div>
           </div>
+
+
+          {showMobileMenu && (
+            <div className="mobile-menu">
+              <ul>
+                <li>
+                  <Link
+                    to="/Introduction"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    {menuTexts[language].about}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/Service"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    {menuTexts[language].services}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/Consult"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    {menuTexts[language].consult}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/news"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    {menuTexts[language].newsroom}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/Support"
+                    onClick={() => setShowMobileMenu(false)}
+                  >
+                    {menuTexts[language].support}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
+
+
 
           {/* Submenu NEWSROOM */}
           {activeMenu === "newsroom" && (

@@ -41,7 +41,7 @@ const CARDS = [
 
 function Introduction() {
   const { language } = useLanguage();
-   const [service, setService] = useState("");
+  const [service, setService] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -124,209 +124,209 @@ function Introduction() {
             NEWSROOM
           </h1>
 
-             <div
-                  style={{
-                    position: "fixed",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    height: 60,
-                    fontFamily: "sans-serif",
-                    zIndex: 9999,
-                  }}
-                >
-                  {/* --- Bên trái --- */}
-                  <div
-                    style={{
-                      background: "#d7c199",
-                      color: "#fff",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "0 16px",
-                      height: "100%",
-                      minWidth: 310,
-                      textAlign: "center",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ fontSize: 16 }}>📞</span>
-                      <span style={{ fontWeight: 700, fontSize: 16 }}>
-                        {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}
-                      </span>
-                    </div>
-                    <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
-                      (+82) 051-715-0607
-                    </div>
-                  </div>
+          <div
+            style={{
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height: 60,
+              fontFamily: "sans-serif",
+              zIndex: 9999,
+            }}
+          >
+            {/* --- Bên trái --- */}
+            <div
+              style={{
+                background: "#d7c199",
+                color: "#fff",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "0 16px",
+                height: "100%",
+                minWidth: 310,
+                textAlign: "center",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <span style={{ fontSize: 16 }}>📞</span>
+                <span style={{ fontWeight: 700, fontSize: 16 }}>
+                  {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}
+                </span>
+              </div>
+              <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
+                (+82) 051-715-0607
+              </div>
+            </div>
 
-                  {/* --- Giữa --- */}
-                  <div
-                    style={{
-                      flex: 1,
-                      background: "#000",
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 5,
-                      padding: "0 14px",
-                      height: "100%",
-                    }}
-                  >
-                    <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}</label>
-                    <select
-                      value={service}
-                      onChange={(e) => setService(e.target.value)}
-                      style={{
-                        background: "#fff",
-                        color: "#000",
-                        border: "none",
-                        borderRadius: 6,
-                        padding: "6px 10px",
-                        fontSize: 16,
-                        width: 160,
-                        height: 38,
-                        boxSizing: "border-box",
-                        marginRight: 15
-                      }}
-                    >
-                      <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
-                      <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
-                      <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
-                      <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
-                      <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
-                      <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
-                      <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
-                      <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
-                      <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
-                      <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
-                      <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>
-                    </select>
+            {/* --- Giữa --- */}
+            <div
+              style={{
+                flex: 1,
+                background: "#000",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 5,
+                padding: "0 14px",
+                height: "100%",
+              }}
+            >
+              <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}</label>
+              <select
+                value={service}
+                onChange={(e) => setService(e.target.value)}
+                style={{
+                  background: "#fff",
+                  color: "#000",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "6px 10px",
+                  fontSize: 16,
+                  width: 160,
+                  height: 38,
+                  boxSizing: "border-box",
+                  marginRight: 15
+                }}
+              >
+                <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
+                <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+                <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
+                <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
+                <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
+                <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
+                <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
+                <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
+                <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
+                <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
+                <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>
+              </select>
 
-                    <label style={{ fontSize: 16, marginLeft: 15, }}>{language === "VI" ? (<>Họ tên</>) : ("이름")}</label>
-                    <input
-                      placeholder={language === "VI" ? ("Họ tên") : ("이름")}
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      style={{
-                        padding: "6px 10px",
-                        borderRadius: 6,
-                        border: "none",
-                        fontSize: 16,
-                        width: 160,
-                        height: 38,
-                        boxSizing: "border-box",
+              <label style={{ fontSize: 16, marginLeft: 15, }}>{language === "VI" ? (<>Họ tên</>) : ("이름")}</label>
+              <input
+                placeholder={language === "VI" ? ("Họ tên") : ("이름")}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  border: "none",
+                  fontSize: 16,
+                  width: 160,
+                  height: 38,
+                  boxSizing: "border-box",
 
-                        marginRight: 15
-                      }}
-                      required
-                      pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                      title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
-                    />
+                  marginRight: 15
+                }}
+                required
+                pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
+              />
 
-                    <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화번호")}</label>
-                    <select
-                      value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
-                      style={{
-                        background: "#fff",
-                        color: "#000",
-                        border: "none",
-                        borderRadius: 6,
-                        padding: "6px 10px",
-                        fontSize: 16,
-                        width: 100,
-                        height: 38,
-                        boxSizing: "border-box",
-                      }}
-                    >
-                      <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
-                      <option value="+82">+82</option>
-                      <option value="+84">+84</option>
-                    </select>
+              <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화번호")}</label>
+              <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
+                style={{
+                  background: "#fff",
+                  color: "#000",
+                  border: "none",
+                  borderRadius: 6,
+                  padding: "6px 10px",
+                  fontSize: 16,
+                  width: 100,
+                  height: 38,
+                  boxSizing: "border-box",
+                }}
+              >
+                <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+                <option value="+82">+82</option>
+                <option value="+84">+84</option>
+              </select>
 
-                    <input
-                      placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      style={{
-                        padding: "6px 10px",
-                        borderRadius: 6,
-                        border: "none",
-                        fontSize: 16,
-                        width: 160,
-                        height: 38,
-                        boxSizing: "border-box",
-                      }}
-                      pattern={
-                        countryCode === "+82"
-                          ? "[0-9]{9,11}"
-                          : countryCode === "+84"
-                            ? "[0-9]{9,10}"
-                            : ".*"
-                      }
-                      title={
-                        countryCode === "+82"
-                          ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
-                          : countryCode === "+84"
-                            ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                            : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
-                      }
-                    />
+              <input
+                placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  border: "none",
+                  fontSize: 16,
+                  width: 160,
+                  height: 38,
+                  boxSizing: "border-box",
+                }}
+                pattern={
+                  countryCode === "+82"
+                    ? "[0-9]{9,11}"
+                    : countryCode === "+84"
+                      ? "[0-9]{9,10}"
+                      : ".*"
+                }
+                title={
+                  countryCode === "+82"
+                    ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                    : countryCode === "+84"
+                      ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                      : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+                }
+              />
 
-                    <label
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        fontSize: 16,
-                        gap: 4,
-                        color: "#bbb",
-                        whiteSpace: "nowrap",
-                        marginLeft: 20
-                      }}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={agree}
-                        onChange={(e) => setAgree(e.target.checked)}
-                        style={{ marginRight: 6 }}
-                      />
-                      {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
-                    </label>
-                  </div>
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: 16,
+                  gap: 4,
+                  color: "#bbb",
+                  whiteSpace: "nowrap",
+                  marginLeft: 20
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={agree}
+                  onChange={(e) => setAgree(e.target.checked)}
+                  style={{ marginRight: 6 }}
+                />
+                {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
+              </label>
+            </div>
 
-                  {/* --- Nút gửi --- */}
-                  <div
-                    onClick={loading ? undefined : handleSubmit}
-                    style={{
-                      width: 310,
-                      background: "#d7c199",
-                      color: "#fff",
-                      fontWeight: 600,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "0 24px",
-                      height: "100%",
-                      cursor: loading ? "not-allowed" : "pointer",
-                      fontSize: 16,
-                      opacity: loading ? 0.7 : 1,
-                    }}
-                  >
-                    {loading
-                      ? language === "VI"
-                        ? "Đang gửi..."
-                        : "전송 중..."
-                      : language === "VI"
-                        ? "Tư vấn"
-                        : "상담 신청"}
-                  </div>
-                </div>
+            {/* --- Nút gửi --- */}
+            <div
+              onClick={loading ? undefined : handleSubmit}
+              style={{
+                width: 310,
+                background: "#d7c199",
+                color: "#fff",
+                fontWeight: 600,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "0 24px",
+                height: "100%",
+                cursor: loading ? "not-allowed" : "pointer",
+                fontSize: 16,
+                opacity: loading ? 0.7 : 1,
+              }}
+            >
+              {loading
+                ? language === "VI"
+                  ? "Đang gửi..."
+                  : "전송 중..."
+                : language === "VI"
+                  ? "Tư vấn"
+                  : "상담 신청"}
+            </div>
+          </div>
         </div>
         {/* Main content row */}
 
@@ -341,7 +341,7 @@ function Introduction() {
             alignItems: "center",
             marginBottom: 30
           }}>
-            <h2><a  href="/news/전체 뉴스" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D",textDecoration: "none" }} >전체 뉴스</a></h2>
+            <h2><a href="/news/전체 뉴스" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }} >전체 뉴스</a></h2>
             <a href="/news/전체 뉴스" style={{ fontSize: 15, color: "#384D8D", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
               더보기 →
             </a>
@@ -379,7 +379,7 @@ function Introduction() {
             {/* Card 3 */}
             <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n3} alt="원패스 업무 개시 안내"
-                style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
+                style={{ width: "100%", height: 215.91, borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 25일 | 오전 09:00</p>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>원패스(One Pass) 공식 업무 개시 안내</h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
@@ -401,7 +401,7 @@ function Introduction() {
               marginBottom: 30,
             }}
           >
-            <h2><a  href="/news/대사관•총영사관 소식" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D",textDecoration: "none" }} >대사관•총영사관 소식</a></h2>
+            <h2><a href="/news/대사관•총영사관 소식" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }} >대사관•총영사관 소식</a></h2>
             <a
               href="/news/대사관•총영사관 소식"
               style={{
@@ -428,7 +428,7 @@ function Introduction() {
           >
             {/* Card 1 */}
             <div
-            onClick={() => (window.location.href = "/news대사관•총영사관 소식/NewsDetail4")}
+              onClick={() => (window.location.href = "/news대사관•총영사관 소식/NewsDetail4")}
               style={{
                 width: 380,
                 flexShrink: 0,
@@ -466,7 +466,7 @@ function Introduction() {
 
             {/* Card 2 */}
             <div
-            onClick={() => (window.location.href = "/news대사관•총영사관 소식/NewsDetail5")}
+              onClick={() => (window.location.href = "/news대사관•총영사관 소식/NewsDetail5")}
               style={{
                 width: 380,
                 flexShrink: 0,
@@ -521,7 +521,6 @@ function Introduction() {
               boxShadow: "0 8px 24px rgba(12,20,40,0.08)",
               border: '1px solid rgba(15,23,42,0.06)',
               padding: "15px 20px",
-              // explicit height will grow if content overflows; keep auto
               textAlign: "center",
               fontFamily: 'Inter, Arial, sans-serif'
             }}>
@@ -538,7 +537,7 @@ function Introduction() {
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
-                {['일','월','화','수','목','금','토'].map((d,i) => (
+                {['일', '월', '화', '수', '목', '금', '토'].map((d, i) => (
                   <div key={d} style={{ width: 56, fontSize: 13, color: '#9aa4b8', textAlign: 'center', lineHeight: '18px' }}>{d}</div>
                 ))}
               </div>
@@ -549,19 +548,29 @@ function Introduction() {
                   const month = calendarDate.getMonth();
                   const firstDay = new Date(year, month, 1).getDay();
                   const daysInMonth = new Date(year, month + 1, 0).getDate();
-                  const totalCells = 35; // 6 rows x 7 cols
+                  const totalCells = 35; // 5 rows x 7 cols
+                  const today = new Date(); // 🔴 Lấy ngày hiện tại
                   const cells = [];
+
                   for (let i = 0; i < totalCells; i++) {
                     const dayNum = i - firstDay + 1;
                     const isValid = dayNum >= 1 && dayNum <= daysInMonth;
                     const col = i % 7;
                     const isWeekend = col === 0 || col === 6;
-                    const isSelected = selectedDate && isValid &&
+
+                    const isSelected =
+                      selectedDate &&
+                      isValid &&
                       selectedDate.getFullYear() === year &&
                       selectedDate.getMonth() === month &&
                       selectedDate.getDate() === dayNum;
 
-                    // show days with larger numbers; weekends and selected day are red, no filled circle
+                    const isToday =
+                      isValid &&
+                      today.getFullYear() === year &&
+                      today.getMonth() === month &&
+                      today.getDate() === dayNum; // ✅ So sánh với ngày hiện tại
+
                     cells.push(
                       <div
                         key={i}
@@ -573,11 +582,20 @@ function Introduction() {
                           alignItems: 'center',
                           justifyContent: 'center',
                           fontSize: 16,
-                          fontWeight: isSelected ? 700 : 400,
-                          color: isValid ? (isSelected ? '#ef4444' : (isWeekend ? '#ef4444' : '#111827')) : 'transparent',
+                          fontWeight: isSelected || isToday ? 700 : 400,
+                          color: isValid
+                            ? isToday
+                              ? '#fff' // chữ trắng
+                              : isSelected
+                                ? '#ef4444'
+                                : isWeekend
+                                  ? '#ef4444'
+                                  : '#111827'
+                            : 'transparent',
                           cursor: isValid ? 'pointer' : 'default',
                           borderRadius: 10,
-                          background: 'transparent'
+                          background: isToday ? '#5C7DE1' : 'transparent', // 🔴 tô nền đỏ cho hôm nay
+                          transition: 'all 0.2s ease',
                         }}
                       >
                         {isValid ? dayNum : ''}

@@ -504,34 +504,141 @@ function App() {
                 }}
               >
                 <div
-                  className="parallax-window fullscreen hero-flex"
-                  style={{
-                    width: "100vw",
-                    height: "70vh",
-                    display: "flex",
-                    alignItems: "center",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  {/* Hero content: title + centered search (matches provided design) */}
-                  <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
-                    <h1 style={{ color: '#fff', fontSize: 56, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', margin: 0, textAlign: 'center' }}>
-                      {language === "VI" ? (<>ONE PASS GIẢI PHÁP NHANH,<br /> KẾT QUẢ CHẮC</>) : ("ONE PASS, 한번에 PASS")}
-                    </h1>
+  className="parallax-window fullscreen hero-flex"
+  style={{
+    width: "100vw",
+    height: "70vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    overflow: "hidden",
+  }}
+>
+  <div
+    style={{
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 18,
+      padding: "0 16px",
+    }}
+  >
+    <h1
+      style={{
+        color: "#fff",
+        fontSize: "clamp(28px, 6vw, 56px)",
+        fontWeight: 700,
+        letterSpacing: 2,
+        textTransform: "uppercase",
+        margin: 0,
+        textAlign: "center",
+        lineHeight: 1.3,
+        whiteSpace: "pre-line",
+      }}
+    >
+      {language === "VI"
+        ? "ONE PASS GIẢI PHÁP NHANH,\nKẾT QUẢ CHẮC"
+        : "ONE PASS, 한번에 PASS"}
+    </h1>
 
-                    <div style={{ width: '64%', maxWidth: 920 }}>
-                      <form style={{ display: 'flex', alignItems: 'center', height: 56, background: 'rgba(255,255,255,0.06)', borderRadius: 10, border: '1px solid rgba(255, 255, 255, 1)', overflow: 'hidden' }}>
-                        <div style={{ flex: 1, height: '100%', display: 'flex', alignItems: 'center', paddingLeft: 16 }}>
-                          <input className="search-hero" type="text" placeholder="검색어를 입력하세요" style={{ width: '100%', height: '100%', border: 'none', outline: 'none', background: 'transparent', color: '#fff', fontSize: 18 }} />
-                        </div>
-                        <button type="submit" style={{ height: '100%', minWidth: 72, background: 'rgba(255,255,255,0.06)', border: 'none', color: '#fff', fontSize: 18, cursor: 'pointer' }}>🔍</button>
-                      </form>
-                    </div>
+    <div style={{ width: "90%", maxWidth: 920 }}>
+      <form
+        style={{
+          display: "flex",
+          alignItems: "center",
+          height: 56,
+          background: "rgba(255,255,255,0.06)",
+          borderRadius: 10,
+          border: "1px solid rgba(255, 255, 255, 1)",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: 16,
+          }}
+        >
+          <input
+            className="search-hero"
+            type="text"
+            placeholder="검색어를 입력하세요"
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+              outline: "none",
+              background: "transparent",
+              color: "#fff",
+              fontSize: 18,
+            }}
+          />
+        </div>
+        <button
+          type="submit"
+          style={{
+            height: "100%",
+            minWidth: 64,
+            background: "rgba(255,255,255,0.06)",
+            border: "none",
+            color: "#fff",
+            fontSize: 20,
+            cursor: "pointer",
+          }}
+        >
+          🔍
+        </button>
+      </form>
+    </div>
+  </div>
 
-                  </div>
+  {/* Responsive style */}
+  <style>
+    {`
+      @media (max-width: 768px) {
+        .hero-flex {
+          height: 60vh !important;
+        }
+        .hero-flex h1 {
+          font-size: 30px !important;
+          letter-spacing: 1px !important;
+        }
+        .hero-flex form {
+          height: 46px !important;
+        }
+        .hero-flex input {
+          font-size: 16px !important;
+        }
+        .hero-flex button {
+          min-width: 52px !important;
+          font-size: 18px !important;
+        }
+      }
 
-                </div>
+      @media (max-width: 500px) {
+        .hero-flex {
+          height: 55vh !important;
+        }
+        .hero-flex h1 {
+          font-size: 24px !important;
+          line-height: 1.3 !important;
+        }
+        .hero-flex form {
+          height: 44px !important;
+        }
+        .hero-flex input::placeholder {
+          font-size: 15px !important;
+        }
+      }
+    `}
+  </style>
+</div>
+
 
                 <div
                   style={{
@@ -760,7 +867,7 @@ function App() {
               </section>
 
               <section id="about" className="about section" style={{ background: "#ffffffff", padding: "40px 0" }}>
-                <div style={{
+                <div className="about-container" style={{
                   maxWidth: "1300px",
                   margin: "0 auto",
                   display: "flex",
@@ -776,7 +883,8 @@ function App() {
                       marginBottom: "40px",
                       lineHeight: "1.5",
                     }} > 고객님의 모든 행정 절차, 전문<br />적인 책임감으로 해결해 드리겠습니다.
-                    </h2> <div style={{ display: "flex", gap: "60px", }} >
+                    </h2> 
+                    <div className="about-stats" style={{ display: "flex", gap: "60px", }} >
                       {/* Item 1 */} <div style={{ textAlign: "center" }}>
                         <div style={{ fontSize: "40px", fontWeight: "700", color: "#2f4d90", }} >
                           {displayStats.satisfied}
@@ -811,19 +919,20 @@ function App() {
                   </div>
                   {/* RIGHT */}
                   <div style={{ flex: 1 }}>
-                    <h3 style={{ fontSize: "24px", fontWeight: "700", color: "#2f4d90", marginBottom: "20px", fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }} >
+                    <h3 className="about-text" style={{ fontSize: "24px", fontWeight: "700", color: "#2f4d90", marginBottom: "20px", fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }} >
                       ABOUT US
                     </h3>
-                    <p style={{ fontSize: "18px", lineHeight: "1.7", color: "#333", marginBottom: "30px", }} >
+                    <p style={{ fontSize: "18px", lineHeight: "1.7", color: "#333", marginBottom: "30px", textAlign: "justify" }} >
                       2025년, 대한민국 부산에서 원패스(One Pass)가 힘찬 첫걸음을 시작했습니다. 원패스는 베트남 관련 행정 절차에 대한 가장 정확한 지원과 해결책을 제공하기 위해 탄생한 행정 대행 및 솔루션 회사입니다. 여권, 비자, 결혼 서류, 영사 확인 및 공증 등 모든 행정 업무에 대해 정확한 컨설팅 및 지원 서비스를 베트남인과 한국인 모두에게 제공하며, 고객의 시간과 노력을 절약하는 가장 효율적인 길을 열어 드립니다.
                     </p>
                     <Link to="/Introduction" style={{ textDecoration: 'none' }}>
-                      <button style={{ padding: "12px 28px", backgroundColor: "#2f4d90", color: "#fff", fontSize: "15px", border: "none", borderRadius: "4px", cursor: "pointer", }} >
+                      <button className="about-btn" style={{ padding: "12px 28px", backgroundColor: "#2f4d90", color: "#fff", fontSize: "15px", border: "none", borderRadius: "4px", cursor: "pointer", }} >
                         더보기
                       </button>
                     </Link>
                   </div>
                 </div>
+                
               </section>
 
               <section className="text-white py-20" style={{ background: '#2B3A67' }}>
@@ -1003,6 +1112,10 @@ function App() {
                             >
                               <img src={c.img} alt="" style={{ width: 128, height: 128, objectFit: 'contain' }} />
                             </div>
+
+                          </div>
+                          <div style={{ fontSize: 18, fontWeight: 600, color: '#000000ff', marginBottom: 6 }}>
+                            {c.title}
                           </div>
                           <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
                           {/* Navigate to Consult and open the corresponding tab */}

@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.index-page {
+  width: 100%;
+  max-width: 100%;
+  background: #fff; /* thay #ffffffff bằng #fff */
+}
+
 /* Services section (OUR SERVICES) - Right grid & card styles */
 .sv-container {
   display: flex;
@@ -221,21 +235,7 @@
   mask-composite: exclude;
   pointer-events: none;
 }
-/* Tab button styles for news section */
 
-/**
-* Template Name: Dewi
-* Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
-/* Fonts */
 @font-face {
   font-family: 'TrajanPro3';
   src: url('assets\img\font\Trajan Pro 3\TrajanPro3Regular.woff2') format('woff2'),
@@ -251,21 +251,13 @@
   --heading-font: "Raleway", sans-serif;
   --nav-font: "Inter", sans-serif;
 }
-
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
   --background-color: #ffffff;
-  /* Background color for the entire website, including individual sections */
   --default-color: #444444;
-  /* Default color used for the majority of the text content across the entire website */
   --heading-color: #273d4e;
-  /* Color for headings, subheadings and title throughout the website */
   --accent-color: #ff4a17;
-  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff;
-  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff;
-  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
   --glass-refraction: .80;
   --glass-depth: .80;
   --glass-frost: 10px;
@@ -273,18 +265,12 @@
   --glass-light-intensity: .80;
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #e5eaee;
-  /* The default color of the main navmenu links */
   --nav-hover-color: #ff4a17;
-  /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff;
-  /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff;
-  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #444444;
-  /* Used for navigation links of the dropdown items in the navigation menu. */
   --nav-dropdown-hover-color: #ff4a17;
   --sm-black: #000;
   --sm-pink: #FFE1E9;
@@ -335,9 +321,6 @@
   scroll-behavior: smooth;
 }
 
-/*--------------------------------------------------------------
-# General Styling & Shared Classes
---------------------------------------------------------------*/
 body {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -362,7 +345,7 @@ h3,
 h4,
 h5,
 h6 {
-  /* color: var(--heading-color); */
+
   font-family: var(--heading-font);
 }
 
@@ -370,8 +353,6 @@ span {
   text-align: justify;
 }
 
-/* PHP Email Form Messages
-------------------------------*/
 .php-email-form .error-message {
   display: none;
   background: #df1529;
@@ -422,22 +403,6 @@ span {
   }
 }
 
-/* Pulsating Play Button
-------------------------------*/
-/* .pulsating-play-btn {
-  width: 94px;
-  height: 94px;
-  background: radial-gradient(var(--accent-color) 50%, color-mix(in srgb, var(--accent-color), transparent 75%) 52%);
-  border-radius: 50%;
-  display: block;
-  position: relative;
-  overflow: hidden;
-} */
-
-
-/*--------------------------------------------------------------
-# Global Header
---------------------------------------------------------------*/
 .header {
   --background-color: rgba(0, 0, 0, 0);
   --default-color: #ffffff;
@@ -446,10 +411,9 @@ span {
   background-color: var(--background-color);
   padding: 20px 0;
   transition: all 0.5s;
-  background: transparent;  /* trong suốt */
+  background: transparent; 
 }
 
-/* When the header becomes sticky (class added by JS), make background black */
 .header--sticky {
   --background-color: #2C4D9E;
   background-color: var(--background-color) !important;
@@ -480,14 +444,6 @@ span {
   transform: translateX(-50%);
 }
 
-
-
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Desktop Navigation */
-
-/* Nút đăng nhập nav hover */
 .Login-nav:hover {
   background: #224394 !important;
 }
@@ -501,7 +457,6 @@ span {
 
   }
 
-  /* Pill-shaped centered nav to match header image */
   .nav-pill {
   background: rgba(255, 255, 255, 0.062); /* trong mờ */
   border-radius: 15px;
@@ -4968,3 +4923,107 @@ a.nav-link.active .icon-img {
 }
 
 
+@media (max-width: 1200px) {
+  .about-container {
+    gap: 60px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .about-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 60px !important;
+    text-align: center !important;
+  }
+
+  .about-container > div {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 600px !important;
+  }
+
+  .about-container h2 {
+    font-size: 26px !important;
+    line-height: 1.5 !important;
+  }
+
+  .about-container h3 {
+    font-size: 22px !important;
+  }
+
+  .about-container p {
+    font-size: 16px !important;
+    text-align: justify !important;
+  }
+
+  .about-container button {
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* Bộ 3 số liệu */
+  .about-stats {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 40px !important;
+  }
+
+  .about-stats > div {
+    min-width: 120px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 40px !important;
+    padding: 0 20px !important;
+  }
+
+  .about-container h2 {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+  }
+
+  .about-container h3 {
+    font-size: 20px !important;
+    text-align: left !important;
+    color: #2f4d90 !important;
+  }
+
+  .about-container p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    text-align: justify !important;
+    color: #333 !important;
+  }
+
+  .about-container .about-btn {
+    display: block !important;
+    margin-left: auto !important;
+    margin-top: 10px !important;
+    padding: 10px 24px !important;
+    font-size: 14px !important;
+    background-color: #2f4d90 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+  }
+
+  .about-stats {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px !important;
+  }
+
+  .about-stats > div > div:first-child {
+    font-size: 30px !important;
+  }
+
+  .about-stats > div > div:last-child {
+    font-size: 15px !important;
+  }
+}

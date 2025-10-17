@@ -218,7 +218,9 @@ function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61581863960708" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src={facebookLogo} alt="Facebook" style={{ width: 28, height: 28 }} />
               </a>
-              <img src={tiktokLogo} alt="Tiktok" style={{ width: 28, height: 28 }} />
+              <a href="https://www.tiktok.com/@onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+               <img src={tiktokLogo} alt="Tiktok" style={{ width: 28, height: 28 }} />
+              </a>
               <img src={youtubeLogo} alt="YouTube" style={{ width: 28, height: 28 }} />
               <a href="https://blog.naver.com/onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Naver Blog">
                 <img src={nav} alt="Naver" style={{ width: 28, height: 28 }} />

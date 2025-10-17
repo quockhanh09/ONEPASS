@@ -2,6 +2,7 @@ import React from "react";
 import n1 from "../assets/img/n1.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
+import n8 from "../assets/img/n8.png";
 import heroBg from "../assets/img/herobanner-1.png";
 import consulate from "../assets/img/n2.png"; // ✅ ảnh chính trong bài
 import { useLanguage } from "../LanguageContext.jsx";
@@ -504,6 +505,7 @@ export default function NewsDetail2() {
                                 alt="원패스(One Pass) 업무 개시"
                                 style={{
                                     width: "100%",
+                                    height:215.91,
                                     borderRadius: 8,
                                     marginBottom: 12,
                                     objectFit: "cover",

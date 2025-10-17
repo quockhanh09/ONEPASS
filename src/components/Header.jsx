@@ -72,7 +72,7 @@ function Header() {
       }}
     >
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <div className="header-inner" style={{ width: "calc(100% - 40px)", maxWidth: 1300, padding: "8px 20px", borderRadius: 40 }}>
+        <div className="header-inner" style={{ width: "calc(100% - 40px)", maxWidth: 1300, padding: "8px 20px", borderRadius: 40, alignItems: "center", justifyContent: "space-between" }}>
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
             <Link to="/" className="logo-link" >
@@ -125,6 +125,7 @@ function Header() {
             </nav>
 
             {/* Mobile Menu Button */}
+            {/* 🍔 Menu icon (chỉ hiện khi responsive) */}
             <button
               className="mobile-menu-btn"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -132,12 +133,10 @@ function Header() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
-                display: "none", // ẩn mặc định
               }}
             >
               <span style={{ fontSize: 28, color: "#fff" }}>☰</span>
             </button>
-
             {/* Ngôn ngữ */}
             <div
               className="header-right"

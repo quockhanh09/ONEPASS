@@ -7,12 +7,13 @@ import iconMess from "../assets/img/iconmess.png";
 import iconZalo from "../assets/img/iconzalo.png";
 import iconKakao from "../assets/img/iconTalk.png";
 import iconNaver from "../assets/img/iconna.png";
-import { em } from "framer-motion/client";
+import qrZalo from "../assets/img/qrZalo.png";
+import { em, i } from "framer-motion/client";
 
 export default function Consult() {
 
-    const { language } = useLanguage();
-    const handleSubmitConsult1 = async () => {
+  const { language } = useLanguage();
+  const handleSubmitConsult1 = async () => {
     if (!service || !name || !phone || !agree) {
       showTemporaryPopup("모든 항목을 입력하고 동의해 주세요.", true);
       return;
@@ -103,49 +104,49 @@ export default function Consult() {
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState("");
   const [showTimePopup, setShowTimePopup] = useState(false);
-  
+
   const [submittedPhone, setSubmittedPhone] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState(false);
   const [submittedVisit, setSubmittedVisit] = useState(false);
-  
+
   const handleTabClick = (tabId) => {
-  setSelected("");
-  setName("");
-  setEmail("");
-  setPhone("");
-  setAgree(false);
-  setTitle("");
-  setContent("");
-  setDate("");
-  setTime("");
+    setSelected("");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setAgree(false);
+    setTitle("");
+    setContent("");
+    setDate("");
+    setTime("");
 
-  setNameError(false);
-  setEmailError(false);
-  setPhoneError(false);
-  setDateError(false);
-  setTitleError(false);
-  setContentError(false);
+    setNameError(false);
+    setEmailError(false);
+    setPhoneError(false);
+    setDateError(false);
+    setTitleError(false);
+    setContentError(false);
 
-  
-  setSubmittedPhone(false);
-  setSubmittedEmail(false);
-  setSubmittedVisit(false);
 
-  if (tabId === "phone") {
-    setSubmittedPhone(true);
-  } else if (tabId === "email") {
-    setSubmittedEmail(true);
-  } else if (tabId === "visit") {
-    setSubmittedVisit(true);
-  }
+    setSubmittedPhone(false);
+    setSubmittedEmail(false);
+    setSubmittedVisit(false);
 
-  if (name.trim() === "") setNameError(true);
-  if (email.trim() === "") setEmailError(true);
-  if (phone.trim() === "") setPhoneError(true);
-  if (date.trim() === "") setDateError(true);
+    if (tabId === "phone") {
+      setSubmittedPhone(true);
+    } else if (tabId === "email") {
+      setSubmittedEmail(true);
+    } else if (tabId === "visit") {
+      setSubmittedVisit(true);
+    }
 
-  setActiveTab(tabId);
-};
+    if (name.trim() === "") setNameError(true);
+    if (email.trim() === "") setEmailError(true);
+    if (phone.trim() === "") setPhoneError(true);
+    if (date.trim() === "") setDateError(true);
+
+    setActiveTab(tabId);
+  };
 
 
   const showTemporaryPopup = (message, isError = false) => {
@@ -154,11 +155,11 @@ export default function Consult() {
     setTimeout(() => setShowPopup(false), 5000);
   };
   const handleSubmit = async (e) => {  // Gọi Điện
-  e.preventDefault();
+    e.preventDefault();
 
-  setSubmittedPhone(true);
+    setSubmittedPhone(true);
 
-  const lang = localStorage.getItem("lang") || "ko"; 
+    const lang = localStorage.getItem("lang") || "ko";
     const messages = {
       ko: {
         empty: "모든 항목을 입력하고 동의해 주세요.",
@@ -532,7 +533,7 @@ export default function Consult() {
       {/* Right */}
       <div
         style={{
-          height: " 800px",
+          height: " 1150px",
           flex: 1,
           maxWidth: 650,
           background: "#f9fafb",
@@ -553,42 +554,93 @@ export default function Consult() {
           { text: "Zalo를 이용하여 실시간 채팅 상담", img: iconZalo, link: "" },
           { text: "네이버톡을 이용하여 실시간 채팅 상담", img: iconNaver, link: "https://talk.naver.com/ct/w3ou8nh#nafullscreen" },
         ].map((item, i) => (
-          <a
-            key={i}
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <button
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "100%",
-                background: "#fff",
-                border: "1px solid #e5e7eb",
-                borderRadius: 9999,
-                padding: "20px 60px",
-                marginBottom: 12,
-                cursor: "pointer",
-                fontSize: 18,
-                color: "#374151",
-                fontWeight: 500,
-                boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
-                transition: "all 0.2s ease",
-              }}
-              onMouseOver={(e) => (e.currentTarget.style.background = "#f3f4f6")}
-              onMouseOut={(e) => (e.currentTarget.style.background = "#fff")}
+          <React.Fragment key={i}>
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
-              <span>{item.text}</span>
-              <img
-                src={item.img}
-                alt=""
-                style={{ width: 30, height: 30, objectFit: "contain" }}
-              />
-            </button>
-          </a>
+              <button
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                  background: "#fff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: 9999,
+                  padding: "20px 60px",
+                  marginBottom: 12,
+                  cursor: "pointer",
+                  fontSize: 18,
+                  color: "#374151",
+                  fontWeight: 500,
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.background = "#f3f4f6")}
+                onMouseOut={(e) => (e.currentTarget.style.background = "#fff")}
+              >
+                <span>{item.text}</span>
+                <img
+                  src={item.img}
+                  alt=""
+                  style={{ width: 30, height: 30, objectFit: "contain" }}
+                />
+              </button>
+            </a>
+
+            {/* Thêm hình QR ngay sau Zalo */}
+            {item.text.includes("Zalo") && (
+              <div
+                style={{
+                  width: "100%",
+                  background: "#fff",
+                  borderRadius: 50,
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
+                  padding: 20,
+                  textAlign: "center",
+                  marginBottom: 12,
+                }}
+              >
+                <p style={{ fontSize: 16, color: "#000000ff", fontWeight: "bold" }}>QR 코드를 스캔하여 채팅을 시작하세요.</p>
+                <img
+                  src={qrZalo} // đường dẫn ảnh QR (bạn có thể import)
+                  alt="Zalo QR"
+                  style={{
+                    width: 180,
+                    height: 180,
+                    objectFit: "contain",
+                    marginBottom: 10,
+                  }}
+                />
+                <p style={{ fontSize: 16, color: "#374151" }}> <b>Zalo ID:</b> 0395944818</p>
+                <a
+                  href="https://zalo.me/0395944818"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button
+                    style={{
+                      background: "#d4b88c",
+                      color: "#fff",
+                      border: "none",
+                      padding: "10px 45px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                      transition: "background 0.2s ease",
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.background = "#c1a575")}
+                    onMouseOut={(e) => (e.currentTarget.style.background = "#d4b88c")}
+                  >
+                    바로 가기
+                  </button>
+                </a>
+              </div>
+            )}
+          </React.Fragment>
         ))}
 
         {/* Divider */}
@@ -1010,7 +1062,7 @@ export default function Consult() {
             marginBottom: 14,
           }}
         >
-          전화 상담
+          이메일 상담
         </h3>
         <h2
           style={{
@@ -1031,8 +1083,8 @@ export default function Consult() {
             letterSpacing: "-0.2px",
           }}
         >
-          전화를 통해서 급한 문제를 빠르게 해결할 수 있습니다.
-          전문 상담사와 바로 연결하여 상담 받을 수 있습니다.
+          문의사항을 남겨주시고 문의 내용을 확인하여 3영업일 이내에 답변을 드립니다.
+
         </p>
       </div>
 
@@ -1290,7 +1342,7 @@ export default function Consult() {
               <label style={{ width: 120, fontWeight: 600 }}>
                 내용<span style={{ color: "red" }}>*</span>
               </label>
-              <textarea
+              <input
                 value={content}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -1304,9 +1356,9 @@ export default function Consult() {
                 placeholder="상담 내용을 입력해주세요"
                 rows={2} // 👈 Giảm chiều cao
                 style={{
-                  flex: "none", // 👈 Ngăn flex tự giãn full chiều ngang
-                  width: "400px", // 👈 Đặt chiều rộng cố định
-                  height: "40px", // 👈 Đặt chiều cao
+                  flex: "none",
+                  width: "400px",
+                  height: "40px",
                   border: "none",
                   outline: "none",
                   background: "transparent",
@@ -1317,10 +1369,10 @@ export default function Consult() {
               />
             </div>
 
-            {contentError &&  submittedEmail && (
-              <div 
-              
-              style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+            {contentError && submittedEmail && (
+              <div
+
+                style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입력입니다
               </div>
             )}
@@ -1456,9 +1508,7 @@ export default function Consult() {
           }}
         >
           예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다.
-
         </p>
-        <p style={{ color: "#384D8D" }}>찾아오시는 길 보기 <i class="bi bi-arrow-right"></i></p>
       </div>
 
       {/* Right */}
@@ -1883,8 +1933,8 @@ export default function Consult() {
           </h1>
         </div>
         {/* Main content row */}
-           
-         <div
+
+        <div
           style={{
             position: "fixed",
             bottom: 0,
@@ -2091,7 +2141,7 @@ export default function Consult() {
       </section>
 
       <section style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
-        <div style={{ maxWidth: 1250, margin: "0 auto", padding: "0 20px" }}>
+        <div style={{ maxWidth: 1250, margin: "0 auto", padding: "0 20px", height: 1250 }}>
           {/* Tabs */}
           <div
             style={{

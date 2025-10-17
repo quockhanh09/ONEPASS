@@ -93,10 +93,11 @@ function Support() {
 
   // --- DANH SÁCH CÁC TAB ---
   const tabs = [
-    { id: "profile-search", label: "진행 현황 조회" },
-    { id: "contact", label: "Contact" },
     { id: "Terms-of-Use", label: "이용약관" },
     { id: "personal-information", label: "개인 정보 처리 방침" },
+    { id: "contact", label: "Contact" },
+    { id: "profile-search", label: "진행 현황 조회" },
+   
   ];
 
   // --- HÀM XỬ LÝ CLICK TAB ---
@@ -250,7 +251,7 @@ function Support() {
       case "Terms-of-Use":
         return (
           <div style={{ marginTop: 20 }}>
-            <div style={{ fontFamily: "'Roboto', sans-serif", maxWidth: 900, margin: "60px auto", padding: 20, lineHeight: 1.8, color: "#111827", fontSize: 15 }}>
+            <div style={{ fontFamily: "'Roboto', sans-serif", maxWidth: 900, margin: "60px auto", padding: 20, lineHeight: 1.8, color: "#111827", fontSize: 15,textAlign: "justify" }}>
               <h1 style={{ textAlign: "center", fontWeight: 700, fontSize: 28, marginBottom: 40 }}>이용약관</h1>
 
               <p style={{ marginBottom: 30 }}>
@@ -345,7 +346,7 @@ function Support() {
 
       case "personal-information":
         return (
-          <div style={{ marginTop: 20 }}>
+          <div style={{ marginTop: 20,textAlign: "justify" }}>
             <div
               style={{
                 maxWidth: 900,

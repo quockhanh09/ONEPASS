@@ -502,6 +502,7 @@ export default function NewsDetail2() {
                                 alt="원패스(One Pass) 업무 개시"
                                 style={{
                                     width: "100%",
+                                    height:215.91,
                                     borderRadius: 8,
                                     marginBottom: 12,
                                     objectFit: "cover",

@@ -486,9 +486,9 @@ const tabContents6 = {
     ],
   },
   cc6: {
-    title: "베트남 전자비자 • 성용비자",
+    title: "베트남 전자비자 • 상용비자",
     rows: [
-      ["비자 대행", "베트남 전자비자 • 성용비자", "별도 상담", "견적 상담 필요"],
+      ["비자 대행", "베트남 전자비자 • 상용비자", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -882,7 +882,7 @@ function Service(props) {
     },
     // Service 1: 결혼 이민
     {
-
+      title: "결혼 이민",
 
     },
     // Service 2: 출생 · 사망 신고
@@ -935,7 +935,7 @@ function Service(props) {
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
     },
     {
-      title: "입양 절차 대행",
+      title: "입양 • 자녀 인지",
       mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
       personalTitle: "개인서류",
       personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",
@@ -967,7 +967,7 @@ function Service(props) {
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
     },
     {
-      title: "법률",
+      title: "법률 컨설팅",
       mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
       personalTitle: "개인서류",
       personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",
@@ -984,7 +984,7 @@ function Service(props) {
     },
     // Service 8: 기타 서비스
     {
-      title: "기타 서비스",
+      title: "B2B 서비스",
       mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
       personalTitle: "개인서류",
       personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",

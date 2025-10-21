@@ -605,16 +605,7 @@ export default function Consult() {
                 }}
               >
                 <p style={{ fontSize: 16, color: "#000000ff", fontWeight: "bold" }}>QR 코드를 스캔하여 채팅을 시작하세요.</p>
-                <img
-                  src={qrZalo} // đường dẫn ảnh QR (bạn có thể import)
-                  alt="Zalo QR"
-                  style={{
-                    width: 180,
-                    height: 180,
-                    objectFit: "contain",
-                    marginBottom: 10,
-                  }}
-                />
+                
                 <p style={{ fontSize: 16, color: "#374151" }}> <b>Zalo ID:</b> 0395944818</p>
                 <a
                   href="https://zalo.me/0395944818"

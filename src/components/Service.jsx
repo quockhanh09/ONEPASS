@@ -1582,8 +1582,8 @@ function Service(props) {
                         font-size: 14px !important;
                         }
                      }
-    `}
-  </style>
+                `}
+              </style>
             </div>
 
             {/* Table */}

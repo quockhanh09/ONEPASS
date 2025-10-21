@@ -1535,59 +1535,74 @@ function App() {
 
                 <style>
                   {`
-                    @media (max-width: 900px) {
-                      .consult-text{
-                      display: none !important;
-                      }
+                    @media (max-width: 700px) {
+  .consult-text {
+    display: none !important;
+  }
 
-                      section > div {
-                      grid-template-columns: 1fr !important;
-                      gap: 32px !important;
-                      max-width: 100% !important;
-                      padding: 0 20px !important;
-                      box-sizing: border-box !important;
-                    }
+  section > div {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    max-width: 100% !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+  }
 
-                    section > div > div:nth-child(2) {
-                       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                       gap: 16px !important;
-                       justify-items: center !important;
-                      }
-                   }
+  section > div > div:nth-child(2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    justify-items: center !important;
+  }
+}
 
-                    @media (max-width: 480px) {
-                      .consult-text{
-                      display: none !important;
-                      }
+/* fix từ 450px trở xuống để tránh dính */
+@media (max-width: 450px) {
+  .consult-text {
+    display: none !important;
+  }
 
-                       section > div > div:nth-child(2) {
-                       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                       gap: 12px !important;
-                     }
+  section > div > div:nth-child(2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 32px !important; /* tăng khoảng cách giữa các card */
+    justify-items: center !important;
+  }
 
-                      section > div > div:nth-child(2) > div {
-                            padding: 16px 12px !important;
-                       }
+  section > div > div:nth-child(2) > div {
+    padding: 16px 12px !important;
+    margin-bottom: 16px !important; /* thêm khoảng cách dưới mỗi card */
+  }
 
-                      section > div > div:nth-child(2) img {
-                            width: 80px !important;
-                            height: 80px !important;
-                        }
-                      .consult-cards{
-                             display: grid !important;
-                             grid-template-columns: repeat(2, 1fr) !important;
-                             gap: 16px !important;
-                             align-items: start !important;
-                             justify-items: center !important;
-                      }
+  section > div > div:nth-child(2) img {
+    width: 80px !important;
+    height: 80px !important;
+  }
 
-                      .consult-cards > div {
-                             width: 100% !important;
-                             height: auto !important;
-                             margin: 0 !important;
-                             position: relative !important;
-                            }
-                       }
+ .consult-cards {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 28px !important;
+  align-items: stretch !important; /* <-- cho tất cả card cao bằng nhau */
+  justify-items: center !important;
+}
+
+.consult-cards > div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important; /* đảm bảo chiều cao đồng đều */
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+}
+
+/* dưới 400px có thể chỉ dùng 1 cột cho gọn hơn */
+@media (max-width: 400px) {
+  .consult-cards {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
                    `}
                 </style>
               </section>

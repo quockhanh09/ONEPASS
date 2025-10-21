@@ -5050,3 +5050,14 @@ a.nav-link.active .icon-img {
   font-size: 20px !important;
 }
 }
+
+
+@media (max-width: 768px) {
+  .social-container{
+    display: none !important;  
+  }}
+
+  @media (max-width: 400px) {
+  .social-container{
+    display: none !important;  
+  }}

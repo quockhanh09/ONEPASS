@@ -169,7 +169,7 @@ function Footer() {
           </div>
 
           {/* Right: Subscribe */}
-          <div className="subscribe-box" style={{ flex: 1.2, minWidth: 300, display: "flex",  gap: 18 }}>
+          <div className="subscribe-box" style={{ flex: 1.2, minWidth: 300, display: "flex", gap: 18 }}>
             <div class="update-title" style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>For Every Update.</div>
 
             <div
@@ -233,60 +233,84 @@ function Footer() {
         </div>
         <style>
           {`
-         
+       @media (max-width: 768px) {
+ .footer {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    overflow-x: hidden !important;
+  }
+     .logo-footer, .social-row {
+    transform: none !important;
+  }        
+  .reserve {
+    margin-left: 0 !important;
+    font-size: 20px !important;
+    transform: none !important;
+    text-align: center !important;
+  }
 
-         @media (max-width: 768px) {
-            .footer{
-            padding: 10px 0 !important;
-            
-            }   
+   .logo-footer {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+  }
 
-            .reserve{
-              margin-left: 15px !important;
-              font-size: 22px !important;
-              transform: translateY(-80px) !important;
-            }
+  .info-text {
+    padding: 0 16px !important;
+    transform: none !important;
+    text-align: center !important;
+  }
 
-            .logo-footer{
-              transform: translate(-120px, -80px) !important;
-             
-            }
-            .info-text{
-              padding: 0 20px !important;
-              transform: translateY(-80px) !important;
-            }
-            .social-row{
-              transform: translateX(120px) !important;
-            }
-            .update-title{
-              font-size: 30px !important;
-              text-align: left !important;
-            }
+   .social-row {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
 
-           .Quick-Links{ display: none !important; }
-             
-           .footer-container {
-               flex-direction: column !important;
-               align-items: center !important;
-               text-align: center !important;
-               gap: 32px !important;
-               padding: 0px 0px !important;
-              }
+  .update-title {
+    font-size: 26px !important;
+    text-align: center !important;
+  }
 
-             /* Logo + info */
-           .footer-container > div {
-               transform: none !important;
-              min-width: 100% !important;
-              text-align: justify !important;
-              
-             }
+  .Quick-Links {
+    display: none !important;
+  }
 
- 
-            .subscribe-box {
-               order: -1 !important;
-               width: 100% !important;
-               align-items: center !important;
-             }
+  .footer-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 24px !important;
+    padding: 0 0 !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+              .logo-footer + .social-row {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 20px !important; /* khoảng cách giữa logo và icon */
+    width: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .footer-container > div {
+    transform: none !important;
+    min-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .subscribe-box {
+    order: -1 !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
 
   .subscribe-box div {
     width: 100% !important;
@@ -294,58 +318,109 @@ function Footer() {
 
   .subscribe-box input {
     font-size: 15px !important;
+    width: 100% !important;
   }
 
-  /* Logo căn giữa */
-  .footer-container img[alt="Logo"] {
-    margin: 0 auto !important;
-  }
-
-  /* Social icons */
-  .subscribe-box div:last-child {
-    justify-content: center !important;
-  }
-
-  /* Quick links */
-  .footer-container a {
-    font-size: 15px !important;
-  }
-
-  /* Padding và font nhỏ hơn */
-  footer {
-    padding: 30px 16px !important;
-  }
-}
-
-      @media (max-width: 430px) {
-        .logo-footer{
-              transform: translate(-120px, -80px) !important;
-             
-            }
-            .info-text{
-              padding: 0 20px !important;
-            }
-            .social-row{
-              transform: translateX(120px) !important;
-            }
-            .update-title{
-              font-size: 30px !important;
-              text-align: left !important;
-            }
-    .Quick-Links{
-     display: none !important; 
-    }
-
-  .subscribe-box input {
-    height: 42px !important;
-  }
   .subscribe-box button {
-    height: 42px !important;
+    height: 48px !important;
     font-size: 14px !important;
     padding: 0 18px !important;
   }
+
+  footer {
+    padding: 30px 16px !important;
+    overflow-x: hidden !important; /* Quan trọng */
+  }
+}
+
+@media (max-width: 400px) {
+  /* Ngăn tràn trắng toàn vùng footer */
+  html, body, footer, .footer, .footer-container {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .footer {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 20px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #1e2b55; /* hoặc màu gốc */
+  }
+
   .footer-container {
-    gap: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Gom logo và social cùng hàng */
+  .logo-footer,
+  .social-row {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Logo + social cùng hàng, giữa màn hình */
+  .logo-footer + .social-row,
+  .footer .logo-footer + .social-row {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Logo */
+  .logo-footer img {
+    height: 26px !important;
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* Social icon */
+  .social-row a,
+  .social-row i {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .social-row a img,
+  .social-row i {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Chữ và phần khác */
+  .update-title {
+    font-size: 22px !important;
+    text-align: center !important;
+  }
+
+  .Quick-Links {
+    display: none !important;
+  }
+
+  .subscribe-box input,
+  .subscribe-box button {
+    height: 40px !important;
   }
 }
         `}

@@ -58,7 +58,7 @@ function Countdown() {
           </div>
 
           {/* Khối thông tin phải */}
-          <div
+          <div className="main-left"
             style={{
               flex: "1 1 520px",
               minWidth: 460,
@@ -66,7 +66,7 @@ function Countdown() {
               color: "#0B2447",
             }}
           >
-            <div
+            <div className="main-left-title"
               style={{
                 color: "#2F4D90",
                 fontWeight: 600,
@@ -76,7 +76,7 @@ function Countdown() {
             >
              찾아오시는 길
             </div>
-            <h3
+            <h3 className="main-left-h3"
               style={{
                 fontWeight: 900,
                 fontSize: 32,
@@ -93,7 +93,7 @@ function Countdown() {
               }}
             />
 
-            <div
+            <div className="main-left-info"
               style={{
                 display: "grid",
                 gridTemplateColumns: "26px 1fr",
@@ -140,6 +140,40 @@ function Countdown() {
           </div>
         </div>
       </div>
+      <style>
+        {
+          `
+           @media (max-width: 450px) {
+  .main-left {
+    flex: 1 1 100% !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+    padding: 0 16px;
+  }
+
+  .main-left-title {
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .main-left-h3 {
+    font-size: 22px !important;
+    line-height: 1.4 !important;
+  }
+
+  .main-left-info {
+    grid-template-columns: 22px 1fr !important;
+    font-size: 14px !important;
+    row-gap: 12px !important;
+  }
+
+  .main-left-info div {
+    word-break: keep-all;
+  }
+}
+          `
+        }
+      </style>
     </section>
   );
 }

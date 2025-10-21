@@ -1563,27 +1563,7 @@ function Service(props) {
                 결혼이민 비자신청
               </button>
 
-            <style>
-               {`
-                  .main-case1-buttton::-webkit-scrollbar {
-                      display: none;
-                   }
 
-                @media (max-width: 900px) {
-                    .main-case1-buttton button {
-                        flex: 0 0 150px !important;
-                        font-size: 15px !important;
-                         }
-                   }
-
-                @media (max-width: 400px) {
-                    .main-case1-buttton button {
-                        flex: 0 0 130px !important;
-                        font-size: 14px !important;
-                        }
-                     }
-                `}
-              </style>
             </div>
 
             {/* Table */}
@@ -1688,10 +1668,7 @@ function Service(props) {
                           </tr>
                         ))}
                       </tbody>
-                      <style>
-                        {`
-                        `}
-                      </style>
+
                     </table>
 
                   )}
@@ -1798,20 +1775,23 @@ function Service(props) {
       case 2:
         if (!tabContents2[activeTab2]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출생신고</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출생신고</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
               초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                 overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea2")} onClick={() => setActiveTab2("korea2")}>
@@ -1826,11 +1806,12 @@ function Service(props) {
               <button style={tabStyle("visa2")} onClick={() => setActiveTab2("visa2")}>
                 기한 초과 사망신고
               </button>
+            
             </div>
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents2[activeTab2].title &&
                 (!tabContents2[activeTab2].rows || tabContents2[activeTab2].rows.length === 0) &&
                 (!tabContents2[activeTab2].steps2 || tabContents2[activeTab2].steps2.length === 0)) ? (
@@ -1858,11 +1839,11 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents2[activeTab2].rows && tabContents2[activeTab2].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{
+                            <th className="case1-th1" key={i} style={{
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
@@ -1871,9 +1852,9 @@ function Service(props) {
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents2[activeTab2].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -1882,15 +1863,15 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{
+                              <td className="case1-td2" key={j} style={{
                                 padding: "14px 16px", width: `${100 / 5}%`, // ⚡ giống th
                                 wordBreak: "keep-all",
                               }}>
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -1911,13 +1892,14 @@ function Service(props) {
                           </tr>
                         ))}
                       </tbody>
+
                     </table>
                   )}
 
                   {/* Steps */}
                   {tabContents2[activeTab2].steps2 && tabContents2[activeTab2].steps2.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -1929,7 +1911,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -1939,7 +1921,7 @@ function Service(props) {
                       >
                         {tabContents2[activeTab2].steps2.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -1954,7 +1936,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -1966,7 +1948,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",
@@ -2017,20 +1999,23 @@ function Service(props) {
         if (!tabContents3[activeTab3]) return null;
         return (
 
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출입국 행정</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출입국 행정</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
               초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                 overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea3")} onClick={() => setActiveTab3("korea3")}>
@@ -2052,7 +2037,7 @@ function Service(props) {
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents3[activeTab3].title &&
                 (!tabContents3[activeTab3].rows || tabContents3[activeTab3].rows.length === 0) &&
                 (!tabContents3[activeTab3].steps || tabContents3[activeTab3].steps.length === 0)) ? (
@@ -2080,11 +2065,11 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents3[activeTab3].rows && tabContents3[activeTab3].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{
+                            <th className="case1-th1" key={i} style={{
                               padding: "14px 16px", // ⚡ đồng nhất với td
                               width: `${100 / 5}%`,
                             }}>
@@ -2093,9 +2078,9 @@ function Service(props) {
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents3[activeTab3].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -2111,8 +2096,8 @@ function Service(props) {
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -2139,8 +2124,8 @@ function Service(props) {
 
                   {/* Steps */}
                   {tabContents3[activeTab3].steps && tabContents3[activeTab3].steps.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -2152,7 +2137,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -2162,7 +2147,7 @@ function Service(props) {
                       >
                         {tabContents3[activeTab3].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -2177,7 +2162,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -2189,7 +2174,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",
@@ -2222,19 +2207,22 @@ function Service(props) {
       case 4:
         if (!tabContents4[activeTab4]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>신분증명 서류</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>신분증명 서류</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               고객님의 신분 증명 관련 서류를 완벽하게 준비해 드립니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                 overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea4")} onClick={() => setActiveTab4("korea4")}>
@@ -2256,7 +2244,7 @@ function Service(props) {
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents4[activeTab4].title &&
                 (!tabContents4[activeTab4].rows || tabContents4[activeTab4].rows.length === 0) &&
                 (!tabContents4[activeTab4].steps || tabContents4[activeTab4].steps.length === 0)) ? (
@@ -2284,9 +2272,9 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents4[activeTab4].rows && tabContents4[activeTab4].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{
                               padding: "14px 16px",
@@ -2297,9 +2285,9 @@ function Service(props) {
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents4[activeTab4].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -2308,15 +2296,15 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{
+                              <td className="case1-td2" key={j} style={{
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -2343,8 +2331,8 @@ function Service(props) {
 
                   {/* Steps */}
                   {tabContents4[activeTab4].steps && tabContents4[activeTab4].steps.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -2356,7 +2344,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -2366,7 +2354,7 @@ function Service(props) {
                       >
                         {tabContents4[activeTab4].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -2381,7 +2369,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -2393,7 +2381,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",
@@ -2423,19 +2411,22 @@ function Service(props) {
       case 5:
         if (!tabContents5[activeTab5]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>입양 • 자녀 인지</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>입양 • 자녀 인지</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               복잡하고 까다로운 입양 절차, 전문 변호사가 처음부터 끝까지 안심하고 진행하도록 도와드리겠습니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                 overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea5")} onClick={() => setActiveTab5("korea5")}>
@@ -2452,7 +2443,7 @@ function Service(props) {
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents5[activeTab5].title &&
                 (!tabContents5[activeTab5].rows || tabContents5[activeTab5].rows.length === 0) &&
                 (!tabContents5[activeTab5].steps || tabContents5[activeTab5].steps.length === 0)) ? (
@@ -2480,19 +2471,19 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents5[activeTab5].rows && tabContents5[activeTab5].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{ padding: "12px 16px" }}>
+                            <th className="case1-th1" key={i} style={{ padding: "12px 16px" }}>
                               {h}
                             </th>
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents5[activeTab5].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -2501,15 +2492,15 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{
+                              <td className="case1-td2" key={j} style={{
                                 padding: "14px 16px", padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -2536,8 +2527,8 @@ function Service(props) {
 
                   {/* Steps */}
                   {tabContents5[activeTab5].steps && tabContents5[activeTab5].steps.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -2549,9 +2540,10 @@ function Service(props) {
                       </h2>
 
                       {/* Bọc 6 step thành 2 hàng */}
-                      <div style={{ display: "flex", flexDirection: "column", gap: "40px", alignItems: "center" }}>
+                      <div className="case1-steps-content" style={{ display: "flex", flexDirection: "column", gap: "40px", alignItems: "center" }}>
                         {[0, 1].map((row) => (
-                          <div
+                          <div 
+                          
                             key={row}
                             style={{
                               display: "flex",
@@ -2562,7 +2554,7 @@ function Service(props) {
                           >
                             {tabContents5[activeTab5].steps.slice(row * 3, row * 3 + 3).map((step, index) => (
                               <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                                <div
+                                <div className="case1-steps-content1"
                                   style={{
                                     backgroundColor: "#f0f0f0e8",
                                     borderRadius: "16px",
@@ -2577,7 +2569,7 @@ function Service(props) {
                                     textAlign: "center",
                                   }}
                                 >
-                                  <p
+                                  <p className="case1-steps-content1-id"
                                     style={{
                                       fontWeight: "bold",
                                       color: "#111827",
@@ -2589,7 +2581,7 @@ function Service(props) {
                                   >
                                     0{step.id}
                                   </p>
-                                  <p
+                                  <p className="case1-steps-content1-text"
                                     style={{
                                       fontSize: "15px",
                                       color: "#374151",
@@ -2620,20 +2612,23 @@ function Service(props) {
       case 6:
         if (!tabContents6[activeTab6]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>비자 대행</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>비자 대행</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               까다로운 비자 서류 준비부터 접수까지, 모든 절차를 신속하고 정확하게 대행하여 <br />
               성공적인 비자 발급을 약속드립니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea6")} onClick={() => setActiveTab6("korea6")}>
@@ -2655,7 +2650,7 @@ function Service(props) {
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents6[activeTab6].title &&
                 (!tabContents6[activeTab6].rows || tabContents6[activeTab6].rows.length === 0) &&
                 (!tabContents6[activeTab6].steps || tabContents6[activeTab6].steps.length === 0)) ? (
@@ -2683,9 +2678,9 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents6[activeTab6].rows && tabContents6[activeTab6].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th key={i} style={{
                               padding: "14px 16px",
@@ -2696,9 +2691,9 @@ function Service(props) {
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents6[activeTab6].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -2707,15 +2702,15 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{
+                              <td className="case1-td2" key={j} style={{
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -2742,8 +2737,8 @@ function Service(props) {
 
                   {/* Steps */}
                   {tabContents6[activeTab6].steps && tabContents6[activeTab6].steps.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -2755,7 +2750,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -2765,7 +2760,7 @@ function Service(props) {
                       >
                         {tabContents6[activeTab6].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -2780,7 +2775,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -2792,7 +2787,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",
@@ -2822,20 +2817,23 @@ function Service(props) {
       case 7:
         if (!tabContents7[activeTab7]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>법률 컨설팅</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>법률 컨설팅</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               이혼, 노동, 체류자격 등 법적 문제를 예방하고, <br />
               발생한 문제를 해결하기 위한 자문합니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea7")} onClick={() => setActiveTab7("korea7")}>
@@ -2852,7 +2850,7 @@ function Service(props) {
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents7[activeTab7].title &&
                 (!tabContents7[activeTab7].rows || tabContents7[activeTab7].rows.length === 0) &&
                 (!tabContents7[activeTab7].steps || tabContents7[activeTab7].steps.length === 0)) ? (
@@ -2880,11 +2878,11 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents7[activeTab7].rows && tabContents7[activeTab7].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
                         <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{
+                            <th className="case1-th1" key={i} style={{
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
@@ -2893,9 +2891,9 @@ function Service(props) {
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents7[activeTab7].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -2904,15 +2902,15 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{
+                              <td className="case1-td2" key={j} style={{
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -2939,8 +2937,8 @@ function Service(props) {
 
                   {/* Steps */}
                   {tabContents7[activeTab7].steps && tabContents7[activeTab7].steps.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -2952,7 +2950,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -2962,7 +2960,7 @@ function Service(props) {
                       >
                         {tabContents7[activeTab7].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -2977,7 +2975,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -2989,7 +2987,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",
@@ -3019,19 +3017,22 @@ function Service(props) {
       case 8:
         if (!tabContents8[activeTab8]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>B2B 서비스</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>B2B 서비스</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               기업 고객의 효율적인 업무를 위한 맞춤형 서비스입니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea8", activeTab8)} onClick={() => setActiveTab8("korea8")} tabKey="a33">
@@ -3051,7 +3052,7 @@ function Service(props) {
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents8[activeTab8].title &&
                 (!tabContents8[activeTab8].rows || tabContents8[activeTab8].rows.length === 0) &&
                 (!tabContents8[activeTab8].steps || tabContents8[activeTab8].steps.length === 0)) ? (
@@ -3079,11 +3080,11 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents8[activeTab8].rows && tabContents8[activeTab8].rows.length > 0 && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                    <table className="case1-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "fixed", }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
-                            <th key={i} style={{
+                            <th className="case1-th1" key={i} style={{
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
@@ -3092,9 +3093,9 @@ function Service(props) {
                           ))}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents8[activeTab8].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -3103,15 +3104,15 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td key={j} style={{
+                              <td className="case1-td2" key={j} style={{
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
                                 {col}
                               </td>
                             ))}
-                            <td style={{ padding: "14px 16px" }}>
-                              <button
+                            <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -3138,8 +3139,8 @@ function Service(props) {
 
                   {/* Steps */}
                   {tabContents8[activeTab8].steps && tabContents8[activeTab8].steps.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -3151,7 +3152,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -3161,7 +3162,7 @@ function Service(props) {
                       >
                         {tabContents8[activeTab8].steps.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -3176,7 +3177,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -3188,7 +3189,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",

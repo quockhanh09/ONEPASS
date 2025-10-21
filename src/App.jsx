@@ -724,8 +724,8 @@ function App() {
                 </div>
 
 
-                <div 
-                className="consultation-bar"
+                <div
+                  className="consultation-bar"
                   style={{
                     position: "fixed",
                     bottom: 0,
@@ -1182,87 +1182,353 @@ function App() {
                 </style>
               </section>
 
-
-              <section className="text-white py-20" style={{ background: '#2B3A67' }}>
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="text-center mb-12">
-                    <p className="text-sm uppercase tracking-[0.25em] mb-3" style={{ fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif", fontSize: 24 }}>OUR SERVICES</p>
-                    <h2 className="text-3xl md:text-4xl font-extrabold leading-relaxed">
-                      베트남-한국 고객의 모든 행정 절차를 직접 대행하여 <br /> 가장 신속하고 정확하게
+              <section className="services-carousel-section" style={{ background: '#CFEAEC', padding: '80px 0' }}>
+                <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 20px' }}>
+                  <div style={{ textAlign: 'center', marginBottom: 48 }}>
+                    <p style={{
+                      fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif",
+                      fontSize: 24,
+                      fontWeight: 500,
+                      letterSpacing: '0.25em',
+                      color: '#2B3A67',
+                      marginBottom: 12
+                    }}>
+                      OUR SERVICES
+                    </p>
+                    <h2 style={{
+                      fontSize: 32,
+                      fontWeight: 900,
+                      color: '#000',
+                      lineHeight: 1.4,
+                      margin: 0
+                    }}>
+                      베트남-한국 고객의 모든 행정 절차를<br />
+                      직접 대행하여 가장 신속하고 정확하게
                     </h2>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-8 items-start sv-container">
-                    {/* Left timeline menu */}
-                    <div className="sv-left-wrap ">
-                      {/* line + dot */}
-                      <div
-                        className="sv-left-line"
-                        style={{ left: active !== null ? "0px" : "100px" }}
-                      ></div>
 
-                      {/* dot chỉ hiện khi có active */}
-                      {active !== null && (
+
+                  {/* Service Icons Carousel */}
+                  <div className="service-icons-container" style={{
+                    display: 'flex',
+                    overflowX: 'auto',
+                    scrollBehavior: 'smooth',
+                    gap: 24,
+                    padding: '20px 0',
+                    marginBottom: 40,
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                    WebkitOverflowScrolling: 'touch',
+                    
+                  }}>
+                    {services.map((service, index) => {
+                      const isActive = active === index;
+                      return (
                         <div
-                          className="sv-left-dot"
+                          key={service.title}
+                          className="service-icon-item"
+                          onClick={() => setActive(index)}
                           style={{
-                            top: `${active * 32}px`,   // 32px = khoảng cách mỗi item
-                            left: "0px"
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            minWidth: 120,
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease'
                           }}
-                        ></div>
-                      )}
-                      {/* List */}
-                      <ul className="sv-left-list">
-                        {services.map((s, index) => {
-                          const isActive = active === index;
-                          return (
-                            <li key={s.title} className={isActive ? "active" : ""} onClick={() => setActive(index)}>
-                              <span className="sv-left-title">{s.title}</span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                    {/* Right grid cards */}
-                    <div>
+                        >
+                          <div
+                            className="service-icon-circle"
+                            style={{
+                              width: 80,
+                              height: 80,
+                              borderRadius: '50%',
+                              background: isActive ? '#2B3A67' : '#ffffff',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              marginBottom: 12,
+                              boxShadow: isActive
+                                ? '0 8px 24px rgba(43, 58, 103, 0.3)'
+                                : '0 4px 12px rgba(0, 0, 0, 0.1)',
+                              // ... deleted code ... (removed transform scale effect)
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            <img
+                              src={isActive ? service.activeIcon : service.icon}
+                              alt={service.title}
+                              style={{
+                                width: 40,
+                                height: 40,
+                                objectFit: 'contain'
+                              }}
+                            />
+                          </div>
+                          <span
+                            style={{
+                              fontSize: 14,
+                              fontWeight: isActive ? 700 : 500,
+                              color: isActive ? '#2B3A67' : '#666',
+                              textAlign: 'center',
+                              lineHeight: 1.3,
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            {service.title}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {/* Service Cards - Desktop Grid, Mobile Horizontal Scroll */}
+                  <div className="service-cards-wrapper">
+                    <div className="service-cards-container">
                       {(() => {
                         const activeTitle = services[active]?.title;
-                        const cards = (serviceCardsData[activeTitle] || serviceCardsData["결혼 / 이혼"] || []).slice(0, 6);
-                        return (
-                          <div className="sv-cards-grid">
-                            {cards.slice(0, 6).map((c, i) => (
-                              <div key={i} className="sv-card">
-                                <Link
-                                  to="/Service"
-                                  state={{
-                                    // send the top-level service index so Service.jsx can select the correct left icon
-                                    serviceIndex: active,
+                        const cards = serviceCardsData[activeTitle] || [];
+                        return cards.map((card, index) => (
+                          <div
+                            key={index}
+                            className="service-card"
+                            style={{
+                              background: '#ffffff',
+                              borderRadius: 16,
+                              padding: 20,
+                              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.transform = 'translateY(-4px)';
+                              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.transform = 'translateY(0)';
+                              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+                            }}
+                          >
+                            <div style={{ marginBottom: 16 }}>
+                              <img
+                                src={card.img}
+                                alt={card.title}
+                                style={{
+                                  width: '100%',
+                                  height: 160,
+                                  objectFit: 'cover',
+                                  borderRadius: 12
+                                }}
+                              />
+                            </div>
+                            <h3 style={{
+                              fontSize: 18,
+                              fontWeight: 700,
+                              color: '#000',
+                              marginBottom: 12,
+                              lineHeight: 1.4
+                            }}>
+                              {card.title}
+                            </h3>
+                            <p style={{
+                              fontSize: 14,
+                              color: '#666',
+                              lineHeight: 1.6,
+                              marginBottom: 20,
+                              flex: 1
+                            }}>
+                              {card.desc}
+                            </p>
+                            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                              <Link
+                                to="/Service"
+                                state={{ serviceIndex: active }}
+                                style={{ textDecoration: 'none' }}
+                              >
+                                <div
+                                  style={{
+                                    color: '#000',
+                                    fontSize: 18,
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    transition: 'transform 0.2s ease',
+                                    display: 'inline-block'
                                   }}
-                                  style={{ textDecoration: "none" }}
-                                ><div className="sv-card-inner">
-                                    <div className="sv-card-thumb">
-                                      <img
-                                        src={c.img}
-                                        alt={c.title}
-                                        style={{ borderRadius: "8px", marginBottom: "12px" }}
-                                      />
-                                    </div>
-                                    <div className="sv-card-title">{c.title}</div>
-                                    <div className="sv-card-desc sv-clamp-2">{c.desc}</div>
-
-                                    {/* ✳️ Chỉ sửa đoạn này */}
-
-                                    <button className="sv-card-arrow">→</button>
-
-                                  </div>
-                                </Link>
-                              </div>
-                            ))}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateX(4px)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateX(0)';
+                                  }}
+                                >
+                                  →
+                                </div>
+                              </Link>
+                            </div>
                           </div>
-                        );
+                        ));
                       })()}
                     </div>
                   </div>
                 </div>
+
+                {/* Custom Styles */}
+                <style jsx>{`
+    .service-icons-container::-webkit-scrollbar,
+    .service-cards-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .service-icons-container,
+    .service-cards-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Desktop Layout - Grid */
+    .service-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      min-height: 320px;
+    }
+
+    /* Tablet and Mobile - Horizontal Scroll */
+    @media (max-width: 768px) {
+      .services-carousel-section {
+        padding: 60px 0 !important;
+      }
+      
+      .services-carousel-section > div {
+        padding: 0 16px !important;
+      }
+      
+      .services-carousel-section h2 {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+      }
+      
+      .services-carousel-section p {
+        font-size: 18px !important;
+      }
+      
+      .service-icons-container {
+        gap: 16px !important;
+        padding: 16px 0 !important;
+        margin-bottom: 32px !important;
+      }
+      
+      .service-icon-item {
+        min-width: 100px !important;
+      }
+      
+      .service-icon-circle {
+        width: 64px !important;
+        height: 64px !important;
+      }
+      
+      .service-icon-circle img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+      
+      .service-icon-item span {
+        font-size: 12px !important;
+      }
+      
+      /* Switch to horizontal scroll on mobile */
+      .service-cards-container {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        gap: 16px !important;
+        padding: 0 0 16px 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      .service-card {
+        min-width: 240px !important;
+        max-width: 280px !important;
+        padding: 16px !important;
+        flex-shrink: 0 !important;
+        min-height: 280px !important;
+      }
+      
+      .service-card img {
+        height: 140px !important;
+      }
+      
+      .service-card h3 {
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .service-card p {
+        font-size: 13px !important;
+        margin-bottom: 16px !important;
+      }
+      
+      .service-card div:last-child div {
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .services-carousel-section h2 {
+        font-size: 20px !important;
+        padding: 0 10px !important;
+      }
+      
+      .service-icon-item {
+        min-width: 80px !important;
+      }
+      
+      .service-icon-circle {
+        width: 56px !important;
+        height: 56px !important;
+      }
+      
+      .service-icon-circle img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+      
+      .service-card {
+        min-width: 220px !important;
+        max-width: 260px !important;
+      }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1200px) {
+      .service-cards-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 32px !important;
+      }
+      
+      .service-card {
+        min-height: 410px !important;
+      }
+    }
+
+    /* Medium Desktop/Tablet */
+    @media (min-width: 769px) and (max-width: 1199px) {
+      .service-cards-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 24px !important;
+      }
+    }
+  `}
+  </style>
               </section>
 
               {/* Tin nổi bật section */}
@@ -1415,7 +1681,7 @@ function App() {
         section > div:first-child div:nth-child(2) {
           font-size: 20px !important;
           line-height: 1.4 !important;
-          padding: 0 10px !important;
+          
         }
 
         .news-grid {
@@ -1456,16 +1722,16 @@ function App() {
 
               {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
 
-              <section className="consult-section" style={{ background: '#CFEAEC', padding: '80px 0' }}>
+              <section className="consult-section" style={{ background: '#2B3A67', padding: '80px 0' }}>
                 <div className="consult-container" style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
                   {/* Left copy */}
                   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignSelf: 'center' }}>
-                    <div style={{ color: '#2B3A67', fontWeight: 500, letterSpacing: '0.15em', marginBottom: 12, fontSize: 24, fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }}>CONSULT</div>
-                    <h2 className="text-consult" style={{ color: '#000000ff', fontSize: 32, fontWeight: 900, lineHeight: 1.35, margin: 0 }}>
+                    <div style={{ color: '#E3DCCC', fontWeight: 500, letterSpacing: '0.15em', marginBottom: 12, fontSize: 24, fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }}>CONSULT</div>
+                    <h2 className="text-consult" style={{ color: '#ffffffff', fontSize: 32, fontWeight: 900, lineHeight: 1.35, margin: 0 }}>
                       언제 어디서나, 가장 편한 방법으로
                       <br />정확한 해결책을 만나보세요.
                     </h2>
-                    <p className="consult-text" style={{ marginTop: 20, color: '#234567', opacity: 0.85, fontSize: 16, lineHeight: 1.9, maxWidth: 520 }}>
+                    <p className="consult-text" style={{ marginTop: 20, color: '#ffffffff', opacity: 0.85, fontSize: 16, lineHeight: 1.9, maxWidth: 520 }}>
                       문제의 시급성이나 내용의 복잡성에 따라 전화, 방문, 채팅, 이메일 중 가장 적합한 상담 방식을 자유롭게 선택하실 수 있습니다. 원패스의 전문 상담사가 모든 채널에서 고객님의 문제 해결을 위해 신속하게 동행합니다. 가장 편하신 방법으로 지금 바로 문의하세요.
                     </p>
                   </div>
@@ -1536,27 +1802,27 @@ function App() {
                 <style>
                   {`
                     @media (max-width: 700px) {
-  .consult-text {
-    display: none !important;
-  }
+                      .consult-text {
+                         display: none !important;
+                      }
 
-  section > div {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    max-width: 100% !important;
-    padding: 0 20px !important;
-    box-sizing: border-box !important;
-  }
+                      section > div {
+                         grid-template-columns: 1fr !important;
+                         gap: 32px !important;
+                         max-width: 100% !important;
+                         padding: 0 20px !important;
+                         box-sizing: border-box !important;
+                        }
 
-  section > div > div:nth-child(2) {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 16px !important;
-    justify-items: center !important;
-  }
-}
+                      section > div > div:nth-child(2) {
+                         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                         gap: 16px !important;
+                         justify-items: center !important;
+                         }
+                        }
 
-/* fix từ 450px trở xuống để tránh dính */
-@media (max-width: 450px) {
+                  /* fix từ 450px trở xuống để tránh dính */
+                      @media (max-width: 450px) {
   .consult-text {
     display: none !important;
   }

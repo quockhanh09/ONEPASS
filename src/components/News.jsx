@@ -107,7 +107,8 @@ function Introduction() {
   return (
     <>
       {/* PHẦN GIỚI THIỆU */}
-      <section style={{
+      <section className=""
+       style={{
         margin: 0,
         padding: 0,
         backgroundImage: `url(${heroBg})`,
@@ -124,7 +125,7 @@ function Introduction() {
             NEWSROOM
           </h1>
 
-          <div
+          <div className="consultation-bar"
             style={{
               position: "fixed",
               bottom: 0,
@@ -332,10 +333,10 @@ function Introduction() {
 
       </section>
 
-      <section style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+      <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           {/* Header */}
-          <div style={{
+          <div className="news-top-header" style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -348,7 +349,7 @@ function Introduction() {
           </div>
 
           {/* News Cards */}
-          <div style={{
+          <div className="news-top-card" style={{
             display: "flex",
             gap: 30,
             flexWrap: "wrap",
@@ -388,12 +389,74 @@ function Introduction() {
             </div>
           </div>
         </div>
+        <style>
+          {`
+            @media (max-width: 768px) {
+  .news-top {
+    padding: 40px 16px !important;
+  }
+
+  .news-top-header {
+    margin-bottom: 20px !important;
+  }
+
+  .news-top-card {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 16px !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Ẩn thanh cuộn ngang */
+  .news-top-card::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mỗi card chiếm ~85% chiều rộng màn hình */
+  .news-top-card > div {
+    flex: 0 0 85% !important;
+    scroll-snap-align: start !important;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  .news-top-card img {
+    width: 100% !important;
+    height: 160px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .news-top-card h3 {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .news-top-card p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  .news-top-card p:first-of-type {
+    font-size: 12px !important;
+    color: #6b7280 !important;
+  }
+}
+          
+          `}
+        </style>
       </section>
 
-      <section style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+      <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           {/* Header */}
-          <div
+          <div className="news-top-header"
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -418,7 +481,7 @@ function Introduction() {
           </div>
 
           {/* News Cards */}
-          <div
+          <div className="news-top-card"
             style={{
               display: "flex",
               gap: 30,
@@ -506,11 +569,11 @@ function Introduction() {
 
 
       <section style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between" }}>
+        <div className="Calendar-main" style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between" }}>
 
           {/* LEFT: Calendar */}
-          <div style={{ flex: "0 0 45%" }}>
-            <h2 style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
+          <div className="Calendar-title" style={{ flex: "0 0 45%" }}>
+            <h2 className="Calendar-title-h2" style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
               업무 일정 (휴일 일정)
             </h2>
             <div style={{
@@ -525,7 +588,7 @@ function Introduction() {
               fontFamily: 'Inter, Arial, sans-serif'
             }}>
               {/* Styled Calendar (matches provided design) */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-start', marginBottom: 8 }}>
+              <div className="Calendar-title-Styled" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-start', marginBottom: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
                   <div style={{ fontSize: 16, fontWeight: 700, color: '#0b1220', lineHeight: 1 }}>{calendarDate.getMonth() + 1}</div>
                   <div style={{ fontSize: 16, color: '#6b7280', fontWeight: 600, lineHeight: 1, transform: 'translateY(1px)' }}>▾</div>
@@ -536,7 +599,7 @@ function Introduction() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
+              <div className="Calendar-title-date"  style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
                 {['일', '월', '화', '수', '목', '금', '토'].map((d, i) => (
                   <div key={d} style={{ width: 56, fontSize: 13, color: '#9aa4b8', textAlign: 'center', lineHeight: '18px' }}>{d}</div>
                 ))}
@@ -607,7 +670,7 @@ function Introduction() {
               </div>
             </div>
           </div>
-
+                
           {/* RIGHT: News */}
           {/* <div style={{ flex: "0 0 50%" }}>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
@@ -642,6 +705,57 @@ function Introduction() {
             ))}
           </div> */}
         </div>
+        <style>
+                 {`
+                  
+                  /* ----- Responsive cho mobile (không ảnh hưởng web chính) ----- */
+  @media (max-width: 768px) {
+    .Calendar-main {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 40px !important;
+      padding: 0 16px !important;
+    }
+
+    .Calendar-title {
+      flex: none !important;
+      width: 100% !important;
+    }
+
+    .Calendar-title-h2 {
+      font-size: 20px !important;
+      text-align: center !important;
+      margin-bottom: 16px !important;
+    }
+
+    .Calendar-title-Styled {
+      justify-content: center !important;
+    }
+
+    .Calendar-title-date {
+      grid-template-columns: repeat(7, 1fr) !important;
+      gap: 4px !important;
+    }
+
+    /* Các ô ngày trong lịch */
+    .Calendar-title-date div {
+      font-size: 12px !important;
+    }
+
+    /* Ô ngày (grid chính) */
+    .Calendar-title + div > div {
+      width: 44px !important;
+      height: 44px !important;
+      font-size: 14px !important;
+    }
+
+    section {
+      padding: 40px 0 !important;
+    }
+  }
+                 `}
+
+                </style>
       </section>
     </>
   );

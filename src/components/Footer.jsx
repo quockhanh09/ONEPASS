@@ -23,40 +23,40 @@ function Footer() {
   const handleSend = async () => {
     const lang = localStorage.getItem("lang") || "ko";
 
-  const messages = {
-  ko: {
-    invalid: "유효한 이메일을 입력해주세요.",
-    success: "고객님 소중한 정보를 남겨주셔서 감사합니다.",
-    fail: "정보를 다시 확인해주세요.",
-  },
-  vi: {
-    invalid: "Vui lòng nhập email hợp lệ.",
-    success: "Cảm ơn bạn đã để lại thông tin.",
-    fail: "Vui lòng kiểm tra lại thông tin.",
-  },
-  en: {
-    invalid: "Please enter a valid email address.",
-    success: "Thank you for your submission.",
-    fail: "Please check your information again.",
-  },
-};
+    const messages = {
+      ko: {
+        invalid: "유효한 이메일을 입력해주세요.",
+        success: "고객님 소중한 정보를 남겨주셔서 감사합니다.",
+        fail: "정보를 다시 확인해주세요.",
+      },
+      vi: {
+        invalid: "Vui lòng nhập email hợp lệ.",
+        success: "Cảm ơn bạn đã để lại thông tin.",
+        fail: "Vui lòng kiểm tra lại thông tin.",
+      },
+      en: {
+        invalid: "Please enter a valid email address.",
+        success: "Thank you for your submission.",
+        fail: "Please check your information again.",
+      },
+    };
 
-   if (!email || !email.includes("@")) {
-    showTemporaryPopup(messages[lang].invalid, true);
-    return;
-  }
+    if (!email || !email.includes("@")) {
+      showTemporaryPopup(messages[lang].invalid, true);
+      return;
+    }
 
-  setLoading(true);
-  try {
-    const res = await axios.post("https://op-backend-60ti.onrender.com/api/save-email", { email });
-    setEmail("");
-    showTemporaryPopup(messages[lang].success);
-  } catch (err) {
-    console.error(err);
-    showTemporaryPopup(messages[lang].fail, true);
-  } finally {
-    setLoading(false);
-  }
+    setLoading(true);
+    try {
+      const res = await axios.post("https://op-backend-60ti.onrender.com/api/save-email", { email });
+      setEmail("");
+      showTemporaryPopup(messages[lang].success);
+    } catch (err) {
+      console.error(err);
+      showTemporaryPopup(messages[lang].fail, true);
+    } finally {
+      setLoading(false);
+    }
   };
 
 
@@ -106,6 +106,7 @@ function Footer() {
 
       {/* 🔹 Footer content */}
       <footer
+        className="footer"
         style={{
           width: "100%",
           background: "#1D2C5B",
@@ -116,6 +117,7 @@ function Footer() {
         }}
       >
         <div
+          className="footer-container"
           style={{
             display: "flex",
             flexDirection: "row",
@@ -128,49 +130,50 @@ function Footer() {
           }}
         >
           {/* Left: Logo + Info */}
-          <div style={{ flex: 1.4, minWidth: 400, display: "flex", flexDirection: "column", gap: 18 ,transform: "translateX(-60px)"}}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ flex: 1.4, minWidth: 400, display: "flex", flexDirection: "column", gap: 18, transform: "translateX(-60px)" }}>
+            <div className="logo-footer" style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <img src={logo} alt="Logo" style={{ width: 180 }} />
             </div>
-            <div style={{ color: "#E8EEF9", fontSize: 16, fontWeight: 400, lineHeight: 1.9 }}>
+            <div className="info-text" style={{ color: "#E8EEF9", fontSize: 16, fontWeight: 400, lineHeight: 1.9 }}>
               <div>TEL / FAX : (+82) 51-715-0607</div>
               <div>주소: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)</div>
               <div>사업자등록번호: 740-87-03727</div>
             </div>
-            <div style={{ color: "#AFC4E8", fontSize: 13, marginTop: 24 }}>
+            <div className="reserve" style={{ color: "#AFC4E8", fontSize: 13, marginTop: 24 }}>
               ONE PASS INC. © all right reserve
             </div>
           </div>
 
           {/* Center: Quick Links */}
-          <div style={{ flex: 1, minWidth: 220, display: "flex", flexDirection: "column" }}>
-              <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 16 }}>Quick Link’s</div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Link to="/Introduction" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                  회사 소개
-                </Link>
-                <Link to="/Service" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                  서비스
-                </Link>
-                <Link to="/News" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                  뉴스룸
-                </Link>
-                {/* Support tab: Terms-of-Use */}
-                <Link to="/Support" state={{ tab: "Terms-of-Use" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                  이용약관
-                </Link>
-                {/* Support tab: personal-information */}
-                <Link to="/Support" state={{ tab: "personal-information" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                  개인정보처리방침
-                </Link>
-              </div>
+          <div className="Quick-Links" style={{ flex: 1, minWidth: 220, display: "flex", flexDirection: "column" }}>
+            <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 16 }}>Quick Link’s</div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Link to="/Introduction" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                회사 소개
+              </Link>
+              <Link to="/Service" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                서비스
+              </Link>
+              <Link to="/News" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                뉴스룸
+              </Link>
+              {/* Support tab: Terms-of-Use */}
+              <Link to="/Support" state={{ tab: "Terms-of-Use" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                이용약관
+              </Link>
+              {/* Support tab: personal-information */}
+              <Link to="/Support" state={{ tab: "personal-information" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
+                개인정보처리방침
+              </Link>
+            </div>
           </div>
 
           {/* Right: Subscribe */}
-          <div style={{ flex: 1.2, minWidth: 300, display: "flex", flexDirection: "column", gap: 18 }}>
-            <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>For Every Update.</div>
+          <div className="subscribe-box" style={{ flex: 1.2, minWidth: 300, display: "flex",  gap: 18 }}>
+            <div class="update-title" style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>For Every Update.</div>
 
             <div
+              class="update-input-box"
               style={{
                 width: 420,
                 maxWidth: "100%",
@@ -214,12 +217,12 @@ function Footer() {
             </div>
 
             {/* Social icons */}
-            <div style={{ display: "flex", gap: 20, marginTop: 18 }}>
+            <div className="social-row" style={{ display: "flex", gap: 20, marginTop: 18 }}>
               <a href="https://www.facebook.com/profile.php?id=61581863960708" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src={facebookLogo} alt="Facebook" style={{ width: 28, height: 28 }} />
               </a>
               <a href="https://www.tiktok.com/@onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-               <img src={tiktokLogo} alt="Tiktok" style={{ width: 28, height: 28 }} />
+                <img src={tiktokLogo} alt="Tiktok" style={{ width: 28, height: 28 }} />
               </a>
               <img src={youtubeLogo} alt="YouTube" style={{ width: 28, height: 28 }} />
               <a href="https://blog.naver.com/onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Naver Blog">
@@ -228,6 +231,125 @@ function Footer() {
             </div>
           </div>
         </div>
+        <style>
+          {`
+         
+
+         @media (max-width: 768px) {
+            .footer{
+            padding: 10px 0 !important;
+            
+            }   
+
+            .reserve{
+              margin-left: 15px !important;
+              font-size: 22px !important;
+              transform: translateY(-80px) !important;
+            }
+
+            .logo-footer{
+              transform: translate(-120px, -80px) !important;
+             
+            }
+            .info-text{
+              padding: 0 20px !important;
+              transform: translateY(-80px) !important;
+            }
+            .social-row{
+              transform: translateX(120px) !important;
+            }
+            .update-title{
+              font-size: 30px !important;
+              text-align: left !important;
+            }
+
+           .Quick-Links{ display: none !important; }
+             
+           .footer-container {
+               flex-direction: column !important;
+               align-items: center !important;
+               text-align: center !important;
+               gap: 32px !important;
+               padding: 0px 0px !important;
+              }
+
+             /* Logo + info */
+           .footer-container > div {
+               transform: none !important;
+              min-width: 100% !important;
+              text-align: justify !important;
+              
+             }
+
+ 
+            .subscribe-box {
+               order: -1 !important;
+               width: 100% !important;
+               align-items: center !important;
+             }
+
+  .subscribe-box div {
+    width: 100% !important;
+  }
+
+  .subscribe-box input {
+    font-size: 15px !important;
+  }
+
+  /* Logo căn giữa */
+  .footer-container img[alt="Logo"] {
+    margin: 0 auto !important;
+  }
+
+  /* Social icons */
+  .subscribe-box div:last-child {
+    justify-content: center !important;
+  }
+
+  /* Quick links */
+  .footer-container a {
+    font-size: 15px !important;
+  }
+
+  /* Padding và font nhỏ hơn */
+  footer {
+    padding: 30px 16px !important;
+  }
+}
+
+      @media (max-width: 430px) {
+        .logo-footer{
+              transform: translate(-120px, -80px) !important;
+             
+            }
+            .info-text{
+              padding: 0 20px !important;
+            }
+            .social-row{
+              transform: translateX(120px) !important;
+            }
+            .update-title{
+              font-size: 30px !important;
+              text-align: left !important;
+            }
+    .Quick-Links{
+     display: none !important; 
+    }
+
+  .subscribe-box input {
+    height: 42px !important;
+  }
+  .subscribe-box button {
+    height: 42px !important;
+    font-size: 14px !important;
+    padding: 0 18px !important;
+  }
+  .footer-container {
+    gap: 24px !important;
+  }
+}
+        `}
+        </style>
       </footer>
     </>
   );

@@ -122,7 +122,7 @@ function Introduction() {
         </div>
         {/* Main content row */}
 
-        <div
+        <div className="consultation-bar"
           style={{
             position: "fixed",
             bottom: 0,
@@ -327,10 +327,10 @@ function Introduction() {
         </div>
       </section>
 
-      <section style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
+      <section className="about-section" style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", gap: 40 }}>
           {/* Left: Image */}
-          <div style={{ flex: 1 }}>
+          <div className="img-about" style={{ flex: 1 }}>
             <img
               src={meetingImg}
               alt="meeting"
@@ -339,11 +339,11 @@ function Introduction() {
           </div>
 
           {/* Right: Content */}
-          <div style={{ flex: 1 }}>
-            <h2 style={{ fontFamily: "SVN-Gilroy", fontWeight: 700, fontSize: 28, color: "#111", marginBottom: 20 }}>
+          <div className="Content-about" style={{ flex: 1 }}>
+            <h2 className="Content-about-h2" style={{ fontFamily: "SVN-Gilroy", fontWeight: 700, fontSize: 28, color: "#111", marginBottom: 20 }}>
               한 번에 끝나는 행정 업무
             </h2>
-            <p style={{ fontSize: 16, lineHeight: 1.7, color: "#222", textAlign: "justify", marginBottom: 40 }}>
+            <p className="Content-about-p" style={{ fontSize: 16, lineHeight: 1.7, color: "#222", textAlign: "justify", marginBottom: 40 }}>
               2025년, 대한민국 부산에서 원패스(One Pass)가 힘찬 첫걸음을 시작했습니다.
               원패스는 베트남 관련 행정 절차에 대한 가장 정확한 지원과 해결책을
               제공하기 위해 탄생한 행정 대행 및 솔루션 기업입니다. 여권, 비자, 결혼 서류,
@@ -353,7 +353,7 @@ function Introduction() {
             </p>
 
             {/* Contact Box */}
-            <div style={{
+            <div className="Content-about-box" style={{
               display: "flex",
               alignItems: "center",
               background: "#dcc38f",   // màu nền vàng nhạt
@@ -362,7 +362,7 @@ function Introduction() {
               maxWidth: 420
             }}>
               {/* Icon box */}
-              <div style={{
+              <div className="Content-about-icon" style={{
                 width: 60,
                 height: 60,
                 background: "#fff",
@@ -377,7 +377,7 @@ function Introduction() {
               </div>
 
               {/* Text */}
-              <div>
+              <div className="Content-about-text">
                 <div style={{ fontWeight: 700, fontSize: 18, marginBottom: 4, color: "#ffffffff" }}>상담 신청</div>
                 <div style={{ fontSize: 15, color: "#ffffffff" }}>
                   전화번호: <span style={{ color: "#2B3A67", fontWeight: 700 }}>    (+82) 51-715-0607</span>
@@ -386,6 +386,99 @@ function Introduction() {
             </div>
           </div>
         </div>
+
+              <style>
+            {`
+  /* --- Responsive cho phần giới thiệu --- */
+  @media (max-width: 1024px) {
+    .about-section {
+      padding: 40px 24px !important;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .about-section > div {
+      flex-direction: column !important;
+      gap: 32px !important;
+    }
+
+    .img-about {
+      width: 100% !important;
+      order: 1 !important;
+    }
+
+    .img-about img {
+      width: 100% !important;
+      border-radius: 10px !important;
+    }
+
+    .Content-about {
+      order: 2 !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+
+    .Content-about-h2 {
+      font-size: 24px !important;
+      text-align: center !important;
+      margin-bottom: 16px !important;
+    }
+
+    .Content-about-p {
+      font-size: 15px !important;
+      line-height: 1.6 !important;
+      margin-bottom: 32px !important;
+      text-align: justify !important;
+    }
+
+    .Content-about-box {
+      margin: 0 auto !important;
+      max-width: 100% !important;
+      padding: 14px 18px !important;
+      justify-content: flex-start !important;
+    }
+
+    .Content-about-icon {
+      width: 50px !important;
+      height: 50px !important;
+      margin-right: 12px !important;
+    }
+
+    .Content-about-text div:first-child {
+      font-size: 16px !important;
+    }
+
+    .Content-about-text div:last-child {
+      font-size: 14px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-section {
+      padding: 32px 16px !important;
+    }
+
+    .Content-about-h2 {
+      font-size: 20px !important;
+    }
+
+    .Content-about-p {
+      font-size: 14px !important;
+    }
+
+              .Content-about-box {
+                flex-direction: row !important;
+                align-items: center !important;
+                padding: 12px 14px !important;
+              }
+
+            .Content-about-icon {
+                width: 44px !important;
+                height: 44px !important;
+              }
+            }
+          `}
+         </style>
       </section>
 
       <section
@@ -439,7 +532,7 @@ function Introduction() {
 
       <section>
         {/* Phần giữa: nền trắng */}
-        <div style={{ background: "#fff", padding: "60px 20px" }}>
+        <div className="about-min" style={{ background: "#fff", padding: "60px 20px" }}>
           <div
             style={{
               maxWidth: "1100px",
@@ -451,14 +544,14 @@ function Introduction() {
             }}
           >
             {/* Bên trái */}
-            <div>
+            <div className="about-min-right">
               <h3 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "20px" }}>
                 고객과 함께 걸어온 발자취, <br />
                 끝까지 함께 하겠습니다.
               </h3>
 
               {/* Stats */}
-              <div
+              <div 
                 style={{
                   display: "flex",
                   gap: "40px",
@@ -481,11 +574,11 @@ function Introduction() {
             </div>
 
             {/* Bên phải */}
-            <div>
+            <div className="about-min-right">
               <h4 style={{ fontSize: "18px", fontWeight: "700", marginBottom: "15px" }}>
                 고객께 드리는 원패스의 약속
               </h4>
-              <ul style={{ lineHeight: 1.8, fontSize: "18px", color: "#333" }}>
+              <ul className="about-min-right-ul" style={{ lineHeight: 1.8, fontSize: "18px", color: "#333" }}>
                 <li>
                   <strong>마음의 평화:</strong> 복잡하고 어려운 서류 절차를 전문가에게 맡겨, 고객님은 더 이상 고민하거나
                   불안해하지 않으셔도 됩니다.
@@ -520,16 +613,122 @@ function Introduction() {
         >
           OUR MISSION
         </div>
+
+          <style>
+{`
+  /* --- Responsive cho about-min section --- */
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .about-min {
+      padding: 50px 24px !important;
+    }
+
+    .about-min-right h3 {
+      font-size: 28px !important;
+    }
+
+    .about-min-right-ul {
+      font-size: 17px !important;
+    }
+  }
+
+  /* Mobile layout */
+  @media (max-width: 800px) {
+    .about-min {
+      padding: 40px 16px !important;
+    }
+
+    .about-min > div {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+
+    .about-min-right h3 {
+      font-size: 24px !important;
+      text-align: center !important;
+    }
+
+    .about-min-right h4 {
+      font-size: 17px !important;
+      text-align: center !important;
+    }
+
+    .about-min-right-ul {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+      text-align: justify !important;
+    }
+
+    /* Stats - cho 3 cột thành 1 hàng hoặc 2 hàng đẹp */
+    .about-min-right div[style*="display: flex"] {
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 24px !important;
+      margin-top: 50px !important;
+    }
+
+    .about-min-right div[style*="text-align: center"] {
+      flex: 1 1 100px !important;
+    }
+
+    .about-min-right p {
+      font-size: 14px !important;
+    }
+
+    .about-min-right p:first-child {
+      font-size: 38px !important;
+    }
+  }
+
+  /* iPhone 14 Pro Max (430px) */
+  @media (max-width: 480px) {
+    .about-min {
+      padding: 32px 12px !important;
+    }
+
+    .about-min-right h3 {
+      font-size: 20px !important;
+      line-height: 1.4 !important;
+    }
+
+    .about-min-right-ul {
+      font-size: 14px !important;
+    }
+
+    .about-min-right div[style*="display: flex"] {
+      gap: 20px !important;
+      margin-top: 40px !important;
+    }
+
+    .about-min-right div[style*="text-align: center"] p:first-child {
+      font-size: 34px !important;
+    }
+
+    .about-min-right div[style*="text-align: center"] p:last-child {
+      font-size: 13px !important;
+    }
+
+    /* OUR MISSION footer */
+    .about-min + div {
+      font-size: 22px !important;
+      padding: 16px 0 !important;
+    }
+  }
+`}
+</style>
+
       </section>
 
 
 
-      <section style={{ background: "#fff", width: "100vw", padding: "60px 0" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
+      <section className="about-grid" style={{ background: "#fff", width: "100vw", padding: "60px 0" }}>
+        <div  style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
           {/* Grid 2x2 */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
+          <div className="about-grid-main" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
             {CARDS.map((card, idx) => (
               <div
+                className="about-grid-card"
                 key={idx}
                 style={{
                   display: "flex",
@@ -541,7 +740,7 @@ function Introduction() {
                 }}
               >
                 {/* Text left */}
-                <div style={{ flex: 1, padding: "20px" }}>
+                <div className="about-grid-left" style={{ flex: 1, padding: "20px" }}>
                   <h3 style={{ fontWeight: 700, fontSize: 24, marginBottom: 10 }}>
                     {card.title}
                   </h3>
@@ -561,7 +760,7 @@ function Introduction() {
           </div>
 
           {/* Paragraphs below */}
-          <div style={{ marginTop: 50 }}>
+          <div className="about-grid-right" style={{ marginTop: 50 }}>
             <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 12, color: "#111" }}>
               복잡함을 넘어, 쉬운 길을 열다
             </h3>
@@ -577,6 +776,113 @@ function Introduction() {
             </p>
           </div>
         </div>
+        <style>
+          {`
+              /* --- Responsive cho phần about-grid --- */
+              @media (max-width: 1024px) {
+                .about-grid {
+                    padding: 50px 16px !important;
+                  }
+
+    .about-grid-main {
+      gap: 24px !important;
+    }
+
+    .about-grid-card h3 {
+      font-size: 22px !important;
+    }
+
+    .about-grid-card p {
+      font-size: 16px !important;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .about-grid-main {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+
+    .about-grid-card {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      overflow: hidden !important;
+    }
+
+    .about-grid-left {
+      order: 2 !important;
+      padding: 20px 16px !important;
+    }
+
+    .about-grid-card img {
+      order: 1 !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: 220px !important;
+      object-fit: cover !important;
+    }
+
+    .about-grid-card h3 {
+      font-size: 20px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .about-grid-card p {
+      font-size: 15px !important;
+      line-height: 1.6 !important;
+    }
+
+    .about-grid-right {
+      margin-top: 40px !important;
+    }
+
+    .about-grid-right h3 {
+      font-size: 17px !important;
+      text-align: center !important;
+    }
+
+    .about-grid-right p {
+      font-size: 14.5px !important;
+      text-align: justify !important;
+      line-height: 1.7 !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-grid {
+      padding: 40px 12px !important;
+    }
+
+    .about-grid-main {
+      gap: 22px !important;
+    }
+
+    .about-grid-card {
+      border-radius: 8px !important;
+    }
+
+    .about-grid-card img {
+      max-height: 180px !important;
+    }
+
+    .about-grid-card h3 {
+      font-size: 18px !important;
+    }
+
+    .about-grid-card p {
+      font-size: 14px !important;
+    }
+
+    .about-grid-right h3 {
+      font-size: 16px !important;
+    }
+
+    .about-grid-right p {
+      font-size: 13.5px !important;
+    }
+  }
+`}
+</style>
       </section>
 
     </>

@@ -124,20 +124,6 @@ function Header() {
               </div>
             </nav>
 
-            {/* Mobile Menu Button */}
-            {/* 🍔 Menu icon (chỉ hiện khi responsive) */}
-            <button
-              className="mobile-menu-btn"
-              onClick={() => setShowMobileMenu(!showMobileMenu)}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <span style={{ fontSize: 28, color: "#fff" }}>☰</span>
-            </button>
-            {/* Ngôn ngữ */}
             <div
               className="header-right"
               style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 20 }}

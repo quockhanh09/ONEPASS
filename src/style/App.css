@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -1591,7 +1592,7 @@ span {
 }
 
 .news-container-guardian {
-  max-width: 1350px;
+max-width: 1350px;
   margin: 0 auto;
   padding: 40px;
   text-align: justify;
@@ -2343,7 +2344,7 @@ float: right;
 }
 
 .subscribe-box {
-  background: #181818;
+  
   border-radius: 18px;
   padding: 32px 40px;
   display: flex;
@@ -5026,4 +5027,26 @@ a.nav-link.active .icon-img {
   .about-stats > div > div:last-child {
     font-size: 15px !important;
   }
+}
+@media (max-width: 900px) {
+  .consultation-bar{
+    display: none !important;  
+  }
+}
+
+@media (max-width: 768px) {
+  .consultation-bar{
+    display: none !important;  
+  }
+}
+@media (max-width: 900px) {
+.text-consult{
+  font-size: 20px !important;
+}
+}
+
+@media (max-width: 768px) {
+.text-consult{
+  font-size: 20px !important;
+}
 }

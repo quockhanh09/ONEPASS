@@ -467,7 +467,7 @@ function Support() {
           </h1>
         </div>
 
-        <div
+             <div className="consultation-bar"
                   style={{
                     position: "fixed",
                     bottom: 0,

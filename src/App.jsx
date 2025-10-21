@@ -40,6 +40,45 @@ import a36 from "./assets/img/a36.png";
 import n1 from "./assets/img/n1.png";
 import n2 from "./assets/img/n2.png";
 import n3 from "./assets/img/n3.png";
+
+
+import certIcon from "./assets/img/s1-1icon.png";
+import certActive from "./assets/img/s1-1icon.png";
+import certHover from "./assets/img/s1-1icon.png";
+
+import marriageIcon from "./assets/img/s2icon.png";
+import marriageActive from "./assets/img/s2-2icon.png";
+import marriageHover from "./assets/img/s2-2icon.png";
+
+import birthIcon from "./assets/img/s3icon.png";
+import birthActive from "./assets/img/s3-3icon.png";
+import birthHover from "./assets/img/s3-3icon.png";
+
+import travelHover from "./assets/img/s4-4icon.png";
+import travelIcon from "./assets/img/s4icon.png";
+import travelActive from "./assets/img/s4-4icon.png";
+
+import idHover from "./assets/img/s5-5icon.png";
+import idIcon from "./assets/img/s5icon.png";
+import idActive from "./assets/img/s5-5icon.png";
+
+import adoptionHover from "./assets/img/s6-6icon.png";
+import adoptionIcon from "./assets/img/s6icon.png";
+import adoptionActive from "./assets/img/s6-6icon.png";
+
+import visaHover from "./assets/img/s7-7icon.png";
+import visaIcon from "./assets/img/s7icon.png";
+import visaActive from "./assets/img/s7-7icon.png";
+
+import lawIcon from "./assets/img/s8icon.png";
+import lawActive from "./assets/img/s8-8icon.png";
+import lawHover from "./assets/img/s8-8icon.png";
+
+import etcHover from "./assets/img/s9-9icon.png";
+import etcIcon from "./assets/img/s9icon.png";
+import etcActive from "./assets/img/s9-9icon.png";
+
+
 import { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -184,15 +223,60 @@ function App() {
 
 
   const services = [
-    { title: "인증 센터" },
-    { title: "결혼 이민" },
-    { title: "출생신고" },
-    { title: "출입국 행정" },
-    { title: "신분증명 서류" },
-    { title: "입양 • 자녀 인지" },
-    { title: "비자 대행" },
-    { title: "법률 컨설팅" },
-    { title: "B2B 서비스" },
+    {
+      title: "인증 센터",
+      icon: certIcon,
+      activeIcon: certActive,
+      hoverIcon: certHover
+    },
+    {
+      title: "결혼 이민",
+      icon: marriageIcon,
+      activeIcon: marriageActive,
+      hoverIcon: marriageHover
+    },
+    {
+      title: "출생신고",
+      icon: birthIcon,
+      activeIcon: birthActive,
+      hoverIcon: birthHover
+    },
+    {
+      title: "출입국 행정",
+      icon: travelIcon,
+      activeIcon: travelActive,
+      hoverIcon: travelHover
+    },
+    {
+      title: "신분증명 서류",
+      icon: idIcon,
+      activeIcon: idActive,
+      hoverIcon: idHover
+    },
+    {
+      title: "입양 • 자녀 인지",
+      icon: adoptionIcon,
+      activeIcon: adoptionActive,
+      hoverIcon: adoptionHover
+    },
+    {
+      title: "비자 대행",
+      icon: visaIcon,
+      activeIcon: visaActive,
+      hoverIcon: visaHover
+    },
+    {
+      title: "법률 컨설팅",
+      icon: lawIcon,
+      activeIcon: lawActive,
+      hoverIcon: lawHover
+    },
+    {
+      title: "B2B 서비스",
+      icon: etcIcon,
+      activeIcon: etcActive,
+      hoverIcon: etcHover
+    },
   ];
 
   const navigate = useNavigate();
@@ -268,7 +352,7 @@ function App() {
   const [news, setNews] = useState(newsData);
 
   // animated stats: display numbers that count up on mount
-  const statsTarget = { satisfied: 90, cases: 67, consult: 23 };
+  const statsTarget = { satisfied: 380, cases: 240, consult: 2300 };
   const [displayStats, setDisplayStats] = useState({ satisfied: 0, cases: 0, consult: 0 });
 
   useEffect(() => {
@@ -504,102 +588,102 @@ function App() {
                 }}
               >
                 <div
-  className="parallax-window fullscreen hero-flex"
-  style={{
-    width: "100vw",
-    height: "70vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    overflow: "hidden",
-  }}
->
-  <div
-    style={{
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: 18,
-      padding: "0 16px",
-    }}
-  >
-    <h1
-      style={{
-        color: "#fff",
-        fontSize: "clamp(28px, 6vw, 56px)",
-        fontWeight: 700,
-        letterSpacing: 2,
-        textTransform: "uppercase",
-        margin: 0,
-        textAlign: "center",
-        lineHeight: 1.3,
-        whiteSpace: "pre-line",
-      }}
-    >
-      {language === "VI"
-        ? "ONE PASS GIẢI PHÁP NHANH,\nKẾT QUẢ CHẮC"
-        : "ONE PASS, 한번에 PASS"}
-    </h1>
+                  className="parallax-window fullscreen hero-flex"
+                  style={{
+                    width: "100vw",
+                    height: "70vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 18,
+                      padding: "0 16px",
+                    }}
+                  >
+                    <h1
+                      style={{
+                        color: "#fff",
+                        fontSize: "clamp(28px, 6vw, 56px)",
+                        fontWeight: 700,
+                        letterSpacing: 2,
+                        textTransform: "uppercase",
+                        margin: 0,
+                        textAlign: "center",
+                        lineHeight: 1.3,
+                        whiteSpace: "pre-line",
+                      }}
+                    >
+                      {language === "VI"
+                        ? "ONE PASS GIẢI PHÁP NHANH,\nKẾT QUẢ CHẮC"
+                        : "ONE PASS, 한번에 PASS"}
+                    </h1>
 
-    <div style={{ width: "90%", maxWidth: 920 }}>
-      <form
-        style={{
-          display: "flex",
-          alignItems: "center",
-          height: 56,
-          background: "rgba(255,255,255,0.06)",
-          borderRadius: 10,
-          border: "1px solid rgba(255, 255, 255, 1)",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            paddingLeft: 16,
-          }}
-        >
-          <input
-            className="search-hero"
-            type="text"
-            placeholder="검색어를 입력하세요"
-            style={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-              outline: "none",
-              background: "transparent",
-              color: "#fff",
-              fontSize: 18,
-            }}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            height: "100%",
-            minWidth: 64,
-            background: "rgba(255,255,255,0.06)",
-            border: "none",
-            color: "#fff",
-            fontSize: 20,
-            cursor: "pointer",
-          }}
-        >
-          🔍
-        </button>
-      </form>
-    </div>
-  </div>
+                    <div style={{ width: "90%", maxWidth: 920 }}>
+                      <form
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          height: 56,
+                          background: "rgba(255,255,255,0.06)",
+                          borderRadius: 10,
+                          border: "1px solid rgba(255, 255, 255, 1)",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <div
+                          style={{
+                            flex: 1,
+                            height: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            paddingLeft: 16,
+                          }}
+                        >
+                          <input
+                            className="search-hero"
+                            type="text"
+                            placeholder="검색어를 입력하세요"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              border: "none",
+                              outline: "none",
+                              background: "transparent",
+                              color: "#fff",
+                              fontSize: 18,
+                            }}
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          style={{
+                            height: "100%",
+                            minWidth: 64,
+                            background: "rgba(255,255,255,0.06)",
+                            border: "none",
+                            color: "#fff",
+                            fontSize: 20,
+                            cursor: "pointer",
+                          }}
+                        >
+                          🔍
+                        </button>
+                      </form>
+                    </div>
+                  </div>
 
-  {/* Responsive style */}
-  <style>
-    {`
+                  {/* Responsive style */}
+                  <style>
+                    {`
       @media (max-width: 768px) {
         .hero-flex {
           height: 60vh !important;
@@ -636,11 +720,12 @@ function App() {
         }
       }
     `}
-  </style>
-</div>
+                  </style>
+                </div>
 
 
-                <div
+                <div 
+                className="consultation-bar"
                   style={{
                     position: "fixed",
                     bottom: 0,
@@ -761,7 +846,7 @@ function App() {
                         boxSizing: "border-box",
                       }}
                     >
-                      <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+                      <option value="">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                       <option value="+82">+82</option>
                       <option value="+84">+84</option>
                     </select>
@@ -866,74 +951,237 @@ function App() {
                 </div>
               </section>
 
-              <section id="about" className="about section" style={{ background: "#ffffffff", padding: "40px 0" }}>
-                <div className="about-container" style={{
-                  maxWidth: "1300px",
-                  margin: "0 auto",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  gap: "100px",
-                }} > {/* LEFT */}
-                  <div style={{ flex: 1 }}>
-                    <h2 style={{
-                      fontSize: "32px",
-                      fontWeight: "800",
-                      color: "#000",
-                      marginBottom: "40px",
-                      lineHeight: "1.5",
-                    }} > 고객님의 모든 행정 절차, 전문<br />적인 책임감으로 해결해 드리겠습니다.
-                    </h2> 
-                    <div className="about-stats" style={{ display: "flex", gap: "60px", }} >
-                      {/* Item 1 */} <div style={{ textAlign: "center" }}>
-                        <div style={{ fontSize: "40px", fontWeight: "700", color: "#2f4d90", }} >
-                          {displayStats.satisfied}
-                        </div>
-                        <div style={{ fontSize: "18px", marginTop: "8px" }}>
-                          만족 고객 수
-                        </div>
+              <section
+                id="about"
+                className="about section"
+                style={{ background: "#fff", padding: "40px 0" }}
+              >
+                <div
+                  className="about-container"
+                  style={{
+                    maxWidth: "1300px",
+                    margin: "0 auto",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    gap: "100px",
+                    flexWrap: "wrap",
+                    padding: "0 20px",
+                  }}
+                >
+                  {/* LEFT */}
+                  <div style={{ flex: 1, minWidth: "320px" }}>
+                    <h2
+                      style={{
+                        fontSize: "32px",
+                        fontWeight: "800",
+                        color: "#000",
+                        marginBottom: "40px",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      고객님의 모든 행정 절차, 전문
+                      <br />
+                      적인 책임감으로 해결해 드리겠습니다.
+                    </h2>
+
+                    {/* ✅ Stats Section */}
+                    <div
+                      className="about-stats"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        textAlign: "center",
+                        gap: "10px",
+                        flexWrap: "nowrap",
+                      }}
+                    >
+                      <div className="stat-item" style={{ flex: 1 }}>
+                        <div className="stat-number">{displayStats.satisfied}</div>
+                        <div className="stat-label">만족 고객 수</div>
                       </div>
-                      {/* Item 2 */}
-                      <div style={{ textAlign: "center" }}>
-                        <div style={{
-                          fontSize: "40px",
-                          fontWeight: "700",
-                          color: "#2f4d90",
-                        }} >
-                          {displayStats.cases}
-                        </div>
-                        <div style={{ fontSize: "18px", marginTop: "8px" }}>
-                          접수 사례건 수
-                        </div>
+                      <div className="stat-item" style={{ flex: 1 }}>
+                        <div className="stat-number">{displayStats.cases}</div>
+                        <div className="stat-label">접수 사례건 수</div>
                       </div>
-                      {/* Item 3 */}
-                      <div style={{ textAlign: "center" }}>
-                        <div style={{ fontSize: "40px", fontWeight: "700", color: "#2f4d90", }} >
-                          {displayStats.consult}
-                        </div>
-                        <div style={{ fontSize: "18px", marginTop: "8px" }}>
-                          누적 상담건 수
-                        </div>
+                      <div className="stat-item" style={{ flex: 1 }}>
+                        <div className="stat-number">{displayStats.consult}</div>
+                        <div className="stat-label">누적 상담건 수</div>
                       </div>
                     </div>
                   </div>
+
                   {/* RIGHT */}
-                  <div style={{ flex: 1 }}>
-                    <h3 className="about-text" style={{ fontSize: "24px", fontWeight: "700", color: "#2f4d90", marginBottom: "20px", fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }} >
+                  <div
+                    className="about-right"
+                    style={{
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      minWidth: "320px",
+                    }}
+                  >
+                    <h3
+                      className="about-text"
+                      style={{
+                        fontSize: "24px",
+                        fontWeight: "700",
+                        color: "#2f4d90",
+                        marginBottom: "20px",
+                        fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif",
+                      }}
+                    >
                       ABOUT US
                     </h3>
-                    <p style={{ fontSize: "18px", lineHeight: "1.7", color: "#333", marginBottom: "30px", textAlign: "justify" }} >
-                      2025년, 대한민국 부산에서 원패스(One Pass)가 힘찬 첫걸음을 시작했습니다. 원패스는 베트남 관련 행정 절차에 대한 가장 정확한 지원과 해결책을 제공하기 위해 탄생한 행정 대행 및 솔루션 회사입니다. 여권, 비자, 결혼 서류, 영사 확인 및 공증 등 모든 행정 업무에 대해 정확한 컨설팅 및 지원 서비스를 베트남인과 한국인 모두에게 제공하며, 고객의 시간과 노력을 절약하는 가장 효율적인 길을 열어 드립니다.
+
+                    <p
+                      style={{
+                        fontSize: "18px",
+                        lineHeight: "1.7",
+                        color: "#333",
+                        marginBottom: "30px",
+                        textAlign: "justify",
+                      }}
+                    >
+                      2025년, 대한민국 부산에서 원패스(One Pass)가 힘찬 첫걸음을 시작했습니다.
+                      원패스는 베트남 관련 행정 절차에 대한 가장 정확한 지원과 해결책을 제공하기
+                      위해 탄생한 행정 대행 및 솔루션 회사입니다. 여권, 비자, 결혼 서류, 영사
+                      확인 및 공증 등 모든 행정 업무에 대해 정확한 컨설팅 및 지원 서비스를
+                      베트남인과 한국인 모두에게 제공하며, 고객의 시간과 노력을 절약하는 가장
+                      효율적인 길을 열어 드립니다.
                     </p>
-                    <Link to="/Introduction" style={{ textDecoration: 'none' }}>
-                      <button className="about-btn" style={{ padding: "12px 28px", backgroundColor: "#2f4d90", color: "#fff", fontSize: "15px", border: "none", borderRadius: "4px", cursor: "pointer", }} >
-                        더보기
-                      </button>
-                    </Link>
+
+                    {/* ✅ Nút căn phải */}
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                      <Link to="/Introduction" style={{ textDecoration: "none" }}>
+                        <button
+                          className="about-btn"
+                          style={{
+                            padding: "12px 28px",
+                            backgroundColor: "#2f4d90",
+                            color: "#fff",
+                            fontSize: "15px",
+                            border: "none",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          더보기
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                
+
+                {/* ✅ Responsive CSS */}
+                <style>
+                  {`
+      /* --- Default (Desktop ≥1200px) --- */
+      .about-stats .stat-number {
+        font-size: 60px;
+        font-weight: 800;
+        color: #2f4d90;
+      }
+
+      .about-stats .stat-label {
+        font-size: 20px;
+        margin-top: 10px;
+        color: #111;
+      }
+
+      /* --- Tablet & iPhone Pro Max (400–800px) --- */
+      @media (min-width: 400px) and (max-width: 800px) {
+        .about-container {
+          flex-direction: column;
+          align-items: center;
+          gap: 60px !important;
+        }
+
+        .about-stats {
+          justify-content: space-around !important;
+          gap: 10px !important;
+          flex-wrap: nowrap !important;
+        }
+
+        .about-stats .stat-number {
+          font-size: 72px !important;
+        }
+
+        .about-stats .stat-label {
+          font-size: 22px !important;
+        }
+
+        .about h2 {
+          font-size: 28px !important;
+          text-align: center !important;
+        }
+
+        .about-right p {
+          font-size: 17px !important;
+        }
+
+        .about-right div:last-child {
+          display: flex !important;
+          justify-content: flex-end !important;
+        }
+      }
+
+      /* --- Mobile nhỏ (≤399px) --- */
+      @media (max-width: 399px) {
+        .about-container {
+          flex-direction: column;
+          align-items: center;
+          padding: 0 16px !important;
+          gap: 40px;
+        }
+
+        .about-stats {
+          flex-direction: row !important;
+          justify-content: space-around !important;
+          gap: 5px !important;
+        }
+
+        .about-stats .stat-number {
+          font-size: 50px !important;
+        }
+
+        .about-stats .stat-label {
+          font-size: 16px !important;
+        }
+
+        .about h2 {
+          font-size: 24px !important;
+          text-align: center !important;
+        }
+
+        .about-right p {
+          font-size: 15px !important;
+        }
+
+        .about-btn {
+          padding: 10px 22px !important;
+          font-size: 14px !important;
+        }
+
+        .about-right div:last-child {
+          justify-content: flex-end !important;
+        }
+      }
+
+      /* --- Tablet lớn đến desktop vừa (801–1199px) --- */
+      @media (min-width: 801px) and (max-width: 1199px) {
+        .about-stats .stat-number {
+          font-size: 64px;
+        }
+        .about-stats .stat-label {
+          font-size: 20px;
+        }
+      }
+    `}
+                </style>
               </section>
+
 
               <section className="text-white py-20" style={{ background: '#2B3A67' }}>
                 <div className="max-w-7xl mx-auto px-6">
@@ -1018,20 +1266,90 @@ function App() {
               </section>
 
               {/* Tin nổi bật section */}
-              <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 0 80px 0' }}>
-                <div style={{ textAlign: 'center', marginBottom: 32 }}>
-                  <div style={{ color: '#E3DCCC', fontWeight: 800, letterSpacing: '0.25em', fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif", fontSize: 24, marginBottom: 8 }}>NEWSROOM</div>
-                  <div style={{ color: '#0B2447', fontWeight: 900, fontSize: 30, lineHeight: 1.3 }}>원패스의 최신 소식과 정보를 놓치지 마세요</div>
+              <section
+                style={{
+                  maxWidth: 1200,
+                  margin: "0 auto",
+                  padding: "80px 0 80px 0",
+                }}
+              >
+                {/* TITLE */}
+                <div style={{ textAlign: "center", marginBottom: 32 }}>
+                  <div
+                    style={{
+                      color: "#E3DCCC",
+                      fontWeight: 800,
+                      letterSpacing: "0.25em",
+                      fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif",
+                      fontSize: 24,
+                      marginBottom: 8,
+                    }}
+                  >
+                    NEWSROOM
+                  </div>
+                  <div
+                    style={{
+                      color: "#0B2447",
+                      fontWeight: 900,
+                      fontSize: 30,
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    원패스의 최신 소식과 정보를 놓치지 마세요!
+                  </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 40 }}>
+                {/* POSTS */}
+                <div
+                  className="news-grid"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr 1fr",
+                    gap: 40,
+                  }}
+                >
                   {posts.map((p, idx) => (
-                    <div key={idx} style={{ overflow: 'hidden', }}>
-                      <img src={p.img} alt={p.title} style={{ width: '100%', height: 220, borderRadius: 12, objectFit: 'cover' }} />
+                    <div key={idx} style={{ overflow: "hidden" }}>
+                      <img
+                        src={p.img}
+                        alt={p.title}
+                        style={{
+                          width: "100%",
+                          height: 220,
+                          borderRadius: 12,
+                          objectFit: "cover",
+                        }}
+                      />
                       <div style={{ paddingTop: 16 }}>
-                        <div style={{ color: '#7A8797', fontSize: 14, marginBottom: 8 }}>{p.date}</div>
-                        <div style={{ color: '#0B2447', fontWeight: 700, fontSize: 18, lineHeight: 1.5, marginBottom: 8 }}>{p.title}</div>
-                        <div style={{ color: '#6F7C8F', fontSize: 16, lineHeight: 1.6 }}>{p.desc}</div>
+                        <div
+                          style={{
+                            color: "#7A8797",
+                            fontSize: 14,
+                            marginBottom: 8,
+                          }}
+                        >
+                          {p.date}
+                        </div>
+                        <div
+                          style={{
+                            color: "#0B2447",
+                            fontWeight: 700,
+                            fontSize: 18,
+                            lineHeight: 1.5,
+                            marginBottom: 8,
+                          }}
+                        >
+                          {p.title}
+                        </div>
+                        <div
+                          style={{
+                            color: "#6F7C8F",
+                            fontSize: 16,
+                            lineHeight: 1.6,
+                          }}
+                        >
+                          {p.desc}
+                        </div>
                         <Link
                           to={
                             idx === 0
@@ -1040,40 +1358,119 @@ function App() {
                                 ? "/news전체 뉴스/NewsDetail2"
                                 : "/news전체 뉴스/NewsDetail3"
                           }
-                          style={{ textDecoration: 'none' }}
+                          style={{ textDecoration: "none" }}
                         >
-                          <button style={{ marginTop: 12, width: 28, height: 28, borderRadius: 6, border: '1px solid #D6DDE7', background: '#fff', color: '#0B2447' }}>→</button>
+                          <button
+                            style={{
+                              marginTop: 12,
+                              width: 28,
+                              height: 28,
+                              borderRadius: 6,
+                              border: "1px solid #D6DDE7",
+                              background: "#fff",
+                              color: "#0B2447",
+                            }}
+                          >
+                            →
+                          </button>
                         </Link>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ textAlign: 'center', marginTop: 26 }}>
-                  <Link to="/News" style={{ textDecoration: 'none' }}>
-                    <button style={{ background: '#2F4D90', color: '#fff', border: 'none', padding: '12px 50px', fontWeight: 700 }}>더 보기</button>
+                {/* MORE BUTTON */}
+                <div style={{ textAlign: "center", marginTop: 26 }}>
+                  <Link to="/News" style={{ textDecoration: "none" }}>
+                    <button
+                      style={{
+                        background: "#2F4D90",
+                        color: "#fff",
+                        border: "none",
+                        padding: "12px 50px",
+                        fontWeight: 700,
+                      }}
+                    >
+                      더 보기
+                    </button>
                   </Link>
                 </div>
+
+                {/* ✅ Responsive CSS (no effect on desktop) */}
+                <style>
+                  {`
+      @media (max-width: 768px) {
+        section {
+          padding: 40px 16px !important;
+        }
+
+        section > div:first-child {
+          margin-bottom: 24px !important;
+        }
+
+        section > div:first-child div:nth-child(1) {
+          font-size: 18px !important;
+        }
+
+        section > div:first-child div:nth-child(2) {
+          font-size: 20px !important;
+          line-height: 1.4 !important;
+          padding: 0 10px !important;
+        }
+
+        .news-grid {
+          display: flex !important;
+          overflow-x: auto !important;
+          scroll-snap-type: x mandatory !important;
+          gap: 16px !important;
+          padding: 0 8px !important;
+          -webkit-overflow-scrolling: touch !important;
+        }
+
+        .news-grid > div {
+          flex: 0 0 80% !important;
+          scroll-snap-align: start !important;
+          background: #fff !important;
+          border-radius: 12px !important;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+          padding-bottom: 12px !important;
+        }
+
+        .news-grid img {
+          height: 180px !important;
+        }
+
+        .news-grid::-webkit-scrollbar {
+          display: none !important;
+        }
+
+        button {
+          font-size: 14px !important;
+        }
+      }
+    `}
+                </style>
               </section>
+
 
 
               {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
 
-              <section style={{ background: '#CFEAEC', padding: '80px 0' }}>
-                <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+              <section className="consult-section" style={{ background: '#CFEAEC', padding: '80px 0' }}>
+                <div className="consult-container" style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
                   {/* Left copy */}
                   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignSelf: 'center' }}>
                     <div style={{ color: '#2B3A67', fontWeight: 500, letterSpacing: '0.15em', marginBottom: 12, fontSize: 24, fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }}>CONSULT</div>
-                    <h2 style={{ color: '#000000ff', fontSize: 32, fontWeight: 900, lineHeight: 1.35, margin: 0 }}>
+                    <h2 className="text-consult" style={{ color: '#000000ff', fontSize: 32, fontWeight: 900, lineHeight: 1.35, margin: 0 }}>
                       언제 어디서나, 가장 편한 방법으로
                       <br />정확한 해결책을 만나보세요.
                     </h2>
-                    <p style={{ marginTop: 20, color: '#234567', opacity: 0.85, fontSize: 16, lineHeight: 1.9, maxWidth: 520 }}>
+                    <p className="consult-text" style={{ marginTop: 20, color: '#234567', opacity: 0.85, fontSize: 16, lineHeight: 1.9, maxWidth: 520 }}>
                       문제의 시급성이나 내용의 복잡성에 따라 전화, 방문, 채팅, 이메일 중 가장 적합한 상담 방식을 자유롭게 선택하실 수 있습니다. 원패스의 전문 상담사가 모든 채널에서 고객님의 문제 해결을 위해 신속하게 동행합니다. 가장 편하신 방법으로 지금 바로 문의하세요.
                     </p>
                   </div>
                   {/* Right cards */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                  <div className="consult-cards" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
                     {[
                       { img: icPhone, title: '전화 상담', desc: '급한 문제를 빠르게 해결할 수 있습니다. 전문 상담사와 바로 연결하여 상담 받을 수 있습니다.' },
                       { img: icVisit, title: '방문 상담', desc: '예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다.' },
@@ -1135,9 +1532,65 @@ function App() {
                     })}
                   </div>
                 </div>
+
+                <style>
+                  {`
+                    @media (max-width: 900px) {
+                      .consult-text{
+                      display: none !important;
+                      }
+
+                      section > div {
+                      grid-template-columns: 1fr !important;
+                      gap: 32px !important;
+                      max-width: 100% !important;
+                      padding: 0 20px !important;
+                      box-sizing: border-box !important;
+                    }
+
+                    section > div > div:nth-child(2) {
+                       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                       gap: 16px !important;
+                       justify-items: center !important;
+                      }
+                   }
+
+                    @media (max-width: 480px) {
+                      .consult-text{
+                      display: none !important;
+                      }
+
+                       section > div > div:nth-child(2) {
+                       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                       gap: 12px !important;
+                     }
+
+                      section > div > div:nth-child(2) > div {
+                            padding: 16px 12px !important;
+                       }
+
+                      section > div > div:nth-child(2) img {
+                            width: 80px !important;
+                            height: 80px !important;
+                        }
+                      .consult-cards{
+                             display: grid !important;
+                             grid-template-columns: repeat(2, 1fr) !important;
+                             gap: 16px !important;
+                             align-items: start !important;
+                             justify-items: center !important;
+                      }
+
+                      .consult-cards > div {
+                             width: 100% !important;
+                             height: auto !important;
+                             margin: 0 !important;
+                             position: relative !important;
+                            }
+                       }
+                   `}
+                </style>
               </section>
-
-
             </>
           }
         />

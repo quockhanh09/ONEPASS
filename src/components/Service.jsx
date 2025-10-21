@@ -47,6 +47,7 @@ import lawHover from "../assets/img/s8-8icon.png";
 import etcHover from "../assets/img/s9-9icon.png";
 import etcIcon from "../assets/img/s9icon.png";
 import etcActive from "../assets/img/s9-9icon.png";
+import { style } from "framer-motion/client";
 
 const steps = [
   { id: "01", text: "서류 접수 및 상담 (고객님 → 원패스)" },
@@ -1007,7 +1008,13 @@ function Service(props) {
   const updateField = (index, field, value) => {
     setServiceContents(prev => prev.map((content, i) => i === index ? { ...content, [field]: value } : content));
   };
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % services.length);
+  };
 
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+  };
   // UI CHANGE: Created renderServiceContent function to provide distinct UI layouts for each service
   // Each service has its own unique interface design and editable content
   const renderServiceContent = () => {
@@ -1015,8 +1022,9 @@ function Service(props) {
       // Service 0: 인증 센터 - Comprehensive Layout with personal/business blocks and tables
       case 0:
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: "0 20px" }}>
+          <div className="main-case0" style={{ maxWidth: 1200, margin: "60px auto", padding: "0 20px" }}>
             <div
+              cassName="main-case0-title"
               contentEditable
               onInput={(e) => updateField(activeIndex, 'title', e.target.innerText)}
               style={{
@@ -1032,9 +1040,8 @@ function Service(props) {
               {serviceContents[activeIndex]?.title || '서비스'}
             </div>
 
-
-
             <div
+              className="main-case0-description"
               contentEditable
               onInput={(e) => updateField(activeIndex, 'mainDescription', e.target.innerText)}
               style={{
@@ -1051,6 +1058,7 @@ function Service(props) {
 
             {/* Full layout with blocks */}
             <div
+              className="case0-inter"
               style={{
                 background: serviceContents[activeIndex]?.interfaceStyles?.bgColor || "#fff",
                 overflow: "hidden",
@@ -1058,16 +1066,17 @@ function Service(props) {
                 border: "1px solid #ddd",
               }}
             >
-              <div style={{ display: "flex" }}>
-                <div style={{ flex: 1 }}>
+              <div className="case0-layout-1" style={{ display: "flex" }}>
+                <div className="case0-layout-1-img" style={{ flex: 1 }}>
                   <img
                     src={imgProfessional}
                     alt="개인서류"
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </div>
-                <div style={{ flex: 1, padding: "30px", background: "#f1f1f1ff" }}>
+                <div className="case0-layout1-content" style={{ flex: 1, padding: "30px", background: "#f1f1f1ff" }}>
                   <div
+                    className="case0-layout1-content1"
                     contentEditable
                     onInput={(e) => updateField(activeIndex, 'personalTitle', e.target.innerText)}
                     style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10, border: "none", background: "transparent", outline: "none", width: "100%" }}
@@ -1075,6 +1084,7 @@ function Service(props) {
                     {serviceContents[activeIndex]?.personalTitle || 'Personal Title'}
                   </div>
                   <div
+                    className="case0-layout1-content2"
                     contentEditable
                     onInput={(e) => updateField(activeIndex, 'personalDesc', e.target.innerText)}
                     style={{ fontSize: 14, color: "#555", marginBottom: 20, border: "none", background: "transparent", outline: "none", width: "100%" }}
@@ -1082,6 +1092,7 @@ function Service(props) {
                     {serviceContents[activeIndex]?.personalDesc || 'Personal Description'}
                   </div>
                   <button
+                    className="case0-layout1-button"
                     onClick={() => setShowModal(true)}
                     style={{
                       background: serviceContents[activeIndex]?.interfaceStyles?.buttonColor || "#D6B97B",
@@ -1098,9 +1109,10 @@ function Service(props) {
                 </div>
               </div>
               {/* Tables */}
-              <div style={{ borderTop: "1px solid #ddd", background: "#f1f1f1ff" }}>
-                <div style={{ display: "flex" }}>
+              <div className="case0-Tables" style={{ borderTop: "1px solid #ddd", background: "#f1f1f1ff" }}>
+                <div className="case0-Tables-1" style={{ display: "flex" }}>
                   <div
+                    className="case0-Tables-1-title"
                     style={{
                       background: serviceContents[activeIndex]?.interfaceStyles?.tableBgColor || "#2c4d9e",
                       color: serviceContents[activeIndex]?.interfaceStyles?.tableTextColor || "#fff",
@@ -1114,12 +1126,13 @@ function Service(props) {
                   >
                     {serviceContents[activeIndex]?.personalTable1Title || 'Table 1 Title'}
                   </div>
-                  <div style={{ padding: "12px 16px", fontSize: 14, color: "#292929ff" }}>
+                  <div className="case0-Tables-1-title1" style={{ padding: "12px 16px", fontSize: 14, color: "#292929ff" }}>
                     {serviceContents[activeIndex]?.personalTable1Desc || 'Table 1 Description'}
                   </div>
                 </div>
-                <div style={{ display: "flex", borderTop: "1px solid #ddd", background: "#f1f1f1ff" }}>
+                <div className="case0-Tables-2" style={{ display: "flex", borderTop: "1px solid #ddd", background: "#f1f1f1ff" }}>
                   <div
+                    className="case0-Tables-2-title"
                     style={{
                       background: serviceContents[activeIndex]?.interfaceStyles?.tableBgColor || "#2c4d9e",
                       color: serviceContents[activeIndex]?.interfaceStyles?.tableTextColor || "#fff",
@@ -1133,7 +1146,7 @@ function Service(props) {
                   >
                     {serviceContents[activeIndex]?.personalTable2Title || 'Table 2 Title'}
                   </div>
-                  <div style={{ padding: "12px 16px", fontSize: 14, color: "#333" }}>
+                  <div className="case0-Tables-2-title1" style={{ padding: "12px 16px", fontSize: 14, color: "#333" }}>
                     {serviceContents[activeIndex]?.personalTable2Desc || 'Table 2 Description'}
                   </div>
                 </div>
@@ -1141,31 +1154,31 @@ function Service(props) {
             </div>
 
             {/* Business block */}
-            <div style={{ width: "100%", background: serviceContents[activeIndex]?.interfaceStyles?.bgColor || "#fff", border: "1px solid #ddd", }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "40px", background: "#f1f1f1ff" }}>
-                <div style={{ flex: 1, order: 2 }}>
+            <div className="case0-business" style={{ width: "100%", background: serviceContents[activeIndex]?.interfaceStyles?.bgColor || "#fff", border: "1px solid #ddd", }}>
+              <div className="case0-business-1" style={{ display: "flex", alignItems: "center", gap: "40px", background: "#f1f1f1ff" }}>
+                <div className="case0-business-img" style={{ flex: 1, order: 2 }}>
                   <img
                     src={imgTrust}
                     alt="기업서류"
-                    style={{ minWidth: 600, width: "100%", height: "100%", objectFit: "cover" }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </div>
-                <div style={{ flex: 1, padding: "30px", order: 1 }}>
-                  <div
+                <div className="case0-business1-title" style={{ flex: 1, padding: "30px", order: 1 }}>
+                  <div className="case0-business1-content1"
                     contentEditable
                     onInput={(e) => updateField(activeIndex, 'businessTitle', e.target.innerText)}
                     style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10, border: "none", background: "transparent", outline: "none", width: "100%" }}
                   >
                     {serviceContents[activeIndex]?.businessTitle || 'Business Title'}
                   </div>
-                  <textarea
+                  <textarea className="case0-business1-content2"
                     value={serviceContents[activeIndex]?.businessDesc || ''}
                     onChange={(e) => updateField(activeIndex, 'businessDesc', e.target.value)}
                     style={{ fontSize: 14, color: "#555", marginBottom: 20, border: "none", background: "transparent", outline: "none", width: "100%", resize: "none" }}
                     placeholder="Business Description"
                     rows="3"
                   />
-                  <button onClick={() => setShowModal(true)} style={{
+                  <button className="case0-business1-button" onClick={() => setShowModal(true)} style={{
                     background: serviceContents[activeIndex]?.interfaceStyles?.buttonColor || "#D6B97B",
                     border: "none",
                     padding: "10px 20px",
@@ -1178,10 +1191,10 @@ function Service(props) {
                 </div>
               </div>
               {/* Business tables */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                <div style={{ border: "1px solid #ddd", overflow: "hidden" }}>
+              <div className="case0-business-2" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <div className="case0-business2-title" style={{ border: "1px solid #ddd", overflow: "hidden" }}>
                   <div style={{ display: "flex", borderBottom: "1px solid #ddd" }}>
-                    <div
+                    <div className="case0-business2-content1"
                       style={{
                         width: "30%",
                         background: serviceContents[activeIndex]?.interfaceStyles?.tableBgColor || "#2c4d9e",
@@ -1196,12 +1209,12 @@ function Service(props) {
                     >
                       {serviceContents[activeIndex]?.businessTable1Title || 'Business Table 1 Title'}
                     </div>
-                    <div style={{ flex: 1, padding: "15px", color: "#444", background: "#f1f1f1ff", fontSize: 14 }}>
+                    <div className="case0-business2-content2" style={{ flex: 1, padding: "15px", color: "#444", background: "#f1f1f1ff", fontSize: 14 }}>
                       {serviceContents[activeIndex]?.businessTable1Desc || 'Business Table 1 Description'}
                     </div>
                   </div>
-                  <div style={{ display: "flex" }}>
-                    <div
+                  <div className="case0-business2-title2" style={{ display: "flex" }}>
+                    <div className="case0-business2-content1"
                       style={{
                         width: "30%",
                         background: serviceContents[activeIndex]?.interfaceStyles?.tableBgColor || "#2c4d9e",
@@ -1213,7 +1226,7 @@ function Service(props) {
                     >
                       {serviceContents[activeIndex]?.businessTable2Title || 'Business Table 2 Title'}
                     </div>
-                    <div style={{ flex: 1, padding: "15px", color: "#444", fontSize: 14, background: "#f1f1f1ff" }}>
+                    <div className="case0-business2-content2" style={{ flex: 1, padding: "15px", color: "#444", fontSize: 14, background: "#f1f1f1ff" }}>
                       {serviceContents[activeIndex]?.businessTable2Desc || 'Business Table 2 Description'}
                     </div>
                   </div>
@@ -1222,11 +1235,12 @@ function Service(props) {
             </div>
 
             {/* Steps */}
-            <div style={{ width: "100%", textAlign: "center", marginTop: "80px", }}>
-              <h2 style={{ fontFamily: "Afacad, serif", fontSize: "32px", fontWeight: "bold", marginBottom: "30px", transform: "translateX(-502px)" }}>
+            <div className="main-steps" style={{ width: "100%", textAlign: "center", marginTop: "80px", }}>
+              <h2 className="main-steps-h2" style={{ fontFamily: "Afacad, serif", fontSize: "32px", fontWeight: "bold", marginBottom: "30px", transform: "translateX(-502px)" }}>
                 진행 절차
               </h2>
               <div
+                className="steps-content"
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -1236,7 +1250,7 @@ function Service(props) {
                 }}
               >
                 {steps.map((step, index) => (
-                  <div
+                  <div className="steps-index"
                     key={index}
                     style={{
                       display: "flex",
@@ -1244,7 +1258,7 @@ function Service(props) {
                       gap: "28px",
                     }}
                   >
-                    <div
+                    <div className="steps-container"
                       style={{
                         backgroundColor: "#f0f0f0e8",
                         borderRadius: "16px",
@@ -1259,7 +1273,7 @@ function Service(props) {
                         textAlign: "center",
                       }}
                     >
-                      <p
+                      <p className="steps-id"
                         style={{
                           fontWeight: "bold",
                           color: "#111827",
@@ -1271,7 +1285,7 @@ function Service(props) {
                       >
                         {step.id}
                       </p>
-                      <p
+                      <p className="steps-text"
                         style={{
                           fontSize: "16px",
                           color: "#374151",
@@ -1289,26 +1303,248 @@ function Service(props) {
                 ))}
               </div>
             </div>
+            <style>
+              {`
+
+                
+
+            @media (max-width: 900px) {
+  /* --- KHỐI CHUNG --- */
+  .case0-layout-1,
+  .case0-business-1 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  .case0-layout-1-img,
+  .case0-business-img {
+    flex: 0 0 40% !important;
+    max-width: 40% !important;
+    min-width: 0 !important;
+  }
+
+  .case0-layout-1-img img
+  {
+    width: 110% !important;
+    height: 193px !important;
+    object-fit: cover !important;
+    
+  }
+  .case0-business-img img {
+    width: 202px !important;
+    height: 245px !important;
+    object-fit: cover !important;
+   transform: translateX(-3px) !important;
+    }
+  .case0-layout1-content,
+  .case0-business1-title {
+    flex: 1 1 60% !important;
+    max-width: 60% !important;
+    padding: 16px 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .case0-layout1-button,
+  .case0-business1-button {
+    display: inline-block !important;
+    margin-top: 10px !important;
+  }
+
+  /* --- BẢNG 1 (개인서류) --- */
+ 
+
+  .case0-Tables-1-title {
+    background: #1e3a8a !important;
+    color: #fff !important;
+    width: 110px !important;
+    min-width: 110px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    padding: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .case0-Tables-1-content {
+    flex: 1 1 auto !important;
+    background: #fff !important;
+    color: #333 !important;
+    padding: 12px 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* --- BẢNG 2 (기업서류) --- */
+  
+
+  .case0-Tables-2-title {
+    background: #1e3a8a !important;
+    color: #fff !important;
+    width: 110px !important;
+    min-width: 110px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    padding: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .case0-Tables-2-content {
+    flex: 1 1 auto !important;
+    background: #fff !important;
+    color: #333 !important;
+    padding: 12px 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* --- CỘT TRÁI NỀN XANH CỦA BẢNG 2 --- */
+  .case0-business2-content1 {
+    background: #1e3a8a !important;
+    color: #fff !important;
+    width: 110px !important;
+    min-width: 110px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    padding: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .case0-business2-content2 {
+    flex: 1 1 auto !important;
+    background: #fff !important;
+    color: #333 !important;
+    padding: 12px 14px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+
+/* ===== Responsive cho Steps ===== */
+@media (max-width: 900px) {
+  .steps-content {
+    display: flex !important;
+    flex-wrap: nowrap !important;        /* Không xuống hàng */
+    overflow-x: auto !important;         /* Cho phép cuộn ngang */
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+    gap: 28px !important;                /* Giãn cách giữa các step */
+    padding: 20px 24px !important;       /* Chừa khoảng hai bên tránh bị cắt */
+    box-sizing: border-box;
+  }
+
+  .steps-content::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .steps-content::-webkit-scrollbar-thumb {
+    background-color: #a1a1aa;
+    border-radius: 4px;
+  }
+
+  .steps-index {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center;
+    gap: 24px !important;
+  }
+
+  .steps-container {
+    background-color: #f0f0f0e8;
+    border-radius: 16px;
+    width: 165px !important;
+    height: 165px !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px !important;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .steps-id {
+    font-weight: bold;
+    color: #111827;
+    margin: 0;
+    font-size: 20px !important;
+    align-self: flex-start;
+  }
+
+  .steps-text {
+    font-size: 15px !important;
+    color: #374151;
+    margin-top: 8px;
+    line-height: 21px;
+  }
+
+  .main-steps-h2 {
+    transform: translateX(0) !important;
+    text-align: left !important;
+    margin-left: 16px !important;
+    font-size: 28px !important;
+  }
+}
+
+/* ===== Màn hình nhỏ hơn 600px ===== */
+@media (max-width: 600px) {
+  .steps-container {
+    width: 140px !important;
+    height: 140px !important;
+    padding: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .steps-content {
+    gap: 20px !important;
+    padding: 16px !important;
+  }
+
+  .steps-id {
+    font-size: 18px !important;
+  }
+
+  .steps-text {
+    font-size: 14px !important;
+  }
+}
+
+             `}
+            </style>
           </div>
+
+
         );
+
       // Service 1: 결혼 이민 - Side-by-Side Layout with image and content
       case 1:
         if (!tabContents[activeTab]) return null;
         return (
-          <div style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
+          <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>결혼 이민</h1>
-            <p style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>결혼 이민</h1>
+            <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               국제 결혼 신고, F-6 비자 발급 등 베트남-한국 간의 법적 및 행정 절차를 <br />
               단순화하여 한 번에 불편함 없이 처리해 드립니다.
             </p>
 
-            <div
+            <div className="main-case1-buttton"
               style={{
                 display: "flex",
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
+                overflowX: "auto", // Cho phép scroll ngang
+                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                scrollbarWidth: "none",
               }}
             >
               <button style={tabStyle("korea1")} onClick={() => setActiveTab("korea1")}>
@@ -1326,11 +1562,33 @@ function Service(props) {
               <button style={tabStyle("visa1")} onClick={() => setActiveTab("visa1")}>
                 결혼이민 비자신청
               </button>
+
+            <style>
+               {`
+                  .main-case1-buttton::-webkit-scrollbar {
+                      display: none;
+                   }
+
+                @media (max-width: 900px) {
+                    .main-case1-buttton button {
+                        flex: 0 0 150px !important;
+                        font-size: 15px !important;
+                         }
+                   }
+
+                @media (max-width: 400px) {
+                    .main-case1-buttton button {
+                        flex: 0 0 130px !important;
+                        font-size: 14px !important;
+                        }
+                     }
+    `}
+  </style>
             </div>
 
             {/* Table */}
             {/* Nội dung Tab */}
-            <div style={{ marginTop: "40px" }}>
+            <div className="case1-main-tab" style={{ marginTop: "40px" }}>
               {(!tabContents[activeTab].title &&
                 (!tabContents[activeTab].rows || tabContents[activeTab].rows.length === 0) &&
                 (!tabContents[activeTab].steps1 || tabContents[activeTab].steps1.length === 0)) ? (
@@ -1358,7 +1616,7 @@ function Service(props) {
 
                   {/* Table */}
                   {tabContents[activeTab].rows && tabContents[activeTab].rows.length > 0 && (
-                    <table
+                    <table className="case1-table"
                       style={{
                         width: "100%",
                         borderCollapse: "collapse",
@@ -1366,10 +1624,11 @@ function Service(props) {
                         tableLayout: "fixed", // ⚡ làm cho các cột có độ rộng bằng nhau
                       }}
                     >
-                      <thead>
-                        <tr style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
+                      <thead className="case1-thead1">
+                        <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속기간", "비용", "상담문의"].map((h, i) => (
                             <th
+                              className="case1-th1"
                               key={i}
                               style={{
                                 padding: "14px 16px", // ⚡ đồng nhất với td
@@ -1382,9 +1641,9 @@ function Service(props) {
                         </tr>
                       </thead>
 
-                      <tbody>
+                      <tbody className="case1-tbody1">
                         {tabContents[activeTab].rows.map((row, i) => (
-                          <tr
+                          <tr className="case1-tr2"
                             key={i}
                             style={{
                               textAlign: "center",
@@ -1393,7 +1652,7 @@ function Service(props) {
                             }}
                           >
                             {row.map((col, j) => (
-                              <td
+                              <td className="case1-td2"
                                 key={j}
                                 style={{
                                   padding: "14px 16px",
@@ -1404,13 +1663,13 @@ function Service(props) {
                                 {col}
                               </td>
                             ))}
-                            <td
+                            <td className="case1-td2-1"
                               style={{
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}
                             >
-                              <button
+                              <button className="case1-td2-button"
                                 onClick={() => setShowModal(true)}
                                 style={{
                                   color: "#fff",
@@ -1429,14 +1688,18 @@ function Service(props) {
                           </tr>
                         ))}
                       </tbody>
+                      <style>
+                        {`
+                        `}
+                      </style>
                     </table>
 
                   )}
 
                   {/* Steps */}
                   {tabContents[activeTab].steps1 && tabContents[activeTab].steps1.length > 0 && (
-                    <div style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
-                      <h2
+                    <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
+                      <h2 className="case1-steps-main-h2"
                         style={{
                           fontFamily: "Afacad, serif",
                           fontSize: "32px",
@@ -1448,7 +1711,7 @@ function Service(props) {
                         진행 절차
                       </h2>
 
-                      <div
+                      <div className="case1-steps-content"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -1458,7 +1721,7 @@ function Service(props) {
                       >
                         {tabContents[activeTab].steps1.map((step, index) => (
                           <div key={index} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-                            <div
+                            <div className="case1-steps-content1"
                               style={{
                                 backgroundColor: "#f0f0f0e8",
                                 borderRadius: "16px",
@@ -1473,7 +1736,7 @@ function Service(props) {
                                 textAlign: "center",
                               }}
                             >
-                              <p
+                              <p className="case1-steps-content1-id"
                                 style={{
                                   fontWeight: "bold",
                                   color: "#111827",
@@ -1485,7 +1748,7 @@ function Service(props) {
                               >
                                 0{step.id}
                               </p>
-                              <p
+                              <p className="case1-steps-content1-text"
                                 style={{
                                   fontSize: "16px",
                                   color: "#374151",
@@ -2981,7 +3244,7 @@ function Service(props) {
           </h1>
         </div>
 
-         <div
+        <div className="consultation-bar"
           style={{
             position: "fixed",
             bottom: 0,
@@ -3189,21 +3452,27 @@ function Service(props) {
       <section
         style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "60px 0" }}
       >
-
-
+        {/* ICON MENU */}
         <div
+          className="main-icon"
           style={{
             position: "sticky",
             top: 50,
             zIndex: 1000,
             background: "#fff",
-
           }}
         >
-          <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
+          <div
+            className="main-icon-1"
+            style={{
+              maxWidth: 1200,
+              margin: "0 auto",
+              textAlign: "center",
+              position: "relative",
+            }}
+          >
             <div
               style={{
-                width: "1200px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -3212,22 +3481,34 @@ function Service(props) {
                 padding: "10px 0",
               }}
             >
-              {/* Icons container */}
-              <div style={{ display: "flex", gap: 15 }}>
-                {services.slice(startIndex, startIndex + visibleCount).map((item, i) => {
-                  const realIndex = startIndex + i;
-                  let currentIcon = item.icon;
-                  if (activeIndex === realIndex) {
-                    currentIcon = item.activeIcon;
-                  } else if (hoverIndex === realIndex) {
-                    currentIcon = item.hoverIcon;
-                  }
+              {/* ----- Mũi tên trái ----- */}
+              <div
+                className="arrow-btn arrow-left"
+                onClick={() =>
+                  setActiveIndex((prev) =>
+                    prev === 0 ? services.length - 1 : prev - 1
+                  )
+                }
+              >
+                <span className="arrow-icon">←</span>
+              </div>
+
+              {/* Container ICON */}
+              <div className="main-icon-container">
+                {services.map((item, i) => {
+                  const isActive = activeIndex === i;
+                  const currentIcon = isActive
+                    ? item.activeIcon
+                    : hoverIndex === i
+                      ? item.hoverIcon
+                      : item.icon;
 
                   return (
                     <div
-                      key={realIndex}
-                      onClick={() => handleClick(realIndex)}
-                      onMouseEnter={() => setHoverIndex(realIndex)}
+                      key={i}
+                      className={`main-icon-item ${isActive ? "active" : ""}`}
+                      onClick={() => handleClick(i)}
+                      onMouseEnter={() => setHoverIndex(i)}
                       onMouseLeave={() => setHoverIndex(null)}
                       style={{
                         width: 120,
@@ -3241,6 +3522,7 @@ function Service(props) {
                       }}
                     >
                       <img
+                        className="main-icon-img"
                         src={currentIcon}
                         alt={item.title}
                         style={{
@@ -3250,11 +3532,12 @@ function Service(props) {
                         }}
                       />
                       <div
+                        className="main-icon-title"
                         style={{
                           marginTop: 12,
                           fontSize: 15,
-                          fontWeight: activeIndex === realIndex ? 700 : 600,
-                          color: activeIndex === realIndex ? "#2B3A67" : "#222",
+                          fontWeight: isActive ? 700 : 600,
+                          color: isActive ? "#2B3A67" : "#222",
                           whiteSpace: "nowrap",
                         }}
                       >
@@ -3264,15 +3547,129 @@ function Service(props) {
                   );
                 })}
               </div>
+
+              {/* ----- Mũi tên phải ----- */}
+              <div
+                className="arrow-btn arrow-right"
+                onClick={() =>
+                  setActiveIndex((prev) =>
+                    prev === services.length - 1 ? 0 : prev + 1
+                  )
+                }
+              >
+                <span className="arrow-icon">→</span>
+              </div>
             </div>
           </div>
         </div>
         {/* DETAILED CONTENT */}
         {renderServiceContent()}
+        <style>{`
+    /* ---------- Desktop defaults (do not change desktop layout) ---------- */
+    .main-icon-container {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+    }
 
-        {/*  */}
+    .main-icon-item {
+      /* desktop: visible inline */
+      display: flex;
+      min-width: 120px;
+      box-sizing: border-box;
+      opacity: 1;
+      transform: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
 
+    .main-icon-img {
+      width: 80px;
+      height: 80px;
+    }
 
+    .main-icon-title {
+      font-size: 15px;
+    }
+
+    /* hide arrows on desktop */
+    .arrow-btn {
+      display: none;
+    }
+
+    /* ---------- Mobile-only overrides ---------- */
+    @media (max-width: 768px) {
+      .main-icon {
+        position: relative !important;
+        padding: 24px 0 !important;
+      }
+
+      .main-icon-1 {
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      /* Container becomes relative area for single centered icon */
+      .main-icon-container {
+        display: block !important;
+        position: relative !important;
+        height: 140px; /* keeps same height as item */
+      }
+
+      /* Make each item absolutely positioned and hidden by default */
+      .main-icon-item {
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) scale(0.95) !important;
+        opacity: 0 !important;
+        display: flex !important; /* keep layout but hidden by opacity */
+        pointer-events: none !important;
+      }
+
+      /* Show only active item */
+      .main-icon-item.active {
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+        pointer-events: auto !important;
+      }
+
+      .main-icon-img {
+        width: 72px !important;
+        height: 72px !important;
+      }
+
+      .main-icon-title {
+        font-size: 14px !important;
+        margin-top: 8px !important;
+      }
+
+      /* Arrow buttons appear on mobile */
+      .arrow-btn {
+        display: flex !important;
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        background: #fff;
+        border: 2px solid #1d2c5b;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      .arrow-left { left: 12px !important; }
+      .arrow-right { right: 12px !important; }
+
+      .arrow-icon { font-size: 18px; color: #1d2c5b; font-weight: 700; }
+
+      /* optional: slightly fade non-active content below while mobile icon changes */
+      .service-content { transition: opacity 0.25s ease; }
+    }
+  `}</style>
       </section>
 
       {showModal && (

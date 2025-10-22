@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import logo from "../assets/img/Logo-name.png";
 import iconGlobal from "../assets/img/Icon.svg";
 import { Link, useLocation } from "react-router-dom";
+import iconMenu from "../assets/img/iconMenu.png";
 import "../style/App.css";
 import { useLanguage } from "../LanguageContext";
 function Header() {
@@ -74,6 +75,12 @@ function Header() {
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <div className="header-inner" style={{ width: "calc(100% - 40px)", maxWidth: 1300, padding: "8px 20px", borderRadius: 40, alignItems: "center", justifyContent: "space-between" }}>
           {/* Logo */}
+          <div
+            className="menu-toggle"
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+          >
+            <img src={iconMenu} alt="Menu" />
+          </div>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
             <Link to="/" className="logo-link" >
               <img src={logo} alt="VCPC Logo" className="header-logo-img" />
@@ -129,9 +136,7 @@ function Header() {
               style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 20 }}
             >
               <div className="lang-switch" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span className="globe-wrapper" aria-hidden style={{ marginRight: 8 }}>
-                  <img src={iconGlobal} alt="Globe Icon" />
-                </span>
+                
                 <a
                   href="#"
                   onClick={(e) => {
@@ -169,58 +174,18 @@ function Header() {
 
 
           {showMobileMenu && (
-            <div className="mobile-menu">
+            <div className="mobile-dropdown">
               <ul>
-                <li>
-                  <Link
-                    to="/Introduction"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {menuTexts[language].about}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/Service"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {menuTexts[language].services}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/Consult"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {menuTexts[language].consult}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/news"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {menuTexts[language].newsroom}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/Support"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {menuTexts[language].support}
-                  </Link>
-                </li>
+                <li><Link to="/Introduction" onClick={() => setShowMobileMenu(false)}>{menuTexts[language].about}</Link></li>
+                <li><Link to="/Service" onClick={() => setShowMobileMenu(false)}>{menuTexts[language].services}</Link></li>
+                <li><Link to="/Consult" onClick={() => setShowMobileMenu(false)}>{menuTexts[language].consult}</Link></li>
+                <li><Link to="/news" onClick={() => setShowMobileMenu(false)}>{menuTexts[language].newsroom}</Link></li>
+                <li><Link to="/Support" onClick={() => setShowMobileMenu(false)}>{menuTexts[language].support}</Link></li>
               </ul>
+
+              
             </div>
           )}
-
-
-
           {/* Submenu NEWSROOM */}
           {activeMenu === "newsroom" && (
             <div
@@ -326,6 +291,151 @@ function Header() {
           )}
         </div>
       </div>
+      <style>
+        {`
+      /* === RESPONSIVE HEADER (700px -> 390px) === */
+@media screen and (max-width: 700px) {
+  .navmenu {
+    display: none !important;
+  }
+
+  .header-inner {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 10px 18px !important;
+    position: relative;
+    background: transparent !important; /* 🔹 bỏ nền đen */
+    border-radius: 40px;
+  }
+
+  /* Icon menu trái */
+  .menu-toggle {
+    display: block !important;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10000;
+  }
+
+  .menu-toggle img {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Logo giữa */
+  .logo-link {
+    margin: 0 auto !important;
+  }
+
+  .header-logo-img {
+    height: 28px !important;
+    width: auto;
+  }
+
+  /* Icon globe phải */
+  .globe-wrapper {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .globe-wrapper img {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Dropdown menu trượt xuống */
+  .mobile-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9); /* 🔹 nền sáng nhẹ */
+  
+    animation: dropdownSlide 0.25s ease forwards;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+    text-align: center;
+  }
+
+  .mobile-dropdown li {
+    margin: 10px 0;
+  }
+
+  .mobile-dropdown li a {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* Hiện cả phần chuyển ngôn ngữ trong dropdown */
+  .mobile-lang {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .mobile-lang a {
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  @keyframes dropdownSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* === THU NHỎ HƠN 390px === */
+@media screen and (max-width: 390px) {
+  .menu-toggle img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header-logo-img {
+    height: 24px !important;
+  }
+
+  .globe-wrapper img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mobile-dropdown li a,
+  .mobile-lang a {
+    font-size: 18px;
+  }
+}
+
+/* Ẩn menu mobile khi trở lại desktop */
+@media screen and (min-width: 701px) {
+  .menu-toggle,
+  .mobile-dropdown {
+    display: none !important;
+  }
+}
+        `}
+      </style>
     </header>
   );
 }

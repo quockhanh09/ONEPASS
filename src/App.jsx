@@ -42,7 +42,7 @@ import n2 from "./assets/img/n2.png";
 import n3 from "./assets/img/n3.png";
 
 
-import certIcon from "./assets/img/s1-1icon.png";
+import certIcon from "./assets/img/s1icon.png";
 import certActive from "./assets/img/s1-1icon.png";
 import certHover from "./assets/img/s1-1icon.png";
 
@@ -310,7 +310,7 @@ function App() {
       { img: a9, title: "베트남 국적 포기 신청", desc: "베트남 국적 포기 신청 및 서류 절차 대행", tabKey: "a12" },
       { img: a10, title: "베트남 국적 유지 신청", desc: " 이중국적 유지를 위한 신고 및 관련 절차를지원", tabKey: "a13" },
       { img: a11, title: "베트남 국적 귀화 신청", desc: "베트남 국적 귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
-      { img: a12, title: "베트남으로 시체, 유해, 유골 반입 허가 신청", desc: "베트남으로 시체, 유해, 유골을 반입하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
+      { img: a12, title: "베트남으로 시체, 유해, 유골 송환 허가 신청", desc: "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
       { img: a13, title: "베트남 국적 사실 확인", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
     ],
     "신분증명 서류": [
@@ -1128,45 +1128,43 @@ function App() {
       }
 
       /* --- Mobile nhỏ (≤399px) --- */
-      @media (max-width: 399px) {
-        .about-container {
-          flex-direction: column;
-          align-items: center;
-          padding: 0 16px !important;
-          gap: 40px;
-        }
+      @media (max-width: 380px) {
+         .about-stats {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important; /* căn giữa toàn bộ khối */
+    align-items: flex-start !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    gap: 25px !important; /* tăng khoảng cách giữa 3 cột */
+    padding: 0 10px !important; /* thêm lề trong nhẹ để không chạm mép */
+    text-align: center !important;
+  }
 
-        .about-stats {
-          flex-direction: row !important;
-          justify-content: space-around !important;
-          gap: 5px !important;
-        }
+  .about-stats .stat-item {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+  }
 
-        .about-stats .stat-number {
-          font-size: 50px !important;
-        }
+  .about-stats .stat-number {
+    font-size: 36px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 6px !important;
+  }
 
-        .about-stats .stat-label {
-          font-size: 16px !important;
-        }
+  .about-stats .stat-label {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    white-space: nowrap !important; /* không cho chữ xuống dòng */
+  }   }
 
-        .about h2 {
-          font-size: 24px !important;
-          text-align: center !important;
-        }
-
-        .about-right p {
-          font-size: 15px !important;
-        }
-
-        .about-btn {
-          padding: 10px 22px !important;
-          font-size: 14px !important;
-        }
-
-        .about-right div:last-child {
-          justify-content: flex-end !important;
-        }
+                    
       }
 
       /* --- Tablet lớn đến desktop vừa (801–1199px) --- */
@@ -1259,8 +1257,8 @@ function App() {
                               src={isActive ? service.activeIcon : service.icon}
                               alt={service.title}
                               style={{
-                                width: 40,
-                                height: 40,
+                                width: 80,
+                                height: 80,
                                 objectFit: 'contain'
                               }}
                             />
@@ -1838,10 +1836,7 @@ function App() {
     margin-bottom: 16px !important; /* thêm khoảng cách dưới mỗi card */
   }
 
-  section > div > div:nth-child(2) img {
-    width: 80px !important;
-    height: 80px !important;
-  }
+  
 
  .consult-cards {
   display: grid !important;

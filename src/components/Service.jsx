@@ -308,9 +308,9 @@ const tabContents3 = {
   },
 
   visa3: {
-    title: "시체 등 반입 허가 신청",
+    title: "시체 등 송환 허가 신청",
     rows: [
-      ["출입국 행정", "시체 등 반입 허가 신청", "별도 상담", "견적 상담 필요"],
+      ["출입국 행정", "시체 등 송환 허가 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -607,6 +607,29 @@ const services = [
 ];
 
 function Service(props) {
+   const {
+    services: svcBlockList,
+    activeIndex: svcBlockActive,
+    hoverIndex: svcBlockHover,
+    handleClick: svcBlockClick,
+    setHoverIndex: svcBlockSetHover,
+  } = props;
+
+  const [svcBlockFixed, setSvcBlockFixed] = useState(false);
+  const svcBlockRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!svcBlockRef.current) return;
+
+      const rect = svcBlockRef.current.getBoundingClientRect();
+      setSvcBlockFixed(rect.top <= 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const { language } = useLanguage();
   const [service, setService] = useState("");
   const handleSubmitConsult1 = async () => {
@@ -2028,7 +2051,7 @@ function Service(props) {
                 베트남 국적 귀화 신청
               </button>
               <button style={tabStyle("visa3")} onClick={() => setActiveTab3("visa3")}>
-                시체 등 반입 허가 신청
+                시체 등 송환 허가 신청
               </button>
               <button style={tabStyle("cc3")} onClick={() => setActiveTab3("cc3")}>
                 베트남 국적 사실 확인
@@ -3223,7 +3246,7 @@ function Service(props) {
     setActiveIndex(i);
   };
 
-
+  
   return (
     <>
       {/* PHẦN GIỚI THIỆU */}
@@ -3568,12 +3591,23 @@ function Service(props) {
         <style>{`
     /* ---------- Desktop defaults (do not change desktop layout) ---------- */
     .main-icon-container {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      justify-content: center;
-    }
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  background: #fff; /* nền trắng để không bị trùng với phần sau */
+  z-index: 1000;
+}
 
+.main-icon-container.fixed {
+  position: fixed;
+  top: 0; /* hoặc top: 80px nếu có header */
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
     .main-icon-item {
       /* desktop: visible inline */
       display: flex;
@@ -3584,10 +3618,7 @@ function Service(props) {
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .main-icon-img {
-      width: 80px;
-      height: 80px;
-    }
+    
 
     .main-icon-title {
       font-size: 15px;

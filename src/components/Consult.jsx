@@ -531,9 +531,9 @@ export default function Consult() {
       </div>
 
       {/* Right */}
-      <div
-        style={{
-          height: " 1150px",
+      <div 
+        className="snsRight"
+        style={{        
           flex: 1,
           maxWidth: 650,
           background: "#f9fafb",
@@ -543,7 +543,7 @@ export default function Consult() {
 
         }}
       >
-        <h3 style={{ fontSize: 32, fontWeight: 700, marginBottom: 20 }}>
+        <h3 className="snsRight-h3" style={{ fontSize: 32, fontWeight: 700, marginBottom: 20 }}>
           상담 신청
         </h3>
         <div style={{ height: 1, background: "#d1d5db", marginBottom: 24 }}></div>
@@ -561,7 +561,7 @@ export default function Consult() {
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
             >
-              <button
+              <button className="snsRight-button"
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -582,8 +582,8 @@ export default function Consult() {
                 onMouseOver={(e) => (e.currentTarget.style.background = "#f3f4f6")}
                 onMouseOut={(e) => (e.currentTarget.style.background = "#fff")}
               >
-                <span>{item.text}</span>
-                <img
+                <span className="snsRight-button-text">{item.text}</span>
+                <img className="snsRight-button-img"
                   src={item.img}
                   alt=""
                   style={{ width: 30, height: 30, objectFit: "contain" }}
@@ -592,50 +592,12 @@ export default function Consult() {
             </a>
 
             {/* Thêm hình QR ngay sau Zalo */}
-            {item.text.includes("Zalo") && (
-              <div
-                style={{
-                  width: "100%",
-                  background: "#fff",
-                  borderRadius: 50,
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
-                  padding: 20,
-                  textAlign: "center",
-                  marginBottom: 12,
-                }}
-              >
-                <p style={{ fontSize: 16, color: "#000000ff", fontWeight: "bold" }}>QR 코드를 스캔하여 채팅을 시작하세요.</p>
-                
-                <p style={{ fontSize: 16, color: "#374151" }}> <b>Zalo ID:</b> 0395944818</p>
-                <a
-                  href="https://zalo.me/0395944818"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "none" }}
-                >
-                  <button
-                    style={{
-                      background: "#d4b88c",
-                      color: "#fff",
-                      border: "none",
-                      padding: "10px 45px",
-                      fontSize: 16,
-                      cursor: "pointer",
-                      transition: "background 0.2s ease",
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.background = "#c1a575")}
-                    onMouseOut={(e) => (e.currentTarget.style.background = "#d4b88c")}
-                  >
-                    바로 가기
-                  </button>
-                </a>
-              </div>
-            )}
+            
           </React.Fragment>
         ))}
 
         {/* Divider */}
-        <div
+        <div className="snsRight-divider"
           style={{
             display: "flex",
             alignItems: "center",
@@ -648,24 +610,112 @@ export default function Consult() {
         </div>
 
         {/* Contact */}
-        <div style={{ fontSize: 18, color: "#111827", lineHeight: 1.8, textAlign: "center" }}>
-          <p>
+        <div className="snsRight-Contact" style={{ fontSize: 18, color: "#111827", lineHeight: 1.8, textAlign: "center" }}>
+          <p className="snsRight-Contact-1">
             <strong>전화 걸기:</strong> (+82) 51-715-0607
           </p>
-          <p>
+          <p className="snsRight-Contact-2">
             <strong>이메일 보내기:</strong> onepass.kr@gmail.com
           </p>
-          <p style={{ color: "#6b7280", fontSize: 16 }}>
+          <p className="snsRight-Contact-3" style={{ color: "#6b7280", fontSize: 16 }}>
             *이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
           </p>
         </div>
       </div>
+      <style>
+        {`
+        @media (max-width: 600px) {
+  .snsRight {
+    padding: 40px 25px !important;
+  }
+
+  .snsRight-h3 {
+    font-size: 26px !important;
+    text-align: center !important;
+  }
+
+  .snsRight-button {
+    padding: 14px 30px !important;
+    font-size: 15px !important;
+    border-radius: 9999px !important;
+  }
+
+  .snsRight-button-text {
+    white-space: normal !important;
+    text-align: left !important;
+  }
+
+  .snsRight-button-img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .snsRight-divider {
+    margin: 24px 0 !important;
+  }
+
+  .snsRight-divider span {
+    font-size: 16px !important;
+  }
+
+  .snsRight-Contact {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    text-align: center !important;
+  }
+
+  .snsRight-Contact-3 {
+    font-size: 14px !important;
+  }
+}
+
+/* ⚡ Dưới 400px */
+@media (max-width: 400px) {
+  .snsRight {
+    padding: 25px 18px !important;
+  }
+
+  .snsRight-h3 {
+    font-size: 22px !important;
+    text-align: center !important;
+  }
+
+  .snsRight-button {
+    padding: 12px 18px !important;
+    font-size: 14px !important;
+    border-radius: 9999px !important;
+  }
+
+  .snsRight-button-img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .snsRight-divider {
+    margin: 20px 0 !important;
+  }
+
+  .snsRight-divider span {
+    font-size: 14px !important;
+  }
+
+  .snsRight-Contact {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  .snsRight-Contact-3 {
+    font-size: 13px !important;
+  }
+}
+        `}
+      </style>
     </div>
   );
 
 
   const phoneForm = (
-    <div
+    <div 
       style={{
         maxWidth: 1200,
         margin: "60px auto",
@@ -714,7 +764,7 @@ export default function Consult() {
 
       {/* Right */}
 
-      <div
+      <div className="phoneRight"
         style={{
           maxWidth: 640,
           width: "100%",
@@ -724,14 +774,14 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 10, }}>
+        <h2 className="phoneRight-h2" style={{ fontSize: 32, fontWeight: 700, marginBottom: 10, }}>
           상담 신청
         </h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
-        <form onSubmit={handleSubmit}>
+        <form className="phoneRight-form" onSubmit={handleSubmit}>
           {/* 서비스 선택 */}
-          <div style={{ marginBottom: 20, position: "relative" }}>
-            <div
+          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+            <div className="phoneRight-form-1"
               onClick={() => setOpen(!open)}
               style={{
                 display: "flex",
@@ -741,10 +791,10 @@ export default function Consult() {
                 cursor: "pointer",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
                 서비스 선택 <span style={{ color: "red" }}>*</span>
               </label>
-              <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+              <div className="phoneRight-form1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: selected ? "#000" : "#999" }}>
                   {selected || "서비스 선택"}
                 </span>
@@ -759,7 +809,7 @@ export default function Consult() {
             </div>
 
             {open && (
-              <div
+              <div className="phoneRight-form1-1"
                 style={{
                   position: "absolute",
                   top: "100%",
@@ -772,7 +822,7 @@ export default function Consult() {
                 }}
               >
                 {list.map((v) => (
-                  <div
+                  <div className="phoneRight-form1-2"
                     key={v}
                     onClick={() => {
                       setSelected(v);
@@ -801,8 +851,8 @@ export default function Consult() {
           </div>
 
           {/* 이름 */}
-          <div style={{ marginBottom: 20, fontSize: 18, }}>
-            <div
+          <div className="phoneRight-form-2" style={{ marginBottom: 20, fontSize: 18, }}>
+            <div className="phoneRight-form2"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -812,7 +862,7 @@ export default function Consult() {
               <label style={{ width: 120, fontWeight: 600 }}>
                 이름 <span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <input className="phoneRight-form2-input"
                 type="text"
                 value={name}
                 onChange={(e) => {
@@ -844,7 +894,7 @@ export default function Consult() {
           </div>
 
           {/* 이메일 */}
-          <div style={{ marginBottom: 20, fontSize: 18, }}>
+          <div className="phoneRight-form3" style={{ marginBottom: 20, fontSize: 18, }}>
             <div
               style={{
                 display: "flex",
@@ -853,7 +903,7 @@ export default function Consult() {
               }}
             >
               <label style={{ width: 120, fontWeight: 600 }}>이메일</label>
-              <input
+              <input className="phoneRight-form3-input"
                 type="email"
                 value={email}
                 onChange={(e) => {
@@ -885,7 +935,7 @@ export default function Consult() {
           </div>
 
           {/* 전화번호 */}
-          <div style={{ marginBottom: 20, fontSize: 18, }}>
+          <div className="phoneRight-form4" style={{ marginBottom: 20, fontSize: 18, }}>
             <div
               style={{
                 display: "flex",
@@ -896,7 +946,7 @@ export default function Consult() {
               <label style={{ width: 120, fontWeight: 600 }}>
                 전화번호 <span style={{ color: "red" }}>*</span>
               </label>
-              <select
+              <select className="phoneRight-form4-select"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
                 style={{
@@ -911,7 +961,7 @@ export default function Consult() {
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
-              <input
+              <input className="phoneRight-form4-input"
                 type="tel"
                 value={phone}
                 onChange={(e) => {
@@ -955,11 +1005,11 @@ export default function Consult() {
           </div>
 
           {/* 개인정보 동의 */}
-          <div style={{ marginBottom: 22, fontSize: 18, }}>
+          <div className="phoneRight-form5" style={{ marginBottom: 22, fontSize: 18, }}>
             <label
               style={{ fontSize: 18, display: "flex", alignItems: "center" }}
             >
-              <input
+              <input className="phoneRight-form5-input"
                 type="radio"
                 checked={agree}
                 onChange={(e) => setAgree(e.target.checked)}
@@ -987,7 +1037,7 @@ export default function Consult() {
             <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
           </div>
           {/* Info liên hệ */}
-          <div
+          <div className="phoneRight-Contact"
             style={{
               fontSize: 18,
               lineHeight: 1.8,
@@ -995,20 +1045,20 @@ export default function Consult() {
               textAlign: "center",
             }}
           >
-            <div>
+            <div className="phoneRight-Contact-1">
               <strong>전화 걸기:</strong> (+82) 51-715-0607
             </div>
-            <div>
+            <div className="phoneRight-Contact-2">
               <strong>이메일 보내기:</strong> onepass.kr@gmail.com
             </div>
-            <div style={{ color: "#444" }}>
+            <div className="phoneRight-Contact-3" style={{ color: "#444" }}>
               <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00,
               주말 공휴일 휴무)
             </div>
           </div>
 
           {/* Nút submit */}
-          <button
+          <button className="phoneRight-submit"
             type="submit"
             style={{
               width: "100%",
@@ -1026,7 +1076,117 @@ export default function Consult() {
           </button>
         </form>
       </div>
+      <style>
+        {
+          `
+            @media (max-width: 600px) {
+  .phoneRight {
+    padding: 40px 30px !important;
+  }
 
+  .phoneRight-h2 {
+    font-size: 26px !important;
+    text-align: center !important;
+  }
+
+  /* Căn label và input xếp dọc */
+  .phoneRight-form2,
+  .phoneRight-form3 > div,
+  .phoneRight-form4 > div,
+  .phoneRight-form-1 {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* Label chiếm full chiều ngang */
+  .phoneRight-form label,
+  .phoneRight-form2 label,
+  .phoneRight-form4 label,
+  .phoneRight-form-1 label {
+    width: 100% !important;
+    margin-bottom: 6px !important;
+    font-size: 16px !important;
+  }
+
+  /* Input full width */
+  .phoneRight-form2-input,
+  .phoneRight-form3-input,
+  .phoneRight-form4-input,
+  .phoneRight-form4-select {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+
+  .phoneRight-form4-select {
+    margin-bottom: 8px !important;
+  }
+
+  /* Dropdown */
+  .phoneRight-form1-1 {
+    left: 0 !important;
+  }
+
+  /* Lỗi hiển thị gọn */
+  .phoneRight-form div[style*="color: red"] {
+    margin-left: 0 !important;
+  }
+
+  /* Nút gửi */
+  .phoneRight-submit {
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+
+  /* Liên hệ */
+  .phoneRight-Contact {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .phoneRight-Contact-3 {
+    font-size: 13.5px !important;
+  }
+}
+
+/* ⚡ Dưới 400px */
+@media (max-width: 400px) {
+  /* Container chính */
+ .phoneRight {
+    padding: 25px 16px !important;
+  }
+
+  /* Căn chỉnh đoạn liên hệ */
+  .phoneRight-Contact {
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    text-align: left !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
+    margin-top: 14px !important;
+  }
+
+  /* Từng dòng liên hệ */
+  .phoneRight-Contact p,
+  .phoneRight-Contact div,
+  .phoneRight-Contact span {
+    display: block !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Nút “상담 신청” */
+  .phoneRight-submit {
+    margin-top: 18px !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+  
+}
+
+          `
+        }
+      </style>
     </div>
 
   );
@@ -1081,7 +1241,7 @@ export default function Consult() {
 
       {/* Right */}
 
-      <div
+      <div className="emailRight"
         style={{
           maxWidth: 640,
           width: "100%",
@@ -1091,13 +1251,13 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
+        <h2 className="emailRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
-        <form onSubmit={handleSubmit1}>
+        <form className="emailRight-form" onSubmit={handleSubmit1}>
           {/* 서비스 선택 */}
-          <div style={{ marginBottom: 20, position: "relative" }}>
-            <div
+          <div className="emailRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+            <div className="emailRight-form1"
               onClick={() => setOpen(!open)}
               style={{
                 display: "flex",
@@ -1107,10 +1267,10 @@ export default function Consult() {
                 cursor: "pointer",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="emailRight-form1-label" style={{ width: 120, fontWeight: 600 }}>
                 서비스 선택 <span style={{ color: "red" }}>*</span>
               </label>
-              <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+              <div className="emailRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: selected ? "#000" : "#999" }}>
                   {selected || "서비스 선택"}
                 </span>
@@ -1125,7 +1285,7 @@ export default function Consult() {
             </div>
 
             {open && (
-              <div
+              <div className="emailRight-form1-list"
                 style={{
                   position: "absolute",
                   top: "100%",
@@ -1138,7 +1298,7 @@ export default function Consult() {
                 }}
               >
                 {list.map((v) => (
-                  <div
+                  <div 
                     key={v}
                     onClick={() => {
                       setSelected(v);
@@ -1160,14 +1320,14 @@ export default function Consult() {
             )}
 
             {!selected && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+              <div className="emailRight-form1-selected" style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입력입니다
               </div>
             )}
           </div>
 
           {/* 이름 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
+          <div className="emailRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
             <div
               style={{
                 display: "flex",
@@ -1175,10 +1335,10 @@ export default function Consult() {
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="emailRight-form2-label1" style={{ width: 120, fontWeight: 600 }}>
                 이름 <span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <input className="emailRight-form2-input"
                 type="text"
                 value={name}
                 onChange={(e) => {
@@ -1210,16 +1370,16 @@ export default function Consult() {
           </div>
 
           {/* 이메일 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="emailRight-form3" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="emailRight-form3-main"
               style={{
                 display: "flex",
                 alignItems: "center",
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
-              <input
+              <label className="emailRight-form3-label" style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
+              <input className="emailRight-form3-input"
                 type="email"
                 value={email}
                 onChange={(e) => {
@@ -1251,18 +1411,18 @@ export default function Consult() {
           </div>
 
           {/* 전화번호 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="emailRight-form4" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="emailRight-form4-main"
               style={{
                 display: "flex",
                 alignItems: "center",
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="emailRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
                 전화번호 <span style={{ color: "red" }}>*</span>
               </label>
-              <select
+              <select className="emailRight-form4-select"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
                 style={{
@@ -1277,7 +1437,7 @@ export default function Consult() {
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
-              <input
+              <input className="emailRight-form4-input"
                 type="tel"
                 value={phone}
                 onChange={(e) => {
@@ -1321,8 +1481,8 @@ export default function Consult() {
           </div>
 
           {/* 제목 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="emailRight-form5" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="emailRight-form5-main"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -1330,10 +1490,10 @@ export default function Consult() {
                 padding: "4px 0",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="emailRight-form5-label" style={{ width: 120, fontWeight: 600 }}>
                 내용<span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <input className="emailRight-form5-input"
                 value={content}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -1382,9 +1542,9 @@ export default function Consult() {
           </div> */}
 
           {/* 개인정보 동의 */}
-          <div style={{ marginBottom: 22, fontSize: 18 }}>
-            <label style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
-              <input
+          <div className="emailRight-form6" style={{ marginBottom: 22, fontSize: 18 }}>
+            <label className="emailRight-form5-label" style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
+              <input className="emailRight-form5-input"
                 type="radio"
                 name="agree"
                 checked={agree}
@@ -1413,7 +1573,7 @@ export default function Consult() {
           </div>
 
           {/* Info liên hệ */}
-          <div
+          <div className="emailRight-Contact"
             style={{
               fontSize: 18,
               lineHeight: 1.8,
@@ -1421,19 +1581,19 @@ export default function Consult() {
               textAlign: "center",
             }}
           >
-            <div>
+            <div className="emailRight-Contact-1">
               <strong>전화 걸기:</strong> (+82) 51-715-0607
             </div>
-            <div>
+            <div className="emailRight-Contact-2">
               <strong>이메일 보내기:</strong> onepass.kr@gmail.com
             </div>
-            <div style={{ color: "#444" }}>
+            <div className="emailRight-Contact-3" style={{ color: "#444" }}>
               <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
             </div>
           </div>
 
           {/* Nút submit */}
-          <button
+          <button className="emailRight-submit"
             type="submit"
             style={{
               width: "100%",
@@ -1451,7 +1611,114 @@ export default function Consult() {
           </button>
         </form>
       </div>
+          <style>
+            {
+              `
+              /* ----- Responsive dưới 600px ----- */
+@media (max-width: 600px) {
+  .emailRight {
+    padding: 40px 30px !important;
+  }
 
+  .emailRight-form1,
+  .emailRight-form2 > div,
+  .emailRight-form3-main,
+  .emailRight-form4-main,
+  .emailRight-form5-main {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .emailRight-form1-label,
+  .emailRight-form2-label1,
+  .emailRight-form3-label,
+  .emailRight-form4-label,
+  .emailRight-form5-label {
+    width: 100% !important;
+    margin-bottom: 6px !important;
+  }
+
+  .emailRight-form1-1,
+  .emailRight-form2-input,
+  .emailRight-form3-input,
+  .emailRight-form4-select,
+  .emailRight-form4-input,
+  .emailRight-form5-input {
+    width: 100% !important;
+  }
+
+  .emailRight-form1-list {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .emailRight-form1-selected,
+  .emailRight-form2 div + div,
+  .emailRight-form3 div + div,
+  .emailRight-form4 div + div,
+  .emailRight-form5 div + div {
+    margin-left: 0 !important;
+  }
+
+  .emailRight-Contact {
+    font-size: 16px !important;
+  }
+
+  .emailRight-submit {
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+}
+
+/* ----- Responsive dưới 400px ----- */
+@media (max-width: 400px) {
+  .emailRight {
+    padding: 30px 20px !important;
+  }
+
+  .emailRight-h2 {
+    font-size: 24px !important;
+  }
+
+  .emailRight-form1-1 span,
+  .emailRight-form2-input,
+  .emailRight-form3-input,
+  .emailRight-form4-input,
+  .emailRight-form5-input {
+    font-size: 15px !important;
+  }
+
+  .emailRight-form4-select {
+    margin-bottom: 6px !important;
+  }
+
+  .emailRight-Contact {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .emailRight-submit {
+    font-size: 15px !important;
+    padding: 12px !important;
+  }
+.emailRight-form5-main {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .emailRight-form5-label {
+    margin-bottom: 6px !important;
+    width: 100% !important;
+  }
+
+  .emailRight-form5-input {
+    width: 100% !important;
+  }
+  
+}
+`
+            }
+          </style>
     </div>
   );
 
@@ -1812,8 +2079,6 @@ export default function Consult() {
               <i className="" style={{ fontSize: 18 }}></i>
             </div>
 
-
-
             {dateError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 *필수입입니다
@@ -1821,8 +2086,6 @@ export default function Consult() {
             )}
 
           </div>
-
-
 
           {/* 개인정보 동의 */}
           <div style={{ marginBottom: 22, fontSize: 18 }}>
@@ -1925,7 +2188,7 @@ export default function Consult() {
         </div>
         {/* Main content row */}
 
-        <div
+        <div className="consultation-bar"
           style={{
             position: "fixed",
             bottom: 0,
@@ -2132,7 +2395,7 @@ export default function Consult() {
       </section>
 
       <section style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
-        <div style={{ maxWidth: 1250, margin: "0 auto", padding: "0 20px", height: 1250 }}>
+        <div style={{ maxWidth: 1250, margin: "0 auto", padding: "0 20px" }}>
           {/* Tabs */}
           <div
             style={{
@@ -2144,6 +2407,7 @@ export default function Consult() {
             }}
           >
             <div
+              className="menuCosult"
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -2154,7 +2418,7 @@ export default function Consult() {
               }}
             >
               {tabs.map((tab) => (
-                <button
+                <button className="menuCosult-button"
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
                   style={{
@@ -2172,7 +2436,7 @@ export default function Consult() {
                 >
                   {tab.label}
                   {activeTab === tab.id && (
-                    <div
+                    <div className="menuCosult-button-id"
                       style={{
                         position: "absolute",
                         bottom: -2,
@@ -2187,6 +2451,7 @@ export default function Consult() {
                   )}
                 </button>
               ))}
+
             </div>
           </div>
           <>
@@ -2206,6 +2471,52 @@ export default function Consult() {
           opacity: 1;
         }
       }
+
+
+      /* ⚡ Desktop giữ nguyên */
+.menuCosult {
+  overflow: visible;
+}
+
+/* ⚡ Cho phép cuộn ngang từ 900px trở xuống */
+@media (max-width: 900px) {
+  .menuCosult {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    justify-content: flex-start !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .menuCosult::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menuCosult-button {
+    flex: 0 0 auto;
+    display: inline-block;
+  }
+}
+
+/* ⚡ Khi màn hình nhỏ hơn 400px */
+@media (max-width: 400px) {
+  .menuCosult {
+    gap: 0 !important;
+    padding: 0 5px; /* tạo chút khoảng đệm hai bên */
+  }
+
+  .menuCosult-button {
+    padding: 8px 16px !important;
+    font-size: 12.5px !important;
+    flex: 0 0 auto;
+  }
+
+  .menuCosult-button-id {
+    height: 2px !important;
+  }
+}
+
     `}
             </style>
             {showPopup && (

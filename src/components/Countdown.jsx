@@ -74,7 +74,7 @@ function Countdown() {
                 marginBottom: 10,
               }}
             >
-             찾아오시는 길
+             CONTACT
             </div>
             <h3 className="main-left-h3"
               style={{
@@ -84,7 +84,7 @@ function Countdown() {
                 margin: "0 0 18px 0",
               }}
             >
-             고객과 함께 걸어온 발자취,<br/> 끝까지 함께 하겠습니다.
+            상담이 필요하시면 원패스를 찾아주세요
             </h3>
             <div
               style={{

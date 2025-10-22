@@ -1542,23 +1542,43 @@ export default function Consult() {
           </div> */}
 
           {/* 개인정보 동의 */}
-          <div className="emailRight-form6" style={{ marginBottom: 22, fontSize: 18 }}>
-            <label className="emailRight-form5-label" style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
-              <input className="emailRight-form5-input"
-                type="radio"
-                name="agree"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
-                style={{
-                  marginRight: 6,
-                  width: 16,
-                  height: 16,
-                  accentColor: "#000",
-                }}
-              />
-              개인정보 수집 및 이용 동의
-            </label>
-          </div>
+        <div
+  className="emailRight-form5"
+  style={{
+    marginBottom: 22,
+    fontSize: 18,
+    display: "flex",
+    alignItems: "center",
+  }}
+>
+  <label
+    className="emailRight-form5-label"
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      flexWrap: "wrap",
+      fontSize: "inherit",
+      color: "#333",
+      lineHeight: 1.5,
+    }}
+  >
+    <input
+      className="emailRight-form5-input"
+      type="radio"
+      name="agree"
+      checked={agree}
+      onChange={(e) => setAgree(e.target.checked)}
+      style={{
+        width: 18,
+        height: 18,
+        accentColor: "#000",
+        flexShrink: 0,
+      }}
+    />
+    개인정보 수집 및 이용 동의
+  </label>
+</div>
 
           <div
             style={{
@@ -1633,7 +1653,7 @@ export default function Consult() {
   .emailRight-form2-label1,
   .emailRight-form3-label,
   .emailRight-form4-label,
-  .emailRight-form5-label {
+  {
     width: 100% !important;
     margin-bottom: 6px !important;
   }
@@ -1643,7 +1663,7 @@ export default function Consult() {
   .emailRight-form3-input,
   .emailRight-form4-select,
   .emailRight-form4-input,
-  .emailRight-form5-input {
+  {
     width: 100% !important;
   }
 
@@ -1684,7 +1704,7 @@ export default function Consult() {
   .emailRight-form2-input,
   .emailRight-form3-input,
   .emailRight-form4-input,
-  .emailRight-form5-input {
+  {
     font-size: 15px !important;
   }
 
@@ -1700,20 +1720,7 @@ export default function Consult() {
   .emailRight-submit {
     font-size: 15px !important;
     padding: 12px !important;
-  }
-.emailRight-form5-main {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-
-  .emailRight-form5-label {
-    margin-bottom: 6px !important;
-    width: 100% !important;
-  }
-
-  .emailRight-form5-input {
-    width: 100% !important;
-  }
+  } 
   
 }
 `
@@ -1771,7 +1778,7 @@ export default function Consult() {
 
       {/* Right */}
 
-      <div
+      <div className="visitRight"
         style={{
           maxWidth: 640,
           width: "100%",
@@ -1781,12 +1788,12 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
-        <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
+        <h2  className="visitRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
+        <div  style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
-        <form onSubmit={handleSubmit2}>
+        <form className="visitRight-form" onSubmit={handleSubmit2}>
           {/* 서비스 선택 */}
-          <div style={{ marginBottom: 20, position: "relative" }}>
+          <div className="visitRight-form1" style={{ marginBottom: 20, position: "relative" }}>
             <div
               onClick={() => setOpen(!open)}
               style={{
@@ -1797,10 +1804,10 @@ export default function Consult() {
                 cursor: "pointer",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="visitRight-form1" style={{ width: 120, fontWeight: 600 }}>
                 서비스 선택 <span style={{ color: "red" }}>*</span>
               </label>
-              <div style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+              <div className="visitRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: selected ? "#000" : "#999" }}>
                   {selected || "서비스 선택"}
                 </span>
@@ -1815,7 +1822,7 @@ export default function Consult() {
             </div>
 
             {open && (
-              <div
+              <div className="visitRight-form1-list"
                 style={{
                   position: "absolute",
                   top: "100%",
@@ -1857,18 +1864,18 @@ export default function Consult() {
           </div>
 
           {/* 이름 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="visitRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="visitRight-form2-main"
               style={{
                 display: "flex",
                 alignItems: "center",
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="visitRight-form2-label" style={{ width: 120, fontWeight: 600 }}>
                 이름 <span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <input className="visitRight-form2-input"
                 type="text"
                 value={name}
                 onChange={(e) => {
@@ -1900,16 +1907,16 @@ export default function Consult() {
           </div>
 
           {/* 이메일 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="visitRight-form3" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="visitRight-form3-main"
               style={{
                 display: "flex",
                 alignItems: "center",
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
-              <input
+              <label className="visitRight-form3-label" style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
+              <input className="visitRight-form3-input"
                 type="email"
                 value={email}
                 onChange={(e) => {
@@ -1941,18 +1948,18 @@ export default function Consult() {
           </div>
 
           {/* 전화번호 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="visitRight-form4" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="visitRight-form4-main"
               style={{
                 display: "flex",
                 alignItems: "center",
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>
+              <label className="visitRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
                 전화번호 <span style={{ color: "red" }}>*</span>
               </label>
-              <select
+              <select className="visitRight-form4-select"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
                 style={{
@@ -1967,7 +1974,7 @@ export default function Consult() {
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
-              <input
+              <input className="visitRight-form4-input"
                 type="tel"
                 value={phone}
                 onChange={(e) => {
@@ -2012,8 +2019,8 @@ export default function Consult() {
           </div>
 
           {/* 제목 */}
-          <div style={{ marginBottom: 20, fontSize: 18 }}>
-            <div
+          <div className="visitRight-form5" style={{ marginBottom: 20, fontSize: 18 }}>
+            <div className="visitRight-form5-main"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -2022,12 +2029,12 @@ export default function Consult() {
               }}
             >
               {/* 날짜 선택 */}
-              <label style={{ fontWeight: 700, marginRight: 8 }}>
+              <label className="visitRight-form5-label" style={{ fontWeight: 700, marginRight: 8 }}>
                 날짜 선택 <span style={{ color: "red" }}>*</span>
               </label>
 
               {/* input chọn ngày */}
-              <input
+              <input className="visitRight-form5-input"
                 type="date"
                 value={date}
                 onChange={(e) => {
@@ -2055,10 +2062,10 @@ export default function Consult() {
               />
 
               {/* 시간 */}
-              <label style={{ fontWeight: 700, marginRight: 8 }}>시간</label>
+              <label className="visitRight-form5-label1" style={{ fontWeight: 700, marginRight: 8 }}>시간</label>
 
               {/* input chọn giờ */}
-              <input
+              <input className="visitRight-form5-input1"
                 type="time"
                 value={time}
                 onChange={handleTimeChange}
@@ -2088,7 +2095,7 @@ export default function Consult() {
           </div>
 
           {/* 개인정보 동의 */}
-          <div style={{ marginBottom: 22, fontSize: 18 }}>
+          <div className="visitRight-form6" style={{ marginBottom: 22, fontSize: 18 }}>
             <label style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
               <input
                 type="radio"
@@ -2119,7 +2126,7 @@ export default function Consult() {
           </div>
 
           {/* Info liên hệ */}
-          <div
+          <div className="visitRight-Contact"
             style={{
               fontSize: 18,
               lineHeight: 1.8,
@@ -2127,19 +2134,19 @@ export default function Consult() {
               textAlign: "center",
             }}
           >
-            <div>
+            <div className="visitRight-Contact-1">
               <strong>전화 걸기:</strong> (+82) 51-715-0607
             </div>
-            <div>
+            <div className="visitRight-Contact-2">
               <strong>이메일 보내기:</strong> onepass.kr@gmail.com
             </div>
-            <div style={{ color: "#444" }}>
+            <div className="visitRight-Contact-3" style={{ color: "#444" }}>
               <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
             </div>
           </div>
 
           {/* Nút submit */}
-          <button
+          <button className="visitRight-submit"
             type="submit"
             style={{
               width: "100%",
@@ -2157,7 +2164,106 @@ export default function Consult() {
           </button>
         </form>
       </div>
+            <style>
+              {
+                `
+                /* ✅ Reponsive cho màn hình <= 600px */
+                .visitRight-form6 label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  line-height: 1.6 !important;
+  font-size: 17px !important;
+  flex-wrap: nowrap !important;
+}
 
+.visitRight-form6 input[type="radio"] {
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: #000 !important;
+  transform: translateY(1px);
+}
+@media (max-width: 600px) {
+  .visitRight {
+    padding: 40px 30px !important;
+  }
+
+  .visitRight-h2 {
+    font-size: 26px !important;
+    text-align: center !important;
+  }
+
+  .visitRight-form label {
+    width: 100% !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+    font-size: 16px !important;
+  }
+
+  .visitRight-form input,
+  .visitRight-form select {
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  .visitRight-form1 div,
+  .visitRight-form2-main,
+  .visitRight-form3-main,
+  .visitRight-form4-main,
+  {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .visitRight-form1-list {
+    left: 0 !important;
+  }
+
+  .visitRight-form5-input {
+    margin-left: 0 !important;
+  }
+
+  .visitRight-submit {
+    font-size: 17px !important;
+    padding: 14px !important;
+  }
+
+  .visitRight-Contact {
+    font-size: 16px !important;
+  }
+}
+
+/* ✅ Reponsive cho màn hình <= 400px */
+@media (max-width: 400px) {
+  .visitRight {
+    padding: 30px 20px !important;
+  }
+
+  .visitRight-h2 {
+    font-size: 22px !important;
+  }
+
+  .visitRight-form label {
+    font-size: 15px !important;
+  }
+
+  .visitRight-form input,
+  .visitRight-form select {
+    font-size: 15px !important;
+  }
+
+  .visitRight-submit {
+    font-size: 16px !important;
+  }
+
+  .visitRight-Contact {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+}
+`
+              }
+            </style>
     </div>
   );
   const tabs = [

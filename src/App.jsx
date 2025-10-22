@@ -1858,9 +1858,14 @@ function App() {
 
 /* dưới 400px có thể chỉ dùng 1 cột cho gọn hơn */
 @media (max-width: 400px) {
-  .consult-cards {
+ .consult-cards {
     grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    gap: 18px !important;
+  }
+
+  .consult-cards > div {
+    padding: 16px 14px !important;
+    min-height: 200px !important; /* 🔹 thu nhỏ chiều cao card */
   }
 }
 

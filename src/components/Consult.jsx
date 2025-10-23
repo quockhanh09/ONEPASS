@@ -2415,7 +2415,7 @@ export default function Consult() {
                 boxSizing: "border-box",
               }}
             >
-              <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+              <option value="">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
               <option value="+82">+82</option>
               <option value="+84">+84</option>
             </select>

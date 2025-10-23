@@ -616,19 +616,26 @@ function Service(props) {
   } = props;
 
   const [svcBlockFixed, setSvcBlockFixed] = useState(false);
+  const [initialTop, setInitialTop] = useState(0);
   const svcBlockRef = useRef(null);
+
+  useEffect(() => {
+    if (svcBlockRef.current) {
+      setInitialTop(svcBlockRef.current.offsetTop);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!svcBlockRef.current) return;
 
-      const rect = svcBlockRef.current.getBoundingClientRect();
-      setSvcBlockFixed(rect.top <= 0);
+      const scrollY = window.scrollY;
+      setSvcBlockFixed(scrollY >= initialTop);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [initialTop]);
 
   const { language } = useLanguage();
   const [service, setService] = useState("");
@@ -2667,7 +2674,7 @@ function Service(props) {
                 베트남 비자면제증 발급
               </button>
               <button style={tabStyle("cc6")} onClick={() => setActiveTab6("cc6")}>
-                베트남 전자비자 • 성용비자
+                베트남 전자비자 • 상용비자
               </button>
             </div>
 
@@ -3389,7 +3396,7 @@ function Service(props) {
                 boxSizing: "border-box",
               }}
             >
-              <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+              <option value="">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
               <option value="+82">+82</option>
               <option value="+84">+84</option>
             </select>
@@ -3518,7 +3525,7 @@ function Service(props) {
               </div>
 
               {/* Container ICON */}
-              <div className="main-icon-container">
+              <div className={`main-icon-container ${svcBlockFixed ? 'fixed' : ''}`} ref={svcBlockRef}>
                 {services.map((item, i) => {
                   const isActive = activeIndex === i;
                   const currentIcon = isActive
@@ -3602,11 +3609,12 @@ function Service(props) {
 
 .main-icon-container.fixed {
   position: fixed;
-  top: 0; /* hoặc top: 80px nếu có header */
+  top: 45px; 
   left: 0;
   width: 100%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
+  z-index: 1000;
 }
     .main-icon-item {
       /* desktop: visible inline */
@@ -3633,7 +3641,7 @@ function Service(props) {
     @media (max-width: 768px) {
       .main-icon {
         position: relative !important;
-        padding: 24px 0 !important;
+      
       }
 
       .main-icon-1 {
@@ -3641,62 +3649,55 @@ function Service(props) {
         overflow: hidden !important;
       }
 
-      /* Container becomes relative area for single centered icon */
+      /* Container becomes horizontal scrollable area for all icons */
       .main-icon-container {
-        display: block !important;
-        position: relative !important;
-        height: 140px; /* keeps same height as item */
+        display: flex !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 15px !important;
+        padding: 0 20px !important;
+        justify-content: flex-start !important;
+        scrollbar-width: none !important; /* Hide scrollbar for Firefox */
+        -ms-overflow-style: none !important; /* Hide scrollbar for IE/Edge */
       }
 
-      /* Make each item absolutely positioned and hidden by default */
+      .main-icon-container::-webkit-scrollbar {
+        display: none !important; /* Hide scrollbar for Webkit browsers */
+      }
+
+      /* Make each item visible and inline */
       .main-icon-item {
-        position: absolute !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) scale(0.95) !important;
-        opacity: 0 !important;
-        display: flex !important; /* keep layout but hidden by opacity */
-        pointer-events: none !important;
-      }
-
-      /* Show only active item */
-      .main-icon-item.active {
+        position: static !important;
         opacity: 1 !important;
-        transform: translate(-50%, -50%) scale(1) !important;
+        transform: none !important;
         pointer-events: auto !important;
+        flex-shrink: 0 !important;
+        width: 100px !important;
+        height: 120px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
 
       .main-icon-img {
-        width: 72px !important;
-        height: 72px !important;
+        width: 60px !important;
+        height: 60px !important;
       }
 
       .main-icon-title {
-        font-size: 14px !important;
-        margin-top: 8px !important;
+        font-size: 12px !important;
+        margin-top: 6px !important;
+        text-align: center !important;
+        white-space: nowrap !important;
       }
 
-      /* Arrow buttons appear on mobile */
+      /* Hide arrow buttons on mobile for swipe layout */
       .arrow-btn {
-        display: flex !important;
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        background: #fff;
-        border: 2px solid #1d2c5b;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 20;
+        display: none !important;
       }
-
-      .arrow-left { left: 12px !important; }
-      .arrow-right { right: 12px !important; }
-
-      .arrow-icon { font-size: 18px; color: #1d2c5b; font-weight: 700; }
 
       /* optional: slightly fade non-active content below while mobile icon changes */
       .service-content { transition: opacity 0.25s ease; }

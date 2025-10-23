@@ -98,7 +98,7 @@ function Introduction() {
       setLoading(false);
     }
   };
-
+    
 
   return (
     <>
@@ -243,7 +243,7 @@ function Introduction() {
                 boxSizing: "border-box",
               }}
             >
-              <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+              <option value="">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
               <option value="+82">+82</option>
               <option value="+84">+84</option>
             </select>
@@ -325,6 +325,8 @@ function Introduction() {
                 : "상담 신청"}
           </div>
         </div>
+
+        
       </section>
 
       <section className="about-section" style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>

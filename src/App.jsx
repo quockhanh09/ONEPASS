@@ -37,7 +37,7 @@ import a33 from "./assets/img/image253.png";
 import a35 from "./assets/img/a35.png";
 import a36 from "./assets/img/a36.png";
 
-import n1 from "./assets/img/n1.png";
+import n1 from "./assets/img/n19.png";
 import n2 from "./assets/img/n2.png";
 import n3 from "./assets/img/n3.png";
 
@@ -80,7 +80,7 @@ import etcActive from "./assets/img/s9-9icon.png";
 
 
 import { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 // import Layout from "./Layout.jsx";
@@ -136,6 +136,13 @@ const eventImages = [event1, event2, event3, event4];
 
 function App() {
   const { language } = useLanguage();
+  const location = useLocation();
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const newsData = {
     copyright: [
       {
@@ -1240,16 +1247,12 @@ function App() {
                             style={{
                               width: 80,
                               height: 80,
-                              borderRadius: '50%',
-                              background: isActive ? '#2B3A67' : '#ffffff',
+                              borderRadius: '50%',                            
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               marginBottom: 12,
-                              boxShadow: isActive
-                                ? '0 8px 24px rgba(43, 58, 103, 0.3)'
-                                : '0 4px 12px rgba(0, 0, 0, 0.1)',
-                              // ... deleted code ... (removed transform scale effect)
+                              
                               transition: 'all 0.3s ease'
                             }}
                           >
@@ -1387,7 +1390,7 @@ function App() {
     .service-cards-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+      
       max-width: 1000px;
       margin: 0 auto;
     }
@@ -1426,8 +1429,8 @@ function App() {
       }
       
       .service-icon-circle {
-        width: 64px !important;
-        height: 64px !important;
+        width: 80px !important;
+        height: 80px !important;
       }
       
       .service-icon-circle img {
@@ -1496,8 +1499,8 @@ function App() {
       }
       
       .service-icon-circle img {
-        width: 28px !important;
-        height: 28px !important;
+        width: 60px !important;
+        height:60px !important;
       }
       
       .service-card {
@@ -1673,11 +1676,11 @@ function App() {
         }
 
         section > div:first-child div:nth-child(1) {
-          font-size: 18px !important;
+          font-size: 14px !important;
         }
 
         section > div:first-child div:nth-child(2) {
-          font-size: 20px !important;
+          font-size: 14px !important;
           line-height: 1.4 !important;
           
         }
@@ -1743,7 +1746,7 @@ function App() {
                     ].map((c, i) => {
                       const isRight = i % 2 === 1; // giữ lệch dọc bằng marginTop, kích thước đồng nhất
                       return (
-                        <div
+                        <div className="consult-cards-main"
                           key={i}
                           style={{
                             background: '#ffffff',
@@ -1758,8 +1761,8 @@ function App() {
                             boxSizing: 'border-box',
                           }}
                         >
-                          <div style={{ height: 180, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                            <div
+                          <div className="consult-cards-main-title" style={{ height: 180, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                            <div className="consult-main-img"
                               style={{
                                 width: 160,
                                 height: 160,
@@ -1771,11 +1774,11 @@ function App() {
                                 boxShadow: 'none'
                               }}
                             >
-                              <img src={c.img} alt="" style={{ width: 128, height: 128, objectFit: 'contain' }} />
+                              <img className="consult-cards-img" src={c.img} alt="" style={{ width: 128, height: 128, objectFit: 'contain' }} />
                             </div>
 
                           </div>
-                          <div style={{ fontSize: 18, fontWeight: 600, color: '#000000ff', marginBottom: 6 }}>
+                          <div className="consult-cards-title" style={{ fontSize: 18, fontWeight: 600, color: '#000000ff', marginBottom: 6 }}>
                             {c.title}
                           </div>
                           <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
@@ -1798,79 +1801,91 @@ function App() {
                 </div>
 
                 <style>
-                  {`
-                    @media (max-width: 700px) {
-                      .consult-text {
-                         display: none !important;
-                      }
-
-                      section > div {
-                         grid-template-columns: 1fr !important;
-                         gap: 32px !important;
-                         max-width: 100% !important;
-                         padding: 0 20px !important;
-                         box-sizing: border-box !important;
-                        }
-
-                      section > div > div:nth-child(2) {
-                         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                         gap: 16px !important;
-                         justify-items: center !important;
-                         }
-                        }
-
-                  /* fix từ 450px trở xuống để tránh dính */
-                      @media (max-width: 450px) {
+{`
+/* -------------- Tablet & Mobile (max 700px) -------------- */
+@media (max-width: 700px) {
   .consult-text {
     display: none !important;
   }
 
-  section > div > div:nth-child(2) {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 32px !important; /* tăng khoảng cách giữa các card */
+  .consult-section .consult-container {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .consult-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+    align-items: stretch !important;
     justify-items: center !important;
   }
 
-  section > div > div:nth-child(2) > div {
-    padding: 16px 12px !important;
-    margin-bottom: 16px !important; /* thêm khoảng cách dưới mỗi card */
+  .consult-cards > div {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 20px 16px !important;
+    margin: 0 !important;
   }
 
-  
-
- .consult-cards {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 28px !important;
-  align-items: stretch !important; /* <-- cho tất cả card cao bằng nhau */
-  justify-items: center !important;
+  /* bỏ lệch dọc */
+  .consult-cards-main {
+    margin-top: 0 !important;
+  }
 }
 
-.consult-cards > div {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  height: 100% !important; /* đảm bảo chiều cao đồng đều */
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-}
-
-/* dưới 400px có thể chỉ dùng 1 cột cho gọn hơn */
-@media (max-width: 400px) {
- .consult-cards {
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
+/* -------------- Mobile nhỏ (max 450px) -------------- */
+@media (max-width: 450px) {
+  .consult-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
   }
 
   .consult-cards > div {
-    padding: 16px 14px !important;
-    min-height: 200px !important; /* 🔹 thu nhỏ chiều cao card */
+    padding: 16px 12px !important;
+  }
+
+  .consult-main-img img {
+    width: 100px !important;
+    height: 100px !important;
   }
 }
 
-                   `}
-                </style>
+/* -------------- Mobile rất nhỏ (max 380px) -------------- */
+@media (max-width: 380px) {
+  .consult-section .consult-container {
+    padding: 0 10px !important;
+  }
+
+  .consult-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* ép 2 cột */
+    gap: 14px !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+  }
+
+  .consult-cards > div {
+    min-width: 0 !important; /* ngăn card tràn */
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  .consult-main-img img {
+    width: 70px !important;
+    height: 70px !important;
+  }
+}
+
+
+`}
+</style>
+
               </section>
             </>
           }

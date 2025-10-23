@@ -1,5 +1,5 @@
 import React from "react";
-import n1 from "../assets/img/n1.png";
+import n1 from "../assets/img/n19.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
 import heroBg from "../assets/img/herobanner-1.png";
@@ -129,7 +129,7 @@ export default function NewsDetail() {
                 </div>
 
 
-                <div
+                <div className="consultation-bar"
                   style={{
                     position: "fixed",
                     bottom: 0,
@@ -250,7 +250,7 @@ export default function NewsDetail() {
                         boxSizing: "border-box",
                       }}
                     >
-                      <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+                      <option value="">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                       <option value="+82">+82</option>
                       <option value="+84">+84</option>
                     </select>
@@ -458,7 +458,9 @@ export default function NewsDetail() {
 
 
                         {/* 2 */}
-                        <div>
+                        <div
+                          onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")}
+                        >
                             <img
                                 src={n2}
                                 alt="베트남 총영사관 개소"
@@ -500,7 +502,7 @@ export default function NewsDetail() {
                         </div>
 
                         {/* 3 */}
-                        <div>
+                        <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")}>
                             <img
                                 src={n3}
                                 alt="원패스(One Pass) 업무 개시"

@@ -535,7 +535,7 @@ span {
     width: 100%;
     border-radius: 20px;
     overflow: hidden;
-    transform: translateX(22%);
+    transform: translateX(25%);
   }
 
   .header--sticky .submenu {
@@ -543,7 +543,7 @@ span {
     position: absolute;
     top: calc(100% + 0px);
     left: 50%;
-    transform: translateX(calc(-50% + 300px));
+    transform: translateX(calc(-50% + 335px));
     z-index: 10001;
   }
 

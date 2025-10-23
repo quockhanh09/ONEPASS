@@ -15,6 +15,7 @@ import n2 from "../assets/img/n2.png"
 import n3 from "../assets/img/n3.png"
 import n4 from "../assets/img/N4.png"
 import n5 from "../assets/img/n5.png"
+import n8 from "../assets/img/n19.png"
 
 const CARDS = [
   {
@@ -246,7 +247,7 @@ function Introduction() {
                   boxSizing: "border-box",
                 }}
               >
-                <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+                <option value="">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
@@ -357,7 +358,7 @@ function Introduction() {
           }}>
             {/* Card 1 */}
             <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")} style={{ flex: "1 1 30%", minWidth: 300 }}>
-              <img src={n1} alt="추석 연휴 안내"
+              <img src={n8} alt="추석 연휴 안내"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 30일 | 오전 09:00</p>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>추석 연휴 휴무 안내</h3>

@@ -2244,12 +2244,35 @@ export default function Consult() {
   }
 
   .visitRight-form label {
+    width: 100% !important;
+    margin-bottom: 6px !important;
+    display: block !important;
     font-size: 15px !important;
   }
 
   .visitRight-form input,
   .visitRight-form select {
+    width: 100% !important;
     font-size: 15px !important;
+  }
+
+  .visitRight-form1 div,
+  .visitRight-form2-main,
+  .visitRight-form3-main,
+  .visitRight-form4-main,
+  .visitRight-form5-main {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .visitRight-form5-main {
+    gap: 8px !important;
+  }
+
+  .visitRight-form5-input,
+  .visitRight-form5-input1 {
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   .visitRight-submit {
@@ -2259,6 +2282,120 @@ export default function Consult() {
   .visitRight-Contact {
     font-size: 15px !important;
     line-height: 1.6 !important;
+  }
+}
+
+/* ✅ Optimization for 390px screen width */
+@media (max-width: 390px) {
+  .visitRight {
+    padding: 25px 15px !important;
+  }
+
+  .visitRight-h2 {
+    font-size: 20px !important;
+  }
+
+  .visitRight-form label {
+    width: 100% !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+    font-size: 14px !important;
+  }
+
+  .visitRight-form input,
+  .visitRight-form select {
+    width: 100% !important;
+    font-size: 14px !important;
+  }
+
+  .visitRight-form1 div,
+  .visitRight-form2-main,
+  .visitRight-form3-main,
+  .visitRight-form4-main {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* Keep date/time in single row */
+  .visitRight-form5-main {
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .visitRight-form5-input,
+  .visitRight-form5-input1 {
+    flex: 1 !important;
+    min-width: 120px !important;
+    margin: 0 !important;
+  }
+
+  .visitRight-submit {
+    font-size: 15px !important;
+    padding: 12px !important;
+  }
+
+  .visitRight-Contact {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* ✅ Responsive for 380px screen width */
+@media (max-width: 380px) {
+  .visitRight {
+    padding: 20px 12px !important;
+  }
+
+  .visitRight-h2 {
+    font-size: 18px !important;
+  }
+
+  .visitRight-form label {
+    width: 100% !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+    font-size: 13px !important;
+  }
+
+  .visitRight-form input,
+  .visitRight-form select {
+    width: 100% !important;
+    font-size: 13px !important;
+  }
+
+  .visitRight-form1 div,
+  .visitRight-form2-main,
+  .visitRight-form3-main,
+  .visitRight-form4-main {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* Keep date/time in single row */
+  .visitRight-form5-main {
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .visitRight-form5-input,
+  .visitRight-form5-input1 {
+    flex: 1 !important;
+    min-width: 100px !important;
+    margin: 0 !important;
+  }
+
+  .visitRight-submit {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  .visitRight-Contact {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
   }
 }
 `

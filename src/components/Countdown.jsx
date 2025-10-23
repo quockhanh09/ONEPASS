@@ -25,6 +25,7 @@ function Countdown() {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px" }}>
         <div
+          className="contact-flex"
           style={{
             display: "flex",
             flexWrap: "wrap",
@@ -34,7 +35,7 @@ function Countdown() {
           }}
         >
           {/* Map trái */}
-          <div
+          <div className="Map"
             style={{
               flex: "1 1 520px",
               minWidth: 360,
@@ -55,6 +56,9 @@ function Countdown() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
+            <style>{`
+            
+            `}</style>
           </div>
 
           {/* Khối thông tin phải */}
@@ -141,39 +145,70 @@ function Countdown() {
         </div>
       </div>
       <style>
-        {
-          `
-           @media (max-width: 450px) {
-  .main-left {
-    flex: 1 1 100% !important;
-    min-width: auto !important;
-    max-width: 100% !important;
-    padding: 0 16px;
-  }
+       {
+         `
+          @media (max-width: 450px) {
+ .main-left {
+   flex: 1 1 100% !important;
+   min-width: auto !important;
+   max-width: 100% !important;
+   padding: 0 16px;
+ }
 
-  .main-left-title {
-    font-size: 18px !important;
-    margin-bottom: 6px !important;
-  }
+ .main-left-title {
+   font-size: 18px !important;
+   margin-bottom: 6px !important;
+ }
 
-  .main-left-h3 {
-    font-size: 22px !important;
-    line-height: 1.4 !important;
-  }
+ .main-left-h3 {
+   font-size: 22px !important;
+   line-height: 1.4 !important;
+ }
 
-  .main-left-info {
-    grid-template-columns: 22px 1fr !important;
-    font-size: 14px !important;
-    row-gap: 12px !important;
-  }
+ .main-left-info {
+   grid-template-columns: 22px 1fr !important;
+   font-size: 14px !important;
+   row-gap: 12px !important;
+ }
 
-  .main-left-info div {
-    word-break: keep-all;
+ .main-left-info div {
+   word-break: keep-all;
+ }
+}
+
+.contact-flex {
+  justify-content: center;
+}
+
+@media (max-width: 400px) {
+  .Map {
+    flex: none;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
   }
 }
-          `
-        }
-      </style>
+
+@media (max-width: 390px) {
+  .Map {
+    flex: none;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .Map {
+    flex: none;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+         `
+       }
+     </style>
     </section>
   );
 }

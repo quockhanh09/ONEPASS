@@ -1358,12 +1358,12 @@ function Service(props) {
   .case0-layout-1-img img
   {
     width: 110% !important;
-    height: 193px !important;
+    height: 214px !important;
     object-fit: cover !important;
     
   }
   .case0-business-img img {
-    width: 202px !important;
+    width: 142px !important;
     height: 245px !important;
     object-fit: cover !important;
    transform: translateX(-3px) !important;
@@ -3722,6 +3722,7 @@ function Service(props) {
           onClick={() => setShowModal(false)}
         >
           <div
+            className="modal-content"
             style={{
               background: "#f5f5f5",
               borderRadius: 6,
@@ -3978,6 +3979,76 @@ function Service(props) {
               ✖
             </button>
           </div>
+          <style>
+            {`
+            @media (max-width: 400px) {
+              .modal-content {
+                padding: 40px 20px !important;
+                width: 90vw !important;
+                max-width: 90vw !important;
+              }
+              .modal-content h2 {
+                font-size: 24px !important;
+              }
+              .modal-content label {
+                width: 100px !important;
+                font-size: 14px !important;
+              }
+              .modal-content input, .modal-content select {
+                font-size: 14px !important;
+                padding: 8px 0 !important;
+              }
+              .modal-content button[type="submit"] {
+                padding: 12px !important;
+                font-size: 14px !important;
+              }
+            }
+            @media (max-width: 390px) {
+              .modal-content {
+                padding: 30px 15px !important;
+                width: 95vw !important;
+                max-width: 95vw !important;
+              }
+              .modal-content h2 {
+                font-size: 22px !important;
+              }
+              .modal-content label {
+                width: 90px !important;
+                font-size: 13px !important;
+              }
+              .modal-content input, .modal-content select {
+                font-size: 13px !important;
+                padding: 6px 0 !important;
+              }
+              .modal-content button[type="submit"] {
+                padding: 10px !important;
+                font-size: 13px !important;
+              }
+            }
+            @media (max-width: 380px) {
+              .modal-content {
+                padding: 25px 10px !important;
+                width: 98vw !important;
+                max-width: 98vw !important;
+              }
+              .modal-content h2 {
+                font-size: 20px !important;
+              }
+              .modal-content label {
+                width: 80px !important;
+                font-size: 12px !important;
+              }
+              .modal-content input, .modal-content select {
+                font-size: 12px !important;
+                padding: 4px 0 !important;
+              }
+              .modal-content button[type="submit"] {
+                padding: 8px !important;
+                font-size: 12px !important;
+              }
+            }
+            `}
+          </style>
         </div>
       )}
 

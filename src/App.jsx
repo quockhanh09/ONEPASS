@@ -1134,7 +1134,44 @@ function App() {
         }
       }
 
-      /* --- Mobile nhỏ (≤399px) --- */
+      /* --- Mobile nhỏ (≤390px) --- */
+      @media (max-width: 390px) {
+         .about-stats {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important; /* căn giữa toàn bộ khối */
+    align-items: flex-start !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    gap: 25px !important; /* tăng khoảng cách giữa 3 cột */
+    padding: 0 10px !important; /* thêm lề trong nhẹ để không chạm mép */
+    text-align: center !important;
+  }
+
+  .about-stats .stat-item {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+  }
+
+  .about-stats .stat-number {
+    font-size: 36px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .about-stats .stat-label {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    white-space: nowrap !important; /* không cho chữ xuống dòng */
+  }   }
+
+      /* --- Mobile rất nhỏ (≤380px) --- */
       @media (max-width: 380px) {
          .about-stats {
     display: flex !important;
@@ -1857,7 +1894,7 @@ function App() {
 }
 
 /* -------------- Mobile rất nhỏ (max 380px) -------------- */
-@media (max-width: 380px) {
+@media (max-width: 390px) {
   .consult-section .consult-container {
     padding: 0 10px !important;
   }

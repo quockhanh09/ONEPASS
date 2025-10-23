@@ -754,6 +754,176 @@ function Introduction() {
       padding: 40px 0 !important;
     }
   }
+@media (max-width: 400px) {
+  .Calendar-title {
+    width: 100% !important;
+  }
+
+  .Calendar-title-h2 {
+    font-size: 18px !important;
+  }
+
+  /* Khối lịch chính */
+  .Calendar-title > div {
+    padding: 12px !important;
+  }
+
+  /* Tên ngày (일, 월, 화...) */
+  .Calendar-title-date div {
+    font-size: 11px !important;
+  }
+
+  /* Grid ngày */
+  .Calendar-title + div {
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 4px !important;
+    justify-content: space-between !important;
+  }
+
+  /* Ô ngày */
+  .Calendar-title + div > div {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* ----- Responsive cho màn hình 370px ----- */
+@media (max-width: 370px) {
+  .Calendar-title-h2 {
+    font-size: 16px !important;
+  }
+
+  .Calendar-title-date div {
+    font-size: 10px !important;
+  }
+
+  .Calendar-title + div {
+    gap: 3px !important;
+  }
+
+  .Calendar-title + div > div {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 12px !important;
+    border-radius: 6px !important;
+  }
+
+  .Calendar-title > div {
+    padding: 10px !important;
+  }
+}
+@media (max-width: 400px) {
+  .Calendar-title {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .Calendar-title-h2 {
+    font-size: 18px !important;
+    text-align: center !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* khung chứa lịch (hộp trắng) */
+  .Calendar-title > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 12px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    border-radius: 14px !important;
+  }
+
+  /* hàng tiêu đề ngày (일, 월...) */
+  .Calendar-title-date {
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 4px !important;
+    justify-items: center !important;
+    margin-bottom: 8px !important;
+  }
+  .Calendar-title-date div {
+    font-size: 11px !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* grid chứa các ô ngày: chọn phần tử con cuối cùng trong khung lịch */
+  .Calendar-title > div > div:last-child {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 6px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* từng ô ngày */
+  .Calendar-title > div > div:last-child > div {
+    width: 100% !important;       /* cho co giãn theo 1fr */
+    max-width: 44px !important;   /* giới hạn chiều ngang ô */
+    height: 44px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+    margin: 0 auto !important;
+  }
+
+  /* nền và chữ cho ngày hôm nay / ngày chọn (giữ nguyên màu hiện tại bằng inline styles) */
+  .Calendar-title > div > div:last-child > div[style*="background"] {
+    /* đảm bảo ô ngày hôm nay không bị co kéo bất thường */
+    min-width: 36px !important;
+    min-height: 36px !important;
+    display: inline-flex !important;
+  }
+
+  /* tránh overflow dọc */
+  .Calendar-title > div, .Calendar-title > div > div:last-child {
+    overflow: hidden !important;
+  }
+}
+
+/* thêm một bước co nhỏ nữa cho <=370px */
+@media (max-width: 370px) {
+  .Calendar-title-h2 {
+    font-size: 16px !important;
+  }
+
+  .Calendar-title > div {
+    padding: 8px 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .Calendar-title-date div {
+    font-size: 10px !important;
+  }
+
+  .Calendar-title > div > div:last-child {
+    gap: 4px !important;
+  }
+
+  .Calendar-title > div > div:last-child > div {
+    max-width: 40px !important;
+    height: 40px !important;
+    font-size: 12px !important;
+    border-radius: 6px !important;
+  }
+}
+
+/* tiny helper: khi box trắng quá rộng, giữ max-width để không chạm sát mép màn */
+@media (max-width: 420px) {
+  .Calendar-title > div {
+    max-width: 420px !important;
+  }
+}
+Những điểm chính mình
+  
                  `}
 
                 </style>

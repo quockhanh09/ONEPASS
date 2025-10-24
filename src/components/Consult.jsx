@@ -1094,7 +1094,7 @@ export default function Consult() {
         .phoneRight-form2 label,
         .phoneRight-form4 label,
         .phoneRight-form-1 label {
-          width: 100px !important;
+          
           font-size: 16px !important;
           flex-shrink: 0 !important;
         }

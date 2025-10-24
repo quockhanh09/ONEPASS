@@ -322,7 +322,7 @@ function App() {
     ],
     "신분증명 서류": [
       { img: a14, title: "일반 여권 (재)발급·변경· 추가", desc: "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행", tabKey: "a17" },
-      { img: a15, title: "호적 변경·정정·추가, 민족 재확인, 성별 재확인 등", desc: " 이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원", tabKey: "a18" },
+      { img: a15, title: "호적 변경·정정·추가, 민족 재확인, 성별 재확인 등", desc: "이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원", tabKey: "a18" },
       { img: a16, title: "베트남 국민 신고 업데이트", desc: "재외 베트남인으로서의 국민 등록 및 정보 갱신 대행", tabKey: "a19" },
       { img: a17, title: "베트남 출신 증명서 발급", desc: "베트남 출신 확인서 발급을 위한 서류 준비 및 절차 지원", tabKey: "a20" },
       { img: a18, title: "호적증서 반사오 재발급", desc: "출생, 혼인 등 각종 호적 서류의 사본 재발급 대행", tabKey: "a21" },
@@ -337,7 +337,7 @@ function App() {
       { img: a22, title: "베트남 통행증 발급", desc: "재외 공관에서 발급받은 통증 발급 지원", tabKey: "a25" },
       { img: a23, title: "초청 (단기방문 C-3-1 비자)", desc: "한국 단기 방문 비자(C-3-1) 신청 및 발급 절차 지원", tabKey: "a26" },
       { img: a24, title: "초청 (방문동거 F-1-5 비자)", desc: "한국 방문동거 비자(F-1-5) 신청에 필요한 서류 준비 및 절차 대행", tabKey: "a27" },
-      { img: a25, title: "베트남 비자면제증 발급", desc: "  베트남 비자 면제서의 신규 등록 및 재등록 절차 대행", tabKey: "a28" },
+      { img: a25, title: "베트남 비자면제증 발급", desc: "베트남 비자 면제서의 신규 등록 및 재등록 절차 대행", tabKey: "a28" },
       { img: a26, title: "베트남 전자비자.상용비자 발급", desc: "전자 비자(E-Visa) 및 상용 비자의 발급 등록 대행", tabKey: "a29" },
     ],
     "법률 컨설팅": [
@@ -658,7 +658,7 @@ function App() {
                           <input
                             className="search-hero"
                             type="text"
-                            placeholder="검색어를 입력하세요"
+                            placeholder={language === "VI" ? "Vui lòng nhập từ khóa" : "검색어를 입력하세요"}
                             style={{
                               width: "100%",
                               height: "100%",
@@ -980,16 +980,17 @@ function App() {
                   <div style={{ flex: 1, minWidth: "320px" }}>
                     <h2
                       style={{
+                        fontFamily: "",
                         fontSize: "32px",
-                        fontWeight: "800",
+                        fontWeight: "700",
                         color: "#000",
                         marginBottom: "40px",
                         lineHeight: "1.5",
                       }}
                     >
-                      고객님의 모든 행정 절차, 전문
-                      <br />
-                      적인 책임감으로 해결해 드리겠습니다.
+                      {language === "VI" ? (<>Mọi thủ tục hành chính, <br /> chúng tôi giải quyết<br /> bằng sự chuyên nghiệp.</>) : (<>고객님의 모든 행정 절차, 전문
+                        <br />
+                        적인 책임감으로 해결해 드리겠습니다.</>)}
                     </h2>
 
                     {/* ✅ Stats Section */}
@@ -998,23 +999,22 @@ function App() {
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
-                        alignItems: "center",
-                        textAlign: "center",
+
                         gap: "10px",
                         flexWrap: "nowrap",
                       }}
                     >
                       <div className="stat-item" style={{ flex: 1 }}>
                         <div className="stat-number">{displayStats.satisfied}</div>
-                        <div className="stat-label">만족 고객 수</div>
+                        <div className="stat-label">{language === "VI" ? (<>Khách hàng</>) : ("만족 고객 수")}</div>
                       </div>
                       <div className="stat-item" style={{ flex: 1 }}>
                         <div className="stat-number">{displayStats.cases}</div>
-                        <div className="stat-label">접수 사례건 수</div>
+                        <div className="stat-label">{language === "VI" ? (<>Hồ sơ</>) : ("접수 사례건 수")}</div>
                       </div>
                       <div className="stat-item" style={{ flex: 1 }}>
                         <div className="stat-number">{displayStats.consult}</div>
-                        <div className="stat-label">누적 상담건 수</div>
+                        <div className="stat-label">{language === "VI" ? (<>Lần tư vấn</>) : ("적 상담건 수")}</div>
                       </div>
                     </div>
                   </div>
@@ -1051,12 +1051,22 @@ function App() {
                         textAlign: "justify",
                       }}
                     >
-                      2025년, 대한민국 부산에서 원패스(One Pass)가 힘찬 첫걸음을 시작했습니다.
-                      원패스는 베트남 관련 행정 절차에 대한 가장 정확한 지원과 해결책을 제공하기
-                      위해 탄생한 행정 대행 및 솔루션 회사입니다. 여권, 비자, 결혼 서류, 영사
-                      확인 및 공증 등 모든 행정 업무에 대해 정확한 컨설팅 및 지원 서비스를
-                      베트남인과 한국인 모두에게 제공하며, 고객의 시간과 노력을 절약하는 가장
-                      효율적인 길을 열어 드립니다.
+
+                      {language === "VI" ?
+                        (<>Năm 2025, One Pass đặt dấu chân đầu tiên tại Busan, Hàn Quốc.
+                          One Pass là công ty tư vấn và đại diện thực hiện các thủ tục hành chính,
+                          ra đời với mục đích hỗ trợ và cung cấp giải pháp chính xác nhất cho mọi thủ tục hành chính liên quan đến Việt Nam.
+                          Chúng tôi cung cấp dịch vụ tư vấn và hỗ trợ chính xác cho mọi nghiệp vụ hành chính, bao gồm hộ chiếu, visa, hồ sơ kết hôn,
+                          hợp pháp hóa lãnh sự và công chứng, dành cho cả người Việt Nam và người Hàn Quốc.
+                          One Pass mở ra con đường hiệu quả nhất giúp quý khách tiết kiệm tối đa thời gian và công sức.</>)
+                        :
+
+                        (<> 2025년, 대한민국 부산에서 원패스(One Pass)가 힘찬 첫걸음을 시작했습니다.
+                          원패스는 베트남 관련 행정 절차에 대한 가장 정확한 지원과 해결책을 제공하기
+                          위해 탄생한 행정 대행 및 솔루션 회사입니다. 여권, 비자, 결혼 서류, 영사
+                          확인 및 공증 등 모든 행정 업무에 대해 정확한 컨설팅 및 지원 서비스를
+                          베트남인과 한국인 모두에게 제공하며, 고객의 시간과 노력을 절약하는 가장
+                          효율적인 길을 열어 드립니다.</>)}
                     </p>
 
                     {/* ✅ Nút căn phải */}
@@ -1074,7 +1084,7 @@ function App() {
                             cursor: "pointer",
                           }}
                         >
-                          더보기
+                          {language === "VI" ? (<>Xem thêm</>) : ("더보기")}
                         </button>
                       </Link>
                     </div>
@@ -1239,13 +1249,17 @@ function App() {
                     </p>
                     <h2 style={{
                       fontSize: 32,
-                      fontWeight: 900,
+                      fontWeight: 700,
                       color: '#000',
                       lineHeight: 1.4,
                       margin: 0
                     }}>
-                      베트남-한국 고객의 모든 행정 절차를<br />
-                      직접 대행하여 가장 신속하고 정확하게
+
+                      {language === "VI" ? (<>Trực tiếp đại diện thực hiện mọi thủ tục hành chính của khách hàng
+                        <br />Việt Nam - Hàn Quốc, nhanh chóng và chính xác nhất.</>)
+                        :
+                        (<> 베트남-한국 고객의 모든 행정 절차를<br />
+                          직접 대행하여 가장 신속하고 정확하게.</>)}
                     </h2>
                   </div>
 
@@ -1309,11 +1323,25 @@ function App() {
                               fontWeight: isActive ? 700 : 500,
                               color: isActive ? '#2B3A67' : '#666',
                               textAlign: 'center',
+
                               lineHeight: 1.3,
                               transition: 'all 0.3s ease'
                             }}
                           >
-                            {service.title}
+                            {language === "VI" ? (
+                              service.title === "인증 센터" ? "CHỨNG THỰC"
+                                : service.title === "결혼 이민" ? "KẾT HÔN"
+                                  : service.title === "출생신고" ? <>KHAI SINH <br /> KHAI TỬ</>
+                                    : service.title === "출입국 행정" ? "XUẤT NHẬP CẢNH"
+                                      : service.title === "신분증명 서류" ? <>GIẤY TỜ <br /> TÙY THÂN</>
+                                        : service.title === "입양 • 자녀 인지" ? "NHẬN NUÔI "
+                                          : service.title === "비자 대행" ? "THỊ THỰC "
+                                            : service.title === "법률 컨설팅" ? "TƯ VẤN PHÁP LÝ"
+                                              : service.title === "B2B 서비스" ? "DỊCH VỤ B2B"
+                                                : service.title
+                            ) : (
+                              service.title
+                            )}
                           </span>
                         </div>
                       );
@@ -1361,12 +1389,57 @@ function App() {
                             </div>
                             <h3 style={{
                               fontSize: 18,
-                              fontWeight: 700,
+                              fontWeight: 600,
                               color: '#000',
                               marginBottom: 12,
                               lineHeight: 1.4
                             }}>
-                              {card.title}
+                              {language === "VI"
+                                ? card.title === "번역 공증" ? "Dịch thuật, công chứng"
+                                  : card.title === "인증 센터" ? "Hợp pháp hoá"
+                                    : card.title === "한국에서 혼인 신고 " ? "Đăng ký kết hôn tại Hàn Quốc"
+                                      : card.title === "혼인관계증명서 발급 신청" ? "Cấp giấy xác nhận tình trạng hôn nhân"
+                                        : card.title === "혼인요건인증서 발급 신청" ? "Giấy xác nhận đủ điều kiện kết hôn"
+                                          : card.title === "혼인 재신고" ? "Đăng ký lại việc kết hôn"
+                                            : card.title === "결혼이민 비자신청" ? "Đăng ký Visa kết hôn"
+
+                                              : card.title === "출생 신고" ? "Đăng ký khai sinh"
+                                                : card.title === "기한 초과 출생신고" ? "Đăng ký khai sinh quá hạn"
+                                                  : card.title === "사망 신고" ? "Đăng ký việc tử"
+                                                    : card.title === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn"
+
+                                                      : card.title === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch Việt Nam"
+                                                        : card.title === "베트남 국적 유지 신청" ? "Đăng ký giữ quốc tịch Việt Nam"
+                                                          : card.title === "베트남 국적 귀화 신청" ? "Xin trở lại quốc tịch Việt Nam"
+                                                            : card.title === "베트남으로 시체, 유해, 유골 송환 허가 신청" ? "Cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
+                                                              : card.title === "베트남 국적 사실 확인" ? "Thủ tục hồi hương (đăng ký thường trú ở Việt Nam) "
+
+                                                                : card.title === "일반 여권 (재)발급·변경· 추가" ? "Cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
+                                                                  : card.title === "호적 변경·정정·추가, 민족 재확인, 성별 재확인 등" ? "Thay đổi, cải chính, bổ sung hộ tịch"
+                                                                    : card.title === "베트남 국민 신고 업데이트" ? "Đăng ký công dân, cập nhật thông tin công dân"
+                                                                      : card.title === "베트남 출신 증명서 발급" ? "Cấp giấy xác nhận người gốc Việt Nam"
+                                                                        : card.title === "호적증서 반사오 재발급" ? "Cấp bản sao giấy tờ hộ tịch"
+
+                                                                          : card.title === "보호자 인지 인지해지 신고" ? "Đăng ký / chấm dứt việc giám hộ "
+                                                                            : card.title === "혼외자 자녀 인지" ? "Nhận cha, mẹ, con"
+                                                                              : card.title === "입양 절차 대행" ? "Đăng ký nhận con nuôi"
+
+                                                                                : card.title === "베트남 통행증 발급" ? "Cấp giấy thông hành"
+                                                                                  : card.title === "초청 (단기방문 C-3-1 비자)" ? "Visa thăm thân ngắn hạn (C-3-1)"
+                                                                                    : card.title === "초청 (방문동거 F-1-5 비자)" ? "Visa thăm thân dài hạn (F-1-5)"
+                                                                                      : card.title === "베트남 비자면제증 발급" ? "Cấp giấy miễn thị thực "
+                                                                                        : card.title === "베트남 전자비자.상용비자 발급" ? "Đăng ký cấp thị thực điện tử / thị thực công tác"
+
+                                                                                          : card.title === "이혼 소송" ? "Liên quan tới ly hôn"
+                                                                                            : card.title === "노동 관련 소송" ? "Liên quan tới lao động"
+                                                                                              : card.title === "체류자 관련 컨설팅" ? "Liên quan tới cư trú"
+
+                                                                                                : card.title === "베트남·한국에서 법인ㆍ지사·대표 사무실 설립" ? "Thành lập văn phòng đại diện / pháp nhân "
+                                                                                                  : card.title === "베트남·한국 내 노동 허가서, 임시 거주증 발급" ? "Đăng ký giấy phép lao động, thẻ tạm trú"
+                                                                                                    : card.title === "수출입 허가서" ? "Giấy phép xuất nhập khẩu"
+                                                                                                      : card.title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
+                                                                                                        : card.title
+                                : card.title}
                             </h3>
                             <p style={{
                               fontSize: 14,
@@ -1375,7 +1448,86 @@ function App() {
                               marginBottom: 20,
                               flex: 1
                             }}>
-                              {card.desc}
+                              {language === "VI"
+                                ? card.desc ===
+                                  "베트남어, 한국어, 영어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증"
+                                  ? "Dịch công chứng, lãnh sự hóa văn bản, hồ sơ sang tiếng Việt, Hàn, Anh, v.v"
+                                  : card.desc === "영사 확인, 사실인증"
+                                    ? "Chứng nhận lãnh sự, hợp pháp hoá lãnh sự"
+
+                                    : card.desc === "한국에서의 결혼 등록 절차 전반을 대행하고 지원"
+                                      ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Hàn Quốc"
+                                      : card.desc === "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원"
+                                        ? "Tư vấn, xử lý hồ sơ liên quan tới cấp giấy xác nhận tình trạng hôn nhân"
+                                        : card.desc === "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원"
+                                          ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Việt Nam"
+
+                                          : card.desc === "신생아 출생 신고를 정확하고 신속하게 대행"
+                                            ? "Tư vấn hồ sơ liên quan tới đăng ký khai sinh"
+                                            : card.desc === "기간이 초과된 출생 신고 절차를 특별 지원"
+                                              ? "Hỗ trợ tư vấn hồ sơ liên quan tới đăng ký khai sinh quá hạn"
+                                              : card.desc === "사망 신고 및 관련 서류 처리 대행"
+                                                ? "Tư vấn hồ sơ liên quan tới đăng ký việc tử"
+                                                : card.desc === "기간이 초과된 사망 신고 절차 지원 및 해결"
+                                                  ? "Hỗ trợ tư vấn hồ sơ liên quan tới đăng ký khai tử quá hạn"
+
+                                                  : card.desc === "베트남 국적 포기 신청 및 서류 절차 대행"
+                                                    ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới xin thôi quốc tịch VIệt Nam"
+                                                    : card.desc === " 이중국적 유지를 위한 신고 및 관련 절차를지원"
+                                                      ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới giữ quốc tịch Việt Nam"
+                                                      : card.desc === "베트남 국적 귀화를 위한 신청 및 행정 절차 대행"
+                                                        ? "Tư vấn hồ sơ và thực hiện đăng ký xin trở lại quốc tịch Việt Nam"
+                                                        : card.desc === "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행"
+                                                          ? "Thực hiện đăng ký cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
+                                                          : card.desc === "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행"
+                                                            ? "Hướng dẫn và hỗ trợ thực hiện thủ tục hồi hương"
+
+                                                            : card.desc === "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행"
+                                                              ? "Hỗ trợ thực hiện cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
+                                                              : card.desc === "이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원"
+                                                                ? "Tư vấn và thực hiện thủ tục thay đổi, cải chính, bổ sung hộ tịch"
+                                                                : card.desc === "재외 베트남인으로서의 국민 등록 및 정보 갱신 대행"
+                                                                  ? "Thực hiện đăng ký công dân và cập nhật thông tin công dân"
+                                                                  : card.desc === "베트남 출신 확인서 발급을 위한 서류 준비 및 절차 지원"
+                                                                    ? "Hỗ trợ tư vấn và thực hiện thủ tục về cấp Giấy xác nhận người gốc Việt Nam"
+                                                                    : card.desc === "출생, 혼인 등 각종 호적 서류의 사본 재발급 대행"
+                                                                      ? "Thực hiện thủ tục cấp bản sao giấy tờ hộ tịch (Khai sinh, Đăng ký kết hôn, v.v)"
+
+                                                                      : card.desc === "재외 베트남인 간 또는 외국인과의 보호자 신청 등록, 해지 신고 대 행"
+                                                                        ? "Thực hiện đăng ký, chấm dứt việc giám hộ"
+                                                                        : card.desc === "혼외자 자녀 인지 등록 절차 대행"
+                                                                          ? "Thực hiện thủ tục đăng ký nhận cha, mẹ, con"
+                                                                          : card.desc === "베트남 국적 아동의 입양 등록 및 재등록 절차 대행"
+                                                                            ? "Tư vấn và thực hiện thủ tục đăng ký nhận con nuôi"
+
+                                                                            : card.desc === "재외 공관에서 발급받은 통증 발급 지원"
+                                                                              ? "Thực hiện và tư vấn hồ sơ đăng ký cấp giấy thông hành"
+                                                                              : card.desc === "한국 단기 방문 비자(C-3-1) 신청 및 발급 절차 지원"
+                                                                                ? "Hỗ trợ thực hiện thủ tục đăng ký cấp visa thăm thân ngắn hạn (C-3-1)"
+                                                                                : card.desc === "한국 방문동거 비자(F-1-5) 신청에 필요한 서류 준비 및 절차 대행"
+                                                                                  ? "Hỗ trợ thực hiện thủ tục đăng ký cấp visa thăm thân ngắn hạn (F-1-5)"
+                                                                                  : card.desc === "베트남 비자 면제서의 신규 등록 및 재등록 절차 대행"
+                                                                                    ? "Thực hiện thủ tục đăng ký cấp giấy miễn thị thực"
+                                                                                    : card.desc === "전자 비자(E-Visa) 및 상용 비자의 발급 등록 대행"
+                                                                                      ? "Tư vấn hồ sơ và thực hiện đăng ký cấp thị thực điện tử / thị thực công tác"
+
+                                                                                      : card.desc === "베트남-한국 간 국제 이혼 소송의 제기 및 진행에 필요한 법적 절차 대행"
+                                                                                        ? "Tư vấn pháp lý các vấn đề liên quan tới ly hôn"
+                                                                                        : card.desc === "베트남/한국 노동법 관련 분쟁 발생 시 소송 제기 및 법률 자문"
+                                                                                          ? "Tư vấn pháp lý các vấn đề liên quan tới lao động"
+                                                                                          : card.desc === "베트남/한국 내 체류자의 자진 출국 및 합법적 체류 전환 등 민감한 문제 상담"
+                                                                                            ? "Tư vấn pháp lý các vấn đề liên quan tới cư trú"
+
+                                                                                            : card.desc === "한국 또는 베트남 내 법인, 지사, 또는 사무소 설립에 필요한 행정 절차 대행"
+                                                                                              ? "Tư vấn hồ sơ và thực hiện thành lập văn phòng đại diện, pháp nhân, v.v"
+                                                                                              : card.desc === "한국/베트남 외국인 근로자의 취업 허가 및 임시 거주증 발급 절차 대행"
+                                                                                                ? "Hỗ trợ đăng ký giấy phép lao động, thẻ cư trú cho người Việt Nam, Hàn Quốc"
+                                                                                                : card.desc === "기업의 원활한 무역 활동을 위한 수출입 허가증 발급 및 관련 규제 준수 절차 대행"
+                                                                                                  ? "Hỗ trợ thực hiện thủ tục liên quan tới cấp giấy phép xuất nhập khẩu"
+                                                                                                  : card.desc === "B2B 파트너를 매칭하여 기업의 성공적인 시장 진출과 매출 확대"
+                                                                                                    ? "Kết nối khách hàng B2B, hỗ trợ doanh nghiệp mở rộng thị trường hoạt động"
+                                                                                                    : card.desc
+                                : card.desc}
                             </p>
                             <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                               <Link

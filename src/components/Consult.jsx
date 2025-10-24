@@ -2179,7 +2179,7 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-    width: 120px !important;
+   
     font-size: 16px !important;
     flex-shrink: 0 !important;
   }

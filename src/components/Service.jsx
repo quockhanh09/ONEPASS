@@ -174,15 +174,15 @@ const tabContents3 = {
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
     extraContent: (
-      <div style={{ marginTop: "80px" }}>
+      <div className="Contents3-main" style={{ marginTop: "80px" }}>
         {/* Block 1 */}
-        <h2 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "30px" }}>
+        <h2 className="Contents3-h2" style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "30px" }}>
           베트남 국적 포기 의무 및 대상
         </h2>
-        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "80px" }}>
-          <tbody>
-            <tr style={{ borderBottom: "1px solid #e5e7eb" }}>
-              <td
+        <table className="Contents3-table" style={{ width: "100%", borderCollapse: "collapse", marginBottom: "80px" }}>
+          <tbody className="Contents3-tbody">
+            <tr className="Contents3-tr-1" style={{ borderBottom: "1px solid #e5e7eb" }}>
+              <td className="Contents3-td-1"
                 style={{
                   backgroundColor: "#334785",
                   color: "#fff",
@@ -195,7 +195,7 @@ const tabContents3 = {
               >
                 베트남 국적 포기 의무 <br /> (필수 포기 대상)
               </td>
-              <td
+              <td className="Contents3-td-2"
                 style={{
                   backgroundColor: "#f3f6f8",
                   padding: "18px",
@@ -204,7 +204,7 @@ const tabContents3 = {
                   lineHeight: "1.6"
                 }}
               >
-                <ul style={{ margin: 0, paddingLeft: "30px" }}>
+                <ul className="Contents3-ul-1" style={{ margin: 0, paddingLeft: "30px" }}>
                   <li>
                     혼인 관계 종료 후 귀화: 한국인 배우자의 사망, 이혼, 실종 등으로 혼인 관계가 종료된 후 한국 국적을 귀화로 취득한 경우
                   </li>
@@ -215,8 +215,9 @@ const tabContents3 = {
               </td>
             </tr>
 
-            <tr>
-              <td
+            <tr className="Contents3-tr-2">
+              <td 
+              className="Contents3-td-3"
                 style={{
                   backgroundColor: "#334785",
                   color: "#fff",
@@ -230,7 +231,8 @@ const tabContents3 = {
               >
                 베트남 국적 포기 대상자 <br /> (주요 사례)
               </td>
-              <td
+
+              <td className="Contents3-td-4"
                 style={{
                   backgroundColor: "#f9fbfc",
                   padding: "30px",
@@ -239,7 +241,7 @@ const tabContents3 = {
                   lineHeight: "1.6"
                 }}
               >
-                <ul style={{ margin: 0, paddingLeft: "20px" }}>
+                <ul className="Contents3-ul-2" style={{ margin: 0, paddingLeft: "20px" }}>
                   <li>
                     국적 회복자: 혼인 관계에서 귀화한 후 1년 이내에 외국 국적 불행사 서약을 하지 않아 한국 국적이 상실되었다가 다시 국적 회복을 받은 자.
                   </li>
@@ -279,6 +281,93 @@ const tabContents3 = {
           <li><b>서약 제출:</b> 3개월 이내에 대사관으로부터 받은 국적 포기 신청 서류를 확인서를 첨부하고 “**외국 국적 불행사 서약**”을 이행해야 합니다.</li>
           <li><b>효과:</b> 서약서를 제출해야 주민등록번호를 부여받으며, 1년 기한이 경과하더라도 최종 확인서를 통해 베트남 국적 포기 절차를 마무리할 수 있습니다.</li>
         </ul>
+<style>
+{`
+/* 🔹 Responsive riêng cho Contents3: chỉ áp dụng ở màn <= 400px */
+@media screen and (max-width: 400px) {
+  .Contents3-main {
+    padding: 0 10px;
+  }
+
+  .Contents3-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .Contents3-tr-1,
+  .Contents3-tr-2 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    width: 100%;
+    
+  
+    overflow: hidden;
+  }
+
+  /* Ô màu xanh bên trái */
+  .Contents3-td-1,
+  .Contents3-td-3 {
+    background-color: #334785 !important;
+    color: #fff !important;
+    font-size: 13.5px !important;
+    font-weight: 600;
+    padding: 18px 10px !important;
+    width: 38% !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  /* Ô nội dung bên phải */
+  .Contents3-td-2,
+  .Contents3-td-4 {
+    background-color: #f9fbfc !important;
+    color: #374151 !important;
+    font-size: 13px !important;
+    line-height: 1.6;
+    width: 62% !important;
+    padding: 15px 10px !important;
+  }
+
+  /* Căn lề danh sách */
+  .Contents3-ul-1,
+  .Contents3-ul-2 {
+    padding-left: 16px !important;
+    margin: 0;
+  }
+
+  /* Tiêu đề */
+  .Contents3-h2 {
+    font-size: 20px !important;
+    text-align: center;
+    margin-bottom: 20px !important;
+  }
+}
+
+/* 🔹 Tinh chỉnh riêng cho màn nhỏ hơn 380px */
+@media screen and (max-width: 380px) {
+  .Contents3-td-1,
+  .Contents3-td-3 {
+    font-size: 13px !important;
+    padding: 16px 8px !important;
+  }
+
+  .Contents3-td-2,
+  .Contents3-td-4 {
+    font-size: 12.5px !important;
+    padding: 14px 8px !important;
+  }
+
+  .Contents3-h2 {
+    font-size: 19px !important;
+  }
+}
+`}
+</style>
+
       </div>
     )
   },
@@ -1545,11 +1634,29 @@ function Service(props) {
   .steps-text {
     font-size: 14px !important;
   }
+ 
 }
+       @media (max-width: 390px){
+        .case1-steps-main-h2
+       {
+          margin-left: 100px !important;
+         font-size: 14px !important;
+         text-align: center !important;
+         display: block !important;
+         margin: 0 auto !important;
 
+       }
+       @media (max-width: 380px){
+        .case1-steps-main-h2
+       {
+         font-size: 14px !important;
+         text-align: center !important;
+         display: block !important;
+         margin: 0 auto !important;
+       }
              `}
             </style>
-          </div>
+      </div>
 
 
         );
@@ -1712,7 +1819,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -1935,7 +2042,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -2161,7 +2268,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -2368,7 +2475,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -2564,6 +2671,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -2774,7 +2882,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -2974,7 +3082,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -3176,7 +3284,7 @@ function Service(props) {
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
-                          transform: "translateX(-502px)",
+                          textAlign:"left"
                         }}
                       >
                         진행 절차
@@ -4057,4 +4165,5 @@ function Service(props) {
 }
 
 export default Service;
+
 

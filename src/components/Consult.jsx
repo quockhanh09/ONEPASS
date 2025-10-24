@@ -2179,7 +2179,6 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-   
     font-size: 16px !important;
     flex-shrink: 0 !important;
   }
@@ -2218,7 +2217,7 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-    width: 120px !important;
+   
     font-size: 15px !important;
   }
 
@@ -2759,3 +2758,4 @@ export default function Consult() {
     </>
   );
 }
+

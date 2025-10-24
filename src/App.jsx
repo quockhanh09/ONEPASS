@@ -1894,7 +1894,7 @@ function App() {
 }
 
 /* -------------- Mobile rất nhỏ (max 380px) -------------- */
-@media (max-width: 390px) {
+@media (max-width: 395px) {
   .consult-section .consult-container {
     padding: 0 10px !important;
   }

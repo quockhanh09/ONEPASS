@@ -561,15 +561,15 @@ function Introduction() {
                 }}
               >
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>90</p>
+                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>380</p>
                   <p style={{ fontSize: "18px", color: "#333" }}>만족 고객 수</p>
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>67</p>
+                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>240</p>
                   <p style={{ fontSize: "18px", color: "#333" }}>접수 사례건 수</p>
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>23</p>
+                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>2300</p>
                   <p style={{ fontSize: "18px", color: "#333" }}>누적 상담건 수</p>
                 </div>
               </div>

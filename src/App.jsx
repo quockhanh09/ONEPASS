@@ -1261,7 +1261,7 @@ function App() {
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
                     WebkitOverflowScrolling: 'touch',
-                    
+
                   }}>
                     {services.map((service, index) => {
                       const isActive = active === index;
@@ -1284,12 +1284,12 @@ function App() {
                             style={{
                               width: 80,
                               height: 80,
-                              borderRadius: '50%',                            
+                              borderRadius: '50%',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               marginBottom: 12,
-                              
+
                               transition: 'all 0.3s ease'
                             }}
                           >
@@ -1566,7 +1566,7 @@ function App() {
       }
     }
   `}
-  </style>
+                </style>
               </section>
 
               {/* Tin nổi bật section */}
@@ -1613,7 +1613,46 @@ function App() {
                   }}
                 >
                   {posts.map((p, idx) => (
-                    <div key={idx} style={{ overflow: "hidden" }}>
+                    <div
+                      key={idx}
+                      style={{
+                        position: "relative", // 👈 để overlay hoạt động
+                        overflow: "hidden",
+                        borderRadius: 12,
+                        cursor: "pointer",
+                        transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                        boxSizing: "border-box", // 👈 tránh cộng padding/viền ngoài ý muốn
+                      }}
+                      onClick={(e) => {
+                        e.currentTarget.style.transform = "translateY(-4px)";
+                        e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.1)";
+                        setTimeout(() => {
+                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.boxShadow = "none";
+                        }, 150);
+                      }}
+                    >
+                      {/* Overlay link phủ toàn card */}
+                      <Link
+                        to={
+                          idx === 0
+                            ? "/news전체 뉴스/NewsDetail"
+                            : idx === 1
+                              ? "/news전체 뉴스/NewsDetail2"
+                              : "/news전체 뉴스/NewsDetail3"
+                        }
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          zIndex: 2,
+                          textDecoration: "none",
+                          color: "inherit",
+                          borderRadius: 12, // 👈 giữ đúng bo góc cha
+                          overflow: "hidden", // 👈 chặn phình kích thước
+                          display: "block",
+                        }}
+                      />
+
                       <img
                         src={p.img}
                         alt={p.title}
@@ -1622,9 +1661,11 @@ function App() {
                           height: 220,
                           borderRadius: 12,
                           objectFit: "cover",
+                          display: "block",
                         }}
                       />
-                      <div style={{ paddingTop: 16 }}>
+
+                      <div style={{ paddingTop: 16, position: "relative", zIndex: 1 }}>
                         <div
                           style={{
                             color: "#7A8797",
@@ -1654,30 +1695,24 @@ function App() {
                         >
                           {p.desc}
                         </div>
-                        <Link
-                          to={
-                            idx === 0
-                              ? "/news전체 뉴스/NewsDetail"
-                              : idx === 1
-                                ? "/news전체 뉴스/NewsDetail2"
-                                : "/news전체 뉴스/NewsDetail3"
-                          }
-                          style={{ textDecoration: "none" }}
+
+                        <div
+                          style={{
+                            marginTop: 12,
+                            width: 28,
+                            height: 28,
+                            borderRadius: 6,
+                            border: "1px solid #D6DDE7",
+                            background: "#fff",
+                            color: "#0B2447",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: 18,
+                          }}
                         >
-                          <button
-                            style={{
-                              marginTop: 12,
-                              width: 28,
-                              height: 28,
-                              borderRadius: 6,
-                              border: "1px solid #D6DDE7",
-                              background: "#fff",
-                              color: "#0B2447",
-                            }}
-                          >
-                            →
-                          </button>
-                        </Link>
+                          →
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1736,7 +1771,7 @@ function App() {
           scroll-snap-align: start !important;
           background: #fff !important;
           border-radius: 12px !important;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+          
           padding-bottom: 12px !important;
         }
 
@@ -1783,44 +1818,45 @@ function App() {
                     ].map((c, i) => {
                       const isRight = i % 2 === 1; // giữ lệch dọc bằng marginTop, kích thước đồng nhất
                       return (
-                        <div className="consult-cards-main"
-                          key={i}
-                          style={{
-                            background: '#ffffff',
-                            borderRadius: 22,
-                            padding: '22px 22px 18px 22px',
-                            boxShadow: '0 10px 24px rgba(10,20,40,0.06)',
-                            border: '1px solid #E9EEF3',
-                            marginTop: isRight ? 32 : 0,
-                            height: 380,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            boxSizing: 'border-box',
-                          }}
-                        >
-                          <div className="consult-cards-main-title" style={{ height: 180, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                            <div className="consult-main-img"
-                              style={{
-                                width: 160,
-                                height: 160,
-                                borderRadius: 16,
-                                background: 'transparent',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                boxShadow: 'none'
-                              }}
-                            >
-                              <img className="consult-cards-img" src={c.img} alt="" style={{ width: 128, height: 128, objectFit: 'contain' }} />
-                            </div>
+                        <Link to="/Consult" state={{ tab: c.title === '전화 상담' ? 'phone' : c.title === '방문 상담' ? 'visit' : c.title === '채팅 상담' ? 'sns' : c.title === '채팅 상담' || c.title === '채팅 상담' ? 'sns' : c.title === '이메일 상담' ? 'email' : 'sns' }} style={{ textDecoration: 'none', display: 'block', width: '100%', height: '100%', }}>
+                          <div className="consult-cards-main"
+                            key={i}
+                            style={{
+                              background: '#ffffff',
+                              borderRadius: 22,
+                              padding: '22px 22px 18px 22px',
+                              boxShadow: '0 10px 24px rgba(10,20,40,0.06)',
+                              border: '1px solid #E9EEF3',
+                              marginTop: isRight ? 32 : 0,
+                              height: 380,
+                              display: 'flex',
+                              flexDirection: 'column',
+                              boxSizing: 'border-box',
+                            }}
+                          >
+                            <div className="consult-cards-main-title" style={{ height: 180, display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                              <div className="consult-main-img"
+                                style={{
+                                  width: 160,
+                                  height: 160,
+                                  borderRadius: 16,
+                                  background: 'transparent',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  boxShadow: 'none'
+                                }}
+                              >
+                                <img className="consult-cards-img" src={c.img} alt="" style={{ width: 128, height: 128, objectFit: 'contain' }} />
+                              </div>
 
-                          </div>
-                          <div className="consult-cards-title" style={{ fontSize: 18, fontWeight: 600, color: '#000000ff', marginBottom: 6 }}>
-                            {c.title}
-                          </div>
-                          <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
-                          {/* Navigate to Consult and open the corresponding tab */}
-                          <Link to="/Consult" state={{ tab: c.title === '전화 상담' ? 'phone' : c.title === '방문 상담' ? 'visit' : c.title === '채팅 상담' ? 'sns' : c.title === '채팅 상담' || c.title === '채팅 상담' ? 'sns' : c.title === '이메일 상담' ? 'email' : 'sns' }} style={{ textDecoration: 'none' }}>
+                            </div>
+                            <div className="consult-cards-title" style={{ fontSize: 18, fontWeight: 600, color: '#000000ff', marginBottom: 6 }}>
+                              {c.title}
+                            </div>
+                            <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
+                            {/* Navigate to Consult and open the corresponding tab */}
+
                             <button
                               onClick={(e) => {
                                 e.currentTarget.style.transform = 'translateX(-10px)';
@@ -1830,15 +1866,16 @@ function App() {
                             >
                               →
                             </button>
-                          </Link>
-                        </div>
+
+                          </div>
+                        </Link>
                       )
                     })}
                   </div>
                 </div>
 
                 <style>
-{`
+                  {`
 /* -------------- Tablet & Mobile (max 700px) -------------- */
 @media (max-width: 700px) {
   .consult-text {
@@ -1921,7 +1958,7 @@ function App() {
 
 
 `}
-</style>
+                </style>
 
               </section>
             </>

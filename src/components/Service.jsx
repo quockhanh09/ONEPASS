@@ -3833,9 +3833,9 @@ function Service(props) {
             className="modal-content"
             style={{
               background: "#f5f5f5",
-              borderRadius: 6,
-              padding: "80px 100px",
-              width: 600, // 👉 to hơn
+              borderRadius: 0,
+              padding: "60px 80px",
+              width: 450,
               maxWidth: "100%",
               position: "relative",
               fontFamily: "sans-serif",
@@ -4006,8 +4006,8 @@ function Service(props) {
               </div>
 
               {/* 개인정보 동의 */}
-              <div style={{ marginBottom: 22 }}>
-                <label style={{ fontSize: 14, display: "flex", alignItems: "center" }}>
+              <div className="checkbox" style={{ marginBottom: 22 }}>
+                <label className="checkbox-label" style={{ fontSize: 14, display: "flex", alignItems: "center" }}>
                   <input
                     type="radio"
                     checked={agree}
@@ -4090,9 +4090,13 @@ function Service(props) {
           <style>
             {`
             @media (max-width: 400px) {
+               .checkbox-label{
+                width:100%;
+            }
               .modal-content {
-                padding: 40px 20px !important;
+                padding: 20px 20px !important;
                 width: 90vw !important;
+
                 max-width: 90vw !important;
               }
               .modal-content h2 {
@@ -4106,14 +4110,26 @@ function Service(props) {
                 font-size: 14px !important;
                 padding: 8px 0 !important;
               }
+              .modal-content input[type="radio"] {
+                width: 14px !important;
+                height: 14px !important;
+                margin-right: 6px !important;
+              }
+              .modal-content label[style*="display: flex"] {
+                font-size: 12px !important;
+                width: 100% !important;
+              }
               .modal-content button[type="submit"] {
                 padding: 12px !important;
                 font-size: 14px !important;
               }
             }
             @media (max-width: 390px) {
+               .checkbox-label{
+                width:100%;
+            }
               .modal-content {
-                padding: 30px 15px !important;
+                padding: 15px 15px !important;
                 width: 95vw !important;
                 max-width: 95vw !important;
               }
@@ -4128,6 +4144,15 @@ function Service(props) {
                 font-size: 13px !important;
                 padding: 6px 0 !important;
               }
+              .modal-content input[type="radio"] {
+                width: 13px !important;
+                height: 13px !important;
+                margin-right: 6px !important;
+              }
+              .modal-content label[style*="display: flex"] {
+                font-size: 11px !important;
+                width: 100% !important;
+              }
               .modal-content button[type="submit"] {
                 padding: 10px !important;
                 font-size: 13px !important;
@@ -4135,7 +4160,7 @@ function Service(props) {
             }
             @media (max-width: 380px) {
               .modal-content {
-                padding: 25px 10px !important;
+                padding: 10px 10px !important;
                 width: 98vw !important;
                 max-width: 98vw !important;
               }
@@ -4150,10 +4175,22 @@ function Service(props) {
                 font-size: 12px !important;
                 padding: 4px 0 !important;
               }
+              .modal-content input[type="radio"] {
+                width: 12px !important;
+                height: 12px !important;
+                margin-right: 6px !important;
+              }
+              .modal-content label[style*="display: flex"] {
+                font-size: 10px !important;
+                width: 100% !important;
+              }
               .modal-content button[type="submit"] {
                 padding: 8px !important;
                 font-size: 12px !important;
               }
+                .checkbox-label{
+                width:100%;
+                }
             }
             `}
           </style>

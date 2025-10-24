@@ -1077,116 +1077,105 @@ export default function Consult() {
         </form>
       </div>
       <style>
-        {
-          `
-            @media (max-width: 600px) {
-  .phoneRight {
-    padding: 40px 30px !important;
-  }
-
-  .phoneRight-h2 {
-    font-size: 26px !important;
-    text-align: center !important;
-  }
-
-  /* Căn label và input xếp dọc */
-  .phoneRight-form2,
-  .phoneRight-form3 > div,
-  .phoneRight-form4 > div,
-  .phoneRight-form-1 {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-
-  /* Label chiếm full chiều ngang */
-  .phoneRight-form label,
-  .phoneRight-form2 label,
-  .phoneRight-form4 label,
-  .phoneRight-form-1 label {
-    width: 100% !important;
-    margin-bottom: 6px !important;
-    font-size: 16px !important;
-  }
-
-  /* Input full width */
-  .phoneRight-form2-input,
-  .phoneRight-form3-input,
-  .phoneRight-form4-input,
-  .phoneRight-form4-select {
-    width: 100% !important;
-    font-size: 15px !important;
-  }
-
-  .phoneRight-form4-select {
-    margin-bottom: 8px !important;
-  }
-
-  /* Dropdown */
-  .phoneRight-form1-1 {
-    left: 0 !important;
-  }
-
-  /* Lỗi hiển thị gọn */
-  .phoneRight-form div[style*="color: red"] {
-    margin-left: 0 !important;
-  }
-
-  /* Nút gửi */
-  .phoneRight-submit {
-    font-size: 16px !important;
-    padding: 14px !important;
-  }
-
-  /* Liên hệ */
-  .phoneRight-Contact {
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-  }
-
-  .phoneRight-Contact-3 {
-    font-size: 13.5px !important;
-  }
-}
-
-/* ⚡ Dưới 400px */
-@media (max-width: 400px) {
-  /* Container chính */
- .phoneRight {
-    padding: 25px 16px !important;
-  }
-
-  /* Căn chỉnh đoạn liên hệ */
-  .phoneRight-Contact {
-    font-size: 13.5px !important;
-    line-height: 1.7 !important;
-    text-align: left !important;
-    word-break: keep-all !important;
-    white-space: normal !important;
-    margin-top: 14px !important;
-  }
-
-  /* Từng dòng liên hệ */
-  .phoneRight-Contact p,
-  .phoneRight-Contact div,
-  .phoneRight-Contact span {
-    display: block !important;
-    margin-bottom: 4px !important;
-  }
-
-  /* Nút “상담 신청” */
-  .phoneRight-submit {
-    margin-top: 18px !important;
-    width: 100% !important;
-    font-size: 15px !important;
-    padding: 12px !important;
-    border-radius: 10px !important;
-  }
-  
-}
-
-          `
+              {
+                `
+                  @media (max-width: 600px) {
+        .phoneRight {
+          padding: 40px 30px !important;
         }
-      </style>
+      
+        .phoneRight-h2 {
+          font-size: 26px !important;
+          
+        }
+      
+        /* Label */
+        .phoneRight-form label,
+        .phoneRight-form2 label,
+        .phoneRight-form4 label,
+        .phoneRight-form-1 label {
+          width: 100px !important;
+          font-size: 16px !important;
+          flex-shrink: 0 !important;
+        }
+      
+        /* Input */
+        .phoneRight-form2-input,
+        .phoneRight-form3-input,
+        .phoneRight-form4-input {
+          font-size: 15px !important;
+        }
+      
+        .phoneRight-form4-select {
+          font-size: 15px !important;
+        }
+      
+        /* Dropdown */
+        .phoneRight-form1-1 {
+          left: 0 !important;
+        }
+      
+        /* Lỗi hiển thị gọn */
+        .phoneRight-form div[style*="color: red"] {
+          margin-left: 0 !important;
+        }
+      
+        /* Nút gửi */
+        .phoneRight-submit {
+          font-size: 16px !important;
+          padding: 14px !important;
+        }
+      
+        /* Liên hệ */
+        .phoneRight-Contact {
+          font-size: 15px !important;
+          line-height: 1.6 !important;
+        }
+      
+        .phoneRight-Contact-3 {
+          font-size: 13.5px !important;
+        }
+      }
+      
+      /* ⚡ Dưới 400px */
+      @media (max-width: 400px) {
+        /* Container chính */
+        .phoneRight {
+          padding: 25px 16px !important;
+        }
+      
+        /* Căn chỉnh đoạn liên hệ */
+        .phoneRight-Contact {
+          font-size: 13.5px !important;
+          line-height: 1.7 !important;
+          text-align: left !important;
+          word-break: keep-all !important;
+          white-space: normal !important;
+          margin-top: 14px !important;
+        }
+      
+        /* Từng dòng liên hệ */
+        .phoneRight-Contact p,
+        .phoneRight-Contact div,
+        .phoneRight-Contact span {
+          display: block !important;
+          margin-bottom: 4px !important;
+        }
+      
+        /* Nút "상담 신청" */
+        .phoneRight-submit {
+          margin-top: 18px !important;
+          width: 100% !important;
+          font-size: 15px !important;
+          padding: 12px !important;
+          border-radius: 10px !important;
+        }
+      
+      }
+      
+                `
+              }
+            </style>
     </div>
 
   );
@@ -1508,7 +1497,7 @@ export default function Consult() {
                 rows={2} // 👈 Giảm chiều cao
                 style={{
                   flex: "none",
-                  width: "400px",
+                 
                   height: "40px",
                   border: "none",
                   outline: "none",
@@ -1636,92 +1625,87 @@ export default function Consult() {
               `
               /* ----- Responsive dưới 600px ----- */
 @media (max-width: 600px) {
-  .emailRight {
-    padding: 40px 30px !important;
-  }
+ .emailRight {
+   padding: 40px 30px !important;
+ }
 
-  .emailRight-form1,
-  .emailRight-form2 > div,
-  .emailRight-form3-main,
-  .emailRight-form4-main,
-  .emailRight-form5-main {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
+ .emailRight-form1-label,
+ .emailRight-form2-label1,
+ .emailRight-form3-label,
+ .emailRight-form4-label,
+ .emailRight-form5-label,
+ {
+   width: 120px !important;
+   flex-shrink: 0 !important;
+ }
 
-  .emailRight-form1-label,
-  .emailRight-form2-label1,
-  .emailRight-form3-label,
-  .emailRight-form4-label,
-  {
-    width: 100% !important;
-    margin-bottom: 6px !important;
-  }
+ .emailRight-form1-1,
+ .emailRight-form2-input,
+ .emailRight-form3-input,
+ .emailRight-form4-select,
+ .emailRight-form4-input,
+ .emailRight-form5-input,
+ {
+   font-size: 15px !important;
+ }
 
-  .emailRight-form1-1,
-  .emailRight-form2-input,
-  .emailRight-form3-input,
-  .emailRight-form4-select,
-  .emailRight-form4-input,
-  {
-    width: 100% !important;
-  }
+ .emailRight-form1-list {
+   left: 0 !important;
+   width: 100% !important;
+ }
 
-  .emailRight-form1-list {
-    left: 0 !important;
-    width: 100% !important;
-  }
+ .emailRight-form1-selected,
+ .emailRight-form2 div + div,
+ .emailRight-form3 div + div,
+ .emailRight-form4 div + div,
+ .emailRight-form5 div + div {
+   margin-left: 0 !important;
+ }
 
-  .emailRight-form1-selected,
-  .emailRight-form2 div + div,
-  .emailRight-form3 div + div,
-  .emailRight-form4 div + div,
-  .emailRight-form5 div + div {
-    margin-left: 0 !important;
-  }
+ .emailRight-Contact {
+   font-size: 16px !important;
+ }
 
-  .emailRight-Contact {
-    font-size: 16px !important;
-  }
+ .emailRight-submit {
+   font-size: 16px !important;
+   padding: 14px !important;
+ }
 
-  .emailRight-submit {
-    font-size: 16px !important;
-    padding: 14px !important;
-  }
+ 
 }
 
 /* ----- Responsive dưới 400px ----- */
 @media (max-width: 400px) {
-  .emailRight {
-    padding: 30px 20px !important;
-  }
+ .emailRight {
+   padding: 30px 20px !important;
+ }
 
-  .emailRight-h2 {
-    font-size: 24px !important;
-  }
+ .emailRight-h2 {
+   font-size: 24px !important;
+ }
 
-  .emailRight-form1-1 span,
-  .emailRight-form2-input,
-  .emailRight-form3-input,
-  .emailRight-form4-input,
-  {
-    font-size: 15px !important;
-  }
+ .emailRight-form1-1 span,
+ .emailRight-form2-input,
+ .emailRight-form3-input,
+ .emailRight-form4-input,
+ {
+   font-size: 15px !important;
+ }
 
-  .emailRight-form4-select {
-    margin-bottom: 6px !important;
-  }
+ .emailRight-form4-select {
+   margin-bottom: 6px !important;
+ }
 
-  .emailRight-Contact {
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-  }
+ .emailRight-Contact {
+   font-size: 15px !important;
+   line-height: 1.6 !important;
+ }
 
-  .emailRight-submit {
-    font-size: 15px !important;
-    padding: 12px !important;
-  } 
-  
+ .emailRight-submit {
+   font-size: 15px !important;
+   padding: 12px !important;
+ }
+
 }
 `
             }
@@ -2096,7 +2080,7 @@ export default function Consult() {
 
           {/* 개인정보 동의 */}
           <div className="visitRight-form6" style={{ marginBottom: 22, fontSize: 18 }}>
-            <label style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
+            <label className=" visitRight-form6-checkbox" style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
               <input
                 type="radio"
                 name="agree"
@@ -2168,14 +2152,15 @@ export default function Consult() {
               {
                 `
                 /* ✅ Reponsive cho màn hình <= 600px */
-                .visitRight-form6 label {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  line-height: 1.6 !important;
-  font-size: 17px !important;
-  flex-wrap: nowrap !important;
-}
+                                .visitRight-form6 label {
+                  display: flex !important;
+                  align-items: center !important;
+                  gap: 8px !important;
+                  line-height: 1.6 !important;
+                  font-size: 17px !important;
+                  flex-wrap: nowrap !important;
+                  width: 100% !important;
+                }
 
 .visitRight-form6 input[type="radio"] {
   width: 18px !important;
@@ -2194,25 +2179,14 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-    width: 100% !important;
-    margin-bottom: 6px !important;
-    display: block !important;
+    width: 120px !important;
     font-size: 16px !important;
+    flex-shrink: 0 !important;
   }
 
   .visitRight-form input,
   .visitRight-form select {
-    width: 100% !important;
     font-size: 16px !important;
-  }
-
-  .visitRight-form1 div,
-  .visitRight-form2-main,
-  .visitRight-form3-main,
-  .visitRight-form4-main,
-  {
-    flex-direction: column !important;
-    align-items: flex-start !important;
   }
 
   .visitRight-form1-list {
@@ -2244,25 +2218,13 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-    width: 100% !important;
-    margin-bottom: 6px !important;
-    display: block !important;
+    width: 120px !important;
     font-size: 15px !important;
   }
 
   .visitRight-form input,
   .visitRight-form select {
-    width: 100% !important;
     font-size: 15px !important;
-  }
-
-  .visitRight-form1 div,
-  .visitRight-form2-main,
-  .visitRight-form3-main,
-  .visitRight-form4-main,
-  .visitRight-form5-main {
-    flex-direction: column !important;
-    align-items: flex-start !important;
   }
 
   .visitRight-form5-main {
@@ -2271,7 +2233,6 @@ export default function Consult() {
 
   .visitRight-form5-input,
   .visitRight-form5-input1 {
-    width: 100% !important;
     margin: 0 !important;
   }
 
@@ -2296,24 +2257,13 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-    width: 100% !important;
-    margin-bottom: 6px !important;
-    display: block !important;
+    width: 120px !important;
     font-size: 14px !important;
   }
 
   .visitRight-form input,
   .visitRight-form select {
-    width: 100% !important;
     font-size: 14px !important;
-  }
-
-  .visitRight-form1 div,
-  .visitRight-form2-main,
-  .visitRight-form3-main,
-  .visitRight-form4-main {
-    flex-direction: column !important;
-    align-items: flex-start !important;
   }
 
   /* Keep date/time in single row */
@@ -2353,24 +2303,13 @@ export default function Consult() {
   }
 
   .visitRight-form label {
-    width: 100% !important;
-    margin-bottom: 4px !important;
-    display: block !important;
+    width: 120px !important;
     font-size: 13px !important;
   }
 
   .visitRight-form input,
   .visitRight-form select {
-    width: 100% !important;
     font-size: 13px !important;
-  }
-
-  .visitRight-form1 div,
-  .visitRight-form2-main,
-  .visitRight-form3-main,
-  .visitRight-form4-main {
-    flex-direction: column !important;
-    align-items: flex-start !important;
   }
 
   /* Keep date/time in single row */

@@ -8,8 +8,9 @@ import tiktokLogo from "../assets/img/tiktok.svg";
 import nav from "../assets/img/Nav.svg";
 import logo from "../assets/img/Logo-name.png";
 import "../style/App.css";
-
+import { useLanguage } from "../LanguageContext.jsx";
 function Footer() {
+  const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -136,8 +137,8 @@ function Footer() {
             </div>
             <div className="info-text" style={{ color: "#E8EEF9", fontSize: 16, fontWeight: 400, lineHeight: 1.9 }}>
               <div>TEL / FAX : (+82) 51-715-0607</div>
-              <div>주소: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)</div>
-              <div>사업자등록번호: 740-87-03727</div>
+              <div>{language === "VI" ? (<>Địa chỉ: (48059) Tòa Byucksan e-Centum Classone, 915 - 916, 99 Centumdong-ro, Haeundae-gu, Busan, Hàn Quốc.</>) : (<> 주소: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원) </>)}</div>
+              <div>{language === "VI" ? (<>Số đăng ký kinh doanh: 740-87-03727</>) : ("사업자등록번호: 740-87-03727")}</div>
             </div>
             <div className="reserve" style={{ color: "#AFC4E8", fontSize: 13, marginTop: 24 }}>
               ONE PASS INC. © all right reserve
@@ -149,28 +150,30 @@ function Footer() {
             <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 16 }}>Quick Link’s</div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <Link to="/Introduction" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                회사 소개
+                {language === "VI" ? (<>Giới thiệu công ty</>) : ("회사 소개")}
               </Link>
               <Link to="/Service" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                서비스
+                {language === "VI" ? (<>Dịch vụ</>) : ("서비스")}
               </Link>
               <Link to="/News" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                뉴스룸
+                {language === "VI" ? (<>Tin tức</>) : ("뉴스룸")}
               </Link>
               {/* Support tab: Terms-of-Use */}
               <Link to="/Support" state={{ tab: "Terms-of-Use" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                이용약관
+                {language === "VI" ? (<>Điều khoản sử dụng</>) : ("이용약관")}
               </Link>
               {/* Support tab: personal-information */}
               <Link to="/Support" state={{ tab: "personal-information" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
-                개인정보처리방침
+                {language === "VI" ? (<>Xử lý thông tin cá nhân</>) : ("개인정보처리방침 ")}
               </Link>
             </div>
           </div>
 
           {/* Right: Subscribe */}
           <div className="subscribe-box" style={{ flex: 1.2, minWidth: 300, display: "flex", gap: 18 }}>
-            <div class="update-title" style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>For Every Update.</div>
+            <div class="update-title" style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>
+              {language === "VI" ? (<>Nhận thông tin mới nhất</>) : ("For Every Update.")}
+            </div>
 
             <div
               class="update-input-box"
@@ -185,7 +188,7 @@ function Footer() {
               }}
             >
               <input
-                placeholder="이메일 입력"
+                placeholder={language === "VI" ? "Nhập email" : "이메일 입력"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
@@ -207,12 +210,18 @@ function Footer() {
                   padding: "0 22px",
                   background: loading ? "#ccc" : "#E8EEF9",
                   color: "#0B2447",
-                  fontWeight: 800,
+                  fontWeight: 600,
                   border: "none",
                   cursor: loading ? "not-allowed" : "pointer",
                 }}
               >
-                {loading ? "전송 중..." : "보내기"}
+                {loading
+                  ? language === "VI"
+                    ? "Đang gửi..."
+                    : "전송 중..."
+                  : language === "VI"
+                    ? "Gửi"
+                    : "보내기"}
               </button>
             </div>
 
@@ -224,8 +233,8 @@ function Footer() {
               <a href="https://www.tiktok.com/@onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src={tiktokLogo} alt="Tiktok" style={{ width: 28, height: 28 }} />
               </a>
-               <a href="https://www.youtube.com/@ONEPASSINC" target="_blank" rel="noopener noreferrer" aria-label="Youtube Blog">
-              <img src={youtubeLogo} alt="YouTube" style={{ width: 28, height: 28 }} />
+              <a href="https://www.youtube.com/@ONEPASSINC" target="_blank" rel="noopener noreferrer" aria-label="Youtube Blog">
+                <img src={youtubeLogo} alt="YouTube" style={{ width: 28, height: 28 }} />
               </a>
               <a href="https://blog.naver.com/onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Naver Blog">
                 <img src={nav} alt="Naver" style={{ width: 28, height: 28 }} />

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../style/App.css";
-
+import { useLanguage } from "../LanguageContext.jsx";
 function Countdown() {
+  const { language } = useLanguage();
   const location = useLocation();
 
   // Nếu đang ở /support thì không hiển thị component
@@ -43,7 +44,7 @@ function Countdown() {
               borderRadius: 12,
               overflow: "hidden",
               boxShadow: "0 2px 16px rgba(10,20,40,0.06)",
-              marginLeft:20
+              marginLeft: 20
             }}
           >
             <iframe
@@ -78,17 +79,17 @@ function Countdown() {
                 marginBottom: 10,
               }}
             >
-             CONTACT
+              CONTACT
             </div>
             <h3 className="main-left-h3"
               style={{
-                fontWeight: 900,
+                fontWeight: 700,
                 fontSize: 32,
                 lineHeight: 1.35,
                 margin: "0 0 18px 0",
               }}
             >
-            상담이 필요하시면 원패스를 찾아주세요
+              {language === "VI" ? (<>Nếu cần tư vấn, hãy tìm đến One Pass chúng tôi</>) : ("상담이 필요하시면 원패스를 찾아주세요")}
             </h3>
             <div
               style={{
@@ -111,33 +112,35 @@ function Countdown() {
               {/* 주소 */}
               <div style={{ fontSize: 18 }}>📍</div>
               <div>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>주소</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Địa chỉ Văn phòng (Trụ sở chính)</>) : ("주소")}</div>
                 <div style={{ color: "#334155" }}>{address}</div>
               </div>
 
               {/* 전화 */}
               <div style={{ fontSize: 18 }}>📞</div>
               <div>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>전화</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화")} </div>
                 <div style={{ color: "#334155" }}>(+82) 51-715-0607</div>
               </div>
 
               {/* 근무시간 */}
               <div style={{ fontSize: 18 }}>⏰</div>
               <div>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>근무시간</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Giờ làm việc</>) : ("근무시간")}</div>
                 <div style={{ color: "#334155" }}>
-                  평일 09:00 ~ 18:00 <br />
-                  (점심 12:00~13:00, 주말 공휴일 휴무)
+
+                  {language === "VI" ? (<>Giờ hoạt động: 09:00 ~ 18:00 <br />
+                    (Nghỉ trưa: 12:00~13:00, Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) 
+                    : (<>평일 09:00 ~ 18:00 <br />(점심 12:00~13:00, 주말 공휴일 휴무)</>)}
                 </div>
               </div>
 
               {/* 대중교통 */}
               <div style={{ fontSize: 18 }}>🚌</div>
               <div>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>대중교통</div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Phương tiện giao thông</>) : ("대중교통")}</div>
                 <div style={{ color: "#334155" }}>
-                  센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번
+                    {language === "VI" ? (<>Ga Centum City (Line 2) / Xe buýt: 100-1, 155, 200, 31, 5-1</>) : ("센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번")}
                 </div>
               </div>
             </div>
@@ -145,8 +148,8 @@ function Countdown() {
         </div>
       </div>
       <style>
-       {
-         `
+        {
+          `
           @media (max-width: 450px) {
  .main-left {
    flex: 1 1 100% !important;
@@ -207,8 +210,8 @@ function Countdown() {
   }
 }
          `
-       }
-     </style>
+        }
+      </style>
     </section>
   );
 }

@@ -1746,12 +1746,14 @@ function App() {
                   <div
                     style={{
                       color: "#0B2447",
-                      fontWeight: 900,
+                      fontWeight: 700,
                       fontSize: 30,
                       lineHeight: 1.3,
                     }}
                   >
-                    원패스의 최신 소식과 정보를 놓치지 마세요!
+                    {language === "VI" ? (<>Đừng bỏ lỡ các tin tức và thông tin mới nhất của One Pass</>)
+                      :
+                      (<>원패스의 최신 소식과 정보를 놓치지 마세요! </>)}
                   </div>
                 </div>
 
@@ -1825,7 +1827,16 @@ function App() {
                             marginBottom: 8,
                           }}
                         >
-                          {p.date}
+
+
+                          {language === "VI" ? (
+                            p.date === "2025년 09월 30일 | 오전 09:00" ? "09:00 Sáng | Ngày 30 tháng 09 năm 2025"
+                              : p.date === "2025년 09월 27일 | 오전 09:00" ? "09:00 Sáng | Ngày 27 tháng 09 năm 2025"
+                                : p.date === "2025년 09월  25일 | 오전 09:00" ? <>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>
+                                  : p.date
+                          ) : (
+                            p.date
+                          )}
                         </div>
                         <div
                           style={{
@@ -1836,7 +1847,15 @@ function App() {
                             marginBottom: 8,
                           }}
                         >
-                          {p.title}
+
+                          {language === "VI" ? (
+                            p.title === "추석 연휴 휴무 안내" ? "Thông báo lịch nghỉ Tết Trung thu Hàn Qu..."
+                              : p.title === "주부산 베트남 총영사관 공식 개소..." ? "Tổng lãnh sự quán Việt Nam tại Busan chí..."
+                                : p.title === "2025년 10월 1일, 원패스가 고객 여러분을..." ? <>Kể từ tháng 10/2025, One Pass chính thứ...</>
+                                  : p.title
+                          ) : (
+                            p.title
+                          )}
                         </div>
                         <div
                           style={{
@@ -1845,7 +1864,15 @@ function App() {
                             lineHeight: 1.6,
                           }}
                         >
-                          {p.desc}
+
+                          {language === "VI" ? (
+                            p.desc === "안녕하세요, 고객 여러분!  저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다..." ? "Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm"
+                              : p.desc === "2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 업무를 개시하며, 한-베트남 관계,..." ? "Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ..."
+                                : p.desc === "안녕하세요, 고객 여러분! 베트남 행정 절차 대행 및 솔루션 전문 회사 원패스(One Pass)가 드디어..." ? <>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành...</>
+                                  : p.desc
+                          ) : (
+                            p.desc
+                          )}
                         </div>
 
                         <div
@@ -1882,7 +1909,7 @@ function App() {
                         fontWeight: 700,
                       }}
                     >
-                      더 보기
+                      {language === "VI" ? (<>Xem thêm</>) : ("더 보기")}
                     </button>
                   </Link>
                 </div>
@@ -1890,18 +1917,18 @@ function App() {
                 {/* ✅ Responsive CSS (no effect on desktop) */}
                 <style>
                   {`
-      @media (max-width: 768px) {
-        section {
-          padding: 40px 16px !important;
-        }
+                    @media (max-width: 768px) {
+                      section {
+                          padding: 40px 16px !important;
+                      }
 
-        section > div:first-child {
-          margin-bottom: 24px !important;
-        }
+                      section > div:first-child {
+                           margin-bottom: 24px !important;
+                      }
 
-        section > div:first-child div:nth-child(1) {
-          font-size: 14px !important;
-        }
+                      section > div:first-child div:nth-child(1) {
+                          font-size: 14px !important;
+                      }
 
         section > div:first-child div:nth-child(2) {
           font-size: 14px !important;
@@ -1942,9 +1969,6 @@ function App() {
     `}
                 </style>
               </section>
-
-
-
               {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
 
               <section className="consult-section" style={{ background: '#2B3A67', padding: '80px 0' }}>
@@ -1953,11 +1977,13 @@ function App() {
                   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignSelf: 'center' }}>
                     <div style={{ color: '#E3DCCC', fontWeight: 500, letterSpacing: '0.15em', marginBottom: 12, fontSize: 24, fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }}>CONSULT</div>
                     <h2 className="text-consult" style={{ color: '#ffffffff', fontSize: 32, fontWeight: 900, lineHeight: 1.35, margin: 0 }}>
-                      언제 어디서나, 가장 편한 방법으로
-                      <br />정확한 해결책을 만나보세요.
+
+                      {language === "VI" ? (<>Tìm kiếm giải pháp chính xác<br /> một cách tiện lợi, mọi lúc mọi nơi</>)
+                        : (<>언제 어디서나, 가장 편한 방법으로<br />정확한 해결책을 만나보세요.</>)}
                     </h2>
-                    <p className="consult-text" style={{ marginTop: 20, color: '#ffffffff', opacity: 0.85, fontSize: 16, lineHeight: 1.9, maxWidth: 520 }}>
-                      문제의 시급성이나 내용의 복잡성에 따라 전화, 방문, 채팅, 이메일 중 가장 적합한 상담 방식을 자유롭게 선택하실 수 있습니다. 원패스의 전문 상담사가 모든 채널에서 고객님의 문제 해결을 위해 신속하게 동행합니다. 가장 편하신 방법으로 지금 바로 문의하세요.
+                    <p className="consult-text" style={{ marginTop: 20, color: '#ffffffff', opacity: 0.85, fontSize: 16, lineHeight: 1.9, maxWidth: 520, textAlign: "justify" }}>
+
+                      {language === "VI" ? (<>Tùy theo mức độ phức tạp và tính cấp thiết của vấn đề, quý khách có thể tự do lựa chọn phương thức tư vấn phù hợp nhất như tư vấn điện thoại, tới nơi trực tiếp, chat hoặc email. Đội ngũ chuyên gia của One Pass sẽ đồng hành nhanh chóng qua mọi kênh để giải quyết vấn đề của quý khách. Vui lòng liên hệ ngay bằng phương thức tiện lợi nhất.</>) : (<>문제의 시급성이나 내용의 복잡성에 따라 전화, 방문, 채팅, 이메일 중 가장 적합한 상담 방식을 자유롭게 선택하실 수 있습니다. 원패스의 전문 상담사가 모든 채널에서 고객님의 문제 해결을 위해 신속하게 동행합니다. 가장 편하신 방법으로 지금 바로 문의하세요.</>)}
                     </p>
                   </div>
                   {/* Right cards */}
@@ -2004,9 +2030,29 @@ function App() {
 
                             </div>
                             <div className="consult-cards-title" style={{ fontSize: 18, fontWeight: 600, color: '#000000ff', marginBottom: 6 }}>
-                              {c.title}
+
+                              {language === "VI" ? (
+                                c.title === "전화 상담" ? "Gọi điện"
+                                  : c.title === "방문 상담" ? "Trực tiếp"
+                                    : c.title === "채팅 상담" ? <>Nhắn tin</>
+                                      : c.title === "이메일 상담" ? <>Email</>
+                                        : c.title
+                              ) : (
+                                c.title
+                              )}
                             </div>
-                            <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{c.desc}</div>
+                            <div style={{ color: '#6F7C8F', fontSize: 14, lineHeight: 1.7, marginTop: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+
+                              {language === "VI" ? (
+                                c.desc === "급한 문제를 빠르게 해결할 수 있습니다. 전문 상담사와 바로 연결하여 상담 받을 수 있습니다." ? "Quý khách có thể giải quyết các vấn đề cấp bách một cách nhanh chóng. Kết nối trực tiếp với chuyên gia tư vấn để được hỗ trợ ngay lập tức."
+                                  : c.desc === "예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다." ? "Sau khi đặt lịch hẹn và đến trực tiếp, chuyên viên phụ trách sẽ cùng quý khách kiểm tra hồ sơ và đưa ra giải pháp chính xác nhất."
+                                    : c.desc === "실시간 채팅으로 상담사와 빠르게 연결하여 언제든 어디서든 간편하게 무료상담을 받을 수 있습니다." ? <>Kết nối nhanh chóng với tư vấn viên qua chat trực tuyến để được tư vấn miễn phí mọi lúc, mọi nơi một cách dễ dàng.</>
+                                      : c.desc === "문의사항을 남겨주시고 문의 내용을 확인하여 3영업일 이내에 답변을 드립니다." ? <>Vui lòng để lại nội dung yêu cầu và câu hỏi. Chúng tôi sẽ xác nhận nội dung và phản hồi lại quý khách trong vòng 3 ngày làm việc.</>
+                                        : c.desc
+                              ) : (
+                                c.desc
+                              )}
+                            </div>
                             {/* Navigate to Consult and open the corresponding tab */}
 
                             <button

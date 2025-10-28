@@ -1060,7 +1060,7 @@ span {
 
 
 .social-container {
-  position: absolute;
+  position: fixed;
   right: 24px;
   top: 30%;
   display: flex;

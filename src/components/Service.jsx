@@ -90,7 +90,7 @@ const tabContents = {
     ],
     steps1: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
-      { id: 2, text: "검토 및 발급 신청 (원패스)	" },
+      { id: 2, text: "검토 및 발급 신청 (원패스)" },
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
@@ -102,7 +102,7 @@ const tabContents = {
     ],
     steps1: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
-      { id: 2, text: "검토 및 발급 신청 (원패스)	" },
+      { id: 2, text: "검토 및 발급 신청 (원패스)" },
       { id: 3, text: "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
@@ -169,11 +169,11 @@ const tabContents3 = {
       ["출입국 행정", "베트남 국적 포기 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
-      { id: 1, text: "서류 준비 및 접수 (고객님 → 원패스)" },
+      { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
       { id: 2, text: "검토 및 신고 (원패스)" },
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
-    extraContent: (
+    extraContent: (language) => (
       <div className="Contents3-main" style={{ marginTop: "80px" }}>
         {/* Block 1 */}
         <h2 className="Contents3-h2" style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "30px" }}>
@@ -193,7 +193,7 @@ const tabContents3 = {
                   fontSize: 16,
                 }}
               >
-                베트남 국적 포기 의무 <br /> (필수 포기 대상)
+                {language === "VI" ? (<>Trường hợp phải thôi quốc tịch</>) : (<>베트남 국적 포기 의무 <br /> (필수 포기 대상)</>)}
               </td>
               <td className="Contents3-td-2"
                 style={{
@@ -206,10 +206,13 @@ const tabContents3 = {
               >
                 <ul className="Contents3-ul-1" style={{ margin: 0, paddingLeft: "30px" }}>
                   <li>
-                    혼인 관계 종료 후 귀화: 한국인 배우자의 사망, 이혼, 실종 등으로 혼인 관계가 종료된 후 한국 국적을 귀화로 취득한 경우
+                    {language === "VI" ? (<><b>Nhập tịch sau khi Quan hệ Hôn nhân Chấm dứt:</b> Trường hợp quốc tịch Hàn Quốc được có được thông qua nhập tịch sau khi quan hệ hôn nhân chấm dứt vì các lý do như tử vong, ly hôn, mất tích với người phối ngẫu (vợ/chồng) là người Hàn Quốc.</>)
+                      : (<>혼인 관계 종료 후 귀화: 한국인 배우자의 사망, 이혼, 실종 등으로 혼인 관계가 종료된 후 한국 국적을 귀화로 취득한 경우</>)}
+
                   </li>
-                  <li>
-                    수반/동반 취득: 부모의 귀화 후 자녀가 수반 취득하거나 입양 자녀의 동반 취득 등으로 한국 국적을 갖게 된 경우
+                  <li>{language === "VI" ? (<><b>Nhập tịch Kèm theo/Đồng hành:</b>  Trường hợp quốc tịch Hàn Quốc được có được thông qua việc con cái nhập tịch kèm theo sau khi cha mẹ nhập tịch, hoặc con nuôi nhập tịch đồng hành.</>)
+                    : (<>수반/동반 취득: 부모의 귀화 후 자녀가 수반 취득하거나 입양 자녀의 동반 취득 등으로 한국 국적을 갖게 된 경우</>)}
+
                   </li>
                 </ul>
               </td>
@@ -229,7 +232,8 @@ const tabContents3 = {
                   textAlign: "center"
                 }}
               >
-                베트남 국적 포기 대상자 <br /> (주요 사례)
+                {language === "VI" ? (<>Đối tượng phải thôi quốc tịch</>) : (<>베트남 국적 포기 대상자 <br /> (주요 사례)</>)}
+
               </td>
 
               <td className="Contents3-td-4"
@@ -243,19 +247,28 @@ const tabContents3 = {
               >
                 <ul className="Contents3-ul-2" style={{ margin: 0, paddingLeft: "20px" }}>
                   <li>
-                    국적 회복자: 혼인 관계에서 귀화한 후 1년 이내에 외국 국적 불행사 서약을 하지 않아 한국 국적이 상실되었다가 다시 국적 회복을 받은 자.
+                    {language === "VI" ? (<><b>Người đã được khôi phục quốc tịch:</b>  T Người đã được nhập tịch theo diện kết hôn nhưng bị mất quốc tịch Hàn Quốc do không nộp Giấy cam kết không thực hiện quyền công dân nước ngoài trong vòng 1 năm, và sau đó đã được phục hồi quốc tịch Hàn Quốc.</>)
+                      : (<>국적 회복자: 혼인 관계에서 귀화한 후 1년 이내에 외국 국적 불행사 서약을 하지 않아 한국 국적이 상실되었다가 다시 국적 회복을 받은 자.</>)}
                   </li>
                   <li>
-                    인지자의 자녀: 혼인신고 전에 태어난 자녀를 한국인 부가 인지한 후 국적 취득 수리 통지를 받은 자녀.
+                    {language === "VI" ? (<><b>Con của người được công nhận: </b>  Con cái được người cha Hàn Quốc thừa nhận (nhận con) trước khi đăng ký kết hôn, và sau đó nhận được thông báo chấp thuận cấp quốc tịch Hàn Quốc.</>)
+                      : (<> 인지자의 자녀: 혼인신고 전에 태어난 자녀를 한국인 부가 인지한 후 국적 취득 수리 통지를 받은 자녀.</>)}
+
                   </li>
                   <li>
-                    입양 자녀: 베트남 배우자의 자녀를 입양한 후 귀화 허가를 받은 입양 자녀.
+                    {language === "VI" ? (<><b>Con nuôi: </b> Con nuôi đã được cho phép nhập quốc tịch Hàn Quốc sau khi nhận con nuôi từ người phối ngẫu (vợ/chồng) là người Việt Nam.</>)
+                      : (<> 입양 자녀: 베트남 배우자의 자녀를 입양한 후 귀화 허가를 받은 입양 자녀.</>)}
+
                   </li>
                   <li>
-                    귀화자의 자녀: 베트남 출신으로 한국 국적을 취득한 귀화자의 자녀.
+                    {language === "VI" ? (<><b>Con của người nhập tịch:</b>  Con cái của người nhập tịch (là người gốc Việt Nam đã có được quốc tịch Hàn Quốc).</>)
+                      : (<>귀화자의 자녀: 베트남 출신으로 한국 국적을 취득한 귀화자의 자녀.</>)}
+
+
                   </li>
                   <li>
-                    이혼 또는 사망 사유 귀화자: 한국인 배우자와의 이혼 또는 사망을 사유로 귀화를 허가받은 자.
+                    {language === "VI" ? (<><b>Người nhập tịch vì lý do Ly hôn hoặc Tử vong:</b> Người được phép nhập quốc tịch Hàn Quốc với lý do ly hôn hoặc vợ/chồng là người Hàn Quốc tử vong.</>)
+                      : (<> 이혼 또는 사망 사유 귀화자: 한국인 배우자와의 이혼 또는 사망을 사유로 귀화를 허가받은 자.</>)}
                   </li>
                 </ul>
               </td>
@@ -266,20 +279,36 @@ const tabContents3 = {
 
         {/* Block 2 */}
         <h2 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "20px" }}>
-          베트남 국적 포기 의무 기한
+          {language === "VI" ? (<>Thời hạn bắt buộc để thôi quốc tịch Việt Nam</>) : (<>베트남 국적 포기 의무 기한 </>)}
         </h2>
         <ul style={{ marginBottom: "50px", paddingLeft: "20px", color: "#374151" }}>
-          <li><b>최종 기한 (1년):</b> 의무 포기 대상자는 귀화 증서 수여일로부터 1년 이내에 베트남 국적 포기를 완료하고 최종 확인서를 법무부에 제출해야 합니다.</li>
-          <li><b>3개월 내 임시 조치 (필수):</b> 최종 확인서 발급까지 약 1년 이상 소요되므로, 귀화증서 수여일로부터 3개월 이내에 주외 베트남 대사관에 국적 포기를 신청해야 합니다.</li>
+          <li>
+            {language === "VI" ? (<><b>Thời hạn cuối cùng (1 năm): </b> Đối tượng bắt buộc thôi quốc tịch phải hoàn tất thủ tục thôi quốc tịch Việt Nam và nộp Giấy xác nhận cuối cùng cho Bộ Tư pháp Hàn Quốc trong vòng 1 năm kể từ ngày được cấp Chứng nhận Nhập tịch.</>)
+              : (<>  <b>최종 기한 (1년):</b> 의무 포기 대상자는 귀화 증서 수여일로부터 1년 이내에 베트남 국적 포기를 완료하고 최종 확인서를 법무부에 제출해야 합니다.</>)}
+
+          </li>
+          <li>
+            {language === "VI" ? (<><b>Biện pháp tạm thời trong 3 tháng (Bắt buộc):</b>  Do việc cấp Giấy xác nhận cuối cùng có thể mất hơn 1 năm, nên bắt buộc phải nộp hồ sơ xin thôi quốc tịch tại Đại sứ quán Việt Nam tại Hàn Quốc trong vòng 3 tháng kể từ ngày được cấp Chứng nhận Nhập tịch.</>)
+              : (<><b>3개월 내 임시 조치 (필수):</b> 최종 확인서 발급까지 약 1년 이상 소요되므로, 귀화증서 수여일로부터 3개월 이내에 주외 베트남 대사관에 국적 포기를 신청해야 합니다.</>)}
+
+          </li>
         </ul>
 
         {/* Block 3 */}
         <h2 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "20px" }}>
-          한국 국적 유지를 위한 조치
+          {language === "VI" ? (<>Cách  duy trì quốc tịch Hàn Quốc</>) : (<> 한국 국적 유지를 위한 조치</>)}
+
         </h2>
         <ul style={{ paddingLeft: "20px", color: "#374151" }}>
-          <li><b>서약 제출:</b> 3개월 이내에 대사관으로부터 받은 국적 포기 신청 서류를 확인서를 첨부하고 “**외국 국적 불행사 서약**”을 이행해야 합니다.</li>
-          <li><b>효과:</b> 서약서를 제출해야 주민등록번호를 부여받으며, 1년 기한이 경과하더라도 최종 확인서를 통해 베트남 국적 포기 절차를 마무리할 수 있습니다.</li>
+          <li>
+            {language === "VI" ? (<><b>Nộp Giấy Cam kết:</b> Trong vòng 3 tháng, người nhập tịch phải nộp Giấy xác nhận đã nộp hồ sơ xin thôi quốc tịch nhận được từ Đại sứ quán cho Cục Quản lý Xuất Nhập cảnh và Người nước ngoài (Bộ phận Quốc tịch), đồng thời thực hiện 'Cam kết không thực hiện quyền công dân nước ngoài'.</>) : (<><b>서약 제출:</b> 3개월 이내에 대사관으로부터 받은 국적 포기 신청 서류를 확인서를 첨부하고 “**외국 국적 불행사 서약**”을 이행해야 합니다.</>)}
+
+          </li>
+          <li>
+              {language === "VI" ? (<><b>Hiệu lực:</b>Nếu đã nộp Giấy Cam kết và được cấp số đăng ký thường trú (주민등록번호), người nhập tịch có thể hoàn tất thủ tục thôi quốc tịch Việt Nam mà không bị mất quốc tịch Hàn Quốc ngay cả khi thời hạn 1 năm đã trôi qua. </>) : (<>   <b>효과:</b> 서약서를 제출해야 주민등록번호를 부여받으며, 1년 기한이 경과하더라도 최종 확인서를 통해 베트남 국적 포기 절차를 마무리할 수 있습니다.</>)}
+
+          
+            </li>
         </ul>
         <style>
           {`
@@ -378,20 +407,20 @@ const tabContents3 = {
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
-      { id: 2, text: "검토 및 신고 (원패스)	" },
+      { id: 2, text: "검토 및 신고 (원패스)" },
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
 
     ],
   },
 
   certificate3: {
-    title: "베트남 국적 귀화 신청",
+    title: "베트남 국적 재귀화 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 귀화 신청", "별도 상담", "견적 상담 필요"],
+      ["출입국 행정", "베트남 국적 재귀화 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
-      { id: 2, text: "검토 및 신고 (원패스)	" },
+      { id: 2, text: "검토 및 신고 (원패스)" },
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
@@ -403,7 +432,7 @@ const tabContents3 = {
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
-      { id: 2, text: "검토 및 신고 (원패스)	" },
+      { id: 2, text: "검토 및 신고 (원패스)" },
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
@@ -414,7 +443,7 @@ const tabContents3 = {
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
-      { id: 2, text: "검토 및 신고 (원패스)	" },
+      { id: 2, text: "검토 및 신고 (원패스)" },
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
@@ -2065,7 +2094,7 @@ function Service(props) {
                                         step.text === "국내 혼인신고 후 베트남 혼인신고" ? "Sau khi đăng ký kết hôn tại Hàn Quốc, đăng ký kết hôn tại Việt Nam" :
 
                                           step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
-                                            step.text === "검토 및 발급 신청 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                            step.text === "검토 및 발급 신청 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)" :
                                               step.text === "증명서 발급 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
                                                 step.text
                                 ) : (
@@ -2089,20 +2118,33 @@ function Service(props) {
             {/* Notes (only show for korea1 tab) */}
             {activeTab === "korea1" && (
               <div style={{ marginTop: 80 }}>
-                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
+                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>{language === "VI" ? (<>Lưu ý</>) : ("유의사항")}</h2>
                 <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
                   <li style={{ marginBottom: 8 }}>
-                    의사소통 능력 필수: 예비 배우자(신부/신랑) 비자 신청 시점까지 한국어능력 공인 시험 성적표, 한국어 과정 이수,
-                    60점 이상 취득하거나 TOPIK 1급 이상 성적표 제출하여야 합니다.
+                    {language === "VI" ? (<><b>Bắt buộc chứng minh năng lực giao tiếp (Tiếng Hàn): </b>
+                      Cô dâu (người sắp kết hôn) bắt buộc phải chứng minh khả năng giao tiếp bằng cách đạt 60 điểm trở lên sau khi hoàn thành khóa học tiếng Hàn do Bộ trưởng Bộ Tư pháp chỉ định, hoặc nộp chứng chỉ TOPIK cấp 1 trở lên tại thời điểm nộp hồ sơ xin visa</>) : (<> 의사소통 능력 필수: 예비 배우자(신부/신랑) 비자 신청 시점까지 한국어능력 공인 시험 성적표, 한국어 과정 이수,
+                        60점 이상 취득하거나 TOPIK 1급 이상 성적표 제출하여야 합니다.</>)}
                   </li>
                   <li style={{ marginBottom: 8 }}>
-                    서류 유효기간 (3개월 원칙): 혼인 신고를 위해 제출하는 대부분의 서류는 3개월 이내에 발급된 것이어야 합니다.
+
+                    {language === "VI" ? (<><b>Tuân thủ nghiêm ngặt thời hạn hiệu lực của hồ sơ (Nguyên tắc 3 tháng): </b>
+                      Hầu hết các loại giấy tờ nộp cho cơ quan lãnh sự Hàn Quốc hoặc Việt Nam đều có thời hạn hiệu lực 3 tháng kể từ ngày cấp. Cần quản lý chính xác thời điểm chuẩn bị hồ sơ để tránh việc hồ sơ hết hạn gây chậm trễ trong quá trình xét duyệt.</>)
+                      : (<> 서류 유효기간 (3개월 원칙): 혼인 신고를 위해 제출하는 대부분의 서류는 3개월 이내에 발급된 것이어야 합니다.</>)}
                   </li>
                   <li style={{ marginBottom: 8 }}>
-                    한국 내 혼인신고는 주민센터에서 접수 가능하며, 관할 구청 또는 시청 민원실에서 확인할 수 있습니다.
+
+                    {language === "VI" ? (<><b>Kiểm tra lịch sử xuất nhập cảnh trong thời gian tìm hiểu: </b>
+                      Trong trường hợp tiến hành thủ tục kết hôn 'Đăng ký kết hôn trước tại Hàn Quốc' hoặc 'Đăng ký kết hôn trước tại Việt Nam', lịch sử xuất nhập cảnh Việt Nam của hai bên trong suốt thời gian tìm hiểu là hồ sơ bắt buộc, cần phải kiểm tra kỹ lưỡng.</>)
+                      : (<>  한국 내 혼인신고는 주민센터에서 접수 가능하며, 관할 구청 또는 시청 민원실에서 확인할 수 있습니다.</>
+                      )}
                   </li>
                   <li>
-                    혼인신고가 완료되면 혼인관계증명서를 발급받아야 하며, 이후 베트남 공관에 제출해야 합니다.
+
+
+                    {language === "VI" ? (<><b>Việc cấp Visa thuộc quyền hạn riêng của cơ quan Lãnh sự: </b>
+                      Cần lưu ý rằng ngay cả khi đã chuẩn bị đầy đủ mọi hồ sơ và đáp ứng các yêu cầu, việc cấp visa vẫn thuộc quyền hạn riêng của cơ quan lãnh sự. Nếu không đạt tiêu chuẩn, visa có thể bị từ chối, do đó cần phải chuẩn bị hồ sơ thật kỹ lưỡng.</>)
+                      : (<>혼인신고가 완료되면 혼인관계증명서를 발급받아야 하며, 이후 베트남 공관에 제출해야 합니다.</>
+                      )}
                   </li>
                 </ul>
               </div>
@@ -2115,10 +2157,15 @@ function Service(props) {
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출생신고</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>KHAI SINH, KHAI TỬ</>) : ("출생신고")}
+            </h1>
+
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
-              초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.
+              {language === "VI" ? (<>Tư vấn hồ sơ, thực hiện đăng ký khai sinh, khai tử trong thời hạn cũng như<br /> xử lý hồ sơ quá hạn cho người Việt Nam tại nước ngoài</>)
+                : (<>신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
+                  초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.</>)
+              }
             </p>
 
             <div className="main-case1-buttton"
@@ -2133,16 +2180,16 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea2")} onClick={() => setActiveTab2("korea2")}>
-                출생 신고
+                {language === "VI" ? (<>Đăng ký khai sinh</>) : (" 출생 신고")}
               </button>
               <button style={tabStyle("vietnam2")} onClick={() => setActiveTab2("vietnam2")}>
-                기한 초과 출생신고
+                {language === "VI" ? (<>Đăng ký khai sinh quá hạn</>) : ("기한 초과 출생신고")}
               </button>
               <button style={tabStyle("certificate2")} onClick={() => setActiveTab2("certificate2")}>
-                사망 신고
+                {language === "VI" ? (<>Đăng ký việc tử</>) : ("사망 신고")}
               </button>
               <button style={tabStyle("visa2")} onClick={() => setActiveTab2("visa2")}>
-                기한 초과 사망신고
+                {language === "VI" ? (<>Đăng ký khai tử quá hạn</>) : ("기한 초과 사망신고")}
               </button>
 
             </div>
@@ -2171,7 +2218,16 @@ function Service(props) {
                   {/* Title */}
                   {tabContents2[activeTab2].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents2[activeTab2].title}
+
+                      {language === "VI" ? (
+                        tabContents2[activeTab2].title === "출생 신고" ? "Đăng ký khai sinh"
+                          : tabContents2[activeTab2].title === "기한 초과 출생신고" ? "Đăng ký khai sinh quá hạn"
+                            : tabContents2[activeTab2].title === "사망 신고" ? "Đăng ký việc tử"
+                              : tabContents2[activeTab2].title === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn"
+                                : tabContents2[activeTab2].title
+                      ) : (
+                        tabContents2[activeTab2].title
+                      )}
                     </h2>
                   )}
 
@@ -2185,7 +2241,16 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                              {h}
+                              {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -2205,7 +2270,19 @@ function Service(props) {
                                 padding: "14px 16px", width: `${100 / 5}%`, // ⚡ giống th
                                 wordBreak: "keep-all",
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "출생신고" ? "KhaI sinh, khai tử" :
+                                    col === "출생 신고" ? "Đăng ký khai sinh" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "기한 초과 출생신고" ? "Đăng ký khai sinh quá hạn" :
+                                            col === "사망 신고" ? "Đăng ký việc tử" :
+                                              col === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+                                                col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -2224,7 +2301,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                                {language === "VI" ? (<>Tư Vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -2246,7 +2323,7 @@ function Service(props) {
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       <div className="case1-steps-content"
@@ -2294,7 +2371,19 @@ function Service(props) {
                                   lineHeight: "22px",
                                 }}
                               >
-                                {step.text}
+                                {language === "VI" ? (
+                                  step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
+                                    step.text === "검토 및 신고 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                      step.text === "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+
+                                        step.text === "기간 초과 사유 검토 및 해결 방안 수립 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                          step.text === "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+                                            step.text === "서류 검토 및 공식 접수 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                              step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+                                                step.text
+                                ) : (
+                                  step.text
+                                )}
                               </p>
                             </div>
                             {index < tabContents2[activeTab2].steps2.length - 1 && (
@@ -2312,19 +2401,29 @@ function Service(props) {
             {/* Notes (only show for korea2 or vietnam2) */}
             {(activeTab2 === "korea2" || activeTab2 === "vietnam2") && (
               <div style={{ marginTop: 80 }}>
-                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>유의사항</h2>
+                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>
+                  {language === "VI" ? (<>Lưu ý</>) : ("유의사항")}
+                </h2>
                 <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
                   <li style={{ marginBottom: 8 }}>
-                    대한민국 복수국적 허용 기간: 만 20세 이전에 복수국적을 취득한 자녀의 경우, 만 22세까지 복수국적 유지가 허용됩니다. (단, 외국 국적 불행사 서약서를 기한 내에 제출한 경우에 한함).
+                    {language === "VI" ? (<><b>Thời hạn duy trì Song tịch tại Hàn Quốc:</b>Đối với những trẻ em có quốc tịch kép trước tuổi 20, việc duy trì quốc tịch kép được phép đến trước tuổi 22 (Chỉ áp dụng trong trường hợp đã nộp Giấy cam kết không thực hiện quyền công dân nước ngoài trong thời hạn quy định).</>)
+                      : (" 대한민국 복수국적 허용 기간: 만 20세 이전에 복수국적을 취득한 자녀의 경우, 만 22세까지 복수국적 유지가 허용됩니다. (단, 외국 국적 불행사 서약서를 기한 내에 제출한 경우에 한함).")
+                    }
                   </li>
                   <li style={{ marginBottom: 8 }}>
-                    필수 선행 절차: 본 출생 등록 및 국적 관련 절차는 자녀의 대한민국 여권이 발급된 후에 진행이 가능합니다. 여권 발급이 선행되어야 함을 유의해 주십시오.
+                    {language === "VI" ? (<><b>Thủ tục tiên quyết bắt buộc:</b>Các thủ tục đăng ký khai sinh và quốc tịch liên quan chỉ có thể được tiến hành sau khi hộ chiếu Hàn Quốc của trẻ đã được cấp. Vui lòng lưu ý rằng việc cấp hộ chiếu phải được thực hiện trước.</>)
+                      : (" 필수 선행 절차: 본 출생 등록 및 국적 관련 절차는 자녀의 대한민국 여권이 발급된 후에 진행이 가능합니다. 여권 발급이 선행되어야 함을 유의해 주십시오.")
+                    }
                   </li>
                   <li style={{ marginBottom: 8 }}>
-                    복수국적자의 입출국 혜택: 자녀에게 복수국적(이중국적)이 부여될 경우, 대한민국과 베트남 양국 모두 사증(비자) 발급 없이 자유롭게 입출국이 가능합니다.
+                    {language === "VI" ? (<><b>Lợi ích xuất nhập cảnh của người Song tịch:</b>Khi trẻ được cấp quốc tịch kép (song tịch), trẻ có thể tự do xuất nhập cảnh vào cả Hàn Quốc và Việt Nam mà không cần xin thị thực (visa).</>)
+                      : ("복수국적자의 입출국 혜택: 자녀에게 복수국적(이중국적)이 부여될 경우,대한민국과 베트남 양국 모두 사증(비자) 발급 없이 자유롭게 입출국이 가능합니다.")
+                    }
                   </li>
                   <li>
-                    원패스 소요 기간: 당사에 서류 전달일(접수일)을 기준으로 약 2주의 기간이 소요됩니다. (공휴일은 기간 산정에서 제외됩니다.)
+                    {language === "VI" ? (<><b>Thời gian xử lý tại One Pass: </b>Tính từ ngày chúng tôi nhận được hồ sơ (ngày tiếp nhận), thời gian xử lý dự kiến là khoảng 2 tuần (Ngày nghỉ lễ không được tính vào thời gian xử lý).</>)
+                      : ("원패스 소요 기간: 당사에 서류 전달일(접수일)을 기준으로 약 2주의 기간이 소요됩니다.(공휴일은 기간 산정에서 제외됩니다.)")
+                    }
                   </li>
                 </ul>
               </div>
@@ -2339,10 +2438,13 @@ function Service(props) {
 
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>출입국 행정</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정")}
+            </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
-              초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.
+
+              {language === "VI" ? (<>Chịu trách nhiệm thực hiện và hỗ trợ các thủ tục về xuất nhập cảnh và quốc tịch như <br />xin thôi, giữ quốc tịch, thủ tục hồi hương và giấy phép nhập cảnh</>) : (<>신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
+                초과된 경우에도 법적 문제를 해결하며 신속하게 등록 및 신고 절차 대행합니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -2357,19 +2459,19 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea3")} onClick={() => setActiveTab3("korea3")}>
-                베트남 국적 포기 신청
+                {language === "VI" ? (<>Xin thôi quốc tịch</>) : ("베트남 국적 포기 신청")}
               </button>
               <button style={tabStyle("vietnam3")} onClick={() => setActiveTab3("vietnam3")}>
-                베트남 국적 유지 신청
+                {language === "VI" ? (<>Đăng ký giữ quốc tịch</>) : ("베트남 국적 유지 신청")}
               </button>
               <button style={tabStyle("certificate3")} onClick={() => setActiveTab3("certificate3")}>
-                베트남 국적 귀화 신청
+                {language === "VI" ? (<>Xin trở lại quốc tịch</>) : ("베트남 국적 재귀화 신청")}
               </button>
               <button style={tabStyle("visa3")} onClick={() => setActiveTab3("visa3")}>
-                시체 등 송환 허가 신청
+                {language === "VI" ? (<>Nhập cảnh thi hài, tro cốt</>) : ("시체 등 송환 허가 신청")}
               </button>
               <button style={tabStyle("cc3")} onClick={() => setActiveTab3("cc3")}>
-                베트남 국적 사실 확인
+                {language === "VI" ? (<>Thủ tục hồi hương</>) : ("베트남 국적 사실 확인")}
               </button>
             </div>
 
@@ -2397,7 +2499,21 @@ function Service(props) {
                   {/* Title */}
                   {tabContents3[activeTab3].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents3[activeTab3].title}
+                      {tabContents3[activeTab3].title && (
+                        <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+
+                          {language === "VI" ? (
+                            tabContents3[activeTab3].title === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch"
+                              : tabContents3[activeTab3].title === "베트남 국적 유지 신청" ? "Đăng ký giữ quốc tịch"
+                                : tabContents3[activeTab3].title === "베트남 국적 재귀화 신청" ? "Xin trở lại quốc tịch"
+                                  : tabContents3[activeTab3].title === "시체 등 송환 허가 신청" ? "Nhập cảnh thi hài, tro cốt"
+                                    : tabContents3[activeTab3].title === "베트남 국적 사실 확인" ? "Thủ tục hồi hương"
+                                      : tabContents3[activeTab3].title
+                          ) : (
+                            tabContents3[activeTab3].title
+                          )}
+                        </h2>
+                      )}
                     </h2>
                   )}
 
@@ -2411,7 +2527,16 @@ function Service(props) {
                               padding: "14px 16px", // ⚡ đồng nhất với td
                               width: `${100 / 5}%`,
                             }}>
-                              {h}
+                              {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -2431,7 +2556,20 @@ function Service(props) {
                                 padding: "14px 16px", // ⚡ đồng nhất với td
                                 width: `${100 / 5}%`,
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "출입국 행정" ? "Xuất nhập cảnh" :
+                                    col === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "베트남 국적 유지 신청" ? "Đăng ký giữ quốc tịch" :
+                                            col === "베트남 국적 재귀화 신청" ? "Xin trở lại quốc tịch" :
+                                              col === "시체 등 송환 허가 신청" ? "Nhập cảnh thi hài, tro cốt" :
+                                                col === "베트남 국적 사실 확인" ? "Thủ tục hồi hương" :
+                                                  col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -2450,7 +2588,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                                {language === "VI" ? (<>Tư Vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -2472,7 +2610,7 @@ function Service(props) {
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       <div className="case1-steps-content"
@@ -2520,7 +2658,20 @@ function Service(props) {
                                   lineHeight: "22px",
                                 }}
                               >
-                                {step.text}
+                                {language === "VI" ? (
+                                  step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
+                                    step.text === "검토 및 신고 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                      step.text === "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+
+                                        step.text === "기간 초과 사유 검토 및 해결 방안 수립 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                          step.text === "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+                                            step.text === "서류 검토 및 공식 접수 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                              step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+                                                step.text
+                                ) : (
+                                  step.text
+                                )}
+
                               </p>
                             </div>
                             {index < tabContents3[activeTab3].steps.length - 1 && (
@@ -2537,7 +2688,7 @@ function Service(props) {
 
 
             {/* Extra Content */}
-            {tabContents3[activeTab3].extraContent && tabContents3[activeTab3].extraContent}
+            {tabContents3[activeTab3].extraContent(language) && tabContents3[activeTab3].extraContent(language)}
           </div>
         );
 
@@ -2547,9 +2698,13 @@ function Service(props) {
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>신분증명 서류</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>GIẤY TỜ TÙY THÂN</>) : ("신분증명 서류")}
+              </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              고객님의 신분 증명 관련 서류를 완벽하게 준비해 드립니다.
+              
+               {language === "VI" ? (<>Tư vấn hồ sơ và hỗ trợ thực hiện các thủ tục đăng ký cấp, <br />thay đổi giấy tờ tùy thân</>) : (<>신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
+                고객님의 신분 증명 관련 서류를 완벽하게 준비해 드립니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -2564,19 +2719,19 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea4")} onClick={() => setActiveTab4("korea4")}>
-                일반 여권 발급 • 변경 • 추가
+                {language === "VI" ? (<>Cấp, bổ sung hộ chiếu</>) : ("일반 여권 발급 • 변경 • 추가")}
               </button>
               <button style={tabStyle("vietnam4")} onClick={() => setActiveTab4("vietnam4")}>
-                호적 정보 정정
+                {language === "VI" ? (<>Thay đổi thông tin hộ tịch</>) : ("호적 정보 정정")}
               </button>
               <button style={tabStyle("certificate4")} onClick={() => setActiveTab4("certificate4")}>
-                베트남 국민 신고 • 업데이트
+                {language === "VI" ? (<>Đăng ký thông tin công dân</>) : ("베트남 국민 신고 • 업데이트")}
               </button>
               <button style={tabStyle("visa4")} onClick={() => setActiveTab4("visa4")}>
-                베트남 출신 증명서 발급
+                {language === "VI" ? (<>Xác nhận gốc Việt Nam</>) : ("베트남 출신 증명서 발급 ")}
               </button>
               <button style={tabStyle("cc4")} onClick={() => setActiveTab4("cc4")}>
-                호적증서 반사오 재발급
+                {language === "VI" ? (<>Bản sao giấy tờ hộ tịch</>) : ("호적증서 반사오 재발급 ")}
               </button>
             </div>
 
@@ -2604,7 +2759,17 @@ function Service(props) {
                   {/* Title */}
                   {tabContents4[activeTab4].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents4[activeTab4].title}
+                    
+                          {language === "VI" ? (
+                            tabContents4[activeTab4].title === "일반 여권 발급 • 변경 • 추가" ? "Cấp, bổ sung hộ chiếu"
+                              : tabContents4[activeTab4].title === "호적 정보 정정" ? "Thay đổi thông tin hộ tịch"
+                                : tabContents4[activeTab4].title === "베트남 국민 신고  • 업데이트" ? "Đăng ký thông tin công dân"
+                                  : tabContents4[activeTab4].title === "베트남 출신 증명서 발급" ? "Xác nhận gốc Việt Nam"
+                                    : tabContents4[activeTab4].title === "호적증서 반사오 재발급" ? "Bản sao giấy tờ hộ tịch"
+                                      : tabContents4[activeTab4].title
+                          ) : (
+                            tabContents4[activeTab4].title
+                          )}
                     </h2>
                   )}
 
@@ -2618,7 +2783,16 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                              {h}
+                             {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -2638,7 +2812,20 @@ function Service(props) {
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "신분증명 서류" ? "Giấy tờ tùy thân" :
+                                    col === "일반 여권 발급 • 변경 • 추가" ? "Cấp, bổ sung hộ chiếu" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "호적  정보 정정" ? "Thay đổi thông tin hộ tịch" :
+                                            col === "베트남 국민 신고 • 업데이트" ? "Đăng ký thông tin công dân" :
+                                              col === "베트남 출신 증명서 발급" ? "Xác nhận gốc Việt Nam" :
+                                                col === "호적증서 반사오 재발급" ? "Bản sao giấy tờ hộ tịch" :
+                                                  col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -2657,7 +2844,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>

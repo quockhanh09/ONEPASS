@@ -305,10 +305,10 @@ const tabContents3 = {
 
           </li>
           <li>
-              {language === "VI" ? (<><b>Hiệu lực:</b>Nếu đã nộp Giấy Cam kết và được cấp số đăng ký thường trú (주민등록번호), người nhập tịch có thể hoàn tất thủ tục thôi quốc tịch Việt Nam mà không bị mất quốc tịch Hàn Quốc ngay cả khi thời hạn 1 năm đã trôi qua. </>) : (<>   <b>효과:</b> 서약서를 제출해야 주민등록번호를 부여받으며, 1년 기한이 경과하더라도 최종 확인서를 통해 베트남 국적 포기 절차를 마무리할 수 있습니다.</>)}
+            {language === "VI" ? (<><b>Hiệu lực:</b>Nếu đã nộp Giấy Cam kết và được cấp số đăng ký thường trú (주민등록번호), người nhập tịch có thể hoàn tất thủ tục thôi quốc tịch Việt Nam mà không bị mất quốc tịch Hàn Quốc ngay cả khi thời hạn 1 năm đã trôi qua. </>) : (<>   <b>효과:</b> 서약서를 제출해야 주민등록번호를 부여받으며, 1년 기한이 경과하더라도 최종 확인서를 통해 베트남 국적 포기 절차를 마무리할 수 있습니다.</>)}
 
-          
-            </li>
+
+          </li>
         </ul>
         <style>
           {`
@@ -2700,10 +2700,10 @@ function Service(props) {
             {/* Title */}
             <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
               {language === "VI" ? (<>GIẤY TỜ TÙY THÂN</>) : ("신분증명 서류")}
-              </h1>
+            </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              
-               {language === "VI" ? (<>Tư vấn hồ sơ và hỗ trợ thực hiện các thủ tục đăng ký cấp, <br />thay đổi giấy tờ tùy thân</>) : (<>신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
+
+              {language === "VI" ? (<>Tư vấn hồ sơ và hỗ trợ thực hiện các thủ tục đăng ký cấp, <br />thay đổi giấy tờ tùy thân</>) : (<>신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
                 고객님의 신분 증명 관련 서류를 완벽하게 준비해 드립니다.</>)}
             </p>
 
@@ -2759,17 +2759,17 @@ function Service(props) {
                   {/* Title */}
                   {tabContents4[activeTab4].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                    
-                          {language === "VI" ? (
-                            tabContents4[activeTab4].title === "일반 여권 발급 • 변경 • 추가" ? "Cấp, bổ sung hộ chiếu"
-                              : tabContents4[activeTab4].title === "호적 정보 정정" ? "Thay đổi thông tin hộ tịch"
-                                : tabContents4[activeTab4].title === "베트남 국민 신고  • 업데이트" ? "Đăng ký thông tin công dân"
-                                  : tabContents4[activeTab4].title === "베트남 출신 증명서 발급" ? "Xác nhận gốc Việt Nam"
-                                    : tabContents4[activeTab4].title === "호적증서 반사오 재발급" ? "Bản sao giấy tờ hộ tịch"
-                                      : tabContents4[activeTab4].title
-                          ) : (
-                            tabContents4[activeTab4].title
-                          )}
+
+                      {language === "VI" ? (
+                        tabContents4[activeTab4].title === "일반 여권 발급 • 변경 • 추가" ? "Cấp, bổ sung hộ chiếu"
+                          : tabContents4[activeTab4].title === "호적 정보 정정" ? "Thay đổi thông tin hộ tịch"
+                            : tabContents4[activeTab4].title === "베트남 국민 신고  • 업데이트" ? "Đăng ký thông tin công dân"
+                              : tabContents4[activeTab4].title === "베트남 출신 증명서 발급" ? "Xác nhận gốc Việt Nam"
+                                : tabContents4[activeTab4].title === "호적증서 반사오 재발급" ? "Bản sao giấy tờ hộ tịch"
+                                  : tabContents4[activeTab4].title
+                      ) : (
+                        tabContents4[activeTab4].title
+                      )}
                     </h2>
                   )}
 
@@ -2783,7 +2783,7 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                             {language === "VI" ? (
+                              {language === "VI" ? (
                                 h === "업무 분류" ? "Phân loại" :
                                   h === "업무 이름" ? "Dịch vụ" :
                                     h === "수속시간" ? "Thời gian thực hiện" :
@@ -2859,14 +2859,14 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
+
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       <div className="case1-steps-content"
@@ -2914,7 +2914,19 @@ function Service(props) {
                                   lineHeight: "22px",
                                 }}
                               >
-                                {step.text}
+                                {language === "VI" ? (
+                                  step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
+                                    step.text === "검토 및 신고 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                      step.text === "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+
+                                        step.text === "기간 초과 사유 검토 및 해결 방안 수립 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                          step.text === "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+                                            step.text === "서류 검토 및 공식 접수 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                              step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+                                                step.text
+                                ) : (
+                                  step.text
+                                )}
                               </p>
                             </div>
                             {index < tabContents4[activeTab4].steps.length - 1 && (
@@ -2938,9 +2950,14 @@ function Service(props) {
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>입양 • 자녀 인지</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>NHẬN NUÔI</>) : ("입양 • 자녀 인지")}
+            </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              복잡하고 까다로운 입양 절차, 전문 변호사가 처음부터 끝까지 안심하고 진행하도록 도와드리겠습니다.
+
+
+              {language === "VI" ? (<>Tư vấn và thực hiện các thủ tục liên quan tới việc đăng ký nhận nuôi,<br />đăng ký / chấm dứt giám hộ</>) : (<>신생아 출생부터 사망까지, 모든 호적 변동 사항을 정확한 기한 내에, 혹은 기간이 <br />
+                복잡하고 까다로운 입양 절차, 전문 변호사가 처음부터 끝까지 안심하고 진행하도록 도와드리겠습니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -2955,13 +2972,13 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea5")} onClick={() => setActiveTab5("korea5")}>
-                보호자 신청 • 해지 신고
+                {language === "VI" ? (<>Đăng ký / chấm dứt việc giám hộ </>) : ("보호자 신청 • 해지 신고")}
               </button>
               <button style={tabStyle("vietnam5")} onClick={() => setActiveTab5("vietnam5")}>
-                베트남 혼외자 자녀 인지
+                {language === "VI" ? (<>Nhận cha, mẹ, con</>) : (" 베트남 혼외자 자녀 인지")}
               </button>
               <button style={tabStyle("certificate5")} onClick={() => setActiveTab5("certificate5")}>
-                입양 절차 대행
+                {language === "VI" ? (<>Đăng ký nhận con nuôi</>) : (" 입양 절차 대행")}
               </button>
 
             </div>
@@ -2990,7 +3007,15 @@ function Service(props) {
                   {/* Title */}
                   {tabContents5[activeTab5].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents5[activeTab5].title}
+
+                      {language === "VI" ? (
+                        tabContents5[activeTab5].title === "보호자 신청 • 해지 신고" ? "Đăng ký / chấm dứt việc giám hộ "
+                          : tabContents5[activeTab5].title === "베트남 혼외자 자녀 인지" ? "Nhận cha, mẹ, con"
+                            : tabContents5[activeTab5].title === "입양 절차 대행" ? "Đăng ký nhận con nuôi"
+                              : tabContents5[activeTab5].title
+                      ) : (
+                        tabContents5[activeTab5].title
+                      )}
                     </h2>
                   )}
 
@@ -3001,7 +3026,16 @@ function Service(props) {
                         <tr className="case1-tr1" style={{ backgroundColor: "#334785", color: "#fff", textAlign: "center" }}>
                           {["업무 분류", "업무 이름", "수속시간", "비용", "상담문의"].map((h, i) => (
                             <th className="case1-th1" key={i} style={{ padding: "12px 16px" }}>
-                              {h}
+                              {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -3021,7 +3055,18 @@ function Service(props) {
                                 padding: "14px 16px", padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "입양 • 자녀 인지" ? "Nhận nuôi" :
+                                    col === "보호자 신청 • 해지 신고" ? "Đăng ký/chấm dứt việc giám hộ" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "베트남 혼외자 자녀 인지" ? "Nhận cha, mẹ, con" :
+                                            col === "입양 절차 대행" ? "Đăng ký nhận con nuôi" :
+                                              col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -3040,7 +3085,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -3055,14 +3100,14 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
+
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       {/* Bọc 6 step thành 2 hàng */}
@@ -3115,7 +3160,26 @@ function Service(props) {
                                       lineHeight: "22px",
                                     }}
                                   >
-                                    {step.text}
+                                    {language === "VI" ? (
+                                      step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
+                                        step.text === "검토 및 신고 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                          step.text === "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+
+                                            step.text === "기간 초과 사유 검토 및 해결 방안 수립 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                              step.text === "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+                                                step.text === "서류 검토 및 공식 접수 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                                  step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+
+                                                    step.text === "혼인신고 후 혼인이 성립한 날로부터 200일 이전에 출산 (혹인 혼인신고 전)" ? "Sinh con trước 200 ngày kể từ ngày kết hôn (hoặc trước khi đăng ký kết hôn)" :
+                                                      step.text === "한국과 베트남 양국에 혼인신고 진행" ? "Đăng ký kết hôn tại cả Hàn Quốc và Việt Nam" :
+                                                        step.text === "베트남에서 자녀 출생신고 진행 (국내 출산시 베트남대사관 통해 진행)" ? "Đăng ký khai sinh tại Việt Nam (Trường hợp sinh con tại Hàn Quốc thì thông qua Đại sứ quán)" :
+                                                          step.text === "한국에서 인지 신고 진행 (출생신고가 불가능하기 때문에)" ? "Xin cấp thị thực (visa) cho người vợ/chồng Việt Nam và con cái." :
+                                                            step.text === "기한 초과 사망신고" ? "Đăng ký Thừa nhận con tại Hàn Quốc" :
+                                                              step.text === "자녀의 국적 획득 절차" ? "Xin cấp quốc tịch cho con" :
+                                                                step.text
+                                    ) : (
+                                      step.text
+                                    )}
                                   </p>
                                 </div>
                                 {/* Chỉ thêm mũi tên nếu chưa phải step cuối trong hàng */}
@@ -3140,10 +3204,12 @@ function Service(props) {
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>비자 대행</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>THỊ THỰC</>) : ("비자 대행")}
+            </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              까다로운 비자 서류 준비부터 접수까지, 모든 절차를 신속하고 정확하게 대행하여 <br />
-              성공적인 비자 발급을 약속드립니다.
+              {language === "VI" ? (<>Tư vấn hồ sơ và hỗ trợ thực hiện xin cấp các loại Thị thực</>) : (<>까다로운 비자 서류 준비부터 접수까지, 모든 절차를 신속하고 정확하게 대행하여 <br />
+                성공적인 비자 발급을 약속드립니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -3158,19 +3224,19 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea6")} onClick={() => setActiveTab6("korea6")}>
-                베트남 통행증 발급
+                {language === "VI" ? (<>Cấp giấy thông hành</>) : ("베트남 통행증 발급")}
               </button>
               <button style={tabStyle("vietnam6")} onClick={() => setActiveTab6("vietnam6")}>
-                초청(단기방문 C-3-1 비자)
+                {language === "VI" ? (<>Visa thăm thân C-3-1</>) : ("초청(단기방문 C-3-1 비자)")}
               </button>
               <button style={tabStyle("certificate6")} onClick={() => setActiveTab6("certificate6")}>
-                초청(단기방문 F-1-5 비자)
+                {language === "VI" ? (<>Visa thăm thân F-1-5</>) : ("초청(단기방문 F-1-5 비자)")}
               </button>
               <button style={tabStyle("visa6")} onClick={() => setActiveTab6("visa6")}>
-                베트남 비자면제증 발급
+                {language === "VI" ? (<>Cấp giấy miễn thị thực </>) : ("베트남 비자면제증 발급")}
               </button>
               <button style={tabStyle("cc6")} onClick={() => setActiveTab6("cc6")}>
-                베트남 전자비자 • 상용비자
+                {language === "VI" ? (<>Visa điện tử / công tác</>) : ("베트남 전자비자 • 상용비자")}
               </button>
             </div>
 
@@ -3198,7 +3264,17 @@ function Service(props) {
                   {/* Title */}
                   {tabContents6[activeTab6].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents6[activeTab6].title}
+
+                      {language === "VI" ? (
+                        tabContents6[activeTab6].title === "베트남 통행증 발급" ? "Cấp giấy thông hành"
+                          : tabContents6[activeTab6].title === "초청(단기방문 C-3-1 비자)" ? "Visa thăm thân C-3-1"
+                            : tabContents6[activeTab6].title === "초청(단기방문 F-1-5 비자)" ? "Visa thăm thân F-1-5"
+                              : tabContents6[activeTab6].title === "베트남 비자면제증 발급" ? "Cấp giấy miễn thị thực "
+                                : tabContents6[activeTab6].title === "베트남 전자비자 • 상용비자" ? " Visa điện tử / công tác"
+                                  : tabContents6[activeTab6].title
+                      ) : (
+                        tabContents6[activeTab6].title
+                      )}
                     </h2>
                   )}
 
@@ -3212,7 +3288,16 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                              {h}
+                              {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -3232,7 +3317,20 @@ function Service(props) {
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "비자 대행" ? "Thị Thực" :
+                                    col === "베트남 통행증 발급" ? "Cấp giấy thông hành" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "초청(단기방문 C-3-1 비자)" ? "Visa thăm thân C-3-1" :
+                                            col === "초청(단기방문 F-1-5 비자)" ? "Visa thăm thân F-1-5" :
+                                              col === "베트남 비자면제증 발급" ? "Cấp giấy miễn thị thực" :
+                                                col === "베트남 전자비자 • 상용비자" ? "Visa điện tử / công tác" :
+                                                  col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -3251,7 +3349,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -3266,14 +3364,13 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       <div className="case1-steps-content"
@@ -3321,7 +3418,19 @@ function Service(props) {
                                   lineHeight: "22px",
                                 }}
                               >
-                                {step.text}
+                                {language === "VI" ? (
+                                  step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
+                                    step.text === "검토 및 신고 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                      step.text === "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+
+                                        step.text === "기간 초과 사유 검토 및 해결 방안 수립 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                          step.text === "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
+                                            step.text === "서류 검토 및 공식 접수 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
+                                              step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+                                                step.text
+                                ) : (
+                                  step.text
+                                )}
                               </p>
                             </div>
                             {index < tabContents6[activeTab6].steps.length - 1 && (
@@ -3345,10 +3454,13 @@ function Service(props) {
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>법률 컨설팅</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>TƯ VẤN PHÁP LÝ</>) : ("법률 컨설팅")}
+            </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              이혼, 노동, 체류자격 등 법적 문제를 예방하고, <br />
-              발생한 문제를 해결하기 위한 자문합니다.
+              {language === "VI" ? (<>Tư vấn, đưa ra giải pháp các vấn đề về pháp lý liên quan đến<br />ly hôn, lao động, cư trú, v.v</>) :
+                (<>이혼, 노동, 체류자격 등 법적 문제를 예방하고, <br />
+                  발생한 문제를 해결하기 위한 자문합니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -3363,13 +3475,13 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea7")} onClick={() => setActiveTab7("korea7")}>
-                이혼 소송
+                {language === "VI" ? (<>Liên quan tới ly hôn</>) : ("이혼 소송")}
               </button>
               <button style={tabStyle("vietnam7")} onClick={() => setActiveTab7("vietnam7")}>
-                노동 관련 소송
+                {language === "VI" ? (<>Liên quan tới lao động</>) : ("노동 관련 소송")}
               </button>
               <button style={tabStyle("certificate7")} onClick={() => setActiveTab7("certificate7")}>
-                불법 체류자 관련 컨설팅
+                {language === "VI" ? (<>Liên quan tới cư trú</>) : ("불법 체류자 관련 컨설팅")}
               </button>
 
             </div>
@@ -3397,8 +3509,14 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents7[activeTab7].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents7[activeTab7].title}
+                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}> {language === "VI" ? (
+                        tabContents7[activeTab7].title === "이혼 소송" ? "Liên quan tới ly hôn"
+                          : tabContents7[activeTab7].title === "노동 관련 소송" ? "Liên quan tới lao động"
+                            : tabContents7[activeTab7].title === "불법 체류자 관련 컨설팅" ? "Liên quan tới cư trú"
+                                  : tabContents7[activeTab7].title
+                      ) : (
+                        tabContents7[activeTab7].title
+                      )}
                     </h2>
                   )}
 
@@ -3412,7 +3530,16 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                              {h}
+                               {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -3432,7 +3559,18 @@ function Service(props) {
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "법률 컨설팅" ? "Tư vấn pháp lý" :
+                                    col === "이혼 소송" ? "Liên quan tới ly hôn" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "노동 관련 소송" ? "Liên quan tới lao động" :
+                                            col === "불법 체류자 관련 컨설팅" ? "Liên quan tới cư trú" :
+                                               col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -3451,7 +3589,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                               {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -3473,7 +3611,7 @@ function Service(props) {
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       <div className="case1-steps-content"
@@ -3521,7 +3659,17 @@ function Service(props) {
                                   lineHeight: "22px",
                                 }}
                               >
-                                {step.text}
+                                {language === "VI" ? (
+                                  step.text === "초기 정보 수집 및 경청" ? "Thu thập thông tin và thấu hiểu" :
+                                    step.text === "주요 법적 쟁점 분석" ? "Phân tích luận điểm pháp lý" :
+                                      step.text === "증거 평가 및 전략 상담" ? "Đánh giá bằng chứng và tư vấn chiến lược" :
+
+                                        step.text === "비용 설명 및 계약 체결" ? "Báo giá và ký hợp đồng" :
+                                          step.text === "계약 이행" ? "Ký hợp đồng" :
+                                                step.text
+                                ) : (
+                                  step.text
+                                )}
                               </p>
                             </div>
                             {index < tabContents7[activeTab7].steps.length - 1 && (
@@ -3545,9 +3693,12 @@ function Service(props) {
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
-            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>B2B 서비스</h1>
+            <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
+              {language === "VI" ? (<>DỊCH VỤ B2B</>) : ("B2B 서비스")}
+              </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              기업 고객의 효율적인 업무를 위한 맞춤형 서비스입니다.
+              
+               {language === "VI" ? (<>Dịch vụ tư vấn, hỗ trợ cho các doanh nghiệp</>) : (<>기업 고객의 효율적인 업무를 위한 맞춤형 서비스입니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -3562,16 +3713,16 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea8", activeTab8)} onClick={() => setActiveTab8("korea8")} tabKey="a33">
-                법인 • 지사 • 대표사무실 설립
+                {language === "VI" ? (<>Thành lập pháp nhân </>) : ("법인 • 지사 • 대표사무실 설립")}
               </button>
               <button style={tabStyle("vietnam8", activeTab8)} onClick={() => setActiveTab8("vietnam8")} tabKey="a34">
-                노동 허가서, 임시 거주증 발급
+                {language === "VI" ? (<>Đăng ký lao động, tạm trú</>) : ("노동 허가서, 임시 거주증 발급")}
               </button>
               <button style={tabStyle("certificate8", activeTab8)} onClick={() => setActiveTab8("certificate8")} tabKey="a35">
-                수입 허가서
+                {language === "VI" ? (<>Giấy phép xuất nhập khẩu</>) : ("수입 허가서")}
               </button>
               <button style={tabStyle("visa8", activeTab8)} onClick={() => setActiveTab8("visa8")} tabKey="a36">
-                B2B 바이어 매칭
+                {language === "VI" ? (<>Kết nối khách hàng B2B</>) : ("B2B 바이어 매칭")}
               </button>
 
             </div>
@@ -3600,7 +3751,15 @@ function Service(props) {
                   {/* Title */}
                   {tabContents8[activeTab8].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
-                      {tabContents8[activeTab8].title}
+                      {language === "VI" ? (
+                        tabContents8[activeTab8].title === "법인 • 지사 • 대표사무실 설립" ? "Thành lập pháp nhân "
+                          : tabContents8[activeTab8].title === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú"
+                            : tabContents8[activeTab8].title === "수입 허가서" ? "Giấy phép xuất nhập khẩu"
+                              :tabContents8[activeTab8].title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
+                                  : tabContents8[activeTab8].title
+                      ) : (
+                        tabContents8[activeTab8].title
+                      )}
                     </h2>
                   )}
 
@@ -3614,7 +3773,16 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                              {h}
+                                {language === "VI" ? (
+                                h === "업무 분류" ? "Phân loại" :
+                                  h === "업무 이름" ? "Dịch vụ" :
+                                    h === "수속시간" ? "Thời gian thực hiện" :
+                                      h === "비용" ? "Chi phí" :
+                                        h === "상담문의" ? "Yêu cầu tư vấn" :
+                                          h
+                              ) : (
+                                h
+                              )}
                             </th>
                           ))}
                         </tr>
@@ -3634,7 +3802,19 @@ function Service(props) {
                                 padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
-                                {col}
+                                {language === "VI" ? (
+                                  col === "B2B 서비스" ? "Dịch vụ B2B" :
+                                    col === "법인 • 지사 • 대표사무실 설립" ? "Thành lập pháp nhân" :
+                                      col === "별도 상담" ? "Trao đổi khi tư vấn" :
+                                        col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
+
+                                          col === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú" :
+                                            col === "수입 허가서" ? "Giấy phép xuất nhập khẩu" :
+                                              col === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B" :
+                                                  col
+                                ) : (
+                                  col
+                                )}
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
@@ -3653,7 +3833,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                상담 신청
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>

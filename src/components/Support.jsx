@@ -268,16 +268,14 @@ function Support() {
               </>) : ("03 회사는 합리적인 사유가 발생할 경우 약관을 변경할 수 있으며, 약관을 변경하는 경우 회사는 지체 없이 이를 사이트에 공시합니다.")}</p>
               <p>{language === "VI" ? (<>04 Nếu Khách hàng không đồng ý với các Điều khoản đã thay đổi, Khách hàng có thể yêu cầu rút khỏi tư cách khách hàng (chấm dứt hợp đồng); nếu Khách hàng tiếp tục sử dụng dịch vụ mà không bày tỏ ý kiến từ chối sau 07 ngày kể từ ngày các Điều khoản đã thay đổi có hiệu lực, Khách hàng được coi là đã đồng ý với các thay đổi của Điều khoản.
 
-</>) : ("04 본 약관에 동의하는 것은 정당한 절차 변경 사항을 확인하기 위해 정기적으로 서비스를 방문하는 것에 동의하는 것을 의미하며, 회사는 변경된 약관 정보를 알지 못함으로 발생하는 고객의 손해에 대하여 책임지지 않습니다.")}</p>
-              <p>{language === "VI" ? (<>05 Nếu khách hàng không đồng ý với điều khoản sửa đổi, có thể yêu cầu chấm dứt hợp đồng (hủy đăng ký dịch vụ). Nếu trong vòng 7 ngày kể từ ngày điều khoản sửa đổi có hiệu lực, khách hàng không đưa ra ý kiến phản đối và vẫn tiếp tục sử dụng dịch vụ, được xem là đã đồng ý với điều khoản mới.</>) : ("05 고객이 개정된 약관에 동의하지 않을 경우, 고객 자체 계약 (계약 해지)을 요청할 수 있으며, 개정된 약관 효력 발생일로부터 7일 이내에 거부 의사를 표시하지 않고 서비스를 지속 이용할 경우, 약관 변경에 동의한 것으로 간주됩니다.")}</p>
-
+              </>) : ("04 본 약관에 동의하는 것은 정당한 절차 변경 사항을 확인하기 위해 정기적으로 서비스를 방문하는 것에 동의하는 것을 의미하며, 회사는 변경된 약관 정보를 알지 못함으로 발생하는 고객의 손해에 대하여 책임지지 않습니다.")}</p>
               <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 3 (Quy tắc bổ sung ngoài Điều khoản) </>) : ("제3조 (약관 외 준칙)")}</h3>
-              <p>01{language === "VI" ? (<> Điều khoản này được áp dụng cùng với các hướng dẫn sử dụng dịch vụ (sau đây gọi là “Hướng dẫn dịch vụ”) mà Công ty cung cấp.</>) : ("본 약관은 회사가 제공하는 제반 서비스와 관련된 이용 안내 (이하 ‘서비스별 안내’라 한다)와 함께 적용됩니다.")} </p>
-              <p>02{language === "VI" ? (<> Những nội dung không được quy định trong điều khoản này sẽ tuân theo quy định pháp luật liên quan và các quy định trong hướng dẫn dịch vụ.</>) : (" 본 약관에 명시되지 않은 사항에 대해서는 관련 법령 및 서비스별 안내 규정에 따릅니다.")} </p>
+              <p>01{language === "VI" ? (<> Các Điều khoản này được áp dụng cùng với hướng dẫn sử dụng liên quan đến từng dịch vụ riêng biệt do Công ty cung cấp (sau đây gọi là Hướng dẫn theo dịch vụ). </>) : ("본 약관은 회사가 제공하는 제반 서비스와 관련된 이용 안내 (이하 ‘서비스별 안내’라 한다)와 함께 적용됩니다.")} </p>
+              <p>02{language === "VI" ? (<> Đối với những vấn đề không được quy định trong Điều khoản này, có thể áp dụng theo pháp luật liên quan và mục đích của Hướng dẫn theo dịch vụ.</>) : (" 본 약관에 명시되지 않은 사항에 대해서는 관련 법령 및 서비스별 안내 규정에 따릅니다.")} </p>
 
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 4 (Bảo vệ và sử dụng thông tin cá nhân)</>) : ("제4조 (개인 정보 보호 및 이용)")}</h3>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 4 (Bảo vệ và Sử dụng Thông tin Cá nhân) </>) : ("제4조 (개인 정보 보호 및 이용)")}</h3>
               <p>
-                {language === "VI" ? (<>Công ty tuân thủ quy định của Luật Mạng thông tin và truyền thông, nỗ lực bảo vệ thông tin cá nhân bao gồm cả thông tin đăng ký của khách hàng. Việc bảo vệ và sử dụng thông tin cá nhân của khách hàng được thực hiện theo pháp luật hiện hành và chính sách xử lý thông tin cá nhân của Công ty.</>) : ("회사는 정보통신망법 규정이 정하는 바에 따라 고객 등록 등 관련 정보를 포함하여 개인 정보 보호에 힘쓰며 노력합니다. 고객의 개인 정보 보호 및 이용에 대해서는 관련 법령 및 회사의 개인 정보 처리 방침에 따릅니다.")}
+                {language === "VI" ? (<>Công ty nỗ lực bảo vệ thông tin cá nhân của khách hàng, bao gồm thông tin đăng ký khách hàng, theo quy định của pháp luật liên quan. Việc bảo vệ và sử dụng thông tin cá nhân của khách hàng được áp dụng theo pháp luật liên quan và Chính sách bảo vệ thông tin cá nhân của Công ty. Tuy nhiên, Chính sách bảo vệ thông tin cá nhân của Công ty không áp dụng cho các trang web được liên kết từ các trang web không phải là trang chính thức của Công ty. Ngoài ra, Công ty không chịu bất kỳ trách nhiệm nào đối với thông tin bị tiết lộ do lỗi của khách hàng.</>) : ("회사는 정보통신망법 규정이 정하는 바에 따라 고객 등록 등 관련 정보를 포함하여 개인 정보 보호에 힘쓰며 노력합니다. 고객의 개인 정보 보호 및 이용에 대해서는 관련 법령 및 회사의 개인 정보 처리 방침에 따릅니다.")}
               </p>
 
               <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 5 (Nghĩa vụ của Công ty)</>) : ("제5조 (회사의 의무)")}</h3>

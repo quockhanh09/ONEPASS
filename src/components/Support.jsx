@@ -10,8 +10,8 @@ import imgEfficiency from "../assets/img/6.png";
 import imgCustomer from "../assets/img/5.png";
 
 function Support() {
-   const { language } = useLanguage();
-   const [service, setService] = useState("");
+  const { language } = useLanguage();
+  const [service, setService] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -97,7 +97,7 @@ function Support() {
     { id: "personal-information", label: "개인 정보 처리 방침" },
     { id: "contact", label: "Contact" },
     { id: "profile-search", label: "진행 현황 조회" },
-   
+
   ];
 
   // --- HÀM XỬ LÝ CLICK TAB ---
@@ -121,7 +121,7 @@ function Support() {
                 fontWeight: 500,
               }}
             >
-              서비스 준비중
+              {language === "VI" ? (<>Đang chuẩn bị dịch vụ</>) : ("서비스 준비중")}
             </div>
           </div>
         );
@@ -170,27 +170,16 @@ function Support() {
                   color: "#0B2447",
                 }}
               >
-                <div
-                  style={{
-                    color: "#2F4D90",
-                    fontWeight: 800,
-                    fontSize: 18,
-                    marginBottom: 10,
-                  }}
-                >
-                  찾아오시는 길
-                </div>
+
                 <h3
                   style={{
-                    fontWeight: 900,
+                    fontWeight: 700,
                     fontSize: 32,
                     lineHeight: 1.35,
                     margin: "0 0 18px 0",
                   }}
                 >
-                  고객과 함께 걸어온 발자취,
-                  <br />
-                  끝까지 함께 하겠습니다.
+                  {language === "VI" ? (<>Liên Hệ</>) : (" CONTACT")}
                 </h3>
                 <div
                   style={{
@@ -213,33 +202,35 @@ function Support() {
                   {/* 주소 */}
                   <div style={{ fontSize: 18 }}>📍</div>
                   <div>
-                    <div style={{ fontWeight: 800, marginBottom: 6 }}>주소</div>
+                    <div style={{ fontWeight: 700, marginBottom: 6 }}>{language === "VI" ? (<>Địa chỉ Văn phòng (Trụ sở chính)</>) : ("주소")}</div>
                     <div style={{ color: "#334155" }}>{address}</div>
                   </div>
 
                   {/* 전화 */}
                   <div style={{ fontSize: 18 }}>📞</div>
                   <div>
-                    <div style={{ fontWeight: 800, marginBottom: 6 }}>전화</div>
+                    <div style={{ fontWeight: 700, marginBottom: 6 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화")} </div>
                     <div style={{ color: "#334155" }}>(+82) 51-715-0607</div>
                   </div>
 
                   {/* 근무시간 */}
                   <div style={{ fontSize: 18 }}>⏰</div>
                   <div>
-                    <div style={{ fontWeight: 800, marginBottom: 6 }}>근무시간</div>
+                    <div style={{ fontWeight: 700, marginBottom: 6 }}>{language === "VI" ? (<>Giờ làm việc</>) : ("근무시간")}</div>
                     <div style={{ color: "#334155" }}>
-                      평일 09:00 ~ 18:00 <br />
-                      (점심 12:00~13:00, 주말 공휴일 휴무)
+                      {language === "VI" ? (<>Giờ hoạt động: 09:00 ~ 18:00
+                        (Nghỉ trưa: 12:00~13:00, Thứ Bảy,<br /> Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>)
+                        : (<>평일 09:00 ~ 18:00 <br />(점심 12:00~13:00, 주말 공휴일 휴무)</>)}
                     </div>
                   </div>
 
                   {/* 대중교통 */}
                   <div style={{ fontSize: 18 }}>🚌</div>
                   <div>
-                    <div style={{ fontWeight: 800, marginBottom: 6 }}>대중교통</div>
+                    <div style={{ fontWeight: 700, marginBottom: 6 }}>{language === "VI" ? (<>Phương tiện giao thông</>) : ("대중교통")}</div>
                     <div style={{ color: "#334155" }}>
-                      센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번
+                      {language === "VI" ? (<>Ga Centum City (Line 2) / Xe buýt: 100-1, 155, 200, 31, 5-1</>) : ("센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번")}
+
                     </div>
                   </div>
                 </div>
@@ -251,52 +242,61 @@ function Support() {
       case "Terms-of-Use":
         return (
           <div style={{ marginTop: 20 }}>
-            <div style={{ fontFamily: "'Roboto', sans-serif", maxWidth: 900, margin: "60px auto", padding: 20, lineHeight: 1.8, color: "#111827", fontSize: 15,textAlign: "justify" }}>
-              <h1 style={{ textAlign: "center", fontWeight: 700, fontSize: 28, marginBottom: 40 }}>이용약관</h1>
+            <div style={{ fontFamily: "'Roboto', sans-serif", maxWidth: 900, margin: "60px auto", padding: 20, lineHeight: 1.8, color: "#111827", fontSize: 15, textAlign: "justify" }}>
+              <h1 style={{ textAlign: "center", fontWeight: 700, fontSize: 28, marginBottom: 40 }}>
+                {language === "VI" ? (<>ĐIỀU KHOẢN SỬ DỤNG</>) : ("이용약관")}
+              </h1>
 
               <p style={{ marginBottom: 30 }}>
-                본 이용약관은 ONE PASS INC. (이하 '회사'라 한다)가 제공하는 웹사이트 서비스 이용과 관련하여 이용 조건 및 절차, 기타 필요한 사항을 규정함을 목적으로 합니다.
+                {language === "VI" ? (<>Điều khoản của ONE PASS INC. </>) : (" 본 이용약관은 ONE PASS INC. (이하 '회사'라 한다)가 제공하는 웹사이트 서비스 이용과 관련하여 이용 조건 및 절차, 기타 필요한 사항을 규정함을 목적으로 합니다.")}
               </p>
 
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제1조 (목적)</h3>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 1 (Mục đích)</>) : (" 제1조 (목적)")}</h3>
               <p style={{ marginTop: 10 }}>
-                본 이용약관 (이하 '약관'이라 한다)은 회사 (ONE PASS INC.)가 제공하는 고객 서비스의 등록 및 이용 조건과 ONE PASS INC. (이하 '회사'라 한다)와 이용 고객 (이하 '고객'이라 한다) 간의 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다.
+                {language === "VI" ? (<>Các điều khoản sử dụng này (sau đây gọi là 'Điều khoản') nhằm mục đích quy định cụ thể các điều kiện đăng ký và sử dụng dịch vụ khách hàng do Công ty (ONE PASS INC.) cung cấp, cũng như các vấn đề cần thiết khác giữa ONE PASS INC. (sau đây gọi là Công ty) và khách hàng sử dụng (sau đây gọi là 'Khách hàng').</>) : ("본 이용약관 (이하 '약관'이라 한다)은 회사 (ONE PASS INC.)가 제공하는 고객 서비스의 등록 및 이용 조건과 ONE PASS INC. (이하 '회사'라 한다)와 이용 고객 (이하 '고객'이라 한다) 간의 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다.")}
               </p>
 
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제2조 (약관의 효력 및 변경)</h3>
-              <p>01 본 약관은 ONE PASS INC. 웹사이트에 온라인으로 공시됨으로써 효력이 발생하며, 합리적인 사유 발생 시 관련 법령을 위배하지 않는 범위 내에서 개정될 수 있습니다.</p>
-              <p>02 개정된 약관은 온라인으로 공지됨으로써 효력이 발생하며, 고객의 권리나 의무 등 중요한 규정 변경은 사전에 고지합니다.</p>
-              <p>03 회사는 합리적인 사유가 발생할 경우 약관을 변경할 수 있으며, 약관을 변경하는 경우 회사는 지체 없이 이를 사이트에 공시합니다.</p>
-              <p>04 본 약관에 동의하는 것은 정당한 절차 변경 사항을 확인하기 위해 정기적으로 서비스를 방문하는 것에 동의하는 것을 의미하며, 회사는 변경된 약관 정보를 알지 못함으로 발생하는 고객의 손해에 대하여 책임지지 않습니다.</p>
-              <p>05 고객이 개정된 약관에 동의하지 않을 경우, 고객 자체 계약 (계약 해지)을 요청할 수 있으며, 개정된 약관 효력 발생일로부터 7일 이내에 거부 의사를 표시하지 않고 서비스를 지속 이용할 경우, 약관 변경에 동의한 것으로 간주됩니다.</p>
-
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제3조 (약관 외 준칙)</h3>
-              <p>01 본 약관은 회사가 제공하는 제반 서비스와 관련된 이용 안내 (이하 ‘서비스별 안내’라 한다)와 함께 적용됩니다.</p>
-              <p>02 본 약관에 명시되지 않은 사항에 대해서는 관련 법령 및 서비스별 안내 규정에 따릅니다.</p>
-
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제4조 (개인 정보 보호 및 이용)</h3>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>
+                {language === "VI" ? (<>Điều 2 (Hiệu lực và thay đổi của điều khoản)</>) : ("제2조 (약관의 효력 및 변경)")}
+              </h3>
               <p>
-                회사는 정보통신망법 규정이 정하는 바에 따라 고객 등록 등 관련 정보를 포함하여 개인 정보 보호에 힘쓰며 노력합니다. 고객의 개인 정보 보호 및 이용에 대해서는 관련 법령 및 회사의 개인 정보 처리 방침에 따릅니다.
+                {language === "VI" ? (<>01 Các Điều khoản này có hiệu lực bằng cách được công bố trực tuyến trên trang web của ONE PASS INC., và có thể được sửa đổi trong phạm vi không vi phạm pháp luật liên quan khi có lý do hợp lý phát sinh. Các điều khoản đã sửa đổi có hiệu lực bằng cách được thông báo trực tuyến, và việc sửa đổi các quy định quan trọng như quyền hoặc nghĩa vụ của khách hàng sẽ được thông báo trước.
+                </>) : ("01 본 약관은 ONE PASS INC. 웹사이트에 온라인으로 공시됨으로써 효력이 발생하며, 합리적인 사유 발생 시 관련 법령을 위배하지 않는 범위 내에서 개정될 수 있습니다.")}
+              </p>
+              <p>{language === "VI" ? (<>02 Công ty có thể thay đổi các Điều khoản này khi có lý do hợp lý phát sinh, và khi thay đổi các điều khoản, Công ty sẽ công bố trước mà không chậm trễ. </>) : ("02 개정된 약관은 온라인으로 공지됨으로써 효력이 발생하며, 고객의 권리나 의무 등 중요한 규정 변경은 사전에 고지합니다.")}</p>
+              <p>{language === "VI" ? (<>03 Việc đồng ý với các Điều khoản này có nghĩa là đồng ý thường xuyên truy cập trang web để kiểm tra các thay đổi của Điều khoản. Công ty không chịu trách nhiệm đối với những thiệt hại của khách hàng phát sinh do không biết thông tin về các Điều khoản đã thay đổi.
+              </>) : ("03 회사는 합리적인 사유가 발생할 경우 약관을 변경할 수 있으며, 약관을 변경하는 경우 회사는 지체 없이 이를 사이트에 공시합니다.")}</p>
+              <p>{language === "VI" ? (<>04 Nếu Khách hàng không đồng ý với các Điều khoản đã thay đổi, Khách hàng có thể yêu cầu rút khỏi tư cách khách hàng (chấm dứt hợp đồng); nếu Khách hàng tiếp tục sử dụng dịch vụ mà không bày tỏ ý kiến từ chối sau 07 ngày kể từ ngày các Điều khoản đã thay đổi có hiệu lực, Khách hàng được coi là đã đồng ý với các thay đổi của Điều khoản.
+</>) : ("04 본 약관에 동의하는 것은 정당한 절차 변경 사항을 확인하기 위해 정기적으로 서비스를 방문하는 것에 동의하는 것을 의미하며, 회사는 변경된 약관 정보를 알지 못함으로 발생하는 고객의 손해에 대하여 책임지지 않습니다.")}</p>
+              <p>{language === "VI" ? (<>05 Nếu khách hàng không đồng ý với điều khoản sửa đổi, có thể yêu cầu chấm dứt hợp đồng (hủy đăng ký dịch vụ). Nếu trong vòng 7 ngày kể từ ngày điều khoản sửa đổi có hiệu lực, khách hàng không đưa ra ý kiến phản đối và vẫn tiếp tục sử dụng dịch vụ, được xem là đã đồng ý với điều khoản mới.</>) : ("05 고객이 개정된 약관에 동의하지 않을 경우, 고객 자체 계약 (계약 해지)을 요청할 수 있으며, 개정된 약관 효력 발생일로부터 7일 이내에 거부 의사를 표시하지 않고 서비스를 지속 이용할 경우, 약관 변경에 동의한 것으로 간주됩니다.")}</p>
+
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 3 (Quy tắc bổ sung ngoài Điều khoản) </>) : ("제3조 (약관 외 준칙)")}</h3>
+              <p>01{language === "VI" ? (<> Điều khoản này được áp dụng cùng với các hướng dẫn sử dụng dịch vụ (sau đây gọi là “Hướng dẫn dịch vụ”) mà Công ty cung cấp.</>) : ("본 약관은 회사가 제공하는 제반 서비스와 관련된 이용 안내 (이하 ‘서비스별 안내’라 한다)와 함께 적용됩니다.")} </p>
+              <p>02{language === "VI" ? (<> Những nội dung không được quy định trong điều khoản này sẽ tuân theo quy định pháp luật liên quan và các quy định trong hướng dẫn dịch vụ.</>) : (" 본 약관에 명시되지 않은 사항에 대해서는 관련 법령 및 서비스별 안내 규정에 따릅니다.")} </p>
+
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 4 (Bảo vệ và sử dụng thông tin cá nhân)</>) : ("제4조 (개인 정보 보호 및 이용)")}</h3>
+              <p>
+                {language === "VI" ? (<>Công ty tuân thủ quy định của Luật Mạng thông tin và truyền thông, nỗ lực bảo vệ thông tin cá nhân bao gồm cả thông tin đăng ký của khách hàng. Việc bảo vệ và sử dụng thông tin cá nhân của khách hàng được thực hiện theo pháp luật hiện hành và chính sách xử lý thông tin cá nhân của Công ty.</>) : ("회사는 정보통신망법 규정이 정하는 바에 따라 고객 등록 등 관련 정보를 포함하여 개인 정보 보호에 힘쓰며 노력합니다. 고객의 개인 정보 보호 및 이용에 대해서는 관련 법령 및 회사의 개인 정보 처리 방침에 따릅니다.")}
               </p>
 
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제5조 (회사의 의무)</h3>
-              <p>01 회사는 안정적 서비스 제공을 위해 최선을 다하며, 특별한 사정이 없는 한 지속적이고 안정적인 서비스를 제공하기 위해 노력합니다.</p>
-              <p>02 회사는 고객으로부터 제기되는 의견이나 불만이 정당하다고 인정할 경우 즉시 처리해야 하며, 즉시 처리가 곤란할 경우 그 사유와 처리 일정을 고객에게 통보합니다.</p>
-              <p>03 회사는 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관계 법령을 준수합니다.</p>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 5 (Nghĩa vụ của Công ty)</>) : ("제5조 (회사의 의무)")}</h3>
+              <p>01 {language === "VI" ? (<>Công ty nỗ lực tối đa để cung cấp dịch vụ ổn định và liên tục trừ trường hợp đặc biệt.</>) : ("회사는 안정적 서비스 제공을 위해 최선을 다하며, 특별한 사정이 없는 한 지속적이고 안정적인 서비스를 제공하기 위해 노력합니다.")} </p>
+              <p>02 {language === "VI" ? (<>Nếu nhận được ý kiến hoặc khiếu nại hợp lý từ khách hàng, Công ty phải xử lý ngay lập tức. Trường hợp khó xử lý ngay, Công ty sẽ thông báo lý do và lịch trình xử lý cho khách hàng.</>) : (" 회사는 고객으로부터 제기되는 의견이나 불만이 정당하다고 인정할 경우 즉시 처리해야 하며, 즉시 처리가 곤란할 경우 그 사유와 처리 일정을 고객에게 통보합니다.")}</p>
+              <p>03  {language === "VI" ? (<>Công ty tuân thủ Luật thúc đẩy sử dụng mạng thông tin và bảo vệ thông tin, cùng các quy định pháp luật liên quan khác.</>) : ("회사는 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관계 법령을 준수합니다.")}</p>
 
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제6조 (고객의 의무)</h3>
-              <p>01 고객은 등록 또는 고객 정보 변경 시 모든 정보를 사실대로 기재해야 하며, 사실과 다르거나 타인의 정보를 도용한 경우 일체의 권리를 주장할 수 없습니다.</p>
-              <p>02 고객은 본 약관 및 회사가 정한 기타 일반 규정, 공지사항을 준수해야 하며, 회사의 명예를 훼손하는 행위를 해서는 안 됩니다.</p>
-              <p>03 고객은 주소, 연락처, 이메일 주소 등의 이용자 정보가 변경된 경우 관련 절차를 거쳐 회사에 즉시 알려야 합니다.</p>
-              <p>04 고객은 회사의 사전 승인 없이 서비스의 이용권한을 양도, 증여할 수 없으며, 회사의 명시적인 동의 없이 이를 담보로 제공할 수 없습니다.</p>
-              <p>05 고객은 회사 및 제3자의 지적재산권을 침해해서는 안 됩니다.</p>
-              <p>06 고객은 다음 행위를 해서는 안 되며, 이를 위반할 경우 회사는 고객에게 서비스 이용 제한 및 적절한 법적 조치를 취할 수 있습니다:</p>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>{language === "VI" ? (<>Điều 6 (Nghĩa vụ của khách hàng)</>) : ("제6조 (고객의 의무)")}</h3>
+              <p>01 {language === "VI" ? (<>Khi đăng ký hoặc thay đổi thông tin, khách hàng phải cung cấp thông tin chính xác. Nếu khai báo sai sự thật hoặc sử dụng thông tin của người khác, khách hàng sẽ mất mọi quyền lợi liên quan.</>) : ("고객은 등록 또는 고객 정보 변경 시 모든 정보를 사실대로 기재해야 하며, 사실과 다르거나 타인의 정보를 도용한 경우 일체의 권리를 주장할 수 없습니다.")} </p>
+              <p>02 {language === "VI" ? (<>Khách hàng phải tuân thủ điều khoản này, các quy định chung và thông báo của Công ty, đồng thời không được làm tổn hại danh tiếng của Công ty.</>) : ("고객은 본 약관 및 회사가 정한 기타 일반 규정, 공지사항을 준수해야 하며, 회사의 명예를 훼손하는 행위를 해서는 안 됩니다.")}</p>
+              <p>03 {language === "VI" ? (<>Khi có thay đổi về địa chỉ, số liên lạc, địa chỉ email, khách hàng phải thông báo ngay cho Công ty thông qua quy trình quy định.</>) : ("고객은 주소, 연락처, 이메일 주소 등의 이용자 정보가 변경된 경우 관련 절차를 거쳐 회사에 즉시 알려야 합니다.")}</p>
+              <p>04 {language === "VI" ? (<>Khách hàng không được chuyển nhượng, tặng, hoặc dùng quyền sử dụng dịch vụ làm tài sản đảm bảo cho người khác nếu không có sự chấp thuận bằng văn bản của Công ty.</>) : ("고객은 회사의 사전 승인 없이 서비스의 이용권한을 양도, 증여할 수 없으며, 회사의 명시적인 동의 없이 이를 담보로 제공할 수 없습니다.")}</p>
+              <p>05 {language === "VI" ? (<>Khách hàng không được xâm phạm quyền sở hữu trí tuệ của Công ty hoặc bên thứ ba.</>) : ("고객은 회사 및 제3자의 지적재산권을 침해해서는 안 됩니다.")}고객은 회사 및 제3자의 지적재산권을 침해해서는 안 됩니다.</p>
+              <p>06 {language === "VI" ? (<>Khách hàng không được thực hiện các hành vi sau, nếu vi phạm, Công ty có thể hạn chế quyền sử dụng dịch vụ hoặc thực hiện các biện pháp pháp lý phù hợp:</>) : ("고객은 다음 행위를 해서는 안 되며, 이를 위반할 경우 회사는 고객에게 서비스 이용 제한 및 적절한 법적 조치를 취할 수 있습니다:")}</p>
               <ul style={{ marginLeft: 20 }}>
-                <li>회사의 운영을 방해하는 행위</li>
-                <li>허위 정보를 등록하는 행위</li>
-                <li>타인의 개인정보를 무단으로 수집, 저장, 유포하는 행위</li>
-                <li>회사의 허락 없이 정보 및 콘텐츠를 복제, 전송, 배포하는 행위</li>
-                <li>서비스 운영에 지장을 주는 행위</li>
+                <li>{language === "VI" ? (<>Cản trở hoạt động của Công ty</>) : ("회사의 운영을 방해하는 행위")}</li>
+                <li>{language === "VI" ? (<>Đăng ký thông tin sai sự thật</>) : ("허위 정보를 등록하는 행위")}</li>
+                <li>{language === "VI" ? (<>Thu thập, lưu trữ, phát tán thông tin cá nhân của người khác mà không được phép</>) : ("타인의 개인정보를 무단으로 수집, 저장, 유포하는 행위")}</li>
+                <li>{language === "VI" ? (<>Sao chép, truyền tải, phân phối nội dung mà không có sự chấp thuận của Công ty</>) : ("회사의 허락 없이 정보 및 콘텐츠를 복제, 전송, 배포하는 행위")}</li>
+                <li>{language === "VI" ? (<>Gây ảnh hưởng đến hoạt động bình thường của dịch vụ</>) : ("서비스 운영에 지장을 주는 행위")}</li>
               </ul>
 
               <h3 style={{ fontWeight: 700, fontSize: 18, marginTop: 40 }}>제7조 (회사의 의무)</h3>
@@ -346,7 +346,7 @@ function Support() {
 
       case "personal-information":
         return (
-          <div style={{ marginTop: 20,textAlign: "justify" }}>
+          <div style={{ marginTop: 20, textAlign: "justify" }}>
             <div
               style={{
                 maxWidth: 900,
@@ -467,210 +467,210 @@ function Support() {
           </h1>
         </div>
 
-             <div className="consultation-bar"
-                  style={{
-                    position: "fixed",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    height: 60,
-                    fontFamily: "sans-serif",
-                    zIndex: 9999,
-                  }}
-                >
-                  {/* --- Bên trái --- */}
-                  <div
-                    style={{
-                      background: "#d7c199",
-                      color: "#fff",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "0 16px",
-                      height: "100%",
-                      minWidth: 310,
-                      textAlign: "center",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ fontSize: 16 }}>📞</span>
-                      <span style={{ fontWeight: 700, fontSize: 16 }}>
-                        {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}
-                      </span>
-                    </div>
-                    <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
-                      (+82) 051-715-0607
-                    </div>
-                  </div>
+        <div className="consultation-bar"
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 60,
+            fontFamily: "sans-serif",
+            zIndex: 9999,
+          }}
+        >
+          {/* --- Bên trái --- */}
+          <div
+            style={{
+              background: "#d7c199",
+              color: "#fff",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 16px",
+              height: "100%",
+              minWidth: 310,
+              textAlign: "center",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 16 }}>📞</span>
+              <span style={{ fontWeight: 700, fontSize: 16 }}>
+                {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}
+              </span>
+            </div>
+            <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
+              (+82) 051-715-0607
+            </div>
+          </div>
 
-                  {/* --- Giữa --- */}
-                  <div
-                    style={{
-                      flex: 1,
-                      background: "#000",
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 5,
-                      padding: "0 14px",
-                      height: "100%",
-                    }}
-                  >
-                    <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}</label>
-                    <select
-                      value={service}
-                      onChange={(e) => setService(e.target.value)}
-                      style={{
-                        background: "#fff",
-                        color: "#000",
-                        border: "none",
-                        borderRadius: 6,
-                        padding: "6px 10px",
-                        fontSize: 16,
-                        width: 160,
-                        height: 38,
-                        boxSizing: "border-box",
-                        marginRight: 15
-                      }}
-                    >
-                      <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
-                      <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
-                      <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
-                      <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
-                      <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
-                      <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
-                      <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
-                      <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
-                      <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
-                      <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
-                      <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>
-                    </select>
+          {/* --- Giữa --- */}
+          <div
+            style={{
+              flex: 1,
+              background: "#000",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 5,
+              padding: "0 14px",
+              height: "100%",
+            }}
+          >
+            <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}</label>
+            <select
+              value={service}
+              onChange={(e) => setService(e.target.value)}
+              style={{
+                background: "#fff",
+                color: "#000",
+                border: "none",
+                borderRadius: 6,
+                padding: "6px 10px",
+                fontSize: 16,
+                width: 160,
+                height: 38,
+                boxSizing: "border-box",
+                marginRight: 15
+              }}
+            >
+              <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
+              <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+              <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
+              <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
+              <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
+              <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
+              <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
+              <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
+              <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
+              <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
+              <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>
+            </select>
 
-                    <label style={{ fontSize: 16, marginLeft: 15, }}>{language === "VI" ? (<>Họ tên</>) : ("이름")}</label>
-                    <input
-                      placeholder={language === "VI" ? ("Họ tên") : ("이름")}
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      style={{
-                        padding: "6px 10px",
-                        borderRadius: 6,
-                        border: "none",
-                        fontSize: 16,
-                        width: 160,
-                        height: 38,
-                        boxSizing: "border-box",
+            <label style={{ fontSize: 16, marginLeft: 15, }}>{language === "VI" ? (<>Họ tên</>) : ("이름")}</label>
+            <input
+              placeholder={language === "VI" ? ("Họ tên") : ("이름")}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={{
+                padding: "6px 10px",
+                borderRadius: 6,
+                border: "none",
+                fontSize: 16,
+                width: 160,
+                height: 38,
+                boxSizing: "border-box",
 
-                        marginRight: 15
-                      }}
-                      required
-                      pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                      title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
-                    />
+                marginRight: 15
+              }}
+              required
+              pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+              title="Họ tên phải có ít nhất 2 ký tự, chỉ bao gồm chữ cái hoặc tiếng Hàn."
+            />
 
-                    <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화번호")}</label>
-                    <select
-                      value={countryCode}
-                      onChange={(e) => setCountryCode(e.target.value)}
-                      style={{
-                        background: "#fff",
-                        color: "#000",
-                        border: "none",
-                        borderRadius: 6,
-                        padding: "6px 10px",
-                        fontSize: 16,
-                        width: 100,
-                        height: 38,
-                        boxSizing: "border-box",
-                      }}
-                    >
-                      <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
-                      <option value="+82">+82</option>
-                      <option value="+84">+84</option>
-                    </select>
+            <label style={{ fontSize: 16 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화번호")}</label>
+            <select
+              value={countryCode}
+              onChange={(e) => setCountryCode(e.target.value)}
+              style={{
+                background: "#fff",
+                color: "#000",
+                border: "none",
+                borderRadius: 6,
+                padding: "6px 10px",
+                fontSize: 16,
+                width: 100,
+                height: 38,
+                boxSizing: "border-box",
+              }}
+            >
+              <option value="">{language === "VI" ? (<>Chọn</>) : ("이름")}</option>
+              <option value="+82">+82</option>
+              <option value="+84">+84</option>
+            </select>
 
-                    <input
-                      placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      style={{
-                        padding: "6px 10px",
-                        borderRadius: 6,
-                        border: "none",
-                        fontSize: 16,
-                        width: 160,
-                        height: 38,
-                        boxSizing: "border-box",
-                      }}
-                      pattern={
-                        countryCode === "+82"
-                          ? "[0-9]{9,11}"
-                          : countryCode === "+84"
-                            ? "[0-9]{9,10}"
-                            : ".*"
-                      }
-                      title={
-                        countryCode === "+82"
-                          ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
-                          : countryCode === "+84"
-                            ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
-                            : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
-                      }
-                    />
+            <input
+              placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              style={{
+                padding: "6px 10px",
+                borderRadius: 6,
+                border: "none",
+                fontSize: 16,
+                width: 160,
+                height: 38,
+                boxSizing: "border-box",
+              }}
+              pattern={
+                countryCode === "+82"
+                  ? "[0-9]{9,11}"
+                  : countryCode === "+84"
+                    ? "[0-9]{9,10}"
+                    : ".*"
+              }
+              title={
+                countryCode === "+82"
+                  ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
+                  : countryCode === "+84"
+                    ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                    : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
+              }
+            />
 
-                    <label
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        fontSize: 16,
-                        gap: 4,
-                        color: "#bbb",
-                        whiteSpace: "nowrap",
-                        marginLeft: 20
-                      }}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={agree}
-                        onChange={(e) => setAgree(e.target.checked)}
-                        style={{ marginRight: 6 }}
-                      />
-                      {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
-                    </label>
-                  </div>
+            <label
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: 16,
+                gap: 4,
+                color: "#bbb",
+                whiteSpace: "nowrap",
+                marginLeft: 20
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
+                style={{ marginRight: 6 }}
+              />
+              {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
+            </label>
+          </div>
 
-                  {/* --- Nút gửi --- */}
-                  <div
-                    onClick={loading ? undefined : handleSubmit}
-                    style={{
-                      width: 310,
-                      background: "#d7c199",
-                      color: "#fff",
-                      fontWeight: 600,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "0 24px",
-                      height: "100%",
-                      cursor: loading ? "not-allowed" : "pointer",
-                      fontSize: 16,
-                      opacity: loading ? 0.7 : 1,
-                    }}
-                  >
-                    {loading
-                      ? language === "VI"
-                        ? "Đang gửi..."
-                        : "전송 중..."
-                      : language === "VI"
-                        ? "Tư vấn"
-                        : "상담 신청"}
-                  </div>
-                </div>
-        
+          {/* --- Nút gửi --- */}
+          <div
+            onClick={loading ? undefined : handleSubmit}
+            style={{
+              width: 310,
+              background: "#d7c199",
+              color: "#fff",
+              fontWeight: 600,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 24px",
+              height: "100%",
+              cursor: loading ? "not-allowed" : "pointer",
+              fontSize: 16,
+              opacity: loading ? 0.7 : 1,
+            }}
+          >
+            {loading
+              ? language === "VI"
+                ? "Đang gửi..."
+                : "전송 중..."
+              : language === "VI"
+                ? "Tư vấn"
+                : "상담 신청"}
+          </div>
+        </div>
+
       </section>
 
       {/* PHẦN TAB VÀ NỘI DUNG */}
@@ -713,8 +713,16 @@ function Support() {
                   transition: "all 0.2s ease-in-out",
                 }}
               >
-                {tab.label}
 
+                {language === "VI" ? (
+                  tab.label === "이용약관" ? "Điều khoản sử dụng"
+                    : tab.label === "개인 정보 처리 방침" ? "Xử lý thông tin cá nhân"
+                      : tab.label === "Contact" ? <>Liên hệ</>
+                        : tab.label === "진행 현황 조회" ? "Tra cứu hồ sơ"
+                          : tab.label
+                ) : (
+                  tab.label
+                )}
                 {/* --- GẠCH CHÂN TAB ĐANG ACTIVE --- */}
                 {activeTab === tab.id && (
                   <div

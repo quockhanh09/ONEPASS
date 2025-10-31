@@ -544,7 +544,7 @@ export default function Consult() {
         }}
       >
         <h3 className="snsRight-h3" style={{ fontSize: 32, fontWeight: 700, marginBottom: 20 }}>
-          상담 신청
+          {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
         </h3>
         <div style={{ height: 1, background: "#d1d5db", marginBottom: 24 }}></div>
 
@@ -861,7 +861,7 @@ export default function Consult() {
                                     v === "법률 컨설팅" ? "Tư vấn pháp lý" :
                                       v === "B2B 서비스" ? "Dịch vụ B2B" :
                                         v === "기타" ? "Khác " :
-                                         v
+                                          v
                     ) : (
                       v
                     )}
@@ -872,7 +872,7 @@ export default function Consult() {
 
             {!selected && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                 {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -887,7 +887,7 @@ export default function Consult() {
               }}
             >
               <label style={{ width: 120, fontWeight: 600 }}>
-               {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
               </label>
               <input className="phoneRight-form2-input"
                 type="text"
@@ -915,7 +915,7 @@ export default function Consult() {
             </div>
             {nameError && submittedPhone && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                 {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -929,7 +929,9 @@ export default function Consult() {
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label style={{ width: 120, fontWeight: 600 }}>이메일</label>
+              <label style={{ width: 120, fontWeight: 600 }}>
+                {language === "VI" ? (<>Email</>) : ("이메일")}
+              </label>
               <input className="phoneRight-form3-input"
                 type="email"
                 value={email}
@@ -942,7 +944,7 @@ export default function Consult() {
                     setEmailError(false);
                   }
                 }}
-                placeholder="이메일을 입력해주세요"
+                placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -971,20 +973,20 @@ export default function Consult() {
               }}
             >
               <label style={{ width: 120, fontWeight: 600 }}>
-                전화번호 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
               </label>
               <select className="phoneRight-form4-select"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
                 style={{
-                  width: 90,
+                  width: 65,
                   border: "none",
                   outline: "none",
                   padding: "12px 0",
                   background: "transparent",
                 }}
               >
-                <option value="선택">선택</option>
+                <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
@@ -1000,7 +1002,7 @@ export default function Consult() {
                     setPhoneError(false);
                   }
                 }}
-                placeholder="전화번호"
+                placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -1016,17 +1018,27 @@ export default function Consult() {
                       : ".*"
                 }
                 title={
-                  countryCode === "+82"
-                    ? "한국 전화번호는 9~11자리여야 합니다."
-                    : countryCode === "+84"
-                      ? "베트남 전화번호는 9~10자리여야 합니다."
-                      : "국가 코드를 먼저 선택하세요."
+                  language === "VI"
+                    ? (
+                      countryCode === "+82"
+                        ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
+                        : countryCode === "+84"
+                          ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
+                          : "Vui lòng chọn mã quốc gia trước."
+                    )
+                    : (
+                      countryCode === "+82"
+                        ? "한국 전화번호는 9~11자리여야 합니다."
+                        : countryCode === "+84"
+                          ? "베트남 전화번호는 9~10자리여야 합니다."
+                          : "국가 코드를 먼저 선택하세요."
+                    )
                 }
               />
             </div>
             {phoneError && submittedPhone && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1047,7 +1059,7 @@ export default function Consult() {
                   accentColor: "#000",
                 }}
               />
-              개인정보 수집 및 이용 동의
+              {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
             </label>
           </div>
           <div
@@ -1073,14 +1085,13 @@ export default function Consult() {
             }}
           >
             <div className="phoneRight-Contact-1">
-              <strong>전화 걸기:</strong> (+82) 51-715-0607
+              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
             </div>
             <div className="phoneRight-Contact-2">
-              <strong>이메일 보내기:</strong> onepass.kr@gmail.com
+              <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
             </div>
             <div className="phoneRight-Contact-3" style={{ color: "#444" }}>
-              <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00,
-              주말 공휴일 휴무)
+              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy,Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
             </div>
           </div>
 
@@ -1099,7 +1110,7 @@ export default function Consult() {
               cursor: "pointer",
             }}
           >
-            상담 신청
+            {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
           </button>
         </form>
       </div>
@@ -1229,18 +1240,18 @@ export default function Consult() {
             marginBottom: 14,
           }}
         >
-          이메일 상담
+          {language === "VI" ? (<>Email</>) : ("이메일 상담")}
         </h3>
         <h2
           style={{
             fontSize: 32,
-            fontWeight: 800,
+            fontWeight: 700,
             lineHeight: 1.5,
             marginBottom: 18,
             color: "#111827",
           }}
         >
-          언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.
+          {language === "VI" ? (<>Tìm kiếm giải pháp chính xác một cách tiện lợi, mọi lúc mọi nơi</>) : ("언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.")}
         </h2>
         <p
           style={{
@@ -1250,7 +1261,7 @@ export default function Consult() {
             letterSpacing: "-0.2px",
           }}
         >
-          문의사항을 남겨주시고 문의 내용을 확인하여 3영업일 이내에 답변을 드립니다.
+          {language === "VI" ? (<>Để lại thông tin và vấn đề mà bạn cần được tư vấn, chúng tôi sẽ giải đáp vấn đề của bạn thông qua email.</>) : ("문의사항을 남겨주시고 문의 내용을 확인하여 3영업일 이내에 답변을 드립니다.")}
 
         </p>
       </div>
@@ -1267,7 +1278,9 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 className="emailRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
+        <h2 className="emailRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>
+          {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
+        </h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
         <form className="emailRight-form" onSubmit={handleSubmit1}>
@@ -1284,11 +1297,11 @@ export default function Consult() {
               }}
             >
               <label className="emailRight-form1-label" style={{ width: 120, fontWeight: 600 }}>
-                서비스 선택 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
               </label>
               <div className="emailRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: selected ? "#000" : "#999" }}>
-                  {selected || "서비스 선택"}
+                  {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                 </span>
                 <i
                   className="fa-solid fa-chevron-down"
@@ -1329,7 +1342,21 @@ export default function Consult() {
                     onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
                     onMouseLeave={(e) => (e.target.style.background = "#fff")}
                   >
-                    {v}
+                    {language === "VI" ? (
+                      v === "인증 센터" ? "Chứng thực" :
+                        v === "결혼 이민" ? "Kết hôn" :
+                          v === "출생신고 대행" ? "Khai sinh, khai tử" :
+                            v === "출입국 행정 대행" ? "Xuất nhập cảnh" :
+                              v === "신분증명 서류 대행" ? "Giấy tờ tuỳ thân" :
+                                v === "입양 절차 대행" ? "Nhận nuôi " :
+                                  v === "비자 대행" ? "Thị thực" :
+                                    v === "법률 컨설팅" ? "Tư vấn pháp lý" :
+                                      v === "B2B 서비스" ? "Dịch vụ B2B" :
+                                        v === "기타" ? "Khác " :
+                                          v
+                    ) : (
+                      v
+                    )}
                   </div>
                 ))}
               </div>
@@ -1337,7 +1364,7 @@ export default function Consult() {
 
             {!selected && (
               <div className="emailRight-form1-selected" style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입력입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1352,7 +1379,7 @@ export default function Consult() {
               }}
             >
               <label className="emailRight-form2-label1" style={{ width: 120, fontWeight: 600 }}>
-                이름 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
               </label>
               <input className="emailRight-form2-input"
                 type="text"
@@ -1366,7 +1393,7 @@ export default function Consult() {
                     setNameError(false);
                   }
                 }}
-                placeholder="이름을 입력해주세요"
+                placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -1380,7 +1407,7 @@ export default function Consult() {
             </div>
             {nameError && submittedEmail && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입력입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1394,7 +1421,9 @@ export default function Consult() {
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label className="emailRight-form3-label" style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
+              <label className="emailRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
+                {language === "VI" ? (<>Email</>) : ("이메일")}<span style={{ color: "red" }}>*</span>
+              </label>
               <input className="emailRight-form3-input"
                 type="email"
                 value={email}
@@ -1407,7 +1436,7 @@ export default function Consult() {
                     setEmailError(false);
                   }
                 }}
-                placeholder="이메일을 입력해주세요"
+                placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -1421,7 +1450,7 @@ export default function Consult() {
             </div>
             {emailError && submittedEmail && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1436,20 +1465,21 @@ export default function Consult() {
               }}
             >
               <label className="emailRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
-                전화번호 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
               </label>
               <select className="emailRight-form4-select"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
                 style={{
-                  width: 90,
+                  width: 65,
                   border: "none",
                   outline: "none",
                   padding: "12px 0",
                   background: "transparent",
+                  marginRight:10,
                 }}
               >
-                <option value="선택">선택</option>
+                <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
@@ -1465,7 +1495,7 @@ export default function Consult() {
                     setPhoneError(false);
                   }
                 }}
-                placeholder="전화번호"
+                placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -1481,17 +1511,27 @@ export default function Consult() {
                       : ".*"
                 }
                 title={
-                  countryCode === "+82"
-                    ? "한국 전화번호는 9자리에서 11자리 사이여야 합니다."
-                    : countryCode === "+84"
-                      ? "베트남 전화번호는 9-10자리 숫자여야 한다."
-                      : "전화번호를 입력하기 전에 국가 코드를 선택하세요."
+                  language === "VI"
+                    ? (
+                      countryCode === "+82"
+                        ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
+                        : countryCode === "+84"
+                          ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
+                          : "Vui lòng chọn mã quốc gia trước."
+                    )
+                    : (
+                      countryCode === "+82"
+                        ? "한국 전화번호는 9~11자리여야 합니다."
+                        : countryCode === "+84"
+                          ? "베트남 전화번호는 9~10자리여야 합니다."
+                          : "국가 코드를 먼저 선택하세요."
+                    )
                 }
               />
             </div>
             {phoneError && submittedEmail && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1507,7 +1547,7 @@ export default function Consult() {
               }}
             >
               <label className="emailRight-form5-label" style={{ width: 120, fontWeight: 600 }}>
-                내용<span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Nội dung</>) : ("내용")}<span style={{ color: "red" }}>*</span>
               </label>
               <input className="emailRight-form5-input"
                 value={content}
@@ -1520,7 +1560,7 @@ export default function Consult() {
                 onBlur={() => {
                   if (content.trim() === "") setContentError(true);
                 }}
-                placeholder="상담 내용을 입력해주세요"
+                placeholder={language === "VI" ? "Vui lòng nhập nội dung tư vấn " : "상담 내용을 입력해주세요"}
                 rows={2} // 👈 Giảm chiều cao
                 style={{
                   flex: "none",
@@ -1540,7 +1580,7 @@ export default function Consult() {
               <div
 
                 style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입력입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1592,7 +1632,7 @@ export default function Consult() {
                   flexShrink: 0,
                 }}
               />
-              개인정보 수집 및 이용 동의
+              {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
             </label>
           </div>
 
@@ -1618,13 +1658,13 @@ export default function Consult() {
             }}
           >
             <div className="emailRight-Contact-1">
-              <strong>전화 걸기:</strong> (+82) 51-715-0607
+              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
             </div>
             <div className="emailRight-Contact-2">
-              <strong>이메일 보내기:</strong> onepass.kr@gmail.com
+              <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
             </div>
             <div className="emailRight-Contact-3" style={{ color: "#444" }}>
-              <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
+              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy,Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
             </div>
           </div>
 
@@ -1643,7 +1683,7 @@ export default function Consult() {
               cursor: "pointer",
             }}
           >
-            상담 신청
+            {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
           </button>
         </form>
       </div>
@@ -1762,18 +1802,19 @@ export default function Consult() {
             marginBottom: 14,
           }}
         >
-          방문 상담
+          {language === "VI" ? (<>Trực tiếp</>) : (" 방문 상담")}
         </h3>
         <h2
           style={{
             fontSize: 32,
-            fontWeight: 800,
+            fontWeight: 700,
             lineHeight: 1.5,
             marginBottom: 18,
             color: "#111827",
           }}
         >
-          언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.
+          {language === "VI" ? (<>Tìm kiếm giải pháp chính xác một cách tiện lợi, mọi lúc mọi nơi</>) : ("언제 어디서나, 가장 편한 방법으로 정확한 해결책을 만나보세요.")}
+
         </h2>
         <p
           style={{
@@ -1783,7 +1824,8 @@ export default function Consult() {
             letterSpacing: "-0.2px",
           }}
         >
-          예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다.
+          {language === "VI" ? (<>Đặt lịch hẹn và đến văn phòng của chúng tôi. Các chuyên gia sẽ tư vấn và đưa ra giải pháp trực tiếp cho bạn.</>) : (" 예약 후 직접 방문하시면 담당자가 서류를 함께 검토하며 가장 정확한 해결책을 제시해 드립니다.")}
+
         </p>
       </div>
 
@@ -1799,7 +1841,7 @@ export default function Consult() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        <h2 className="visitRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>상담 신청</h2>
+        <h2 className="visitRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>{language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}</h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
         <form className="visitRight-form" onSubmit={handleSubmit2}>
@@ -1816,11 +1858,12 @@ export default function Consult() {
               }}
             >
               <label className="visitRight-form1" style={{ width: 120, fontWeight: 600 }}>
-                서비스 선택 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
+                
               </label>
               <div className="visitRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: selected ? "#000" : "#999" }}>
-                  {selected || "서비스 선택"}
+                   {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                 </span>
                 <i
                   className="fa-solid fa-chevron-down"
@@ -1861,7 +1904,21 @@ export default function Consult() {
                     onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
                     onMouseLeave={(e) => (e.target.style.background = "#fff")}
                   >
-                    {v}
+                    {language === "VI" ? (
+                      v === "인증 센터" ? "Chứng thực" :
+                        v === "결혼 이민" ? "Kết hôn" :
+                          v === "출생신고 대행" ? "Khai sinh, khai tử" :
+                            v === "출입국 행정 대행" ? "Xuất nhập cảnh" :
+                              v === "신분증명 서류 대행" ? "Giấy tờ tuỳ thân" :
+                                v === "입양 절차 대행" ? "Nhận nuôi " :
+                                  v === "비자 대행" ? "Thị thực" :
+                                    v === "법률 컨설팅" ? "Tư vấn pháp lý" :
+                                      v === "B2B 서비스" ? "Dịch vụ B2B" :
+                                        v === "기타" ? "Khác " :
+                                          v
+                    ) : (
+                      v
+                    )}
                   </div>
                 ))}
               </div>
@@ -1869,7 +1926,7 @@ export default function Consult() {
 
             {!selected && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입력입니다
+               {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1884,7 +1941,7 @@ export default function Consult() {
               }}
             >
               <label className="visitRight-form2-label" style={{ width: 120, fontWeight: 600 }}>
-                이름 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
               </label>
               <input className="visitRight-form2-input"
                 type="text"
@@ -1898,7 +1955,8 @@ export default function Consult() {
                     setNameError(false);
                   }
                 }}
-                placeholder="이름을 입력해주세요"
+                  placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
+
                 style={{
                   flex: 1,
                   border: "none",
@@ -1912,7 +1970,7 @@ export default function Consult() {
             </div>
             {nameError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1926,7 +1984,9 @@ export default function Consult() {
                 borderBottom: "1px solid #000000ff",
               }}
             >
-              <label className="visitRight-form3-label" style={{ width: 120, fontWeight: 600 }}>이메일<span style={{ color: "red" }}>*</span></label>
+              <label className="visitRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
+                 {language === "VI" ? (<>Email</>) : ("이메일")}
+                <span style={{ color: "red" }}>*</span></label>
               <input className="visitRight-form3-input"
                 type="email"
                 value={email}
@@ -1939,7 +1999,7 @@ export default function Consult() {
                     setEmailError(false);
                   }
                 }}
-                placeholder="이메일을 입력해주세요"
+                placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -1953,7 +2013,7 @@ export default function Consult() {
             </div>
             {emailError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+               {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -1968,20 +2028,22 @@ export default function Consult() {
               }}
             >
               <label className="visitRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
-                전화번호 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
+
               </label>
               <select className="visitRight-form4-select"
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
                 style={{
-                  width: 90,
+                  width: 65,
                   border: "none",
                   outline: "none",
                   padding: "12px 0",
                   background: "transparent",
+                  marginRight:10,
                 }}
               >
-                <option value="선택">선택</option>
+                <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                 <option value="+82">+82</option>
                 <option value="+84">+84</option>
               </select>
@@ -1997,7 +2059,7 @@ export default function Consult() {
                     setPhoneError(false);
                   }
                 }}
-                placeholder="전화번호"
+                placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
                 style={{
                   flex: 1,
                   border: "none",
@@ -2012,19 +2074,29 @@ export default function Consult() {
                       ? "[0-9]{9,10}"
                       : ".*"
                 }
-                title={
-                  countryCode === "+82"
-                    ? "한국 전화번호는 9~11자리여야 합니다."
-                    : countryCode === "+84"
-                      ? "베트남 전화번호는 9~10자리여야 합니다."
-                      : "국가 코드를 먼저 선택하세요."
+               title={
+                  language === "VI"
+                    ? (
+                      countryCode === "+82"
+                        ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
+                        : countryCode === "+84"
+                          ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
+                          : "Vui lòng chọn mã quốc gia trước."
+                    )
+                    : (
+                      countryCode === "+82"
+                        ? "한국 전화번호는 9~11자리여야 합니다."
+                        : countryCode === "+84"
+                          ? "베트남 전화번호는 9~10자리여야 합니다."
+                          : "국가 코드를 먼저 선택하세요."
+                    )
                 }
               />
 
             </div>
             {phoneError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -2041,7 +2113,7 @@ export default function Consult() {
             >
               {/* 날짜 선택 */}
               <label className="visitRight-form5-label" style={{ fontWeight: 700, marginRight: 8 }}>
-                날짜 선택 <span style={{ color: "red" }}>*</span>
+                {language === "VI" ? (<>Chọn ngày</>) : ("날짜 선택")} <span style={{ color: "red" }}>*</span>
               </label>
 
               {/* input chọn ngày */}
@@ -2073,7 +2145,9 @@ export default function Consult() {
               />
 
               {/* 시간 */}
-              <label className="visitRight-form5-label1" style={{ fontWeight: 700, marginRight: 8 }}>시간</label>
+              <label className="visitRight-form5-label1" style={{ fontWeight: 700, marginRight: 8 }}>
+                 {language === "VI" ? (<>Giờ</>) : ("시간")} 
+              </label>
 
               {/* input chọn giờ */}
               <input className="visitRight-form5-input1"
@@ -2082,9 +2156,7 @@ export default function Consult() {
                 onChange={handleTimeChange}
                 min="09:00"
                 max="18:00"
-
-
-                style={{
+               style={{
                   border: "none",
                   outline: "none",
                   background: "transparent",
@@ -2099,7 +2171,7 @@ export default function Consult() {
 
             {dateError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입입니다
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
 
@@ -2120,7 +2192,8 @@ export default function Consult() {
                   accentColor: "#000",
                 }}
               />
-              개인정보 수집 및 이용 동의
+                {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
+
             </label>
           </div>
 
@@ -2146,13 +2219,13 @@ export default function Consult() {
             }}
           >
             <div className="visitRight-Contact-1">
-              <strong>전화 걸기:</strong> (+82) 51-715-0607
+              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
             </div>
             <div className="visitRight-Contact-2">
-              <strong>이메일 보내기:</strong> onepass.kr@gmail.com
+              <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
             </div>
             <div className="visitRight-Contact-3" style={{ color: "#444" }}>
-              <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)
+              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy,Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
             </div>
           </div>
 
@@ -2171,7 +2244,7 @@ export default function Consult() {
               cursor: "pointer",
             }}
           >
-            상담 신청
+            {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
           </button>
         </form>
       </div>

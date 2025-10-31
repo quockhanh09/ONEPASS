@@ -119,7 +119,7 @@ function Countdown() {
               {/* 전화 */}
               <div style={{ fontSize: 18 }}>📞</div>
               <div>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화")} </div>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화")}</div>
                 <div style={{ color: "#334155" }}>(+82) 51-715-0607</div>
               </div>
 

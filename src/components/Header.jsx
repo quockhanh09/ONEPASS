@@ -47,10 +47,10 @@ function Header() {
     },
     VI: {
       about: "ABOUT US",
-      newsroom: "NEWSROOM",
-      services: "SERVICES",
-      consult: "CONSULT",
-      support: "SUPPORT",
+      newsroom: "Tin tức",
+      services: "dịch vụ",
+      consult: "Tư vấn",
+      support: "Hỗ trợ",
     },
   };
 

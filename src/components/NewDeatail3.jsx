@@ -350,14 +350,19 @@ export default function NewsDetail2() {
                             marginBottom: "20px",
                         }}
                     >
-                        원패스(One Pass) 공식 업무 개시 안내
+                        {language === "VI"
+                            ? "Kể từ tháng 10/2025, One Pass chính thức đi vào hoạt động"
+                            : "원패스(One Pass) 공식 업무 개시 안내"}
                     </h1>
 
                     <p style={{ fontSize: "16px", marginBottom: "10px" }}>
-                        2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다!
+                        {language === "VI"
+                            ? "Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành chính Việt Nam tại Hàn Quốc, One Pass, đã chính thức đi vào hoạt động kể từ ngày 01 tháng 10 năm 2025."
+                            : "2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다!"}
                     </p>
+
                     <p style={{ fontSize: "16px", marginBottom: "20px" }}>
-                        안녕하세요, 고객 여러분!
+                        {language === "VI" ? "Xin chào, quý khách hàng thân mến!" : "안녕하세요, 고객 여러분!"}
                     </p>
 
                     <div style={{ textAlign: "center", margin: "30px 0" }}>
@@ -374,17 +379,20 @@ export default function NewsDetail2() {
 
                     <div style={{ fontSize: "16px", marginBottom: "40px" }}>
                         <p>
-                            베트남 행정 절차 대행 및 솔루션 전문 회사 원패스(One Pass)가 드디어 2025년 10월 1일부터 공식적으로 업무를 시작하게 되었음을 기쁜 마음으로 알려드립니다.
+                            {language === "VI"
+                                ? "Được thành lập tại Busan vào năm 2025, One Pass quy tụ đội ngũ chuyên gia dày dặn kinh nghiệm, thấu hiểu sâu sắc hệ thống hành chính của cả Việt Nam và Hàn Quốc. Chúng tôi cam kết sẽ giải quyết các vấn đề giấy tờ phức tạp và mở ra con đường hiệu quả nhất cho quý khách hàng."
+                                : "베트남 행정 절차 대행 및 솔루션 전문 회사 원패스(One Pass)가 드디어 2025년 10월 1일부터 공식적으로 업무를 시작하게 되었음을 기쁜 마음으로 알려드립니다."}
                         </p>
+
                         <p>
-                            2025년 부산에서 설립된 원패스는 베트남과 한국의 행정 시스템을 깊이 이해하는 숙련된 전문가들을 통해, 복잡한 서류 문제를 해결하고 고객에게 가장 효율적인 길을 열어 드릴 것입니다.
+                            {language === "VI"
+                                ? "Trong tương lai, One Pass cam kết tiếp tục cung cấp các dịch vụ hỗ trợ nhanh chóng, đáng tin cậy và theo nhu cầu cho cả người Việt Nam và người Hàn Quốc, hứa hẹn trở thành đối tác vững chắc của quý vị."
+                                : "2025년 부산에서 설립된 원패스는 베트남과 한국의 행정 시스템을 깊이 이해하는 숙련된 전문가들을 통해, 복잡한 서류 문제를 해결하고 고객에게 가장 효율적인 길을 열어 드릴 것입니다."}
                         </p>
-                        <p>
-                            앞으로도 원패스는 베트남인과 한국인 모두에게 신속하고 신뢰할 수 있는 맞춤형 지원을 제공하며, 여러분의 든든한 파트너가 될 것을 약속드립니다.
-                        </p>
-                        <p>항상 성원해 주시는 모든 분들께 감사드립니다.</p>
                         <p style={{ color: "#666", fontSize: "14px", marginTop: "20px" }}>
-                            2025년 09월  25일 | 오전 09:00 게시
+                            {language === "VI"
+                                ? "09:00 Sáng | Ngày 25 tháng 09 năm 2025"
+                                : "2025년 09월 25일 | 오전 09:00 게시"}
                         </p>
                     </div>
 
@@ -397,7 +405,7 @@ export default function NewsDetail2() {
                             marginBottom: "25px",
                         }}
                     >
-                        관련 뉴스
+                        {language === "VI" ? (<>Tin tức liên quan</>) : ("관련 뉴스")}
                     </h2>
 
                     <div
@@ -423,7 +431,7 @@ export default function NewsDetail2() {
                                 }}
                             />
                             <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                                2025년 09월 30일 | 오전 09:00
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}
                             </p>
                             <h3
                                 style={{
@@ -433,10 +441,10 @@ export default function NewsDetail2() {
                                     marginBottom: 8,
                                 }}
                             >
-                                추석 연휴 휴무 안내
+                                {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Qu...</>) : ("추석 연휴 휴무 안내")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                                안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...
+                                {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm</>) : ("안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...")}
                             </p>
                             <a
                                 href="/news전체 뉴스/NewsDetail"
@@ -454,7 +462,9 @@ export default function NewsDetail2() {
 
 
                         {/* 2 */}
-                        <div>
+                        <div
+                            onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")}
+                        >
                             <img
                                 src={n2}
                                 alt="베트남 총영사관 개소"
@@ -466,7 +476,7 @@ export default function NewsDetail2() {
                                 }}
                             />
                             <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                                2025년 09월 27일 | 오전 09:00
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}
                             </p>
                             <h3
                                 style={{
@@ -476,10 +486,10 @@ export default function NewsDetail2() {
                                     marginBottom: 8,
                                 }}
                             >
-                                주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화
+                                {language === "VI" ? (<>Tổng lãnh sự quán Việt Nam tại Busan chí...</>) : ("주부산 베트남 총영사관 공식 개소")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                                2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...
+                                {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : (" 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며... ")}
                             </p>
                             <a
                                 href="#"
@@ -496,20 +506,20 @@ export default function NewsDetail2() {
                         </div>
 
                         {/* 3 */}
-                        <div>
+                        <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")}>
                             <img
                                 src={n3}
                                 alt="원패스(One Pass) 업무 개시"
                                 style={{
                                     width: "100%",
-                                    height:215.91,
+                                    height: 215.91,
                                     borderRadius: 8,
                                     marginBottom: 12,
                                     objectFit: "cover",
                                 }}
                             />
                             <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                                2025년 09월 25일 | 오전 09:00
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>) : (" 2025년 09월 25일 | 오전 09:00")}
                             </p>
                             <h3
                                 style={{
@@ -519,10 +529,10 @@ export default function NewsDetail2() {
                                     marginBottom: 8,
                                 }}
                             >
-                                원패스(One Pass) 공식 업무 개시 안내
+                                {language === "VI" ? (<>Kể từ tháng 10/2025, One Pass chính thức ...</>) : ("원패스(One Pass) 공식 업무 개시 안내")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                                2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다. 베트남 행정 절차 대행 및 솔루션 전문 회사 원패스...
+                                {language === "VI" ? (<>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành ...</>) : ("2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...")}
                             </p>
                             <a
                                 href="#"

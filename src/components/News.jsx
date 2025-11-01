@@ -343,9 +343,11 @@ function Introduction() {
             alignItems: "center",
             marginBottom: 30
           }}>
-            <h2><a href="/news/전체 뉴스" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }} >전체 뉴스</a></h2>
+            <h2><a href="/news/전체 뉴스" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }} >
+            {language === "VI" ? (<>Tất cả tin tức</>) : ("전체 뉴스")}</a>
+            </h2>
             <a href="/news/전체 뉴스" style={{ fontSize: 15, color: "#384D8D", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
-              더보기 →
+             {language === "VI" ? (<>Xem thêm →</>) : (" 더보기 →")}
             </a>
           </div>
 
@@ -360,10 +362,10 @@ function Introduction() {
             <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n8} alt="추석 연휴 안내"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
-              <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 30일 | 오전 09:00</p>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>추석 연휴 휴무 안내</h3>
+              <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}</p>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>c</h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...
+                {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm</>) : ("안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...")}
               </p>
             </div>
 
@@ -371,10 +373,10 @@ function Introduction() {
             <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n2} alt="베트남 총영사관 개소"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
-              <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 27일 | 오전 09:00</p>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>주부산 베트남 총영사관 공식 개소</h3>
+              <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}</p>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>{language === "VI" ? (<>Tổng lãnh sự quán Việt Nam tại Busan chí...</>) : ("주부산 베트남 총영사관 공식 개소")}</h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...
+               {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : (" 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며... ")}
               </p>
             </div>
 
@@ -382,10 +384,10 @@ function Introduction() {
             <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")} style={{ flex: "1 1 30%", minWidth: 300 }}>
               <img src={n3} alt="원패스 업무 개시 안내"
                 style={{ width: "100%", height: 215.91, borderRadius: 8, marginBottom: 12 }} />
-              <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>2025년 09월 25일 | 오전 09:00</p>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>원패스(One Pass) 공식 업무 개시 안내</h3>
+              <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>) : (" 2025년 09월 25일 | 오전 09:00")}</p>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>{language === "VI" ? (<>Kể từ tháng 10/2025, One Pass chính thức ...</>) : ("원패스(One Pass) 공식 업무 개시 안내")}</h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...
+                {language === "VI" ? (<>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành ...</>) : ("2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...")}
               </p>
             </div>
           </div>
@@ -465,7 +467,7 @@ function Introduction() {
               marginBottom: 30,
             }}
           >
-            <h2><a href="/news/대사관•총영사관 소식" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }} >대사관•총영사관 소식</a></h2>
+            <h2><a href="/news/대사관•총영사관 소식" style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }} >{language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : ("대사관•총영사관 소식")}</a></h2>
             <a
               href="/news/대사관•총영사관 소식"
               style={{
@@ -477,7 +479,7 @@ function Introduction() {
                 gap: 4,
               }}
             >
-              더보기 →
+               {language === "VI" ? (<>Xem thêm →</>) : (" 더보기 →")}
             </a>
           </div>
 
@@ -510,7 +512,7 @@ function Introduction() {
                 }}
               />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>
-                2025년 09월 30일 | 오전 09:00
+                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
               </p>
               <h3
                 style={{
@@ -520,11 +522,12 @@ function Introduction() {
                   marginBottom: 8,
                 }}
               >
-                추석 연휴 휴무 안내
+                {language === "VI" ? (<>Tổng lãnh sự quán Việt Nam tại Busan chí...</>) : ("추석 연휴 휴무 안내...")}
+
               </h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이
-                휴무를 시행함을 알려드립니다...
+                {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : ("안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이휴무를 시행함을 알려드립니다...")}
+
               </p>
             </div>
 
@@ -548,7 +551,7 @@ function Introduction() {
                 }}
               />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>
-                2025년 09월 27일 | 오전 09:00
+                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : ("2025년 09월 27일 | 오전 09:00")}
               </p>
               <h3
                 style={{
@@ -558,10 +561,11 @@ function Introduction() {
                   marginBottom: 8,
                 }}
               >
-                주부산 베트남 총영사관 공식 개소
+                {language === "VI" ? (<>“Xin chào”... Tổng lãnh sự quán Việt Nam</>) : ("주부산 베트남 총영사관 공식 개소 ")}
               </h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...
+                
+                {language === "VI" ? (<>Tổng Lãnh sự quán Việt Nam chuẩn bị có mặt tại Thành phố Busan . Ngày 13 tháng 8 vừa qua, th...</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...")}
               </p>
             </div>
           </div>
@@ -575,7 +579,7 @@ function Introduction() {
           {/* LEFT: Calendar */}
           <div className="Calendar-title" style={{ flex: "0 0 45%" }}>
             <h2 className="Calendar-title-h2" style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
-              업무 일정 (휴일 일정)
+               {language === "VI" ? (<>Lịch làm việc</>) : ("업무 일정 (휴일 일정)")}
             </h2>
             <div style={{
               width: 460,

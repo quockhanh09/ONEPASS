@@ -197,8 +197,8 @@ function Header() {
               <div className="newsroom-tab">NEWSROOM</div>
               <div className="submenu-links">
                 <ul>
-                  <li><Link to="/news/전체 뉴스">전체뉴스</Link></li>
-                  <li><Link to="/news/대사관•총영사관 소식">대사관·총영사관 소식</Link></li>
+                  <li><Link to="/news/전체 뉴스">{language === "VI" ? (<>Tất cả tin tức</>) : ("전체뉴스")}</Link></li>
+                  <li><Link to="/news/대사관•총영사관 소식">{language === "VI" ? (<>Tin tức lãnh sự</>) : ("대사관·총영사관 소식")}</Link></li>
                 </ul>
               </div>
             </div>
@@ -222,10 +222,10 @@ function Header() {
                   margin: 0,
                   listStyle: "none"
                 }}>
-                  <li><Link to="/Consult" state={{ tab: "sns" }}>SNS 채팅 상담</Link></li>
-                  <li><Link to="/Consult" state={{ tab: "phone" }}>전화 상담</Link></li>
-                  <li><Link to="/Consult" state={{ tab: "email" }}>이메일 상담</Link></li>
-                  <li><Link to="/Consult" state={{ tab: "visit" }}>방문 상담</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "sns" }}>{language === "VI" ? (<>Nhắn tin</>) : ("SNS 채팅 상담")}</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "phone" }}>{language === "VI" ? (<>Gọi điện</>) : ("전화 상담")}</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "email" }}>{language === "VI" ? (<>Email</>) : ("이메일 상담")}</Link></li>
+                  <li><Link to="/Consult" state={{ tab: "visit" }}>{language === "VI" ? (<>Trực tiếp</>) : ("방문 상담")}</Link></li>
                 </ul>
               </div>
             </div>
@@ -249,15 +249,15 @@ function Header() {
                   margin: 0,
                   listStyle: "none"
                 }}>
-                  <li><Link to="/Service" state={{ serviceIndex: 0 }}>인증 센터</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 1 }}>결혼 이민</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 2 }}>출생신고</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 3 }}>출입국 행정</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 4 }}>신분증명 서류</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 5 }}>입양 • 자녀 인지</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 6 }}>비자 대행</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 7 }}>법률 컨설팅</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 8 }}>B2B 서비스</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 0 }}>{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 1 }}>{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 2 }}>{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 3 }}>{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 4 }}>{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 5 }}>{language === "VI" ? (<>Nhận nuôi</>) : ("입양 • 자녀 인지")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 6 }}>{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 7 }}>{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 8 }}>{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</Link></li>
                 </ul>
               </div>
             </div>
@@ -281,10 +281,10 @@ function Header() {
                   margin: 0,
                   listStyle: "none"
                 }}>
-                  <li><Link to="/Support" state={{ tab: "profile-search" }}>진행 현황 조회</Link></li>
-                  <li><Link to="/Support" state={{ tab: "contact" }}>Contact</Link></li>
-                  <li><Link to="/Support" state={{ tab: "Terms-of-Use" }}>이용약관</Link></li>
-                  <li><Link to="/Support" state={{ tab: "personal-information" }}>개인 정보 처리 방침</Link></li>
+                  <li><Link to="/Support" state={{ tab: "profile-search" }}>{language === "VI" ? (<>Tra cứu hồ sơ</>) : ("진행 현황 조회")}</Link></li>
+                  <li><Link to="/Support" state={{ tab: "contact" }}>{language === "VI" ? (<>Liên hệ</>) : ("Contact")}</Link></li>
+                  <li><Link to="/Support" state={{ tab: "Terms-of-Use" }}>{language === "VI" ? (<>Điều khoản sử dụng</>) : ("이용약관")}</Link></li>
+                  <li><Link to="/Support" state={{ tab: "personal-information" }}>{language === "VI" ? (<>Xử lý thông tin cá nhân</>) : ("개인 정보 처리 방침")}</Link></li>
                 </ul>
               </div>
             </div>

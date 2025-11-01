@@ -330,7 +330,7 @@ export default function ConsulateNews() {
                   cursor: "pointer",
                 }}
               >
-                전체 뉴스
+                 {language === "VI" ? (<>Tất cả tin tức</>) : (" 전체 뉴스")}
               </span>
 
               {/* 대사관·총영사관 소식 */}
@@ -352,7 +352,8 @@ export default function ConsulateNews() {
                   cursor: "pointer",
                 }}
               >
-                대사관·총영사관 소식
+                {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
+
               </span>
             </div>
 
@@ -401,7 +402,8 @@ export default function ConsulateNews() {
               marginBottom: 40,
             }}
           >
-            대사관•총영사관 소식
+            {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
+
           </h2>
 
           {/* News Grid */}
@@ -428,7 +430,8 @@ export default function ConsulateNews() {
                 }}
               />
               <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                2025년 09월 27일 | 오전 09:00
+                    {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
+
               </p>
               <h3
                 style={{
@@ -438,10 +441,11 @@ export default function ConsulateNews() {
                   marginBottom: 8,
                 }}
               >
-                주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화
+                 {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân t...</>) : ("주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화...")}
+
               </h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...
+                  {language === "VI" ? (<>Ngày mùng 1 tháng 10 năm 2025, Công ty One Pass đã vinh dự được Tổng Lãnh sự quán Việt N</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...")}
               </p>
               <a
                 href="#"
@@ -470,7 +474,8 @@ export default function ConsulateNews() {
                 }}
               />
               <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                2025년 09월 27일 | 오전 09:00
+                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : ("2025년 09월 27일 | 오전 09:00")}
+
               </p>
               <h3
                 style={{
@@ -480,10 +485,11 @@ export default function ConsulateNews() {
                   marginBottom: 8,
                 }}
               >
-                “씬짜오(안녕하세요)”…주부산 베트남총영사관 문화 행사
+                {language === "VI" ? (<>“Xin chào”... Tổng lãnh sự quán Việt Nam</>) : ("“쑥쑥안(안녕하세요)”…주부산 베트남총영사관 문화 행사 ")}
+
               </h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                부산에 주베트남 총영사관이 들어섰다. 지난 8월 13일 부산 롯데호텔에서 주부산 베트남 총...
+                 {language === "VI" ? (<>Tổng Lãnh sự quán Việt Nam chuẩn bị có mặt tại Thành phố Busan . Ngày 13 tháng 8 vừa qua, th...</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...")}
               </p>
               <a
                 href="#"

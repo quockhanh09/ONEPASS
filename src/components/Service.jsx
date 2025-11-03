@@ -411,6 +411,7 @@ const tabContents3 = {
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
 
     ],
+
   },
 
   certificate3: {
@@ -447,6 +448,7 @@ const tabContents3 = {
       { id: 3, text: "재외 공관에서 출생신고 및 전달 (재외 공관 → 원패스 → 고객님)" },
     ],
   },
+
 };
 
 
@@ -2666,7 +2668,8 @@ function Service(props) {
                                         step.text === "기간 초과 사유 검토 및 해결 방안 수립 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
                                           step.text === "재외 공관에서 신고 및 전달 (재외 공관 → 원패스 → 고객님)" ? "Cấp giấy xác nhận và trả kết quả (Cơ quan → One Pass → Quý khách)" :
                                             step.text === "서류 검토 및 공식 접수 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)	" :
-                                              step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn" :
+                                              step.text === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn"
+                                                :
                                                 step.text
                                 ) : (
                                   step.text
@@ -2688,7 +2691,8 @@ function Service(props) {
 
 
             {/* Extra Content */}
-            {tabContents3[activeTab3].extraContent(language) && tabContents3[activeTab3].extraContent(language)}
+            {tabContents3[activeTab3].extraContent && typeof tabContents3[activeTab3].extraContent === "function" && tabContents3[activeTab3].extraContent(language)}
+
           </div>
         );
 
@@ -3510,13 +3514,13 @@ function Service(props) {
                   {/* Title */}
                   {tabContents7[activeTab7].title && (
                     <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}> {language === "VI" ? (
-                        tabContents7[activeTab7].title === "이혼 소송" ? "Liên quan tới ly hôn"
-                          : tabContents7[activeTab7].title === "노동 관련 소송" ? "Liên quan tới lao động"
-                            : tabContents7[activeTab7].title === "불법 체류자 관련 컨설팅" ? "Liên quan tới cư trú"
-                                  : tabContents7[activeTab7].title
-                      ) : (
-                        tabContents7[activeTab7].title
-                      )}
+                      tabContents7[activeTab7].title === "이혼 소송" ? "Liên quan tới ly hôn"
+                        : tabContents7[activeTab7].title === "노동 관련 소송" ? "Liên quan tới lao động"
+                          : tabContents7[activeTab7].title === "불법 체류자 관련 컨설팅" ? "Liên quan tới cư trú"
+                            : tabContents7[activeTab7].title
+                    ) : (
+                      tabContents7[activeTab7].title
+                    )}
                     </h2>
                   )}
 
@@ -3530,7 +3534,7 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                               {language === "VI" ? (
+                              {language === "VI" ? (
                                 h === "업무 분류" ? "Phân loại" :
                                   h === "업무 이름" ? "Dịch vụ" :
                                     h === "수속시간" ? "Thời gian thực hiện" :
@@ -3567,7 +3571,7 @@ function Service(props) {
 
                                           col === "노동 관련 소송" ? "Liên quan tới lao động" :
                                             col === "불법 체류자 관련 컨설팅" ? "Liên quan tới cư trú" :
-                                               col
+                                              col
                                 ) : (
                                   col
                                 )}
@@ -3589,7 +3593,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                               {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -3666,7 +3670,7 @@ function Service(props) {
 
                                         step.text === "비용 설명 및 계약 체결" ? "Báo giá và ký hợp đồng" :
                                           step.text === "계약 이행" ? "Ký hợp đồng" :
-                                                step.text
+                                            step.text
                                 ) : (
                                   step.text
                                 )}
@@ -3695,10 +3699,10 @@ function Service(props) {
             {/* Title */}
             <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
               {language === "VI" ? (<>DỊCH VỤ B2B</>) : ("B2B 서비스")}
-              </h1>
+            </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-              
-               {language === "VI" ? (<>Dịch vụ tư vấn, hỗ trợ cho các doanh nghiệp</>) : (<>기업 고객의 효율적인 업무를 위한 맞춤형 서비스입니다.</>)}
+
+              {language === "VI" ? (<>Dịch vụ tư vấn, hỗ trợ cho các doanh nghiệp</>) : (<>기업 고객의 효율적인 업무를 위한 맞춤형 서비스입니다.</>)}
             </p>
 
             <div className="main-case1-buttton"
@@ -3755,8 +3759,8 @@ function Service(props) {
                         tabContents8[activeTab8].title === "법인 • 지사 • 대표사무실 설립" ? "Thành lập pháp nhân "
                           : tabContents8[activeTab8].title === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú"
                             : tabContents8[activeTab8].title === "수입 허가서" ? "Giấy phép xuất nhập khẩu"
-                              :tabContents8[activeTab8].title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
-                                  : tabContents8[activeTab8].title
+                              : tabContents8[activeTab8].title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
+                                : tabContents8[activeTab8].title
                       ) : (
                         tabContents8[activeTab8].title
                       )}
@@ -3773,7 +3777,7 @@ function Service(props) {
                               padding: "14px 16px",
                               width: `${100 / 5}%`,
                             }}>
-                                {language === "VI" ? (
+                              {language === "VI" ? (
                                 h === "업무 분류" ? "Phân loại" :
                                   h === "업무 이름" ? "Dịch vụ" :
                                     h === "수속시간" ? "Thời gian thực hiện" :
@@ -3811,7 +3815,7 @@ function Service(props) {
                                           col === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú" :
                                             col === "수입 허가서" ? "Giấy phép xuất nhập khẩu" :
                                               col === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B" :
-                                                  col
+                                                col
                                 ) : (
                                   col
                                 )}
@@ -3927,6 +3931,10 @@ function Service(props) {
 
   const handleClick = (i) => {
     setActiveIndex(i);
+    window.scrollTo({
+    top: 0,
+    behavior: "smooth", // cuộn mượt
+  });
   };
 
 
@@ -4424,6 +4432,7 @@ function Service(props) {
               position: "relative",
               fontFamily: "sans-serif",
               textAlign: "left",
+              height:830
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -4436,7 +4445,7 @@ function Service(props) {
                 paddingBottom: 30,
               }}
             >
-              상담 신청
+              {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
             </h2>
 
             {/* FORM */}
@@ -4451,7 +4460,7 @@ function Service(props) {
                   }}
                 >
                   <label style={{ width: 120, fontWeight: 600 }}>
-                    서비스 선택 <span style={{ color: "red" }}>*</span>
+                      {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}<span style={{ color: "red" }}>*</span>
                   </label>
                   {/* UI CHANGE: Updated modal to use editable service titles from serviceContents */}
                   <input
@@ -4470,7 +4479,7 @@ function Service(props) {
                 { /* show only after submit attempt */}
                 {submittedServiceForm && !serviceContents[activeIndex]?.title && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    *필수입입입니다
+                    {language === "VI" ? (<>bắt buộc nhập</>) : ("*필수입입입니다")}
                   </div>
                 )}
               </div>
@@ -4485,7 +4494,7 @@ function Service(props) {
                   }}
                 >
                   <label style={{ width: 120, fontWeight: 600 }}>
-                    이름 <span style={{ color: "red" }}>*</span>
+                    {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -4518,7 +4527,7 @@ function Service(props) {
                     borderBottom: "1px solid #999",
                   }}
                 >
-                  <label style={{ width: 120, fontWeight: 600 }}>이메일</label>
+                  <label style={{ width: 120, fontWeight: 600 }}> {language === "VI" ? (<>Email</>) : ("이메일")}</label>
                   <input
                     type="email"
                     value={email}

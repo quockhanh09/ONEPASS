@@ -2119,28 +2119,58 @@ function App() {
     height: 220px !important;
   }
 }
+@media (max-width: 500px) {
+  .consult-section .consult-container {
+    padding: 0 14px !important;
+    gap: 30px !important;
+  }
 
-/* -------------- Mobile nhỏ (max 450px) -------------- */
-@media (max-width: 450px) {
-.consult-cards-main-title{
-height:140px !important;
-}
-
-.consult-main-img{
-    height:120px !important;
-}
   .consult-cards {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
+    gap: 22px !important;
   }
 
   .consult-cards > div {
-    padding: 16px 12px !important;
+    padding: 18px 12px !important;
   }
 
   .consult-main-img img {
-    width: 100px !important;
-    height: 100px !important;
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  .consult-cards-main-title {
+    height: 150px !important;
+  }
+
+  .consult-main-img {
+    height: 110px !important;
+  }
+}
+
+/* -------------- Mobile nhỏ (max 440px) -------------- */
+@media (max-width: 450px) {
+  .consult-section .consult-container {
+    padding: 0 10px !important;
+  }
+
+  .consult-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* ép 2 cột */
+    gap: 14px !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+  }
+
+  .consult-cards > div {
+    min-width: 0 !important; /* ngăn card tràn */
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  .consult-main-img img {
+    width: 70px !important;
+    height: 70px !important;
   }
 }
 

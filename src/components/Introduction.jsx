@@ -514,7 +514,7 @@ function Introduction() {
           {/* Content */}
           <p
             style={{
-              fontSize: "18px",
+              fontSize: "16px",
               lineHeight: "1.8",
               opacity: 0.95,
               whiteSpace: "pre-line",
@@ -559,15 +559,15 @@ function Introduction() {
               >
                 <div style={{ textAlign: "center" }}>
                   <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>380</p>
-                  <p style={{ fontSize: "18px", color: "#333" }}>{language === "VI" ? (<>Khách hàng</>) : ("만족 고객 수")}</p>
+                  <p style={{ fontSize: "16px", color: "#333" }}>{language === "VI" ? (<>Khách hàng</>) : ("만족 고객 수")}</p>
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>240</p>
-                  <p style={{ fontSize: "18px", color: "#333" }}>{language === "VI" ? (<>Hồ sơ</>) : ("접수 사례건 수")}</p>
+                  <p style={{ fontSize: "16px", color: "#333" }}>{language === "VI" ? (<>Hồ sơ</>) : ("접수 사례건 수")}</p>
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>2300</p>
-                  <p style={{ fontSize: "18px", color: "#333" }}>{language === "VI" ? (<>Lần tư vấn</>) : ("누적 상담건 수")}</p>
+                  <p style={{ fontSize: "16px", color: "#333" }}>{language === "VI" ? (<>Lần tư vấn</>) : ("누적 상담건 수")}</p>
                 </div>
               </div>
             </div>
@@ -577,7 +577,7 @@ function Introduction() {
               <h4 style={{ fontSize: "18px", fontWeight: "700", marginBottom: "15px" }}>
                 {language === "VI" ? (<>CAM KẾT CỦA ONE PASS VỚI KHÁCH HÀNG</>) : ("고객께 드리는 원패스의 약속")}
               </h4>
-              <ul className="about-min-right-ul" style={{ lineHeight: 1.8, fontSize: "18px", color: "#333", textAlign: "justify" }}>
+              <ul className="about-min-right-ul" style={{ lineHeight: 1.8, fontSize: "16px", color: "#333", textAlign: "justify" }}>
                 <li>
                   <strong>{language === "VI" ? (<>Sự thoải mái:</>) : ("마음의 평화:")}</strong>
                   {language === "VI" ? (<> Hãy giao phó các thủ tục giấy tờ phức tạp và khó khăn cho chuyên gia của chúng tôi; quý khách sẽ không cần phải lo lắng hay bất an nữa. Chúng tôi chịu trách nhiệm xử lý toàn bộ quy trình.</>) : ("복잡하고 어려운 서류 절차를 전문가에게 맡겨, 고객님은 더 이상 고민하거나불안해하지 않으셔도 됩니다.")}
@@ -748,7 +748,7 @@ function Introduction() {
                       card.title
                     )}
                   </h3>
-                  <p style={{ fontSize: 18, lineHeight: 1.6, color: "#333" }}>
+                  <p style={{ fontSize: 16, lineHeight: 1.6, color: "#333" }}>
                     
                     {language === "VI" ? (
                       card.desc === "원패스는 정확하고 최신 정보로 완벽한 서류 절차를 보장합니다. 급변하는 법률과 규정들을 항상 주시하며 고객의 문제를 정확히 파악하고, 최적의 해결책을 제시합니다." ? "Chúng tôi luôn theo dõi sát sao các quy định và pháp luật để nắm bắt chính xác vấn đề của khách hàng từ đó đưa ra giải pháp tối ưu nhất."
@@ -777,7 +777,7 @@ function Introduction() {
             <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 12, color: "#111" }}>
               {language === "VI" ? (<>Vượt qua sự phức tạp, Mở lối đi dễ dàng</>) : ("복잡함을 넘어, 쉬운 길을 열다")}
             </h3>
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: "#333", marginBottom: 30 }}>
+            <p style={{ fontSize: 16, lineHeight: 1.7, color: "#333", marginBottom: 30 }}>
               {language === "VI" ? (<>One Pass tồn tại vì tất cả những ai đang gặp khó khăn do các thủ tục hành chính phức tạp và rườm rà. Sứ mệnh của chúng tôi là bảo vệ thời gian và công sức quý báu của khách hàng bằng cách xử lý mọi nghiệp vụ giấy tờ, từ hồ sơ kết hôn, hộ chiếu, visa, đến hợp pháp hóa lãnh sự, một cách nhanh nhất và chính xác nhất.
                 <br />Chúng tôi không chỉ là người đại diện hồ sơ; chúng tôi là đối tác vững chắc giúp khách hàng đơn giản hóa thủ tục hành chính và tăng tính minh bạch, để quý vị có thể hoàn toàn tập trung vào những khoảnh khắc quan trọng trong cuộc sống.</>) : ("원패스(OnePass)는 복잡하고 까다로운 행정 절차로 인해 어려움을 겪는 모든 분들을 위해 존재합니다. 결혼 관련 서류부터 여권, 비자, 영사 확인에 이르기까지, 모든 서류 업무를 가장 빠르고 정확하게 처리하여 고객의 소중한 시간과 노력을 지켜드리는 것이 우리의 사명입니다. 저희는 단순한 서류 대행을 넘어, 행정 절차를 간소화하고 투명성을 높여, 고객들이 삶의 중요한 순간에 온전히 집중할 수 있도록 돕는 든든한 파트너가 될 것입니다.")}
             </p>
@@ -785,7 +785,7 @@ function Introduction() {
             <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 12, color: "#111" }}>
               {language === "VI" ? (<>Chuyên gia hành chính đáng tin cậy nhất</>) : ("가장 신뢰받는 행정 전문가 파트너")}
             </h3>
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: "#333" }}>
+            <p style={{ fontSize: 16, lineHeight: 1.7, color: "#333" }}>
               {language === "VI" ? (<>One Pass mong muốn trở thành đối tác đáng tin cậy, mang lại những thay đổi tích cực trong cuộc sống của khách hàng. Chúng tôi sẽ thiết lập nên một tiêu chuẩn mới trong lĩnh vực dịch vụ hành chính thông qua dịch vụ minh bạch, chuyên nghiệp và các giải pháp được cá nhân hóa theo từng hoàn cảnh cụ thể.
                 Mục tiêu của chúng tôi là tạo ra một thế giới mà tất cả mọi người không còn phải thất vọng vì vấn đề giấy tờ và có thể đạt được những điều mình mong muốn. Để đạt được điều đó, chúng tôi cam kết không ngừng đổi mới và cải thiện chất lượng dịch vụ.</>) : ("원패스는 고객의 삶에 긍정적인 변화를 가져오는 신뢰의 파트너가 되고자 합니다. 투명하고 전문적인 서비스, 그리고 고객 한 분 한 분의 상황에 맞는 맞춤형 솔루션을 통해 행정 서비스 분야의 새로운 기준을 만들어 갈 것입니다. 우리는 모든 사람이 서류 문제로 인해 좌절하지 않고, 원하는 바를 이룰 수 있는 세상을 만드는 것을 목표로 삼고 있습니다. 이를 위해 지속적인 혁신과 서비스 개선을 약속드립니다.")}
             </p>

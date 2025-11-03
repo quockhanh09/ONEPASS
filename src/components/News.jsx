@@ -363,7 +363,7 @@ function Introduction() {
               <img src={n8} alt="추석 연휴 안내"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}</p>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}>c</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111827", marginBottom: 8 }}> {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Qu...</>) : ("추석 연휴 휴무 안내")}</h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
                 {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm</>) : ("안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...")}
               </p>

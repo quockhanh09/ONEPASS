@@ -484,7 +484,9 @@ span {
 
 @media (min-width: 1200px) {
   .navmenu {
-    padding: 0;
+      flex: 1;
+  display: flex;
+  justify-content: center;
   }
 
   .navmenu ul {
@@ -493,6 +495,7 @@ span {
   }
 
   .nav-pill {
+    width: 91%;
     background: rgba(255, 255, 255, 0.062);
     /* trong mờ */
     border-radius: 15px;
@@ -508,11 +511,14 @@ span {
   }
 
   .nav-list {
-    list-style: none;
     display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
+  justify-content: space-between; /* căn đều các mục */
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* 🔹 điều chỉnh độ rộng tổng thể thanh menu */
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
   }
 
   .nav-list li {
@@ -520,10 +526,10 @@ span {
   }
 
   .nav-list a {
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    color: #333;
+   display: inline-block;
+  padding: 10px 20px;
+  white-space: nowrap;
+  text-align: center;
   }
 
   .logo-link {
@@ -575,11 +581,13 @@ span {
   }
 
   .submenu-links {
-    width: 660px;
-    background: #2c4d9e;
-    display: flex;
-    align-items: center;
-    border-radius: 0 10px 10px 0;
+    min-width: 660px; /* 🔹 luôn đảm bảo đủ rộng như cũ */
+  width: fit-content; /* 🔹 tự co giãn theo nội dung */
+  background: #2c4d9e;
+  display: flex;
+  align-items: center;
+  border-radius: 0 10px 10px 0;
+  transition: width 0.2s ease;
 
   }
 
@@ -588,6 +596,8 @@ span {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap; /* tự xuống hàng nếu nhiều mục */
+  justify-content: space-between;
   }
 
   .submenu-links li {

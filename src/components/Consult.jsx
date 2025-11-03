@@ -1695,27 +1695,35 @@ export default function Consult() {
  .emailRight {
    padding: 40px 30px !important;
  }
+.emailRight-form1-label,
+  .emailRight-form2-label1,
+  .emailRight-form3-label,
+  .emailRight-form4-label,
+  .emailRight-form5-label {
+    width: 100px !important;
+    font-size: clamp(13px, 2.2vw, 16px) !important;
+    flex-shrink: 0 !important;
+  }
 
- .emailRight-form1-label,
- .emailRight-form2-label1,
- .emailRight-form3-label,
- .emailRight-form4-label,
- .emailRight-form5-label,
- {
-   width: 120px !important;
-   flex-shrink: 0 !important;
- }
+  .emailRight-form1-input,
+  .emailRight-form2-input,
+  .emailRight-form3-input,
+  .emailRight-form4-input,
+  .emailRight-form5-input,
+  .emailRight-form1-select,
+  .emailRight-form4-select {
+    font-size: clamp(13px, 2.5vw, 15px) !important;
+  }
 
- .emailRight-form1-1,
- .emailRight-form2-input,
- .emailRight-form3-input,
- .emailRight-form4-select,
- .emailRight-form4-input,
- .emailRight-form5-input,
- {
-   font-size: 15px !important;
- }
-
+  .emailRight-form1-main,
+  .emailRight-form2-main,
+  .emailRight-form3-main,
+  .emailRight-form4-main,
+  .emailRight-form5-main {
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
  .emailRight-form1-list {
    left: 0 !important;
    width: 100% !important;
@@ -1737,7 +1745,29 @@ export default function Consult() {
    font-size: 16px !important;
    padding: 14px !important;
  }
+  .emailRight-form4-main {
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
 
+  .emailRight-form4-label {
+    width: 100px !important;
+    font-size: clamp(13px, 2.2vw, 16px) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .emailRight-form4-select {
+    width: 65px !important;
+    font-size: clamp(13px, 2.5vw, 15px) !important;
+    margin-right: 6px !important;
+  }
+
+  .emailRight-form4-input {
+    flex: 1 !important;
+    font-size: clamp(13px, 2.5vw, 15px) !important;
+  }
+}
  
 }
 
@@ -1756,7 +1786,7 @@ export default function Consult() {
  .emailRight-form3-input,
  .emailRight-form4-input,
  {
-   font-size: 15px !important;
+   font-size: 13px !important;
  }
 
  .emailRight-form4-select {
@@ -1764,7 +1794,7 @@ export default function Consult() {
  }
 
  .emailRight-Contact {
-   font-size: 15px !important;
+   font-size: 13px !important;
    line-height: 1.6 !important;
  }
 
@@ -1772,7 +1802,24 @@ export default function Consult() {
    font-size: 15px !important;
    padding: 12px !important;
  }
+  .emailRight-form4-main {
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+  }
 
+  .emailRight-form4-label {
+    width: 85px !important;
+    font-size: clamp(12px, 3vw, 14px) !important;
+  }
+
+  .emailRight-form4-select {
+    width: 60px !important;
+    font-size: clamp(12px, 3vw, 14px) !important;
+  }
+
+  .emailRight-form4-input {
+    font-size: clamp(12px, 3vw, 14px) !important;
+  }
 }
 `
         }

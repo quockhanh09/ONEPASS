@@ -13,7 +13,7 @@ function Countdown() {
 
   // Địa chỉ để nhúng map
   const [address] = useState(
-    "(48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)"
+    "(48059) Byucksan e-Centum Classone, 915 - 916, 99 Centumdong-ro, Haeundae-gu, Busan, Korena"
   );
 
   const mapQuery = encodeURIComponent("Centumdong-ro 99, Haeundae-gu, Busan");

@@ -74,7 +74,7 @@ function Countdown() {
             <div className="main-left-title"
               style={{
                 color: "#2F4D90",
-                fontWeight: 600,
+                fontWeight: 700,
                 fontSize: 24,
                 marginBottom: 10,
               }}

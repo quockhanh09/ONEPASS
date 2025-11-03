@@ -716,7 +716,7 @@ function App() {
           height: 55vh !important;
         }
         .hero-flex h1 {
-          font-size: 24px !important;
+          font-size: 33px !important;
           line-height: 1.3 !important;
         }
         .hero-flex form {
@@ -1139,7 +1139,7 @@ function App() {
         }
 
         .about h2 {
-          font-size: 28px !important;
+          font-size: 20px !important;
           text-align: center !important;
         }
 
@@ -1249,8 +1249,8 @@ function App() {
                     <p style={{
                       fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif",
                       fontSize: 24,
-                      fontWeight: 500,
-                      letterSpacing: '0.25em',
+                      fontWeight: 700,
+                      
                       color: '#2B3A67',
                       marginBottom: 12
                     }}>
@@ -1615,7 +1615,7 @@ function App() {
       }
       
       .services-carousel-section p {
-        font-size: 18px !important;
+        font-size: 20px !important;
       }
       
       .service-icons-container {
@@ -1745,8 +1745,8 @@ function App() {
                   <div
                     style={{
                       color: "#E3DCCC",
-                      fontWeight: 800,
-                      letterSpacing: "0.25em",
+                      fontWeight: 700,
+                      
                       fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif",
                       fontSize: 24,
                       marginBottom: 8,
@@ -1938,7 +1938,7 @@ function App() {
                       }
 
                       section > div:first-child div:nth-child(1) {
-                          font-size: 14px !important;
+                          font-size: 20px !important;
                           
                       }
 
@@ -1987,7 +1987,7 @@ function App() {
                 <div className="consult-container" style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
                   {/* Left copy */}
                   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignSelf: 'center' }}>
-                    <div style={{ color: '#E3DCCC', fontWeight: 500, letterSpacing: '0.15em', marginBottom: 12, fontSize: 24, fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }}>CONSULT</div>
+                    <div style={{ color: '#E3DCCC', fontWeight: 700,  marginBottom: 12, fontSize: 24, fontFamily: "'Gmarket Sans', 'Noto Sans KR', sans-serif" }}>CONSULT</div>
                     <h2 className="text-consult" style={{ color: '#ffffffff', fontSize: 32, fontWeight: 700, lineHeight: 1.35, margin: 0 }}>
 
                       {language === "VI" ? (<>Tìm kiếm giải pháp chính xác<br /> một cách tiện lợi, mọi lúc mọi nơi</>)

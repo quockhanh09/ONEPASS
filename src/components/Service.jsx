@@ -1529,7 +1529,7 @@ function Service(props) {
 
             {/* Steps */}
             <div className="main-steps" style={{ width: "100%", textAlign: "center", marginTop: "80px", }}>
-              <h2 className="main-steps-h2" style={{ fontFamily: "Afacad, serif", fontSize: "32px", fontWeight: "bold", marginBottom: "30px", transform: "translateX(-502px)" }}>
+              <h2 className="main-steps-h2" style={{ fontFamily: "Afacad, serif", fontSize: "24px", fontWeight: "bold", marginBottom: "30px", transform: "translateX(-502px)" }}>
                 {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
               </h2>
               <div
@@ -1916,7 +1916,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents[activeTab].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
 
                       {language === "VI" ? (
                         tabContents[activeTab].title === "한국 내 혼인신고" ? "Đăng ký kết hôn tại Hàn Quốc"
@@ -2037,7 +2037,7 @@ function Service(props) {
                       <h2 className="case1-steps-main-h2"
                         style={{
 
-                          fontSize: "32px",
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -2096,7 +2096,7 @@ function Service(props) {
                                   step.text === "베트남 배우자 측 서류 준비" ? "Phía Việt Nam chuẩn bị hồ sơ" :
                                     step.text === "한국인 배우자 측 서류 준비" ? "Phía Hàn Quốc chuẩn bị hồ sơ" :
                                       step.text === "재외 공관에서 혼인요건인증서 발급" ? "Đăng ký giấy chứng nhận đủ điều kiện kết hôn " :
-                                        step.text === "국내 혼인신고 후 베트남 혼인신고" ? "Sau khi đăng ký kết hôn tại Hàn Quốc, đăng ký kết hôn tại Việt Nam" :
+                                        step.text === "국내 혼인신고 후 베트남 혼인신고" ? "Sau khi đăng ký kết hôn tại Hàn Quốc, ghi chú kết hôn tại Việt Nam" :
 
                                           step.text === "서류 준비 및 접수	(고객님 → 원패스)" ? "Chuẩn bị và nhận hồ sơ	(Quý khách → One Pass)" :
                                             step.text === "검토 및 발급 신청 (원패스)" ? "Xét duyệt hồ sơ và đăng ký  (One Pass)" :
@@ -2123,9 +2123,9 @@ function Service(props) {
             {/* Notes (only show for korea1 tab) */}
             {activeTab === "korea1" && (
               <div style={{ marginTop: 80 }}>
-                <h2 style={{ fontSize: 32, fontWeight: "600", marginBottom: 12 }}>{language === "VI" ? (<>Lưu ý</>) : ("유의사항")}</h2>
-                <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 }}>
-                  <li style={{ marginBottom: 8 }}>
+                <h2 style={{ fontSize: 24, fontWeight: "600", marginBottom: 12 }}>{language === "VI" ? (<>Lưu ý</>) : ("유의사항")}</h2>
+                <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 ,textAlign:"justify", }}>
+                  <li style={{ marginBottom: 8, }}>
                     {language === "VI" ? (<><b>Bắt buộc chứng minh năng lực giao tiếp (Tiếng Hàn): </b>
                       Cô dâu (người sắp kết hôn) bắt buộc phải chứng minh khả năng giao tiếp bằng cách đạt 60 điểm trở lên sau khi hoàn thành khóa học tiếng Hàn do Bộ trưởng Bộ Tư pháp chỉ định, hoặc nộp chứng chỉ TOPIK cấp 1 trở lên tại thời điểm nộp hồ sơ xin visa</>) : (<> 의사소통 능력 필수: 예비 배우자(신부/신랑) 비자 신청 시점까지 한국어능력 공인 시험 성적표, 한국어 과정 이수,
                         60점 이상 취득하거나 TOPIK 1급 이상 성적표 제출하여야 합니다.</>)}
@@ -2222,7 +2222,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents2[activeTab2].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
 
                       {language === "VI" ? (
                         tabContents2[activeTab2].title === "출생 신고" ? "Đăng ký khai sinh"
@@ -2321,8 +2321,8 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
-                          fontSize: "32px",
+                          
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -2503,7 +2503,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents3[activeTab3].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
                       {tabContents3[activeTab3].title && (
                         <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
 
@@ -2608,8 +2608,8 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
-                          fontSize: "32px",
+                          
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -2765,7 +2765,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents4[activeTab4].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
 
                       {language === "VI" ? (
                         tabContents4[activeTab4].title === "일반 여권 발급 • 변경 • 추가" ? "Cấp, bổ sung hộ chiếu"
@@ -2867,7 +2867,7 @@ function Service(props) {
                       <h2 className="case1-steps-main-h2"
                         style={{
 
-                          fontSize: "32px",
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -3013,7 +3013,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents5[activeTab5].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
 
                       {language === "VI" ? (
                         tabContents5[activeTab5].title === "보호자 신청 • 해지 신고" ? "Đăng ký / chấm dứt việc giám hộ "
@@ -3108,7 +3108,7 @@ function Service(props) {
                       <h2 className="case1-steps-main-h2"
                         style={{
 
-                          fontSize: "32px",
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -3138,7 +3138,7 @@ function Service(props) {
                                     borderRadius: "16px",
                                     width: "320px",
                                     height: "202px",
-                                    boxShadow: "0 6px 16px rgba(0, 0, 0, 0.12)",
+                                    boxShadow: "0 6px 16px rgba(0, 0, 0, 0.37)",
                                     display: "flex",
                                     flexDirection: "column",
                                     justifyContent: "center",
@@ -3271,7 +3271,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents6[activeTab6].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
 
                       {language === "VI" ? (
                         tabContents6[activeTab6].title === "베트남 통행증 발급" ? "Cấp giấy thông hành"
@@ -3372,7 +3372,7 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontSize: "32px",
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -3517,7 +3517,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents7[activeTab7].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}> {language === "VI" ? (
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}> {language === "VI" ? (
                       tabContents7[activeTab7].title === "이혼 소송" ? "Liên quan tới ly hôn"
                         : tabContents7[activeTab7].title === "노동 관련 소송" ? "Liên quan tới lao động"
                           : tabContents7[activeTab7].title === "불법 체류자 관련 컨설팅" ? "Liên quan tới cư trú"
@@ -3613,7 +3613,7 @@ function Service(props) {
                       <h2 className="case1-steps-main-h2"
                         style={{
 
-                          fontSize: "32px",
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -3758,7 +3758,7 @@ function Service(props) {
                 <>
                   {/* Title */}
                   {tabContents8[activeTab8].title && (
-                    <h2 style={{ fontSize: 32, fontWeight: "700", marginBottom: 20 }}>
+                    <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
                       {language === "VI" ? (
                         tabContents8[activeTab8].title === "법인 • 지사 • 대표사무실 설립" ? "Thành lập pháp nhân "
                           : tabContents8[activeTab8].title === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú"
@@ -3857,7 +3857,7 @@ function Service(props) {
                       <h2 className="case1-steps-main-h2"
                         style={{
 
-                          fontSize: "32px",
+                          fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
@@ -4406,7 +4406,9 @@ function Service(props) {
         position: relative !important;
       
       }
-
+        .case1-main-tab h2{
+        font-size: 24px;
+        }
       .main-icon-1 {
         max-width: 100% !important;
         overflow: hidden !important;

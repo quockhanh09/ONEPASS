@@ -1875,7 +1875,7 @@ function Service(props) {
               }}
             >
               <button style={tabStyle("korea1")} onClick={() => setActiveTab("korea1")}>
-                {language === "VI" ? (<>Đăng ký kết hôn tại Hàn Quốc</>) : (" 한국 내 혼인신고")}
+                {language === "VI" ? (<>Đăng ký kết hôn tại HQ</>) : (" 한국 내 혼인신고")}
               </button>
               <button style={tabStyle("vietnam1")} onClick={() => setActiveTab("vietnam1")}>
                 {language === "VI" ? (<>Xác nhận tình trạng hôn nhân</>) : ("혼인관계증명서")}

@@ -48,7 +48,7 @@ function Header() {
     VI: {
       about: "ABOUT US",
       newsroom: "Tin tức",
-      services: "dịch vụ",
+      services: "Dịch vụ",
       consult: "Tư vấn",
       support: "Hỗ trợ",
     },

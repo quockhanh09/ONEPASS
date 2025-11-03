@@ -1661,7 +1661,7 @@ function App() {
         max-width: 280px !important;
         padding: 16px !important;
         flex-shrink: 0 !important;
-        min-height: 280px !important;
+      
       }
       
       .service-card img {

@@ -1446,7 +1446,7 @@ function Service(props) {
                     onChange={(e) => updateField(activeIndex, 'businessDesc', e.target.value)}
                     style={{ fontSize: 14, color: "#555", marginBottom: 20, border: "none", background: "transparent", outline: "none", width: "100%", resize: "none" }}
                     placeholder="Business Description"
-                    rows="3"
+                    
                   />
                   <button className="case0-business1-button" onClick={() => setShowModal(true)} style={{
                     background: serviceContents[activeIndex]?.interfaceStyles?.buttonColor || "#D6B97B",

@@ -2315,7 +2315,7 @@ export default function Consult() {
 
   .visitRight-h2 {
     font-size: 26px !important;
-    text-align: center !important;
+    
   }
 
   .visitRight-form label {

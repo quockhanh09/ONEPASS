@@ -1265,8 +1265,10 @@ function Service(props) {
                       padding: "10px 20px",
                       borderRadius: 4,
                       fontSize: 15,
+                      color:"white",
                       fontWeight: "bold",
                       cursor: "pointer",
+                      
                     }}
                   >
                     {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -1452,6 +1454,7 @@ function Service(props) {
                     padding: "10px 20px",
                     borderRadius: 4,
                     fontSize: 15,
+                    color: "white",
                     fontWeight: "bold",
                     cursor: "pointer",
                     marginBottom: 20

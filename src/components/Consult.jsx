@@ -2504,7 +2504,7 @@ export default function Consult() {
         {/* Header title center */}
         <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-            CONSULT
+            {language === "VI" ? (<>TƯ VẤN</>) : ("CONSULT")}
           </h1>
 
             <style>

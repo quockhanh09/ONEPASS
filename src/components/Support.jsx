@@ -610,7 +610,7 @@ function Support() {
               letterSpacing: 1,
             }}
           >
-            SUPPORT
+            {language === "VI" ? (<>HỖ TRỢ</>) : ("SUPPORT")}
           </h1>
           <style>
             {`

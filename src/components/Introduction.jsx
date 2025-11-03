@@ -117,7 +117,7 @@ function Introduction() {
         {/* Header title center */}
         <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-            ABOUT US
+            ABOUT US 
           </h1>
            <style>
             {`
@@ -424,7 +424,7 @@ function Introduction() {
               <div className="Content-about-text">
                 <div style={{ fontWeight: 700, fontSize: 18, marginBottom: 4, color: "#ffffffff" }}>{language === "VI" ? (<>Liên hệ tư vấn</>) : ("상담 신청")}</div>
                 <div style={{ fontSize: 15, color: "#ffffffff" }}>
-                  {language === "VI" ? (<>Điệnt thoại</>) : ("전화번호:")} <span style={{ color: "#2B3A67", fontWeight: 700 }}>   (+82) 51-715-0607</span>
+                  {language === "VI" ? (<>Điện thoại</>) : ("전화번호:")} <span style={{ color: "#2B3A67", fontWeight: 700 }}>   (+82) 51-715-0607</span>
                 </div>
               </div>
             </div>
@@ -459,7 +459,7 @@ function Introduction() {
     .Content-about {
       order: 2 !important;
       width: 100% !important;
-      text-align: center !important;
+     
     }
 
     .Content-about-h2 {
@@ -647,7 +647,7 @@ function Introduction() {
             letterSpacing: "1px",
           }}
         >
-          OUR MISSION
+           {language === "VI" ? (<>SỨ MỆNH</>) : ("OUR MISSION")}
         </div>
 
         <style>
@@ -897,7 +897,7 @@ function Introduction() {
     }
 
     .about-grid-right p {
-      font-size: 14.5px !important;
+      font-size: 14px !important;
       text-align: justify !important;
       line-height: 1.7 !important;
     }
@@ -933,7 +933,7 @@ function Introduction() {
     }
 
     .about-grid-right p {
-      font-size: 13.5px !important;
+      font-size: 14px !important;
     }
   }
 `}

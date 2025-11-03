@@ -591,7 +591,7 @@ function Support() {
           paddingTop: "120px",
         }}
       >
-        <div
+        <div className="services-h1"
           style={{
             width: "100%",
             textAlign: "center",
@@ -612,6 +612,46 @@ function Support() {
           >
             SUPPORT
           </h1>
+          <style>
+            {`
+      /* responsive chỉ chỉnh vị trí chữ */
+      @media (max-width: 768px) {
+        .services-h1 {
+          position: relative;
+          top: 50%;
+          transform: translateY(-30%);
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        .services-h1 h1 {
+          font-size: 38px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .services-h1 {
+          top: 50%;
+          transform: translateY(-35%);
+        }
+
+        .services-h1 h1 {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .services-h1 {
+          top: 60%;
+          transform: translateY(-30%);
+        }
+
+        .services-h1 h1 {
+          font-size: 24px;
+        }
+      }
+    `}
+          </style>
         </div>
 
         <div className="consultation-bar"

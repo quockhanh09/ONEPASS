@@ -1265,10 +1265,10 @@ function Service(props) {
                       padding: "10px 20px",
                       borderRadius: 4,
                       fontSize: 15,
-                      color:"white",
+                      color: "white",
                       fontWeight: "bold",
                       cursor: "pointer",
-                      
+
                     }}
                   >
                     {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -3972,13 +3972,54 @@ function Service(props) {
         backgroundPosition: "top center",
         minHeight: "40vh",
         width: "100vw",
+
         paddingTop: "120px",
       }}>
 
-        <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
+        <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
             SERVICES
           </h1>
+          <style>
+            {`
+      /* responsive chỉ chỉnh vị trí chữ */
+      @media (max-width: 768px) {
+        .services-h1 {
+          position: relative;
+          top: 50%;
+          transform: translateY(-30%);
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        .services-h1 h1 {
+          font-size: 38px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .services-h1 {
+          top: 50%;
+          transform: translateY(-35%);
+        }
+
+        .services-h1 h1 {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .services-h1 {
+          top: 60%;
+          transform: translateY(-30%);
+        }
+
+        .services-h1 h1 {
+          font-size: 24px;
+        }
+      }
+    `}
+          </style>
         </div>
 
         <div className="consultation-bar"

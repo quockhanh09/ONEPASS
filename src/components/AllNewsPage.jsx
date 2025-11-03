@@ -552,7 +552,9 @@ export default function AllNewsPage() {
                         </div>
 
                         {/* 4 */}
-                        <div>
+                        <div
+                        onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail4")}
+                            style={{ cursor: "pointer" }}>
                             <img
                                 src={n4}
                                 alt="국경일 행사"
@@ -595,7 +597,9 @@ export default function AllNewsPage() {
                         </div>
 
                         {/* 5 */}
-                        <div>
+                        <div
+                        onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail5")}
+                            style={{ cursor: "pointer" }}>
                             <img
                                 src={n5}
                                 alt="문화 행사"

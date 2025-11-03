@@ -177,7 +177,7 @@ const tabContents3 = {
       <div className="Contents3-main" style={{ marginTop: "80px" }}>
         {/* Block 1 */}
         <h2 className="Contents3-h2" style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "30px" }}>
-          베트남 국적 포기 의무 및 대상
+          {language === "VI" ? (<>Trường hợp và đối tượng bắt buộc phải xin thôi quốc tịch Việt Nam</>) : (<>베트남 국적 포기 의무 및 대상 </>)}
         </h2>
         <table className="Contents3-table" style={{ width: "100%", borderCollapse: "collapse", marginBottom: "80px" }}>
           <tbody className="Contents3-tbody">
@@ -684,11 +684,11 @@ const tabContents8 = {
       ["B2B 서비스", "노동 허가서, 임시 거주증 발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
-      { id: 1, text: "초기 정보 수집 및 경청" },
-      { id: 2, text: "주요 법적 쟁점 분석" },
-      { id: 3, text: "증거 평가 및 전략 상담" },
-      { id: 4, text: "비용 설명 및 계약 체결" },
-      { id: 5, text: "계약 이행" },
+      { id: 1, text: "외국인 근로자 수요 승인" },
+      { id: 2, text: "노동 허가증 신청 및 서류 준비" },
+      { id: 3, text: "노동 허가증 발급 완료" },
+      { id: 4, text: "임시 거주증 신청 및 발급" },
+
     ],
   },
 
@@ -2303,7 +2303,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                {language === "VI" ? (<>Tư Vấn</>) : ("상담 신청")}
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -2590,7 +2590,7 @@ function Service(props) {
                                   transform: "translateY(10px)",
                                 }}
                               >
-                                {language === "VI" ? (<>Tư Vấn</>) : ("상담 신청")}
+                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
                               </button>
                             </td>
                           </tr>
@@ -3180,7 +3180,8 @@ function Service(props) {
                                                           step.text === "한국에서 인지 신고 진행 (출생신고가 불가능하기 때문에)" ? "Xin cấp thị thực (visa) cho người vợ/chồng Việt Nam và con cái." :
                                                             step.text === "기한 초과 사망신고" ? "Đăng ký Thừa nhận con tại Hàn Quốc" :
                                                               step.text === "자녀의 국적 획득 절차" ? "Xin cấp quốc tịch cho con" :
-                                                                step.text
+                                                                step.text === "베트남 배우자 및 자녀의 사증 발급" ? "Xin cấp thị thực (visa) cho người vợ/chồng Việt Nam và con cái." :
+                                                                  step.text
                                     ) : (
                                       step.text
                                     )}
@@ -3608,7 +3609,7 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
+
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
@@ -3852,14 +3853,14 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          fontFamily: "Afacad, serif",
+
                           fontSize: "32px",
                           fontWeight: "bold",
                           marginBottom: "30px",
                           textAlign: "left"
                         }}
                       >
-                        진행 절차
+                        {language === "VI" ? (<>Quy trình thực hiện</>) : ("진행 절차")}
                       </h2>
 
                       <div className="case1-steps-content"
@@ -3907,7 +3908,25 @@ function Service(props) {
                                   lineHeight: "22px",
                                 }}
                               >
-                                {step.text}
+                                {language === "VI" ? (
+                                  step.text === "기업 정보 및 요구사항 파악" ? "Thu thập thông tin và yêu cầu của doanh nghiệp" :
+                                    step.text === "원본 서류 준비 및 번역/공증" ? "Chuẩn bị hồ sơ và dịch / công chứng" :
+                                      step.text === "현지에서 서류 제출 및 신청" ? "Nộp hồ sơ" :
+                                        step.text === "심사시간 경과 후 증서 발급" ? "Cấp giấy phép và trả kết quả" :
+
+                                          step.text === "외국인 근로자 수요 승인" ? "Xét duyệt yêu cầu, hồ sơ" :
+                                            step.text === "노동 허가증 신청 및 서류 준비" ? "Chuẩn bị hồ sơ và đăng ký giấy phép lao động" :
+                                              step.text === "노동 허가증 발급 완료" ? "Cấp giấy phép lao động" :
+                                                step.text === "임시 거주증 신청 및 발급" ? "Đăng ký và cấp giấy xác nhận tạm trú" :
+
+                                                  step.text === "사전 확인 및 서류 준비" ? "Xét duyệt và chuẩn bị hồ sơ" :
+                                                    step.text === "수입 허가 및 검사 절차 (건강기능식품 및 의류 등)" ? "Kiểm tra hàng hóa nhập khẩu (thực phẩm, quần áo, v.v.)" :
+                                                      step.text === "수입 허가 신청 및 승인" ? "Đăng ký và cấp giấy phép nhập khẩu" :
+                                                        step.text === "수입 신고 및 통관 절차" ? "Khai báo nhập khẩu và thông quan" :
+                                                          step.text
+                                ) : (
+                                  step.text
+                                )}
                               </p>
                             </div>
                             {index < tabContents8[activeTab8].steps.length - 1 && (
@@ -3932,9 +3951,9 @@ function Service(props) {
   const handleClick = (i) => {
     setActiveIndex(i);
     window.scrollTo({
-    top: 0,
-    behavior: "smooth", // cuộn mượt
-  });
+      top: 0,
+      behavior: "smooth", // cuộn mượt
+    });
   };
 
 
@@ -4432,7 +4451,7 @@ function Service(props) {
               position: "relative",
               fontFamily: "sans-serif",
               textAlign: "left",
-              height:830
+
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -4460,7 +4479,7 @@ function Service(props) {
                   }}
                 >
                   <label style={{ width: 120, fontWeight: 600 }}>
-                      {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}<span style={{ color: "red" }}>*</span>
+                    {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")}<span style={{ color: "red" }}>*</span>
                   </label>
                   {/* UI CHANGE: Updated modal to use editable service titles from serviceContents */}
                   <input
@@ -4501,7 +4520,7 @@ function Service(props) {
                     value={name}
                     onChange={(e) => { setName(e.target.value); if (e.target.value.trim()) setNameError(false); }}
                     on
-                    placeholder="이름을 입력해주세요"
+                    placeholder={language === "VI" ? "Vui lòng nhập học và tên" : "이름을 입력해주세요"}
                     style={{
                       flex: 1,
                       border: "none",
@@ -4513,7 +4532,7 @@ function Service(props) {
                 </div>
                 {nameError && submittedServiceForm && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    *필수입입니다
+                    {language === "VI" ? (<>bắt buộc nhập</>) : (" *필수입입니다")}
                   </div>
                 )}
               </div>
@@ -4532,7 +4551,7 @@ function Service(props) {
                     type="email"
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); if (e.target.value.trim()) setEmailError(false); }}
-                    placeholder="이메일을 입력해주세요"
+                    placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
                     style={{
                       flex: 1,
                       border: "none",
@@ -4544,7 +4563,7 @@ function Service(props) {
                 </div>
                 {emailError && submittedServiceForm && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    *필수입입니다
+                    {language === "VI" ? (<>bắt buộc nhập</>) : (" *필수입입니다")}
                   </div>
                 )}
               </div>
@@ -4559,7 +4578,7 @@ function Service(props) {
                   }}
                 >
                   <label style={{ width: 120, fontWeight: 600 }}>
-                    전화번호 <span style={{ color: "red" }}>*</span>
+                    {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
                   </label>
                   <select
                     value={countryCode}
@@ -4572,7 +4591,7 @@ function Service(props) {
                       background: "transparent",
                     }}
                   >
-                    <option value="선택">선택</option>
+                    <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
                     <option value="+82">+82</option>
                     <option value="+84">+84</option>
                   </select>
@@ -4580,7 +4599,7 @@ function Service(props) {
                     type="text"
                     value={phone}
                     onChange={(e) => { setPhone(e.target.value); if (e.target.value.trim()) setPhoneError(false); }}
-                    placeholder="전화번호"
+                    placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
                     style={{
                       flex: 1,
                       border: "none",
@@ -4593,7 +4612,7 @@ function Service(props) {
                 </div>
                 {phoneError && submittedServiceForm && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    *필수입입니다
+                    {language === "VI" ? (<>bắt buộc nhập</>) : (" *필수입입니다")}
                   </div>
                 )}
               </div>
@@ -4612,7 +4631,7 @@ function Service(props) {
                       accentColor: "#000", // màu chấm tròn bên trong
                     }}
                   />
-                  개인정보 수집 및 이용 동의
+                  {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
                 </label>
               </div>
 
@@ -4634,14 +4653,13 @@ function Service(props) {
               {/* Info liên hệ */}
               <div style={{ fontSize: 15, lineHeight: 1.8, marginBottom: 26, textAlign: "center" }}>
                 <div>
-                  <strong>전화 걸기:</strong> (+82) 51-715-0607
+                  <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
                 </div>
                 <div>
-                  <strong>이메일 보내기:</strong> OnePass.kr@gmail.com
+                  <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> OnePass.kr@gmail.com
                 </div>
                 <div style={{ color: "#444" }}>
-                  <strong>*이용 시간:</strong> 평일 09:00 ~ 18:00 (점심 12:00~13:00,
-                  주말 공휴일 휴무)
+                  {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
                 </div>
               </div>
 
@@ -4651,7 +4669,7 @@ function Service(props) {
                 style={{
                   width: "100%",
                   background: "#d9c4a4",
-                  color: "#000",
+                  color: "#ffffffff",
                   padding: "16px",
                   border: "none",
                   borderRadius: 4,
@@ -4660,7 +4678,7 @@ function Service(props) {
                   cursor: "pointer",
                 }}
               >
-                상담 신청
+                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
               </button>
             </form>
 
@@ -4682,6 +4700,41 @@ function Service(props) {
           </div>
           <style>
             {`
+             @media (max-width: 450px) {
+               .checkbox-label{
+                width:100%;
+            }
+              .modal-content {
+                padding: 20px 20px !important;
+                width: 90vw !important;
+
+                max-width: 90vw !important;
+              }
+              .modal-content h2 {
+                font-size: 24px !important;
+              }
+              .modal-content label {
+                width: 100px !important;
+                font-size: 14px !important;
+              }
+              .modal-content input, .modal-content select {
+                font-size: 14px !important;
+                padding: 8px 0 !important;
+              }
+              .modal-content input[type="radio"] {
+                width: 14px !important;
+                height: 14px !important;
+                margin-right: 6px !important;
+              }
+              .modal-content label[style*="display: flex"] {
+                font-size: 12px !important;
+                width: 100% !important;
+              }
+              .modal-content button[type="submit"] {
+                padding: 12px !important;
+                font-size: 14px !important;
+              }
+            }
             @media (max-width: 400px) {
                .checkbox-label{
                 width:100%;

@@ -1091,7 +1091,7 @@ export default function Consult() {
               <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
             </div>
             <div className="phoneRight-Contact-3" style={{ color: "#444" }}>
-              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy,Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
+              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
             </div>
           </div>
 
@@ -1147,7 +1147,9 @@ export default function Consult() {
         .phoneRight-form4-select {
           font-size: 15px !important;
         }
-      
+         .phoneRight-form1{
+          font-size: 15px !important;
+         } 
         /* Dropdown */
         .phoneRight-form1-1 {
           left: 0 !important;
@@ -1476,7 +1478,7 @@ export default function Consult() {
                   outline: "none",
                   padding: "12px 0",
                   background: "transparent",
-                  marginRight:10,
+                  marginRight: 10,
                 }}
               >
                 <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
@@ -1564,7 +1566,7 @@ export default function Consult() {
                 rows={2} // 👈 Giảm chiều cao
                 style={{
                   flex: "none",
-
+                  width: 215,
                   height: "40px",
                   border: "none",
                   outline: "none",
@@ -1613,7 +1615,7 @@ export default function Consult() {
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
-                flexWrap: "wrap",
+                flexWrap: "nowrap",
                 fontSize: "inherit",
                 color: "#333",
                 lineHeight: 1.5,
@@ -1664,7 +1666,7 @@ export default function Consult() {
               <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
             </div>
             <div className="emailRight-Contact-3" style={{ color: "#444" }}>
-              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy,Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
+              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
             </div>
           </div>
 
@@ -1691,60 +1693,56 @@ export default function Consult() {
         {
           `
               /* ----- Responsive dưới 600px ----- */
+/* ----- Responsive dưới 600px ----- */
 @media (max-width: 600px) {
- .emailRight {
-   padding: 40px 30px !important;
- }
-.emailRight-form1-label,
+  .emailRight {
+    padding: 40px 30px !important;
+  }
+   
+  /* Tất cả label */
+  .emailRight-form1-label,
   .emailRight-form2-label1,
   .emailRight-form3-label,
   .emailRight-form4-label,
   .emailRight-form5-label {
-    width: 100px !important;
-    font-size: clamp(13px, 2.2vw, 16px) !important;
+    
     flex-shrink: 0 !important;
+    font-size: clamp(13px, 2.4vw, 15px) !important;
   }
 
-  .emailRight-form1-input,
+  /* Tất cả input, select */
+  .emailRight-form1-1 input,
   .emailRight-form2-input,
   .emailRight-form3-input,
   .emailRight-form4-input,
-  .emailRight-form5-input,
-  .emailRight-form1-select,
-  .emailRight-form4-select {
+  .emailRight-form4-select,
+  .emailRight-form5-input {
     font-size: clamp(13px, 2.5vw, 15px) !important;
   }
 
-  .emailRight-form1-main,
-  .emailRight-form2-main,
-  .emailRight-form3-main,
-  .emailRight-form4-main,
-  .emailRight-form5-main {
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    gap: 6px !important;
+  .emailRight-form1-list {
+    left: 0 !important;
+    width: 100% !important;
   }
- .emailRight-form1-list {
-   left: 0 !important;
-   width: 100% !important;
- }
+          
+  .emailRight-form1-selected,
+  .emailRight-form2 div + div,
+  .emailRight-form3 div + div,
+  .emailRight-form4 div + div,
+  .emailRight-form5 div + div {
+    margin-left: 0 !important;
+  }
 
- .emailRight-form1-selected,
- .emailRight-form2 div + div,
- .emailRight-form3 div + div,
- .emailRight-form4 div + div,
- .emailRight-form5 div + div {
-   margin-left: 0 !important;
- }
+  .emailRight-Contact {
+    font-size: 16px !important;
+  }
 
- .emailRight-Contact {
-   font-size: 16px !important;
- }
+  .emailRight-submit {
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
 
- .emailRight-submit {
-   font-size: 16px !important;
-   padding: 14px !important;
- }
+  /* Form4 riêng */
   .emailRight-form4-main {
     flex-wrap: nowrap !important;
     align-items: center !important;
@@ -1753,74 +1751,69 @@ export default function Consult() {
 
   .emailRight-form4-label {
     width: 100px !important;
-    font-size: clamp(13px, 2.2vw, 16px) !important;
-    flex-shrink: 0 !important;
   }
 
   .emailRight-form4-select {
     width: 65px !important;
-    font-size: clamp(13px, 2.5vw, 15px) !important;
     margin-right: 6px !important;
   }
 
   .emailRight-form4-input {
     flex: 1 !important;
-    font-size: clamp(13px, 2.5vw, 15px) !important;
   }
-}
- 
 }
 
 /* ----- Responsive dưới 400px ----- */
 @media (max-width: 400px) {
- .emailRight {
-   padding: 30px 20px !important;
- }
+  .emailRight {
+    padding: 30px 20px !important;
+  }
 
- .emailRight-h2 {
-   font-size: 24px !important;
- }
+  .emailRight-h2 {
+    font-size: 24px !important;
+  }
 
- .emailRight-form1-1 span,
- .emailRight-form2-input,
- .emailRight-form3-input,
- .emailRight-form4-input,
- {
-   font-size: 13px !important;
- }
+  /* Tất cả label */
+  .emailRight-form1-label,
+  .emailRight-form2-label1,
+  .emailRight-form3-label,
+  .emailRight-form4-label,
+  .emailRight-form5-label {
+    font-size: clamp(12px, 3vw, 14px) !important;
+    
+  }
+   
+  /* Tất cả input, select */
+  .emailRight-form1-1 input,
+  .emailRight-form2-input,
+  .emailRight-form3-input,
+  .emailRight-form4-input,
+  .emailRight-form4-select,
+  .emailRight-form5-input {
+    font-size: clamp(12px, 3vw, 14px) !important;
+  }
 
- .emailRight-form4-select {
-   margin-bottom: 6px !important;
- }
-
- .emailRight-Contact {
-   font-size: 13px !important;
-   line-height: 1.6 !important;
- }
-
- .emailRight-submit {
-   font-size: 15px !important;
-   padding: 12px !important;
- }
   .emailRight-form4-main {
     flex-wrap: nowrap !important;
     gap: 4px !important;
   }
 
-  .emailRight-form4-label {
-    width: 85px !important;
-    font-size: clamp(12px, 3vw, 14px) !important;
-  }
-
   .emailRight-form4-select {
     width: 60px !important;
-    font-size: clamp(12px, 3vw, 14px) !important;
+    margin-bottom: 6px !important;
   }
 
-  .emailRight-form4-input {
-    font-size: clamp(12px, 3vw, 14px) !important;
+  .emailRight-Contact {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  .emailRight-submit {
+    font-size: 15px !important;
+    padding: 12px !important;
   }
 }
+
 `
         }
       </style>
@@ -1906,11 +1899,11 @@ export default function Consult() {
             >
               <label className="visitRight-form1" style={{ width: 120, fontWeight: 600 }}>
                 {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
-                
+
               </label>
               <div className="visitRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: selected ? "#000" : "#999" }}>
-                   {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                  {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                 </span>
                 <i
                   className="fa-solid fa-chevron-down"
@@ -1973,7 +1966,7 @@ export default function Consult() {
 
             {!selected && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-               {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -2002,7 +1995,7 @@ export default function Consult() {
                     setNameError(false);
                   }
                 }}
-                  placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
+                placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
 
                 style={{
                   flex: 1,
@@ -2032,7 +2025,7 @@ export default function Consult() {
               }}
             >
               <label className="visitRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
-                 {language === "VI" ? (<>Email</>) : ("이메일")}
+                {language === "VI" ? (<>Email</>) : ("이메일")}
                 <span style={{ color: "red" }}>*</span></label>
               <input className="visitRight-form3-input"
                 type="email"
@@ -2060,7 +2053,7 @@ export default function Consult() {
             </div>
             {emailError && submittedVisit && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-               {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
@@ -2087,7 +2080,7 @@ export default function Consult() {
                   outline: "none",
                   padding: "12px 0",
                   background: "transparent",
-                  marginRight:10,
+                  marginRight: 10,
                 }}
               >
                 <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
@@ -2121,7 +2114,7 @@ export default function Consult() {
                       ? "[0-9]{9,10}"
                       : ".*"
                 }
-               title={
+                title={
                   language === "VI"
                     ? (
                       countryCode === "+82"
@@ -2193,7 +2186,7 @@ export default function Consult() {
 
               {/* 시간 */}
               <label className="visitRight-form5-label1" style={{ fontWeight: 700, marginRight: 8 }}>
-                 {language === "VI" ? (<>Giờ</>) : ("시간")} 
+                {language === "VI" ? (<>Giờ</>) : ("시간")}
               </label>
 
               {/* input chọn giờ */}
@@ -2203,7 +2196,7 @@ export default function Consult() {
                 onChange={handleTimeChange}
                 min="09:00"
                 max="18:00"
-               style={{
+                style={{
                   border: "none",
                   outline: "none",
                   background: "transparent",
@@ -2239,7 +2232,7 @@ export default function Consult() {
                   accentColor: "#000",
                 }}
               />
-                {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
+              {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
 
             </label>
           </div>
@@ -2272,7 +2265,7 @@ export default function Consult() {
               <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
             </div>
             <div className="visitRight-Contact-3" style={{ color: "#444" }}>
-              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy,Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
+              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
             </div>
           </div>
 
@@ -2513,6 +2506,8 @@ export default function Consult() {
           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
             CONSULT
           </h1>
+
+      
         </div>
         {/* Main content row */}
 

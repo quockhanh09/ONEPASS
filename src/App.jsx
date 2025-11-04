@@ -1023,7 +1023,7 @@ function App() {
                       </div>
                       <div className="stat-item" style={{ flex: 1 }}>
                         <div className="stat-number">{displayStats.consult}</div>
-                        <div className="stat-label">{language === "VI" ? (<>Lần tư vấn</>) : ("적 상담건 수")}</div>
+                        <div className="stat-label">{language === "VI" ? (<>Lần tư vấn</>) : ("상담건 수")}</div>
                       </div>
                     </div>
                   </div>
@@ -1434,7 +1434,7 @@ function App() {
                                                                         : card.title === "베트남 출신 증명서 발급" ? "Cấp giấy xác nhận người gốc Việt Nam"
                                                                           : card.title === "호적증서 반사오 재발급" ? "Cấp bản sao giấy tờ hộ tịch"
 
-                                                                            : card.title === "보호자 인지 인지해지 신고" ? "Đăng ký / chấm dứt việc giám hộ "
+                                                                            : card.title === "보호자 인지·해지 신고" ? "Đăng ký / chấm dứt việc giám hộ "
                                                                               : card.title === "혼외자 자녀 인지" ? "Nhận cha, mẹ, con"
                                                                                 : card.title === "입양 절차 대행" ? "Đăng ký nhận con nuôi"
 
@@ -1448,7 +1448,7 @@ function App() {
                                                                                               : card.title === "노동 관련 소송" ? "Liên quan tới lao động"
                                                                                                 : card.title === "체류자 관련 컨설팅" ? "Liên quan tới cư trú"
 
-                                                                                                  : card.title === "베트남·한국에서 법인ㆍ지사·대표 사무실 설립" ? "Thành lập văn phòng đại diện / pháp nhân "
+                                                                                                  : card.title === "베트남·한국에서 법인·지사·대표 사무실 설립" ? "Thành lập văn phòng đại diện / pháp nhân "
                                                                                                     : card.title === "베트남·한국 내 노동 허가서, 임시 거주증 발급" ? "Đăng ký giấy phép lao động, thẻ tạm trú"
                                                                                                       : card.title === "수출입 허가서" ? "Giấy phép xuất nhập khẩu"
                                                                                                         : card.title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"

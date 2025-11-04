@@ -1446,7 +1446,7 @@ function Service(props) {
                     onChange={(e) => updateField(activeIndex, 'businessDesc', e.target.value)}
                     style={{ fontSize: 14, color: "#555", marginBottom: 20, border: "none", background: "transparent", outline: "none", width: "100%", resize: "none" }}
                     placeholder="Business Description"
-                    
+
                   />
                   <button className="case0-business1-button" onClick={() => setShowModal(true)} style={{
                     background: serviceContents[activeIndex]?.interfaceStyles?.buttonColor || "#D6B97B",
@@ -2124,7 +2124,7 @@ function Service(props) {
             {activeTab === "korea1" && (
               <div style={{ marginTop: 80 }}>
                 <h2 style={{ fontSize: 24, fontWeight: "600", marginBottom: 12 }}>{language === "VI" ? (<>Lưu ý</>) : ("유의사항")}</h2>
-                <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20 ,textAlign:"justify", }}>
+                <ul style={{ fontSize: 14, color: "#374151", lineHeight: "22px", paddingLeft: 20, textAlign: "justify", }}>
                   <li style={{ marginBottom: 8, }}>
                     {language === "VI" ? (<><b>Bắt buộc chứng minh năng lực giao tiếp (Tiếng Hàn): </b>
                       Cô dâu (người sắp kết hôn) bắt buộc phải chứng minh khả năng giao tiếp bằng cách đạt 60 điểm trở lên sau khi hoàn thành khóa học tiếng Hàn do Bộ trưởng Bộ Tư pháp chỉ định, hoặc nộp chứng chỉ TOPIK cấp 1 trở lên tại thời điểm nộp hồ sơ xin visa</>) : (<> 의사소통 능력 필수: 예비 배우자(신부/신랑) 비자 신청 시점까지 한국어능력 공인 시험 성적표, 한국어 과정 이수,
@@ -2321,7 +2321,7 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          
+
                           fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
@@ -2608,7 +2608,7 @@ function Service(props) {
                     <div className="case1-steps-main" style={{ width: "100%", textAlign: "center", marginTop: "80px" }}>
                       <h2 className="case1-steps-main-h2"
                         style={{
-                          
+
                           fontSize: "24px",
                           fontWeight: "bold",
                           marginBottom: "30px",
@@ -4530,7 +4530,22 @@ function Service(props) {
                   {/* UI CHANGE: Updated modal to use editable service titles from serviceContents */}
                   <input
                     type="text"
-                    value={serviceContents[activeIndex]?.title || ''}
+                    value={
+    language === "VI"
+      ? (
+          serviceContents[activeIndex]?.title === "영사 확인 • 사실인증" ? "Chứng thực"
+          : serviceContents[activeIndex]?.title === "결혼 이민" ? "Kết hôn"
+          : serviceContents[activeIndex]?.title === "출생 · 사망 신고" ? "Khai sinh · Khai tử"
+          : serviceContents[activeIndex]?.title === "출입국 행정" ? "Xuất nhận cảnh"
+          : serviceContents[activeIndex]?.title === "신분증명 서류" ? "Giấy tờ tùy thân"
+          : serviceContents[activeIndex]?.title === "입양 • 자녀 인지" ? "Nhận nuôi"
+          : serviceContents[activeIndex]?.title === "비자 대행" ? "Thi thực"
+          : serviceContents[activeIndex]?.title === "법률 컨설팅" ? "Tư vấn pháp lý"
+          : serviceContents[activeIndex]?.title === "B2B 서비스" ? "Dịch vụ B2B"
+          : serviceContents[activeIndex]?.title || ''
+        )
+      : serviceContents[activeIndex]?.title || ''
+  }
                     readOnly
                     style={{
                       flex: 1,
@@ -4544,7 +4559,7 @@ function Service(props) {
                 { /* show only after submit attempt */}
                 {submittedServiceForm && !serviceContents[activeIndex]?.title && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    {language === "VI" ? (<>bắt buộc nhập</>) : ("*필수입입입니다")}
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입입입니다")}
                   </div>
                 )}
               </div>
@@ -4566,7 +4581,7 @@ function Service(props) {
                     value={name}
                     onChange={(e) => { setName(e.target.value); if (e.target.value.trim()) setNameError(false); }}
                     on
-                    placeholder={language === "VI" ? "Vui lòng nhập học và tên" : "이름을 입력해주세요"}
+                    placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
                     style={{
                       flex: 1,
                       border: "none",
@@ -4578,7 +4593,7 @@ function Service(props) {
                 </div>
                 {nameError && submittedServiceForm && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    {language === "VI" ? (<>bắt buộc nhập</>) : (" *필수입입니다")}
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
                   </div>
                 )}
               </div>
@@ -4609,7 +4624,7 @@ function Service(props) {
                 </div>
                 {emailError && submittedServiceForm && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    {language === "VI" ? (<>bắt buộc nhập</>) : (" *필수입입니다")}
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
                   </div>
                 )}
               </div>
@@ -4624,7 +4639,7 @@ function Service(props) {
                   }}
                 >
                   <label style={{ width: 120, fontWeight: 600 }}>
-                    {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
+                    {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}<span style={{ color: "red" }}>*</span>
                   </label>
                   <select
                     value={countryCode}
@@ -4658,7 +4673,7 @@ function Service(props) {
                 </div>
                 {phoneError && submittedServiceForm && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    {language === "VI" ? (<>bắt buộc nhập</>) : (" *필수입입니다")}
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
                   </div>
                 )}
               </div>

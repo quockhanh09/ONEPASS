@@ -5201,6 +5201,7 @@ a.nav-link.active .icon-img {
 /* ✅ Màn cực nhỏ (<= 360px) */
 @media (max-width: 360px) {
   .social-container {
+    position: relative;
     right: 5px;
     top: 50%;
     gap: 5px;

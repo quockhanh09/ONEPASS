@@ -1830,7 +1830,7 @@ function App() {
                         }}
                       />
 
-                      <div style={{ paddingTop: 16, position: "relative", zIndex: 1 }}>
+                      <div style={{ paddingTop: 16,  zIndex: 1 }}>
                         <div
                           style={{
                             color: "#7A8797",

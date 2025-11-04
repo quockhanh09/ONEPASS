@@ -9,7 +9,10 @@ import imgProfessional from "../assets/img/8.png";
 import imgTrust from "../assets/img/7.png";
 import imgEfficiency from "../assets/img/6.png";
 import imgCustomer from "../assets/img/5.png";
-
+import fbIcon from "../assets/img/image20.png";
+import kakaotalkIcon from "../assets/img/image17.png";
+import zaloIcon from "../assets/img/image18.png";
+import naverIcon from "../assets/img/image19.png";
 
 const CARDS = [
   {
@@ -35,6 +38,16 @@ const CARDS = [
 ];
 
 function Introduction() {
+  const [activeId, setActiveId] = useState(null);
+  const [hoverId, setHoverId] = useState(null);
+  const effectiveId = hoverId ?? activeId;
+  const items = [
+    { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+    { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+    { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+    { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+  ];
+
   const [selected, setSelected] = useState(0);
   const { language } = useLanguage();
 
@@ -117,9 +130,9 @@ function Introduction() {
         {/* Header title center */}
         <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-             {language === "VI" ? (<>VỀ CHÚNG TÔI</>) : ("ABOUT US")}
+            {language === "VI" ? (<>VỀ CHÚNG TÔI</>) : ("ABOUT US")}
           </h1>
-           <style>
+          <style>
             {`
       /* responsive chỉ chỉnh vị trí chữ */
       @media (max-width: 768px) {
@@ -366,7 +379,35 @@ function Introduction() {
           </div>
         </div>
 
-
+        <div className="social-container">
+          {items.map((item) => {
+            const isExpanded = effectiveId === item.id;
+            return (
+              <div
+                key={item.id}
+                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                onMouseEnter={() => setHoverId(item.id)}
+                onMouseLeave={() => setHoverId(null)}
+                onClick={() => {
+                  setActiveId((prev) => (prev === item.id ? null : item.id));
+                  window.open(item.link, "_blank");
+                }}
+              >
+                <img src={item.icon} alt={item.name} className="icon" />
+                <span className="label"> {language === "VI" ? (
+                  item.name === "페이스북" ? "Liên Kết Facebook"
+                    : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                      : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                        : item.name === "네이버" ? "Liên Kết Naver"
+                          : item.name
+                ) : (
+                  item.name
+                )}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       <section className="about-section" style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
@@ -554,7 +595,7 @@ function Introduction() {
           {/* Content */}
           <p
             style={{
-              fontSize: "16px",
+              fontSize: "14px",
               lineHeight: "1.8",
               opacity: 0.95,
               whiteSpace: "pre-line",
@@ -647,7 +688,7 @@ function Introduction() {
             letterSpacing: "1px",
           }}
         >
-           {language === "VI" ? (<>SỨ MỆNH</>) : ("OUR MISSION")}
+          {language === "VI" ? (<>SỨ MỆNH</>) : ("OUR MISSION")}
         </div>
 
         <style>
@@ -777,7 +818,7 @@ function Introduction() {
               >
                 {/* Text left */}
                 <div className="about-grid-left" style={{ flex: 1, padding: "20px" }}>
-                  <h3 style={{ fontWeight: 700, fontSize: 22, marginBottom: 10,marginTop:10 }}>
+                  <h3 style={{ fontWeight: 700, fontSize: 22, marginBottom: 10, marginTop: 10 }}>
                     {language === "VI" ? (
                       card.title === "전문성" ? "Sự chuyên nghiệp"
                         : card.title === "신뢰" ? "Tin cậy"
@@ -789,7 +830,7 @@ function Introduction() {
                     )}
                   </h3>
                   <p style={{ fontSize: 16, lineHeight: 1.6, color: "#333" }}>
-                    
+
                     {language === "VI" ? (
                       card.desc === "원패스는 정확하고 최신 정보로 완벽한 서류 절차를 보장합니다. 급변하는 법률과 규정들을 항상 주시하며 고객의 문제를 정확히 파악하고, 최적의 해결책을 제시합니다." ? "Chúng tôi luôn theo dõi sát sao các quy định và pháp luật để nắm bắt chính xác vấn đề của khách hàng từ đó đưa ra giải pháp tối ưu nhất."
                         : card.desc === "모든 과정은 고객에게 투명하게 공개되며, 정직한 서비스로 믿음을 쌓아갑니다. 저희는 단기적인 이익보다 고객과의 장기적인 신뢰 관계를 더 중요하게 생각합니다." ? "Toàn bộ quy trình đều được công khai minh bạch, xây dựng lòng tin bằng dịch vụ trung thực. Chúng tôi coi trọng mối quan hệ tin cậy lâu dài với khách hàng hơn lợi ích ngắn hạn."

@@ -474,7 +474,7 @@ function Introduction() {
   }
 
   .news-top-card h3 {
-    font-size: 15px !important;
+    font-size: 14px !important;
     font-weight: 700 !important;
     color: #111827 !important;
     margin-bottom: 6px !important;

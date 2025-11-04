@@ -3,7 +3,11 @@ import n1 from "../assets/img/n19.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
 import heroBg from "../assets/img/herobanner-1.png";
-import consulate from "../assets/img/n8.png"; // ✅ ảnh chính trong bài
+import consulate from "../assets/img/n8.png";
+import fbIcon from "../assets/img/image20.png";
+import kakaotalkIcon from "../assets/img/image17.png";
+import zaloIcon from "../assets/img/image18.png";
+import naverIcon from "../assets/img/image19.png";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
 const relatedNews = [
@@ -28,6 +32,15 @@ const relatedNews = [
 ];
 
 export default function NewsDetail() {
+  const [activeId, setActiveId] = useState(null);
+    const [hoverId, setHoverId] = useState(null);
+    const effectiveId = hoverId ?? activeId;
+    const items = [
+      { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+      { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+      { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+      { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+    ];
   const { language } = useLanguage();
   const [service, setService] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -332,6 +345,35 @@ export default function NewsDetail() {
                 : "상담 신청"}
           </div>
         </div>
+        <div className="social-container">
+          {items.map((item) => {
+            const isExpanded = effectiveId === item.id;
+            return (
+              <div
+                key={item.id}
+                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                onMouseEnter={() => setHoverId(item.id)}
+                onMouseLeave={() => setHoverId(null)}
+                onClick={() => {
+                  setActiveId((prev) => (prev === item.id ? null : item.id));
+                  window.open(item.link, "_blank");
+                }}
+              >
+                <img src={item.icon} alt={item.name} className="icon" />
+                <span className="label"> {language === "VI" ? (
+                  item.name === "페이스북" ? "Liên Kết Facebook"
+                    : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                      : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                        : item.name === "네이버" ? "Liên Kết Naver"
+                          : item.name
+                ) : (
+                  item.name
+                )}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       <section>
@@ -355,10 +397,10 @@ export default function NewsDetail() {
             {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Quốc (Chuseok) 2025</>) : ("추석 연휴 휴무 안내")}
           </h1>
 
-          <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+          <p style={{ fontSize: "14px", marginBottom: "10px" }}>
             {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác,</>) : ("안녕하세요, 고객 여러분!")}
           </p>
-          <p style={{ fontSize: "16px", marginBottom: "20px" }}>
+          <p style={{ fontSize: "14px", marginBottom: "20px" }}>
 
             {language === "VI" ? (<>One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm 2025 như sau,</>) : ("저희 총영사관은 추석 연휴를 맞이하여 아래와 같이 휴무 일정을 시행하고자 합니다. 일정을 꼭 확인하시어 업무에 차질이 없으시길 바랍니다.")}
           </p>
@@ -375,7 +417,7 @@ export default function NewsDetail() {
             />
           </div>
 
-          <div style={{ fontSize: "16px", marginBottom: "40px" }}>
+          <div style={{ fontSize: "14px", marginBottom: "40px",textAlign:"justify" }}>
             <p>
               📅 <strong>{language === "VI" ? (<>Thời gian nghỉ lễ:</>) : ("휴무 기간:")}</strong>{language === "VI" ? (<>Từ ngày 03 tháng 10 (Thứ Sáu) đến hết ngày 09 tháng 10 (Thứ Năm) năm 2025. </>) : ("2025년 10월 3일(금)부터 10월 9일(목)까지.")}
             </p>
@@ -519,7 +561,7 @@ export default function NewsDetail() {
               </p>
               <h3
                 style={{
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: 700,
                   color: "#111827",
                   marginBottom: 8,

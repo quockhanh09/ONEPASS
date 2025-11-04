@@ -348,6 +348,7 @@ export default function NewsDetail2() {
                             fontSize: "28px",
                             fontWeight: "bold",
                             marginBottom: "20px",
+                            textAlign:"justify"
                         }}
                     >
                         {language === "VI"
@@ -355,7 +356,7 @@ export default function NewsDetail2() {
                             : "원패스(One Pass) 공식 업무 개시 안내"}
                     </h1>
 
-                    <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+                    <p style={{ fontSize: "14px", marginBottom: "10px", textAlign:"justify" }}>
                         {language === "VI"
                             ? "Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành chính Việt Nam tại Hàn Quốc, One Pass, đã chính thức đi vào hoạt động kể từ ngày 01 tháng 10 năm 2025."
                             : "2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다!"}
@@ -377,7 +378,7 @@ export default function NewsDetail2() {
                         />
                     </div>
 
-                    <div style={{ fontSize: "16px", marginBottom: "40px" }}>
+                    <div style={{ fontSize: "14px", marginBottom: "40px", textAlign:"justify" }}>
                         <p>
                             {language === "VI"
                                 ? "Được thành lập tại Busan vào năm 2025, One Pass quy tụ đội ngũ chuyên gia dày dặn kinh nghiệm, thấu hiểu sâu sắc hệ thống hành chính của cả Việt Nam và Hàn Quốc. Chúng tôi cam kết sẽ giải quyết các vấn đề giấy tờ phức tạp và mở ra con đường hiệu quả nhất cho quý khách hàng."

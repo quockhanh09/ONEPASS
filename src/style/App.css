@@ -5139,7 +5139,7 @@ a.nav-link.active .icon-img {
   
   .social-container {
     right: 10px;
-    top: 32%;
+    top: 20%;
     gap: 10px;
   }
 
@@ -5160,7 +5160,7 @@ a.nav-link.active .icon-img {
   
   .social-container {
     right: 5px;
-    top: 34%;
+    top: 19%;
     gap: 8px;
   }
 
@@ -5181,7 +5181,7 @@ a.nav-link.active .icon-img {
 @media (max-width: 400px) {
   .social-container {
     right: 5px;
-    top: 36%;
+    top: 22%;
     gap: 6px;
   }
 

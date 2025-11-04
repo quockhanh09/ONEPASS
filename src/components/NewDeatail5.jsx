@@ -350,18 +350,19 @@ export default function NewsDetail5() {
                             fontSize: "28px",
                             fontWeight: "bold",
                             marginBottom: "20px",
+                            textAlign:"justify"
                         }}
                     >
 
                         {language === "VI" ? (<>“Xin chào”... Tổng lãnh sự quán Việt Nam tại Busan sẽ khai trương vào tháng 9</>) : ("“씬짜오(안녕하세요)”…‘주부산 베트남 총영사관’ 9월 개관")}
                     </h1>
 
-                    <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+                    <p style={{ fontSize: "14px", marginBottom: "10px", textAlign:"justify" }}>
 
                         {language === "VI" ? (<>Nguồn: https://www.busan.go.kr/news/totalnews01/view?dataNo=71719&gugun=Next</>) : (" 출처: https://www.busan.go.kr/news/totalnews01/view?dataNo=71719&gugun=Next")}
                     </p>
 
-                    <p style={{ fontSize: "16px", marginBottom: "20px" }}>
+                    <p style={{ fontSize: "14px", marginBottom: "20px", textAlign:"justify" }}>
 
                         {language === "VI" ? (<>Tổng Lãnh sự quán Việt Nam chuẩn bị có mặt tại Thành phố Busan . Ngày 13 tháng 8 vừa qua, thành phố Busan đã tổ chức Lễ Khởi động Tổng Lãnh sự quán Việt Nam tại Busan kết hợp với Lễ kỷ niệm 30 năm thiết lập quan hệ thành phố kết nghĩa Busan – TP. Hồ Chí Minh tại Khách sạn Lotte Busan.<br />Tham dự sự kiện có các nhân vật chủ chốt của khu vực Busan, cùng với Tổng Bí thư Đảng Cộng sản Việt Nam Tô Lâm (đang trong chuyến thăm cấp nhà nước tại Hàn Quốc) và Bà Đoàn Phương Lan, Tân Tổng Lãnh sự Việt Nam tại Busan.</>) : (<>부산에 주베트남 총영사관이 들어선다. 부산광역시는 지난 8월 13일 부산 롯데호텔에서 주부산 베트남 총영사관 출범식과 부산-호찌민 자매도시 결연 30주년 기념식을 열었다.
                             <br />
@@ -380,7 +381,7 @@ export default function NewsDetail5() {
                     </div>
 
 
-                    <div style={{ fontSize: "16px", marginBottom: "40px" }}>
+                    <div style={{ fontSize: "14px", marginBottom: "40px", textAlign:"justify" }}>
                         <p>       
                             {language === "VI" ? (<>[Hình ảnh: Thành phố Busan tổ chức Lễ Khởi động Tổng Lãnh sự quán Việt Nam và Lễ kỷ niệm 30 năm kết nghĩa Busan – TP. Hồ Chí Minh tại Khách sạn Lotte Busan vào ngày 13 tháng 8 (Ảnh là tiết mục chúc mừng tại Lễ ra mắt).]</>) : ("△부산시는 지난 8월 13일 부산 롯데호텔에서 주부산 베트남 총영사관 출범식과 부산-호찌민 자매도시 결연 30주년 기념식을 열었다(사진은 주부산 베트남 총영사관 출범식 축하 공연) ")}
                         </p>

@@ -351,6 +351,7 @@ export default function NewsDetail2() {
         fontSize: "28px",
         fontWeight: "bold",
         marginBottom: "20px",
+        textAlign:"justify"
       }}
     >
       {language === "VI"
@@ -358,13 +359,13 @@ export default function NewsDetail2() {
         : "주부산 베트남 총영사관 공식 개소: 한-베트남 남부지역 협력의 새 시대 개막"}
     </h1>
 
-    <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+    <p style={{ fontSize: "14px", marginBottom: "10px",textAlign:"justify" }}>
       {language === "VI"
         ? "Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt động, đánh dấu một cột mốc quan trọng trong quan hệ giữa Hàn Quốc và Việt Nam, đặc biệt là trong hợp tác ngoại giao tại khu vực Đông Nam Hàn Quốc."
         : "2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 업무를 개시하며, 한-베트남 관계, 특히 한국 동남부 지역에서의 외교적 협력에 있어 중요한 이정표를 세웠습니다."}
     </p>
 
-    <p style={{ fontSize: "16px", marginBottom: "20px" }}>
+    <p style={{ fontSize: "14px", marginBottom: "20px",textAlign:"justify" }}>
       {language === "VI"
         ? "Lễ khai trương đã được tổ chức trang trọng với sự tham dự của đại diện Bộ Ngoại giao hai nước, lãnh đạo chính quyền thành phố Busan, cùng đông đảo cộng đồng người Việt đang sinh sống, học tập và tham gia các hoạt động kinh tế tại khu vực Busan - Ulsan - Gyeongnam (Bu/Ul/Gyeong)."
         : "저개소식은 양국 외교부 대표, 부산광역시 정부 관계자, 그리고 부산-울산-경남(부/울/경) 지역에 거주하며 학업 및 경제 활동에 참여하고 있는 수많은 베트남 교민들이 참석한 가운데 성대하게 진행되었습니다."}
@@ -382,7 +383,7 @@ export default function NewsDetail2() {
       />
     </div>
 
-    <div style={{ fontSize: "16px", marginBottom: "40px" }}>
+    <div style={{ fontSize: "14px", marginBottom: "40px" ,textAlign:"justify"}}>
       <p>
         {language === "VI"
           ? "Tổng Lãnh sự quán đặt tại trung tâm Busan, có sứ mệnh chính là cung cấp các dịch vụ lãnh sự thiết yếu một cách thuận tiện nhất cho khoảng 60.000 kiều bào Việt Nam sinh sống tại khu vực này, bao gồm: cấp/đổi hộ chiếu, visa, công chứng, và hỗ trợ pháp lý."

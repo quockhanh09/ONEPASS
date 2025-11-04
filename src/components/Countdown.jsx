@@ -89,7 +89,7 @@ function Countdown() {
                 margin: "0 0 18px 0",
               }}
             >
-              {language === "VI" ? (<>Nếu cần tư vấn, hãy tìm đến One Pass chúng tôi</>) : ("상담이 필요하시면 원패스를 찾아주세요")}
+              {language === "VI" ? (<>Nếu cần tư vấn, hãy tìm đến One Pass</>) : ("상담이 필요하시면 원패스를 찾아주세요")}
             </h3>
             <div
               style={{

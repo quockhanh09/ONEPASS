@@ -9,9 +9,20 @@ import iconKakao from "../assets/img/iconTalk.png";
 import iconNaver from "../assets/img/iconna.png";
 import qrZalo from "../assets/img/qrZalo.png";
 import { em, i } from "framer-motion/client";
-
+import fbIcon from "../assets/img/image20.png";
+import kakaotalkIcon from "../assets/img/image17.png";
+import zaloIcon from "../assets/img/image18.png";
+import naverIcon from "../assets/img/image19.png";
 export default function Consult() {
-
+   const [activeId, setActiveId] = useState(null);
+    const [hoverId, setHoverId] = useState(null);
+    const effectiveId = hoverId ?? activeId;
+    const items = [
+      { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+      { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+      { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+      { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+    ];
   const { language } = useLanguage();
   const handleSubmitConsult1 = async () => {
     if (!service || !name || !phone || !agree) {
@@ -508,7 +519,7 @@ export default function Consult() {
         </h3>
         <h2
           style={{
-            fontSize: 32,
+            fontSize: 24,
             fontWeight: 600,
             lineHeight: 1.5,
             marginBottom: 18,
@@ -751,7 +762,7 @@ export default function Consult() {
         </h3>
         <h2
           style={{
-            fontSize: 32,
+            fontSize: 24,
             fontWeight: 700,
             lineHeight: 1.5,
             marginBottom: 18,
@@ -1246,7 +1257,7 @@ export default function Consult() {
         </h3>
         <h2
           style={{
-            fontSize: 32,
+            fontSize: 24,
             fontWeight: 700,
             lineHeight: 1.5,
             marginBottom: 18,
@@ -1846,7 +1857,7 @@ export default function Consult() {
         </h3>
         <h2
           style={{
-            fontSize: 32,
+            fontSize:24,
             fontWeight: 700,
             lineHeight: 1.5,
             marginBottom: 18,
@@ -2753,7 +2764,35 @@ export default function Consult() {
                 : "상담 신청"}
           </div>
         </div>
-
+              <div className="social-container">
+          {items.map((item) => {
+            const isExpanded = effectiveId === item.id;
+            return (
+              <div
+                key={item.id}
+                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                onMouseEnter={() => setHoverId(item.id)}
+                onMouseLeave={() => setHoverId(null)}
+                onClick={() => {
+                  setActiveId((prev) => (prev === item.id ? null : item.id));
+                  window.open(item.link, "_blank");
+                }}
+              >
+                <img src={item.icon} alt={item.name} className="icon" />
+                <span className="label"> {language === "VI" ? (
+                  item.name === "페이스북" ? "Liên Kết Facebook"
+                    : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                      : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                        : item.name === "네이버" ? "Liên Kết Naver"
+                          : item.name
+                ) : (
+                  item.name
+                )}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       <section style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>

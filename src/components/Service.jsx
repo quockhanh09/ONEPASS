@@ -11,7 +11,10 @@ import imgTrust from "../assets/img/i23.png";
 import imgEfficiency from "../assets/img/6.png";
 import imgCustomer from "../assets/img/5.png";
 
-
+import fbIcon from "../assets/img/image20.png";
+import kakaotalkIcon from "../assets/img/image17.png";
+import zaloIcon from "../assets/img/image18.png";
+import naverIcon from "../assets/img/image19.png";
 import certIcon from "../assets/img/s1icon.png";
 import certActive from "../assets/img/s1-1icon.png";
 import certHover from "../assets/img/s1-1icon.png";
@@ -727,7 +730,15 @@ const services = [
 ];
 
 function Service(props) {
-  const {
+  const [activeId, setActiveId] = useState(null);
+  const [hoverId, setHoverId] = useState(null);
+  const effectiveId = hoverId ?? activeId;
+  const items = [
+    { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+    { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+    { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+    { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+  ]; const {
     services: svcBlockList,
     activeIndex: svcBlockActive,
     hoverIndex: svcBlockHover,
@@ -4225,6 +4236,36 @@ function Service(props) {
                 : "상담 신청"}
           </div>
         </div>
+
+        <div className="social-container">
+          {items.map((item) => {
+            const isExpanded = effectiveId === item.id;
+            return (
+              <div
+                key={item.id}
+                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                onMouseEnter={() => setHoverId(item.id)}
+                onMouseLeave={() => setHoverId(null)}
+                onClick={() => {
+                  setActiveId((prev) => (prev === item.id ? null : item.id));
+                  window.open(item.link, "_blank");
+                }}
+              >
+                <img src={item.icon} alt={item.name} className="icon" />
+                <span className="label"> {language === "VI" ? (
+                  item.name === "페이스북" ? "Liên Kết Facebook"
+                    : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                      : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                        : item.name === "네이버" ? "Liên Kết Naver"
+                          : item.name
+                ) : (
+                  item.name
+                )}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
       <section className="section-main-icon"
@@ -4403,6 +4444,9 @@ function Service(props) {
 
     /* ---------- Mobile-only overrides ---------- */
     @media (max-width: 768px) {
+    .main-case1-buttton{
+          gap:20px
+    }
         .section-main-icon{
           padding: 0px 0px;
       }
@@ -4473,6 +4517,9 @@ function Service(props) {
     }
 
     @media (max-width: 400px){
+    .main-case1-buttton{
+          gap:20px
+    }
      .section-main-icon{
           padding: 0px 0px;
       }
@@ -4541,21 +4588,21 @@ function Service(props) {
                   <input
                     type="text"
                     value={
-    language === "VI"
-      ? (
-          serviceContents[activeIndex]?.title === "영사 확인 • 사실인증" ? "Chứng thực"
-          : serviceContents[activeIndex]?.title === "결혼 이민" ? "Kết hôn"
-          : serviceContents[activeIndex]?.title === "출생 · 사망 신고" ? "Khai sinh · Khai tử"
-          : serviceContents[activeIndex]?.title === "출입국 행정" ? "Xuất nhận cảnh"
-          : serviceContents[activeIndex]?.title === "신분증명 서류" ? "Giấy tờ tùy thân"
-          : serviceContents[activeIndex]?.title === "입양 • 자녀 인지" ? "Nhận nuôi"
-          : serviceContents[activeIndex]?.title === "비자 대행" ? "Thi thực"
-          : serviceContents[activeIndex]?.title === "법률 컨설팅" ? "Tư vấn pháp lý"
-          : serviceContents[activeIndex]?.title === "B2B 서비스" ? "Dịch vụ B2B"
-          : serviceContents[activeIndex]?.title || ''
-        )
-      : serviceContents[activeIndex]?.title || ''
-  }
+                      language === "VI"
+                        ? (
+                          serviceContents[activeIndex]?.title === "영사 확인 • 사실인증" ? "Chứng thực"
+                            : serviceContents[activeIndex]?.title === "결혼 이민" ? "Kết hôn"
+                              : serviceContents[activeIndex]?.title === "출생 · 사망 신고" ? "Khai sinh · Khai tử"
+                                : serviceContents[activeIndex]?.title === "출입국 행정" ? "Xuất nhận cảnh"
+                                  : serviceContents[activeIndex]?.title === "신분증명 서류" ? "Giấy tờ tùy thân"
+                                    : serviceContents[activeIndex]?.title === "입양 • 자녀 인지" ? "Nhận nuôi"
+                                      : serviceContents[activeIndex]?.title === "비자 대행" ? "Thi thực"
+                                        : serviceContents[activeIndex]?.title === "법률 컨설팅" ? "Tư vấn pháp lý"
+                                          : serviceContents[activeIndex]?.title === "B2B 서비스" ? "Dịch vụ B2B"
+                                            : serviceContents[activeIndex]?.title || ''
+                        )
+                        : serviceContents[activeIndex]?.title || ''
+                    }
                     readOnly
                     style={{
                       flex: 1,
@@ -4727,7 +4774,7 @@ function Service(props) {
                   <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
                 </div>
                 <div>
-                  <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> OnePass.kr@gmail.com
+                  <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
                 </div>
                 <div style={{ color: "#444" }}>
                   {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}

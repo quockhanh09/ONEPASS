@@ -5136,8 +5136,9 @@ a.nav-link.active .icon-img {
 
 /* ✅ Tablet (<= 768px) */
 @media (max-width: 768px) {
+  
   .social-container {
-    right: 20px;
+    right: 10px;
     top: 32%;
     gap: 10px;
   }
@@ -5155,10 +5156,12 @@ a.nav-link.active .icon-img {
 
 /* ✅ Mobile trung bình (<= 480px) */
 @media (max-width: 480px) {
+  
+  
   .social-container {
     right: 5px;
     top: 34%;
-    gap: 10px;
+    gap: 8px;
   }
 
   .social-btn {
@@ -5167,15 +5170,17 @@ a.nav-link.active .icon-img {
   }
 
   .social-btn img.icon {
-    width: 20px;
-    height: 20px;
+    position: relative;
+    right: 3px;
+    width: 22px;
+    height: 22px;
   }
 }
 
 /* ✅ Mobile nhỏ (<= 400px) */
 @media (max-width: 400px) {
   .social-container {
-    right: 16px;
+    right: 5px;
     top: 36%;
     gap: 6px;
   }
@@ -5186,28 +5191,29 @@ a.nav-link.active .icon-img {
   }
 
   .social-btn img.icon {
+    position: relative;
+    right: 3px;
     width: 20px;
     height: 20px;
   }
 }
 
-
-.main-case1-buttton::-webkit-scrollbar {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .main-case1-buttton button {
-    flex: 0 0 150px !important;
-    font-size: 12px !important;
+/* ✅ Màn cực nhỏ (<= 360px) */
+@media (max-width: 360px) {
+  .social-container {
+    right: 5px;
+    top: 38%;
+    gap: 5px;
   }
-}
 
-@media (max-width: 400px) {
-  .main-case1-buttton button {
-    flex: 0 0 130px !important;
-    font-size: 12px !important;
-    padding: 12px 10px !important;
+  .social-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-btn img.icon {
+    width: 18px;
+    height: 18px;
   }
 }
 

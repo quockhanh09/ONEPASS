@@ -316,6 +316,69 @@ const tabContents3 = {
         <style>
           {`
 /* 🔹 Responsive riêng cho Contents3: chỉ áp dụng ở màn <= 400px */
+@media screen and (max-width: 450px) {
+  .Contents3-main {
+    padding: 0 10px;
+  }
+
+  .Contents3-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .Contents3-tr-1,
+  .Contents3-tr-2 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    width: 100%;
+    
+  
+    overflow: hidden;
+  }
+
+  /* Ô màu xanh bên trái */
+  .Contents3-td-1,
+  .Contents3-td-3 {
+    background-color: #334785 !important;
+    color: #fff !important;
+    font-size: 13.5px !important;
+    font-weight: 600;
+    padding: 18px 10px !important;
+    width: 38% !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  /* Ô nội dung bên phải */
+  .Contents3-td-2,
+  .Contents3-td-4 {
+    background-color: #f9fbfc !important;
+    color: #374151 !important;
+    font-size: 13px !important;
+    line-height: 1.6;
+    width: 62% !important;
+    padding: 15px 10px !important;
+  }
+
+  /* Căn lề danh sách */
+  .Contents3-ul-1,
+  .Contents3-ul-2 {
+    padding-left: 16px !important;
+    margin: 0;
+  }
+
+  /* Tiêu đề */
+  .Contents3-h2 {
+    font-size: 20px !important;
+    text-align: center;
+    margin-bottom: 20px !important;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .Contents3-main {
     padding: 0 10px;
@@ -2313,8 +2376,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -2600,8 +2663,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10,
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -2858,8 +2921,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10,
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -3099,8 +3162,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10,
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -3364,8 +3427,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10,
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -3604,8 +3667,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10,
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
@@ -3848,8 +3911,8 @@ function Service(props) {
                                   fontSize: 15,
                                   fontWeight: "bold",
                                   cursor: "pointer",
-                                  marginBottom: 20,
-                                  transform: "translateY(10px)",
+                                  marginBottom: 10,
+                                  marginTop:10,
                                 }}
                               >
                                 {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}

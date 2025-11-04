@@ -129,7 +129,7 @@ function Introduction() {
       }}>
         {/* Header title center */}
         <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
-          <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
+          <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 40, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
             {language === "VI" ? (<>VỀ CHÚNG TÔI</>) : ("ABOUT US")}
           </h1>
           <style>
@@ -423,7 +423,7 @@ function Introduction() {
 
           {/* Right: Content */}
           <div className="Content-about" style={{ flex: 1 }}>
-            <h2 className="Content-about-h2" style={{ fontFamily: "SVN-Gilroy", fontWeight: 700, fontSize: 28, color: "#111", marginBottom: 20 }}>
+            <h2 className="Content-about-h2" style={{  fontWeight: 700, fontSize: 28, color: "#111", marginBottom: 20 }}>
               {language === "VI" ? (<>Thủ tục hành chính, chỉ trong một lần</>) : ("한 번에 끝나는 행정 업무")}
             </h2>
             <p className="Content-about-p" style={{ fontSize: 16, lineHeight: 1.7, color: "#222", textAlign: "justify", marginBottom: 40 }}>
@@ -544,7 +544,7 @@ function Introduction() {
     }
 
     .Content-about-h2 {
-      font-size: 20px !important;
+      font-size: 18px !important;
     }
 
     .Content-about-p {
@@ -593,11 +593,11 @@ function Introduction() {
           </h2>
 
           {/* Content */}
-          <p
+          <p className="p-about-3"
             style={{
-              fontSize: "14px",
+              fontSize: "16px",
               lineHeight: "1.8",
-              opacity: 0.95,
+              
               whiteSpace: "pre-line",
               textAlign: "justify",
             }}
@@ -606,7 +606,17 @@ function Introduction() {
             {"\n\n"}
             {language === "VI" ? (<>Để giải quyết những vấn đề này, One Pass đã ra đời với ý nghĩa là 'Lối đi giải quyết mọi quy trình phức tạp chỉ trong một lần duy nhất'. Mục tiêu của chúng tôi không chỉ là đại diện làm giấy tờ đơn thuần, mà còn là bảo vệ nguồn năng lượng và thời gian quý báu của khách hàng. One Pass sẽ là đối tác vững chắc, giúp khách hàng có thể hoàn toàn tập trung vào những khoảnh khắc quan trọng trong cuộc sống bằng cách đơn giản hóa và tăng tính minh bạch cho các thủ tục hành chính."</>) : ("이러한 문제들을 해결하기 위해, 원패스는 '복잡한 과정을 한 번에 해결하는 통로'라는 의미를 담아 탄생했습니다. 저희의 목표는 단순한 서류 대행을 넘어, 고객의 소중한 시간과 에너지를 지켜드리는 것입니다. 원패스는 행정 절차를 간소화하고 투명성을 높여, 고객들이 삶의 중요한 순간에 온전히 집중할 수 있도록 돕는 든든한 파트너가 될 것입니다.”")}
           </p>
+          <style>
+            {`
+            @media (max-width: 600px) {
+            .p-about-3{font-size:14px !important;}
+              
+            }
+            `
+            }
+          </style>
         </div>
+        
       </section>
 
 

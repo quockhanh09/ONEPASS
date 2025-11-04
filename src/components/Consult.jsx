@@ -2550,7 +2550,7 @@ export default function Consult() {
       @media (max-width: 480px) {
         .services-h1 {
           top: 50%;
-          transform: translateY(-35%);
+          transform: translateY(-50%);
         }
 
         .services-h1 h1 {

@@ -9,22 +9,17 @@ import nav from "../assets/img/Nav.svg";
 import logo from "../assets/img/Logo-name.png";
 import "../style/App.css";
 import { useLanguage } from "../LanguageContext.jsx";
+
 function Footer() {
   const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState({ text: "", isError: false });
-
-  const showTemporaryPopup = (message, isError = false) => {
-    setPopupMessage({ text: message, isError });
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 5000);
-  };
-  const handleSend = async () => {
-    const lang = localStorage.getItem("lang") || "ko";
-
-    const messages = {
+  const getMessages = () => {
+    const lang = language === "VI" ? "vi" : "ko"; 
+    
+    return {
       ko: {
         invalid: "유효한 이메일을 입력해주세요.",
         success: "고객님 소중한 정보를 남겨주셔서 감사합니다.",
@@ -40,10 +35,21 @@ function Footer() {
         success: "Thank you for your submission.",
         fail: "Please check your information again.",
       },
-    };
+    }[lang];
+  };
 
-    if (!email || !email.includes("@")) {
-      showTemporaryPopup(messages[lang].invalid, true);
+  const showTemporaryPopup = (message, isError = false) => {
+    setPopupMessage({ text: message, isError });
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 5000);
+  };
+
+  const handleSend = async () => {
+    const messages = getMessages();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      showTemporaryPopup(messages.invalid, true);
       return;
     }
 
@@ -51,19 +57,23 @@ function Footer() {
     try {
       const res = await axios.post("https://op-backend-60ti.onrender.com/api/save-email", { email });
       setEmail("");
-      showTemporaryPopup(messages[lang].success);
+      showTemporaryPopup(messages.success);
     } catch (err) {
-      console.error(err);
-      showTemporaryPopup(messages[lang].fail, true);
+      console.error("Lỗi gửi email:", err);
+      showTemporaryPopup(messages.fail, true);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSend();
+    }
+  };
 
   return (
     <>
-      {/* 🔹 CSS animation */}
       <style>
         {`
           @keyframes pushDown {
@@ -80,27 +90,33 @@ function Footer() {
               opacity: 1;
             }
           }
+          
+          .popup-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 16px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: pushDown 0.5s ease-out;
+            z-index: 9999;
+            min-width: 300px;
+            text-align: center;
+          }
+          
+          .popup-error {
+            background: #E74C3C !important;
+          }
         `}
       </style>
 
-      {/* 🔹 Popup thông báo */}
+      {/* 🔹 Popup thông báo cải tiến */}
       {showPopup && (
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            right: "20px",
-            background: popupMessage.isError ? "#E74C3C" : "#4CAF50",
-            color: "white",
-            padding: "16px 30px",
-            borderRadius: "8px",
-            fontSize: "18px",
-            fontWeight: 600,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-            animation: "pushDown 0.5s ease-out",
-            zIndex: 9999,
-          }}
-        >
+        <div className={`popup-notification ${popupMessage.isError ? 'popup-error' : ''}`}>
           {popupMessage.text}
         </div>
       )}
@@ -147,7 +163,7 @@ function Footer() {
 
           {/* Center: Quick Links */}
           <div className="Quick-Links" style={{ flex: 1, minWidth: 220, display: "flex", flexDirection: "column" }}>
-            <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 16 }}>Quick Link’s</div>
+            <div style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 16 }}>Quick Link's</div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <Link to="/Introduction" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                 {language === "VI" ? (<>Giới thiệu công ty</>) : ("회사 소개")}
@@ -158,11 +174,9 @@ function Footer() {
               <Link to="/News" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                 {language === "VI" ? (<>Tin tức</>) : ("뉴스룸")}
               </Link>
-              {/* Support tab: Terms-of-Use */}
               <Link to="/Support" state={{ tab: "Terms-of-Use" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                 {language === "VI" ? (<>Điều khoản sử dụng</>) : ("이용약관")}
               </Link>
-              {/* Support tab: personal-information */}
               <Link to="/Support" state={{ tab: "personal-information" }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ color: "#D6DEED", fontSize: 15, textDecoration: "none", marginBottom: 10 }}>
                 {language === "VI" ? (<>Xử lý thông tin cá nhân</>) : ("개인정보처리방침 ")}
               </Link>
@@ -171,12 +185,12 @@ function Footer() {
 
           {/* Right: Subscribe */}
           <div className="subscribe-box" style={{ flex: 1.2, minWidth: 300, display: "flex", gap: 18 }}>
-            <div class="update-title" style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>
+            <div className="update-title" style={{ fontWeight: 700, fontSize: 22, color: "#E8EEF9", marginBottom: 8 }}>
               {language === "VI" ? (<>Nhận thông tin mới nhất</>) : ("For Every Update.")}
             </div>
 
             <div
-              class="update-input-box"
+              className="update-input-box"
               style={{
                 width: 420,
                 maxWidth: "100%",
@@ -191,6 +205,7 @@ function Footer() {
                 placeholder={language === "VI" ? "Nhập email" : "이메일 입력"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyPress={handleKeyPress} 
                 style={{
                   flex: 1,
                   height: 46,
@@ -213,6 +228,7 @@ function Footer() {
                   fontWeight: 600,
                   border: "none",
                   cursor: loading ? "not-allowed" : "pointer",
+                  transition: "background 0.3s ease",
                 }}
               >
                 {loading
@@ -230,10 +246,10 @@ function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61581863960708" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <img src={facebookLogo} alt="Facebook" style={{ width: 28, height: 28 }} />
               </a>
-              <a href="https://www.tiktok.com/@onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <a href="https://www.tiktok.com/@onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Tiktok">
                 <img src={tiktokLogo} alt="Tiktok" style={{ width: 28, height: 28 }} />
               </a>
-              <a href="https://www.youtube.com/@ONEPASSINC" target="_blank" rel="noopener noreferrer" aria-label="Youtube Blog">
+              <a href="https://www.youtube.com/@ONEPASSINC" target="_blank" rel="noopener noreferrer" aria-label="Youtube">
                 <img src={youtubeLogo} alt="YouTube" style={{ width: 28, height: 28 }} />
               </a>
               <a href="https://blog.naver.com/onepass_kr" target="_blank" rel="noopener noreferrer" aria-label="Naver Blog">
@@ -242,6 +258,7 @@ function Footer() {
             </div>
           </div>
         </div>
+
         <style>
           {`
        @media (max-width: 768px) {
@@ -279,7 +296,7 @@ function Footer() {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    
+    gap: 10px !important;
   }
 
   .update-title {

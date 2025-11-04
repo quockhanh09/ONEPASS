@@ -4227,8 +4227,8 @@ function Service(props) {
         </div>
       </section>
 
-      <section
-        style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "60px 0" }}
+      <section className="section-main-icon"
+        style={{ background: "#fff", minHeight: 400, width: "100vw", }}
       >
         {/* ICON MENU */}
         <div
@@ -4360,6 +4360,7 @@ function Service(props) {
         {renderServiceContent()}
         <style>{`
     /* ---------- Desktop defaults (do not change desktop layout) ---------- */
+    
     .main-icon-container {
   display: flex;
   gap: 15px;
@@ -4382,7 +4383,7 @@ function Service(props) {
     .main-icon-item {
       /* desktop: visible inline */
       display: flex;
-      min-width: 120px;
+      
       box-sizing: border-box;
       opacity: 1;
       transform: none;
@@ -4402,6 +4403,9 @@ function Service(props) {
 
     /* ---------- Mobile-only overrides ---------- */
     @media (max-width: 768px) {
+        .section-main-icon{
+          padding: 0px 0px;
+      }
       .main-icon {
         position: relative !important;
       
@@ -4439,7 +4443,7 @@ function Service(props) {
         transform: none !important;
         pointer-events: auto !important;
         flex-shrink: 0 !important;
-        width: 100px !important;
+        width: 95px !important;
         height: 120px !important;
         display: flex !important;
         flex-direction: column !important;
@@ -4466,6 +4470,12 @@ function Service(props) {
 
       /* optional: slightly fade non-active content below while mobile icon changes */
       .service-content { transition: opacity 0.25s ease; }
+    }
+
+    @media (max-width: 400px){
+     .section-main-icon{
+          padding: 0px 0px;
+      }
     }
   `}</style>
       </section>

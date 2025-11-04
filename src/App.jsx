@@ -316,19 +316,19 @@ function App() {
     "출입국 행정": [
       { img: a9, title: "베트남 국적 포기 신청", desc: "베트남 국적 포기 신청 및 서류 절차 대행", tabKey: "a12" },
       { img: a10, title: "베트남 국적 유지 신청", desc: " 이중국적 유지를 위한 신고 및 관련 절차를지원", tabKey: "a13" },
-      { img: a11, title: "베트남 국적 귀화 신청", desc: "베트남 국적 귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
+      { img: a11, title: "베트남 국적 재귀화 신청", desc: "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
       { img: a12, title: "베트남으로 시체, 유해, 유골 송환 허가 신청", desc: "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
       { img: a13, title: "베트남 국적 사실 확인", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
     ],
     "신분증명 서류": [
-      { img: a14, title: "일반 여권 (재)발급·변경· 추가", desc: "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행", tabKey: "a17" },
+      { img: a14, title: "일반 여권 (재)발급·변경·추가", desc: "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행", tabKey: "a17" },
       { img: a15, title: "호적 변경·정정·추가, 민족 재확인, 성별 재확인 등", desc: "이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원", tabKey: "a18" },
       { img: a16, title: "베트남 국민 신고 업데이트", desc: "재외 베트남인으로서의 국민 등록 및 정보 갱신 대행", tabKey: "a19" },
       { img: a17, title: "베트남 출신 증명서 발급", desc: "베트남 출신 확인서 발급을 위한 서류 준비 및 절차 지원", tabKey: "a20" },
       { img: a18, title: "호적증서 반사오 재발급", desc: "출생, 혼인 등 각종 호적 서류의 사본 재발급 대행", tabKey: "a21" },
     ],
     "입양 • 자녀 인지": [
-      { img: a19, title: "보호자 인지 인지해지 신고", desc: "재외 베트남인 간 또는 외국인과의 보호자 신청 등록, 해지 신고 대 행", tabKey: "a22" },
+      { img: a19, title: "보호자 인지·해지 신고", desc: "재외 베트남인 간 또는 외국인과의 보호자 신청 등록, 해지 신고 대행", tabKey: "a22" },
       { img: a20, title: "혼외자 자녀 인지", desc: "혼외자 자녀 인지 등록 절차 대행", tabKey: "a23" },
       { img: a21, title: "입양 절차 대행", desc: "베트남 국적 아동의 입양 등록 및 재등록 절차 대행", tabKey: "a24" },
 
@@ -346,7 +346,7 @@ function App() {
       { img: a29, title: "체류자 관련 컨설팅", desc: "베트남/한국 내 체류자의 자진 출국 및 합법적 체류 전환 등 민감한 문제 상담", tabKey: "a32" },
     ],
     "B2B 서비스": [
-      { img: a30, title: "베트남·한국에서 법인ㆍ지사·대표 사무실 설립", desc: "한국 또는 베트남 내 법인, 지사, 또는 사무소 설립에 필요한 행정 절차 대행", tabKey: "a33" },
+      { img: a30, title: "베트남·한국에서 법인·지사·대표 사무실 설립", desc: "한국 또는 베트남 내 법인, 지사, 또는 사무소 설립에 필요한 행정 절차 대행", tabKey: "a33" },
       { img: a31, title: "베트남·한국 내 노동 허가서, 임시 거주증 발급", desc: "한국/베트남 외국인 근로자의 취업 허가 및 임시 거주증 발급 절차 대행", tabKey: "a34" },
       { img: a32, title: "수출입 허가서", desc: "기업의 원활한 무역 활동을 위한 수출입 허가증 발급 및 관련 규제 준수 절차 대행", tabKey: "a35" },
       { img: a33, title: "B2B 바이어 매칭", desc: "B2B 파트너를 매칭하여 기업의 성공적인 시장 진출과 매출 확대", tabKey: "a36" },
@@ -1424,7 +1424,7 @@ function App() {
 
                                                         : card.title === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch Việt Nam"
                                                           : card.title === "베트남 국적 유지 신청" ? "Đăng ký giữ quốc tịch Việt Nam"
-                                                            : card.title === "베트남 국적 귀화 신청" ? "Xin trở lại quốc tịch Việt Nam"
+                                                            : card.title === "베트남 국적 재귀화 신청" ? "Xin trở lại quốc tịch Việt Nam"
                                                               : card.title === "베트남으로 시체, 유해, 유골 송환 허가 신청" ? "Cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
                                                                 : card.title === "베트남 국적 사실 확인" ? "Thủ tục hồi hương (đăng ký thường trú ở Việt Nam) "
 
@@ -1489,7 +1489,7 @@ function App() {
                                                       ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới xin thôi quốc tịch VIệt Nam"
                                                       : card.desc === " 이중국적 유지를 위한 신고 및 관련 절차를지원"
                                                         ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới giữ quốc tịch Việt Nam"
-                                                        : card.desc === "베트남 국적 귀화를 위한 신청 및 행정 절차 대행"
+                                                        : card.desc === "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행"
                                                           ? "Tư vấn hồ sơ và thực hiện đăng ký xin trở lại quốc tịch Việt Nam"
                                                           : card.desc === "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행"
                                                             ? "Thực hiện đăng ký cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
@@ -1507,7 +1507,7 @@ function App() {
                                                                       : card.desc === "출생, 혼인 등 각종 호적 서류의 사본 재발급 대행"
                                                                         ? "Thực hiện thủ tục cấp bản sao giấy tờ hộ tịch (Khai sinh, Đăng ký kết hôn, v.v)"
 
-                                                                        : card.desc === "재외 베트남인 간 또는 외국인과의 보호자 신청 등록, 해지 신고 대 행"
+                                                                        : card.desc === "재외 베트남인 간 또는 외국인과의 보호자 신청 등록, 해지 신고 대행"
                                                                           ? "Thực hiện đăng ký, chấm dứt việc giám hộ"
                                                                           : card.desc === "혼외자 자녀 인지 등록 절차 대행"
                                                                             ? "Thực hiện thủ tục đăng ký nhận cha, mẹ, con"

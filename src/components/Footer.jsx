@@ -279,7 +279,7 @@ function Footer() {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 10px !important;
+    
   }
 
   .update-title {

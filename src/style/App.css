@@ -5259,7 +5259,7 @@ a.nav-link.active .icon-img {
     flex-wrap: nowrap !important;
     gap: 20px;
     padding: 10px 0;
-    position: relative;
+    
   }
 
   /* ⚡ Tạo khoảng đệm ảo 2 đầu để không bị cắt */

@@ -1651,7 +1651,7 @@ function Service(props) {
     width: 142px !important;
     height: 245px !important;
     object-fit: cover !important;
-   transform: translateX(-3px) !important;
+   
     }
   .case0-layout1-content,
   .case0-business1-title {

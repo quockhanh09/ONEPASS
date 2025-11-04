@@ -1157,6 +1157,7 @@ export default function Consult() {
       
         .phoneRight-form4-select {
           font-size: 15px !important;
+          
         }
          .phoneRight-form1{
           font-size: 15px !important;
@@ -1186,10 +1187,17 @@ export default function Consult() {
         .phoneRight-Contact-3 {
           font-size: 13.5px !important;
         }
+          .phoneRight-form4-select{
+          transform: translateX(-5px);
+          }
+          
       }
       
       /* ⚡ Dưới 400px */
       @media (max-width: 400px) {
+      .phoneRight-form4-select{
+          transform: translateX(-5px);
+          }
         /* Container chính */
         .phoneRight {
           padding: 25px 16px !important;
@@ -1722,7 +1730,7 @@ export default function Consult() {
   }
 
   /* Tất cả input, select */
-  .emailRight-form1-1 input,
+  .emailRight-form1-1,
   .emailRight-form2-input,
   .emailRight-form3-input,
   .emailRight-form4-input,
@@ -1767,6 +1775,7 @@ export default function Consult() {
   .emailRight-form4-select {
     width: 65px !important;
     margin-right: 6px !important;
+    transform: translateX(10px);
   }
 
   .emailRight-form4-input {
@@ -1795,13 +1804,13 @@ export default function Consult() {
   }
    
   /* Tất cả input, select */
-  .emailRight-form1-1 input,
+  .emailRight-form1-1,
   .emailRight-form2-input,
   .emailRight-form3-input,
   .emailRight-form4-input,
   .emailRight-form4-select,
   .emailRight-form5-input {
-    font-size: clamp(12px, 3vw, 14px) !important;
+    font-size: clamp(13px, 3vw, 15px) !important;
   }
 
   .emailRight-form4-main {
@@ -2355,6 +2364,9 @@ export default function Consult() {
   .visitRight-Contact {
     font-size: 16px !important;
   }
+    .visitRight-form1-1{
+          font-size: 15px !important;
+    }
 }
 
 /* ✅ Reponsive cho màn hình <= 400px */

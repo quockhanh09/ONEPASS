@@ -578,6 +578,93 @@ export default function ConsulateNews() {
             ))}
           </div>
         </div>
+       <style>
+{`
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  section {
+    padding: 40px 0 !important;
+  }
+
+  /* Khung chính */
+  section > div {
+    padding: 0 16px !important;
+  }
+
+  /* Thanh menu nhỏ */
+  section > div > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+
+  /* Tabs */
+  section > div > div:first-child > div:first-child {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+
+  /* Ô tìm kiếm */
+  section input {
+    font-size: 13px !important;
+  }
+
+  section > div > div:first-child > div:last-child {
+    width: 100% !important;
+  }
+
+  /* Tiêu đề */
+  section h2 {
+    font-size: 20px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Lưới tin tức */
+  section div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Hình ảnh */
+  section img {
+    height: auto !important;
+  }
+
+  /* Nội dung bài */
+  section h3 {
+    font-size: 15px !important;
+  }
+
+  section p {
+    font-size: 13px !important;
+  }
+
+  /* Nút phân trang */
+  section button {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  section > div {
+    padding: 0 24px !important;
+  }
+
+  section div[style*="grid"] {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 28px !important;
+  }
+
+  section h2 {
+    font-size: 22px !important;
+  }
+}
+`}
+</style>
+
       </section>
     </>
   );

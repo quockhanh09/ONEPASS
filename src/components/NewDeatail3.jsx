@@ -3,7 +3,11 @@ import n1 from "../assets/img/n19.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
 import heroBg from "../assets/img/herobanner-1.png";
-import consulate from "../assets/img/n3.png"; // ✅ ảnh chính trong bài
+import consulate from "../assets/img/n3.png";
+import fbIcon from "../assets/img/image20.png";
+import kakaotalkIcon from "../assets/img/image17.png";
+import zaloIcon from "../assets/img/image18.png";
+import naverIcon from "../assets/img/image19.png";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
 const relatedNews = [
@@ -28,7 +32,15 @@ const relatedNews = [
 ];
 
 export default function NewsDetail2() {
-
+    const [activeId, setActiveId] = useState(null);
+    const [hoverId, setHoverId] = useState(null);
+    const effectiveId = hoverId ?? activeId;
+    const items = [
+        { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+        { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+        { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+        { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+    ];
     const { language } = useLanguage();
     const [service, setService] = useState("");
     const [countryCode, setCountryCode] = useState("");
@@ -330,6 +342,36 @@ export default function NewsDetail2() {
                                 : "상담 신청"}
                     </div>
                 </div>
+
+                <div className="social-container">
+                    {items.map((item) => {
+                        const isExpanded = effectiveId === item.id;
+                        return (
+                            <div
+                                key={item.id}
+                                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                                onMouseEnter={() => setHoverId(item.id)}
+                                onMouseLeave={() => setHoverId(null)}
+                                onClick={() => {
+                                    setActiveId((prev) => (prev === item.id ? null : item.id));
+                                    window.open(item.link, "_blank");
+                                }}
+                            >
+                                <img src={item.icon} alt={item.name} className="icon" />
+                                <span className="label"> {language === "VI" ? (
+                                    item.name === "페이스북" ? "Liên Kết Facebook"
+                                        : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                                            : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                                                : item.name === "네이버" ? "Liên Kết Naver"
+                                                    : item.name
+                                ) : (
+                                    item.name
+                                )}
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
             </section>
 
             <section>
@@ -348,7 +390,7 @@ export default function NewsDetail2() {
                             fontSize: "28px",
                             fontWeight: "bold",
                             marginBottom: "20px",
-                            textAlign:"justify"
+                            textAlign: "justify"
                         }}
                     >
                         {language === "VI"
@@ -356,7 +398,7 @@ export default function NewsDetail2() {
                             : "원패스(One Pass) 공식 업무 개시 안내"}
                     </h1>
 
-                    <p style={{ fontSize: "14px", marginBottom: "10px", textAlign:"justify" }}>
+                    <p style={{ fontSize: "14px", marginBottom: "10px", textAlign: "justify" }}>
                         {language === "VI"
                             ? "Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành chính Việt Nam tại Hàn Quốc, One Pass, đã chính thức đi vào hoạt động kể từ ngày 01 tháng 10 năm 2025."
                             : "2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다!"}
@@ -378,7 +420,7 @@ export default function NewsDetail2() {
                         />
                     </div>
 
-                    <div style={{ fontSize: "14px", marginBottom: "40px", textAlign:"justify" }}>
+                    <div style={{ fontSize: "14px", marginBottom: "40px", textAlign: "justify" }}>
                         <p>
                             {language === "VI"
                                 ? "Được thành lập tại Busan vào năm 2025, One Pass quy tụ đội ngũ chuyên gia dày dặn kinh nghiệm, thấu hiểu sâu sắc hệ thống hành chính của cả Việt Nam và Hàn Quốc. Chúng tôi cam kết sẽ giải quyết các vấn đề giấy tờ phức tạp và mở ra con đường hiệu quả nhất cho quý khách hàng."

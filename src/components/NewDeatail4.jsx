@@ -6,7 +6,11 @@ import n4 from "../assets/img/N4.png";
 import n5 from "../assets/img/n5.png";
 import n7 from "../assets/img/n7.png";
 import heroBg from "../assets/img/herobanner-1.png";
-import consulate from "../assets/img/n3.png"; // ✅ ảnh chính trong bài
+import consulate from "../assets/img/n3.png";
+import fbIcon from "../assets/img/image20.png";
+import kakaotalkIcon from "../assets/img/image17.png";
+import zaloIcon from "../assets/img/image18.png";
+import naverIcon from "../assets/img/image19.png";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
 const relatedNews = [
@@ -31,7 +35,15 @@ const relatedNews = [
 ];
 
 export default function NewsDetail4() {
-
+    const [activeId, setActiveId] = useState(null);
+    const [hoverId, setHoverId] = useState(null);
+    const effectiveId = hoverId ?? activeId;
+    const items = [
+        { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+        { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+        { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+        { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+    ];
     const { language } = useLanguage();
     const [service, setService] = useState("");
     const [countryCode, setCountryCode] = useState("");
@@ -332,6 +344,36 @@ export default function NewsDetail4() {
                                 : "상담 신청"}
                     </div>
                 </div>
+
+                <div className="social-container">
+                    {items.map((item) => {
+                        const isExpanded = effectiveId === item.id;
+                        return (
+                            <div
+                                key={item.id}
+                                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                                onMouseEnter={() => setHoverId(item.id)}
+                                onMouseLeave={() => setHoverId(null)}
+                                onClick={() => {
+                                    setActiveId((prev) => (prev === item.id ? null : item.id));
+                                    window.open(item.link, "_blank");
+                                }}
+                            >
+                                <img src={item.icon} alt={item.name} className="icon" />
+                                <span className="label"> {language === "VI" ? (
+                                    item.name === "페이스북" ? "Liên Kết Facebook"
+                                        : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                                            : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                                                : item.name === "네이버" ? "Liên Kết Naver"
+                                                    : item.name
+                                ) : (
+                                    item.name
+                                )}
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
             </section>
 
             <section>
@@ -355,7 +397,7 @@ export default function NewsDetail4() {
                         {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân từ Tổng lãnh sự quán Việt Nam tại Busan</>) : ("원패스(One Pass), 주부산 총영사관으로부터 감사패 수여")}
                     </h1>
 
-                    <p style={{ fontSize: "14px", marginBottom: "10px", textAlign:"justify" }}>
+                    <p style={{ fontSize: "14px", marginBottom: "10px", textAlign: "justify" }}>
 
                         {language === "VI" ? (<>Ngày mùng 2 tháng 9 năm 2025, Công ty One Pass đã vinh dự được Tổng Lãnh sự quán Việt Nam tại Busan trao tặng Bằng khen Tri ân. Bằng khen này nhằm ghi nhận công lao đóng góp của One Pass trong việc hỗ trợ thành lập và các hoạt động trong giai đoạn ban đầu của Tổng Lãnh sự quán. <br />Sự kiện được tổ chức trong khuôn khổ Lễ Kỷ niệm 80 năm Quốc khánh Việt Nam, với sự tham dự của các đại diện ngoại giao và cộng đồng kiều bào.</>) : ("2025년 9월 2일, (주)원패스가 주부산 베트남 총영사관이 주최한 베트남 80주년 국경일 기념행사에서 총영사관의 성공적인 설립과 초기 사무실 운영 기반 마련에 기여한 공로를 인정받아 감사패를 수여받는 영예를 안았습니다.")}
                     </p>
@@ -373,7 +415,7 @@ export default function NewsDetail4() {
                         />
                     </div>
 
-                    <p style={{ fontSize: "14px", marginBottom: "20px", textAlign:"justify" }}>
+                    <p style={{ fontSize: "14px", marginBottom: "20px", textAlign: "justify" }}>
 
                         {language === "VI" ? (<>Việc One Pass nhận Bằng khen Tri ân là sự ghi nhận cho những nỗ lực hỗ trợ thiết yếu, giúp Tổng Lãnh sự quán vượt qua những khó khăn trong giai đoạn đầu thành lập.<br />One Pass đã đóng vai trò quan trọng trong việc thiết lập văn phòng, xây dựng hệ thống hành chính ban đầu, và các yếu tố nền tảng khác, qua đó giúp Tổng Lãnh sự quán khởi động hoạt động thành công và nhanh chóng cung cấp dịch vụ cho cộng đồng. Sự hỗ trợ này đã tạo nên cơ sở vững chắc để Tổng Lãnh sự quán phục vụ cộng đồng kiều bào tại khu vực Busan - Ulsan - Gyeongnam.</>) : (<>원패스에 수여된 감사패는 총영사관이 복잡한 설립 초기의 행정적, 물류적 어려움을 극복하고 조기에 안정적인 업무 환경을 구축할 수 있도록 헌신적인 지원을 제공한 데 대한 공식적인 인정입니다.
                             <br />
@@ -390,7 +432,7 @@ export default function NewsDetail4() {
                             }}
                         />
                     </div>
-                    <div style={{ fontSize: "14px", marginBottom: "40px", textAlign:"justify" }}>
+                    <div style={{ fontSize: "14px", marginBottom: "40px", textAlign: "justify" }}>
                         <p>
 
                             {language === "VI" ? (<>Phát biểu sau khi nhận Bằng khen, đại diện One Pass cho biết: "Việc được tham gia vào quá trình thành lập quan trọng của Tổng Lãnh sự quán là niềm vinh dự lớn. Chúng tôi cam kết sẽ tiếp tục duy trì mối quan hệ hợp tác chặt chẽ, trở thành đối tác vững chắc của Tổng Lãnh sự quán Việt Nam tại Busan và không ngừng nỗ lực để công tác lãnh sự được triển khai thuận lợi."</>) : (<>감사패를 수상한 원패스 대표는 "이번 수상은 총영사관의 원활한 업무 수행을 위한 저희의 헌신적인 노력을 인정받은 소중한 결실입니다. 저희는 앞으로도 주부산 베트남 총영사관의 신뢰할 수 있는 파트너로서 긴밀한 협력 관계를 유지하고, 영사 업무 효율 증진을 위해 지속적으로 노력하겠습니다."라고 소감을 밝혔습니다.</>)}

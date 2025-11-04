@@ -14,14 +14,14 @@ import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
 export default function AllNewsPage() {
     const [activeId, setActiveId] = useState(null);
-      const [hoverId, setHoverId] = useState(null);
-      const effectiveId = hoverId ?? activeId;
-      const items = [
+    const [hoverId, setHoverId] = useState(null);
+    const effectiveId = hoverId ?? activeId;
+    const items = [
         { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
         { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
         { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
         { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
-      ];
+    ];
 
     const { language } = useLanguage();
     const [service, setService] = useState("");
@@ -312,34 +312,34 @@ export default function AllNewsPage() {
                     </div>
                 </div>
                 <div className="social-container">
-          {items.map((item) => {
-            const isExpanded = effectiveId === item.id;
-            return (
-              <div
-                key={item.id}
-                className={`social-btn ${isExpanded ? "expanded" : ""}`}
-                onMouseEnter={() => setHoverId(item.id)}
-                onMouseLeave={() => setHoverId(null)}
-                onClick={() => {
-                  setActiveId((prev) => (prev === item.id ? null : item.id));
-                  window.open(item.link, "_blank");
-                }}
-              >
-                <img src={item.icon} alt={item.name} className="icon" />
-                <span className="label"> {language === "VI" ? (
-                  item.name === "페이스북" ? "Liên Kết Facebook"
-                    : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
-                      : item.name === "Zalo" ? <>Liên Kết Zalo</>
-                        : item.name === "네이버" ? "Liên Kết Naver"
-                          : item.name
-                ) : (
-                  item.name
-                )}
-                </span>
-              </div>
-            );
-          })}
-        </div>                
+                    {items.map((item) => {
+                        const isExpanded = effectiveId === item.id;
+                        return (
+                            <div
+                                key={item.id}
+                                className={`social-btn ${isExpanded ? "expanded" : ""}`}
+                                onMouseEnter={() => setHoverId(item.id)}
+                                onMouseLeave={() => setHoverId(null)}
+                                onClick={() => {
+                                    setActiveId((prev) => (prev === item.id ? null : item.id));
+                                    window.open(item.link, "_blank");
+                                }}
+                            >
+                                <img src={item.icon} alt={item.name} className="icon" />
+                                <span className="label"> {language === "VI" ? (
+                                    item.name === "페이스북" ? "Liên Kết Facebook"
+                                        : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
+                                            : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                                                : item.name === "네이버" ? "Liên Kết Naver"
+                                                    : item.name
+                                ) : (
+                                    item.name
+                                )}
+                                </span>
+                            </div>
+                        );
+                    })}
+                </div>
             </section>
 
             <section style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
@@ -372,7 +372,7 @@ export default function AllNewsPage() {
                                     cursor: "pointer",
                                 }}
                             >
-                               {language === "VI" ? (<>Tất cả tin tức</>) : (" 전체 뉴스")}
+                                {language === "VI" ? (<>Tất cả tin tức</>) : (" 전체 뉴스")}
                             </span>
 
                             {/* 대사관·총영사관 소식 */}
@@ -394,7 +394,7 @@ export default function AllNewsPage() {
                                     cursor: "pointer",
                                 }}
                             >
-                               {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
+                                {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
                             </span>
                         </div>
                         {/* Search box */}
@@ -479,7 +479,7 @@ export default function AllNewsPage() {
                                     marginBottom: 8,
                                 }}
                             >
-                               {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Qu...</>) : ("추석 연휴 휴무 안내")}
+                                {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Qu...</>) : ("추석 연휴 휴무 안내")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
                                 {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm</>) : ("안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...")}
@@ -529,7 +529,7 @@ export default function AllNewsPage() {
                                 {language === "VI" ? (<>Tổng lãnh sự quán Việt Nam tại Busan chí...</>) : ("주부산 베트남 총영사관 공식 개소")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                                 {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : (" 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며... ")}
+                                {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : (" 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며... ")}
 
                             </p>
                             <a
@@ -576,7 +576,7 @@ export default function AllNewsPage() {
                                 {language === "VI" ? (<>Kể từ tháng 10/2025, One Pass chính thức ...</>) : ("원패스(One Pass) 공식 업무 개시 안내")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                                                {language === "VI" ? (<>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành ...</>) : ("2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...")}
+                                {language === "VI" ? (<>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành ...</>) : ("2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...")}
 
                             </p>
                             <a
@@ -595,7 +595,7 @@ export default function AllNewsPage() {
 
                         {/* 4 */}
                         <div
-                        onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail4")}
+                            onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail4")}
                             style={{ cursor: "pointer" }}>
                             <img
                                 src={n4}
@@ -608,7 +608,7 @@ export default function AllNewsPage() {
                                 }}
                             />
                             <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                                 {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
                             </p>
                             <h3
                                 style={{
@@ -618,12 +618,12 @@ export default function AllNewsPage() {
                                     marginBottom: 8,
                                 }}
                             >
-                                  {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân t...</>) : ("주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화...")}
+                                {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân t...</>) : ("주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화...")}
                             </h3>
                             <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                                
+
                                 {language === "VI" ? (<>Ngày mùng 1 tháng 10 năm 2025, Công ty One Pass đã vinh dự được Tổng Lãnh sự quán Việt N</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...")}
-                             </p>
+                            </p>
                             <a
                                 href="#"
                                 style={{
@@ -640,7 +640,7 @@ export default function AllNewsPage() {
 
                         {/* 5 */}
                         <div
-                        onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail5")}
+                            onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail5")}
                             style={{ cursor: "pointer" }}>
                             <img
                                 src={n5}
@@ -711,6 +711,93 @@ export default function AllNewsPage() {
                         ))}
                     </div>
                 </div>
+                <style>
+                    {`
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  section {
+    padding: 40px 0 !important;
+  }
+
+  /* Khung chính */
+  section > div {
+    padding: 0 16px !important;
+  }
+
+  /* Thanh menu nhỏ */
+  section > div > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+
+  /* Tabs */
+  section > div > div:first-child > div:first-child {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+
+  /* Ô tìm kiếm */
+  section input {
+    font-size: 13px !important;
+  }
+
+  section > div > div:first-child > div:last-child {
+    width: 100% !important;
+  }
+
+  /* Tiêu đề */
+  section h2 {
+    font-size: 20px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Lưới tin tức */
+  section div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Hình ảnh */
+  section img {
+    height: auto !important;
+  }
+
+  /* Nội dung bài */
+  section h3 {
+    font-size: 15px !important;
+  }
+
+  section p {
+    font-size: 13px !important;
+  }
+
+  /* Nút phân trang */
+  section button {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  section > div {
+    padding: 0 24px !important;
+  }
+
+  section div[style*="grid"] {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 28px !important;
+  }
+
+  section h2 {
+    font-size: 22px !important;
+  }
+}
+`}
+                </style>
+
             </section>
         </>
     );

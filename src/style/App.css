@@ -5160,20 +5160,20 @@ a.nav-link.active .icon-img {
   
   .social-container {
     right: 5px;
-    top: 42%;
+    top: 50%;
     gap: 8px;
   }
 
   .social-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
 
   .social-btn img.icon {
     position: relative;
     right: 3px;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -5181,20 +5181,20 @@ a.nav-link.active .icon-img {
 @media (max-width: 400px) {
   .social-container {
     right: 5px;
-    top: 42%;
+    top: 50%;
     gap: 6px;
   }
 
   .social-btn {
-    width: 36px;
-    height: 36px;
+    width: 41px;
+    height: 41px;
   }
 
   .social-btn img.icon {
     position: relative;
     right: 3px;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
 }
 
@@ -5202,7 +5202,7 @@ a.nav-link.active .icon-img {
 @media (max-width: 360px) {
   .social-container {
     right: 5px;
-    top: 45%;
+    top: 50%;
     gap: 5px;
   }
 

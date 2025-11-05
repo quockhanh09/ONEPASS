@@ -2191,7 +2191,7 @@ export default function Consult() {
               }}
             >
               {/* 날짜 선택 */}
-              <label className="visitRight-form5-label" style={{ fontWeight: 700, marginRight: 8 }}>
+              <label className="visitRight-form5-label" style={{ fontWeight: 600, marginRight: 8 }}>
                 {language === "VI" ? (<>Chọn ngày</>) : ("날짜 선택")} <span style={{ color: "red" }}>*</span>
               </label>
 
@@ -2224,7 +2224,7 @@ export default function Consult() {
               />
 
               {/* 시간 */}
-              <label className="visitRight-form5-label1" style={{ fontWeight: 700, marginRight: 8 }}>
+              <label className="visitRight-form5-label1" style={{ fontWeight: 500, marginRight: 8 }}>
                 {language === "VI" ? (<>Giờ</>) : ("시간")}
               </label>
 

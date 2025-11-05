@@ -1055,7 +1055,7 @@ export default function Consult() {
           </div>
 
           {/* 개인정보 동의 */}
-          <div className="phoneRight-form5" style={{ marginBottom: 22, fontSize: 18, }}>
+          <div className="phoneRight-form5" style={{ marginBottom: 20, fontSize: 18, }}>
             <label
               style={{ fontSize: 18, display: "flex", alignItems: "center" }}
             >
@@ -1190,11 +1190,30 @@ export default function Consult() {
           .phoneRight-form4-select{
           transform: translateX(-5px);
           }
-          
+          .phoneRight-form-main{
+          margin-bottom: 8px !important;
+      }
+          .phoneRight-form5{
+      margin-bottom: 8px !important;
+      }
+      .phoneRight-form-2{
+      margin-bottom: 8px !important;
+      }
+      .phoneRight-form-main{
+       
       }
       
       /* ⚡ Dưới 400px */
       @media (max-width: 400px) {
+      .phoneRight-form5{
+      margin-bottom: 8px !important;
+      }
+      .phoneRight-form-2{
+      margin-bottom: 8px !important;
+      }
+      .phoneRight-form-main{
+          margin-bottom: 8px !important;
+      }
       .phoneRight-form4-select{
           transform: translateX(-5px);
           }
@@ -2367,6 +2386,15 @@ export default function Consult() {
     .visitRight-form1-1{
           font-size: 15px !important;
     }
+          .visitRight-form1{
+          margin-bottom: 7px !important;
+          }
+  .visitRight-form2{
+      margin-bottom: 7px !important;
+  }
+      .visitRight-form3{
+          margin-bottom: 7px !important;
+      }
 }
 
 /* ✅ Reponsive cho màn hình <= 400px */

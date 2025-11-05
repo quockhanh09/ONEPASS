@@ -5268,6 +5268,7 @@ a.nav-link.active .icon-img {
     content: "";
     flex: 0 0 16px;
     /* khoảng cách 2 bên (tuỳ chỉnh 12–20px) */
+    
   }
 
   .case1-steps-content>div {

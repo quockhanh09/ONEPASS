@@ -1781,7 +1781,7 @@ function App() {
                     <div
                       key={idx}
                       style={{
-                        // position: "relative", 
+                        position: "relative", 
                         overflow: "hidden",
                         borderRadius: 12,
                         cursor: "pointer",

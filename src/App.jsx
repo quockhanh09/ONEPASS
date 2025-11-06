@@ -338,7 +338,7 @@ function App() {
       { img: a23, title: "초청 (단기방문 C-3-1 비자)", desc: "한국 단기 방문 비자(C-3-1) 신청 및 발급 절차 지원", tabKey: "a26" },
       { img: a24, title: "초청 (방문동거 F-1-5 비자)", desc: "한국 방문동거 비자(F-1-5) 신청에 필요한 서류 준비 및 절차 대행", tabKey: "a27" },
       { img: a25, title: "베트남 비자면제증 발급", desc: "베트남 비자 면제서의 신규 등록 및 재등록 절차 대행", tabKey: "a28" },
-      { img: a26, title: "베트남 전자비자.상용비자 발급", desc: "전자 비자(E-Visa) 및 상용 비자의 발급 등록 대행", tabKey: "a29" },
+      { img: a26, title: "베트남 전자비자·상용비자 발급", desc: "전자 비자(E-Visa) 및 상용 비자의 발급 등록 대행", tabKey: "a29" },
     ],
     "법률 컨설팅": [
       { img: a27, title: "이혼 소송", desc: "베트남-한국 간 국제 이혼 소송의 제기 및 진행에 필요한 법적 절차 대행", tabKey: "a30" },
@@ -1442,7 +1442,7 @@ function App() {
                                                                                     : card.title === "초청 (단기방문 C-3-1 비자)" ? "Visa thăm thân ngắn hạn (C-3-1)"
                                                                                       : card.title === "초청 (방문동거 F-1-5 비자)" ? "Visa thăm thân dài hạn (F-1-5)"
                                                                                         : card.title === "베트남 비자면제증 발급" ? "Cấp giấy miễn thị thực "
-                                                                                          : card.title === "베트남 전자비자.상용비자 발급" ? "Đăng ký cấp thị thực điện tử / thị thực công tác"
+                                                                                          : card.title === "베트남 전자비자·상용비자 발급" ? "Đăng ký cấp thị thực điện tử / thị thực công tác"
 
                                                                                             : card.title === "이혼 소송" ? "Liên quan tới ly hôn"
                                                                                               : card.title === "노동 관련 소송" ? "Liên quan tới lao động"

@@ -589,7 +589,7 @@ function App() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "top center",
-                  minHeight: "80vh",
+                  minHeight: "50vh",
                   width: "100vw",
                   paddingTop: "120px",
                 }}
@@ -598,7 +598,7 @@ function App() {
                   className="parallax-window fullscreen hero-flex"
                   style={{
                     width: "100vw",
-                    height: "70vh",
+                    height: "50vh",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -634,58 +634,7 @@ function App() {
                         : "ONE PASS, 한번에 PASS"}
                     </h1>
 
-                    <div style={{ width: "90%", maxWidth: 920 }}>
-                      <form
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          height: 56,
-                          background: "rgba(255,255,255,0.06)",
-                          borderRadius: 10,
-                          border: "1px solid rgba(255, 255, 255, 1)",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <div
-                          style={{
-                            flex: 1,
-                            height: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                            paddingLeft: 16,
-                          }}
-                        >
-                          <input
-                            className="search-hero"
-                            type="text"
-                            placeholder={language === "VI" ? "Vui lòng nhập từ khóa" : "검색어를 입력하세요"}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              border: "none",
-                              outline: "none",
-                              background: "transparent",
-                              color: "#fff",
-                              fontSize: 18,
-                            }}
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          style={{
-                            height: "100%",
-                            minWidth: 64,
-                            background: "rgba(255,255,255,0.06)",
-                            border: "none",
-                            color: "#fff",
-                            fontSize: 20,
-                            cursor: "pointer",
-                          }}
-                        >
-                          🔍
-                        </button>
-                      </form>
-                    </div>
+                    
                   </div>
 
                   {/* Responsive style */}
@@ -718,6 +667,8 @@ function App() {
         .hero-flex h1 {
           font-size: 33px !important;
           line-height: 1.3 !important;
+          transform: translateY(40px);
+          
         }
         .hero-flex form {
           height: 44px !important;
@@ -725,6 +676,7 @@ function App() {
         .hero-flex input::placeholder {
           font-size: 15px !important;
         }
+
       }
     `}
                   </style>

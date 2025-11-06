@@ -513,6 +513,7 @@ export default function ConsulateNews() {
                 alt="문화 행사"
                 style={{
                   width: "100%",
+                  height:309.15,
                   borderRadius: 8,
                   marginBottom: 12,
                   objectFit: "cover",

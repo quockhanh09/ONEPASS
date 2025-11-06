@@ -136,7 +136,7 @@ function Header() {
               style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: 20 }}
             >
               <div className="lang-switch" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                
+
                 <a
                   href="#"
                   onClick={(e) => {
@@ -183,7 +183,7 @@ function Header() {
                 <li><Link to="/Support" onClick={() => setShowMobileMenu(false)}>{menuTexts[language].support}</Link></li>
               </ul>
 
-              
+
             </div>
           )}
           {/* Submenu NEWSROOM */}
@@ -281,10 +281,10 @@ function Header() {
                   margin: 0,
                   listStyle: "none"
                 }}>
-                  <li><Link to="/Support" state={{ tab: "profile-search" }}>{language === "VI" ? (<>Tra cứu hồ sơ</>) : ("진행 현황 조회")}</Link></li>
-                  <li><Link to="/Support" state={{ tab: "contact" }}>{language === "VI" ? (<>Liên hệ</>) : ("Contact")}</Link></li>
                   <li><Link to="/Support" state={{ tab: "Terms-of-Use" }}>{language === "VI" ? (<>Điều khoản sử dụng</>) : ("이용약관")}</Link></li>
                   <li><Link to="/Support" state={{ tab: "personal-information" }}>{language === "VI" ? (<>Xử lý thông tin cá nhân</>) : ("개인 정보 처리 방침")}</Link></li>
+                  <li><Link to="/Support" state={{ tab: "contact" }}>{language === "VI" ? (<>Liên hệ</>) : ("Contact")}</Link></li>
+                  <li><Link to="/Support" state={{ tab: "profile-search" }}>{language === "VI" ? (<>Tra cứu hồ sơ</>) : ("진행 현황 조회")}</Link></li>
                 </ul>
               </div>
             </div>

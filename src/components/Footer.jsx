@@ -147,7 +147,7 @@ function Footer() {
           }}
         >
           {/* Left: Logo + Info */}
-          <div style={{ flex: 1.4, minWidth: 400, display: "flex", flexDirection: "column", gap: 18, transform: "translateX(-60px)" }}>
+          <div style={{ flex: 1.4, minWidth: 500, display: "flex", flexDirection: "column", gap: 18, transform: "translateX(-60px)" }}>
             <div className="logo-footer" style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <img src={logo} alt="Logo" style={{ width: 180 }} />
             </div>

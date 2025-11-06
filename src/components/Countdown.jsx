@@ -12,9 +12,17 @@ function Countdown() {
   }
 
   // Địa chỉ để nhúng map
-  const [address] = useState(
-    "(48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)"
-  );
+  const [addresses] = useState([
+    {
+      ko: "서울: (03150) 서울특별시 종로구 삼봉로 81 두산위브 파빌리온, 1238호",
+      vi: "Seoul: Toà nhà Doosan We've Pavilion, Phòng 1238, 81,Sambong-ro Jongno-gu, Seoul, Hàn Quốc (03150) ",
+    },
+    {
+      ko: "부산: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)",
+      vi: "Busan: Tòa nhà Byucksan e-Centum Classone, Phòng 915 - 916, 99 Centumdong-ro, Haeundae-gu, Busan, Hàn Quốc (48059)",
+    },
+
+  ]);
 
   const mapQuery = encodeURIComponent("Centumdong-ro 99, Haeundae-gu, Busan");
   const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
@@ -24,7 +32,7 @@ function Countdown() {
       id="contact-location"
       style={{ background: "#ffffff", padding: "40px 0 60px 0" }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px" }}>
+      <div style={{ maxWidth: 1350, margin: "0 auto", padding: "0 16px" }}>
         <div
           className="contact-flex"
           style={{
@@ -113,14 +121,12 @@ function Countdown() {
               <div style={{ fontSize: 18 }}>📍</div>
               <div>
                 <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Địa chỉ Văn phòng (Trụ sở chính)</>) : ("주소")}</div>
-                <div style={{ color: "#334155" }}>
-                  
-                  {language === "VI" ? (
-                      address === "(48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)" ? "(48059) Tòa nhà Byucksan e-Centum Classone, Phòng 915 - 916, 99 Centumdong-ro, Haeundae-gu, Busan, Hàn Quốc." :
-                       address
-                    ) : (
-                      address
-                    )}
+                <div style={{ color: "#334155",lineHeight: 2 }}>
+                  {addresses.map((addr, index) => (
+                    <div key={index}>
+                      * {language === "VI" ? addr.vi : addr.ko}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -138,7 +144,7 @@ function Countdown() {
                 <div style={{ color: "#334155" }}>
 
                   {language === "VI" ? (<>Giờ hoạt động: 09:00 ~ 18:00 <br />
-                    (Nghỉ trưa: 12:00~13:00, Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) 
+                    (Nghỉ trưa: 12:00~13:00, Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>)
                     : (<>평일 09:00 ~ 18:00 <br />(점심 12:00~13:00, 주말 공휴일 휴무)</>)}
                 </div>
               </div>
@@ -148,7 +154,7 @@ function Countdown() {
               <div>
                 <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Phương tiện giao thông</>) : ("대중교통")}</div>
                 <div style={{ color: "#334155" }}>
-                    {language === "VI" ? (<>Ga Centum City (Line 2) / Xe buýt: 100-1, 155, 200, 31, 5-1</>) : ("센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번")}
+                  {language === "VI" ? (<>Ga Centum City (Line 2) / Xe buýt: 100-1, 155, 200, 31, 5-1</>) : ("센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번")}
                 </div>
               </div>
             </div>

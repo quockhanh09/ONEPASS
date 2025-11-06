@@ -1889,10 +1889,7 @@ function App() {
                            margin-bottom: 24px !important;
                       }
 
-                      section > div:first-child div:nth-child(1) {
-                          font-size: 20px !important;
-                          
-                      }
+                     
 
         section > div:first-child div:nth-child(2) {
           font-size: 14px !important;

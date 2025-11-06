@@ -123,7 +123,7 @@ function Countdown() {
                 <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Địa chỉ Văn phòng (Trụ sở chính)</>) : ("주소")}</div>
                 <div style={{ color: "#334155",lineHeight: 2 }}>
                   {addresses.map((addr, index) => (
-                    <div key={index}>
+                    <div className="addresses-text" key={index}>
                       * {language === "VI" ? addr.vi : addr.ko}
                     </div>
                   ))}
@@ -165,6 +165,10 @@ function Countdown() {
         {
           `
           @media (max-width: 450px) {
+          .addresses-text{
+            font-size: 14px;!important;
+            line-height: 1.7 !important;
+          }
  .main-left {
    flex: 1 1 100% !important;
    min-width: auto !important;

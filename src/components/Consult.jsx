@@ -14,15 +14,15 @@ import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
 import naverIcon from "../assets/img/image19.png";
 export default function Consult() {
-   const [activeId, setActiveId] = useState(null);
-    const [hoverId, setHoverId] = useState(null);
-    const effectiveId = hoverId ?? activeId;
-    const items = [
-      { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
-      { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
-      { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
-      { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
-    ];
+  const [activeId, setActiveId] = useState(null);
+  const [hoverId, setHoverId] = useState(null);
+  const effectiveId = hoverId ?? activeId;
+  const items = [
+    { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+    { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+    { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+    { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+  ];
   const { language } = useLanguage();
   const handleSubmitConsult1 = async () => {
     if (!service || !name || !phone || !agree) {
@@ -68,22 +68,25 @@ export default function Consult() {
     }
   };
 
-
-
-
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
   const list = [
-    "인증 센터",
-    "결혼 이민",
-    "출생신고 대행",
-    "출입국 행정 대행",
-    "신분증명 서류 대행",
-    "입양 절차 대행",
-    "비자 대행",
-    "법률 컨설팅",
-    "B2B 서비스",
-    "기타",
+    { ko: "인증 센터", vi: "Chứng thực" },
+    { ko: "결혼 이민", vi: "Kết hôn" },
+    { ko: "출생신고 대행", vi: "Khai sinh, khai tử" },
+    { ko: "출입국 행정 대행", vi: "Xuất nhập cảnh" },
+    { ko: "신분증명 서류 대행", vi: "Giấy tờ tuỳ thân" },
+    { ko: "입양 절차 대행", vi: "Nhận nuôi" },
+    { ko: "비자 대행", vi: "Thị thực" },
+    { ko: "법률 컨설팅", vi: "Tư vấn pháp lý" },
+    { ko: "B2B 서비스", vi: "Dịch vụ B2B" },
+  ];
+  const [region, setRegion] = useState("");
+  const [openRegion, setOpenRegion] = useState(false);
+
+  const regionList = [
+    { ko: "서울", vi: "Seoul" },
+    { ko: "부산", vi: "Busan" },
   ];
   const [serviceContents, setServiceContents] = useState([
     {
@@ -846,11 +849,12 @@ export default function Consult() {
                 }}
               >
                 {list.map((v) => (
-                  <div className="phoneRight-form1-2"
-                    key={v}
+                  <div
+                    className="phoneRight-form1-2"
+                    key={v.ko}
                     onClick={() => {
-                      setSelected(v);
-                      setService(v);
+                      setSelected(language === "VI" ? v.vi : v.ko);
+                      setService(v.ko); // nếu cần lưu giá trị gốc tiếng Hàn
                       setOpen(false);
                     }}
                     style={{
@@ -861,21 +865,7 @@ export default function Consult() {
                     onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
                     onMouseLeave={(e) => (e.target.style.background = "#fff")}
                   >
-                    {language === "VI" ? (
-                      v === "인증 센터" ? "Chứng thực" :
-                        v === "결혼 이민" ? "Kết hôn" :
-                          v === "출생신고 대행" ? "Khai sinh, khai tử" :
-                            v === "출입국 행정 대행" ? "Xuất nhập cảnh" :
-                              v === "신분증명 서류 대행" ? "Giấy tờ tuỳ thân" :
-                                v === "입양 절차 대행" ? "Nhận nuôi " :
-                                  v === "비자 대행" ? "Thị thực" :
-                                    v === "법률 컨설팅" ? "Tư vấn pháp lý" :
-                                      v === "B2B 서비스" ? "Dịch vụ B2B" :
-                                        v === "기타" ? "Khác " :
-                                          v
-                    ) : (
-                      v
-                    )}
+                    {language === "VI" ? v.vi : v.ko}
                   </div>
                 ))}
               </div>
@@ -884,6 +874,85 @@ export default function Consult() {
             {!selected && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+              </div>
+            )}
+          </div>
+
+          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+            <div
+              className="phoneRight-form-1"
+              onClick={() => setOpenRegion(!openRegion)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
+                cursor: "pointer",
+              }}
+            >
+              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+              </label>
+              <div
+                className="phoneRight-form1"
+                style={{
+                  flex: 1,
+                  padding: "12px 0",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span style={{ color: region ? "#000" : "#999" }}>
+                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
+            </div>
+
+            {openRegion && (
+              <div
+                className="phoneRight-form1-1"
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {regionList.map((r) => (
+                  <div
+                    key={r.ko}
+                    onClick={() => {
+                      setRegion(language === "VI" ? r.vi : r.ko);
+                      setOpenRegion(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {language === "VI" ? r.vi : r.ko}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!region && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
               </div>
             )}
           </div>
@@ -1368,10 +1437,11 @@ export default function Consult() {
               >
                 {list.map((v) => (
                   <div
-                    key={v}
+                    className="phoneRight-form1-2"
+                    key={v.ko}
                     onClick={() => {
-                      setSelected(v);
-                      setService(v);
+                      setSelected(language === "VI" ? v.vi : v.ko);
+                      setService(v.ko); // nếu cần lưu giá trị gốc tiếng Hàn
                       setOpen(false);
                     }}
                     style={{
@@ -1382,23 +1452,10 @@ export default function Consult() {
                     onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
                     onMouseLeave={(e) => (e.target.style.background = "#fff")}
                   >
-                    {language === "VI" ? (
-                      v === "인증 센터" ? "Chứng thực" :
-                        v === "결혼 이민" ? "Kết hôn" :
-                          v === "출생신고 대행" ? "Khai sinh, khai tử" :
-                            v === "출입국 행정 대행" ? "Xuất nhập cảnh" :
-                              v === "신분증명 서류 대행" ? "Giấy tờ tuỳ thân" :
-                                v === "입양 절차 대행" ? "Nhận nuôi " :
-                                  v === "비자 대행" ? "Thị thực" :
-                                    v === "법률 컨설팅" ? "Tư vấn pháp lý" :
-                                      v === "B2B 서비스" ? "Dịch vụ B2B" :
-                                        v === "기타" ? "Khác " :
-                                          v
-                    ) : (
-                      v
-                    )}
+                    {language === "VI" ? v.vi : v.ko}
                   </div>
                 ))}
+
               </div>
             )}
 
@@ -1408,7 +1465,84 @@ export default function Consult() {
               </div>
             )}
           </div>
+          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+            <div
+              className="phoneRight-form-1"
+              onClick={() => setOpenRegion(!openRegion)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
+                cursor: "pointer",
+              }}
+            >
+              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+              </label>
+              <div
+                className="phoneRight-form1"
+                style={{
+                  flex: 1,
+                  padding: "12px 0",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span style={{ color: region ? "#000" : "#999" }}>
+                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
+            </div>
 
+            {openRegion && (
+              <div
+                className="phoneRight-form1-1"
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {regionList.map((r) => (
+                  <div
+                    key={r.ko}
+                    onClick={() => {
+                      setRegion(language === "VI" ? r.vi : r.ko);
+                      setOpenRegion(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {language === "VI" ? r.vi : r.ko}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!region && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+              </div>
+            )}
+          </div>
           {/* 이름 */}
           <div className="emailRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
             <div
@@ -1885,7 +2019,7 @@ export default function Consult() {
         </h3>
         <h2
           style={{
-            fontSize:24,
+            fontSize: 24,
             fontWeight: 700,
             lineHeight: 1.5,
             marginBottom: 18,
@@ -1969,10 +2103,11 @@ export default function Consult() {
               >
                 {list.map((v) => (
                   <div
-                    key={v}
+                    className="phoneRight-form1-2"
+                    key={v.ko}
                     onClick={() => {
-                      setSelected(v);
-                      setService(v)
+                      setSelected(language === "VI" ? v.vi : v.ko);
+                      setService(v.ko); // nếu cần lưu giá trị gốc tiếng Hàn
                       setOpen(false);
                     }}
                     style={{
@@ -1983,21 +2118,7 @@ export default function Consult() {
                     onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
                     onMouseLeave={(e) => (e.target.style.background = "#fff")}
                   >
-                    {language === "VI" ? (
-                      v === "인증 센터" ? "Chứng thực" :
-                        v === "결혼 이민" ? "Kết hôn" :
-                          v === "출생신고 대행" ? "Khai sinh, khai tử" :
-                            v === "출입국 행정 대행" ? "Xuất nhập cảnh" :
-                              v === "신분증명 서류 대행" ? "Giấy tờ tuỳ thân" :
-                                v === "입양 절차 대행" ? "Nhận nuôi " :
-                                  v === "비자 대행" ? "Thị thực" :
-                                    v === "법률 컨설팅" ? "Tư vấn pháp lý" :
-                                      v === "B2B 서비스" ? "Dịch vụ B2B" :
-                                        v === "기타" ? "Khác " :
-                                          v
-                    ) : (
-                      v
-                    )}
+                    {language === "VI" ? v.vi : v.ko}
                   </div>
                 ))}
               </div>
@@ -2009,7 +2130,84 @@ export default function Consult() {
               </div>
             )}
           </div>
+             <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+            <div
+              className="phoneRight-form-1"
+              onClick={() => setOpenRegion(!openRegion)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
+                cursor: "pointer",
+              }}
+            >
+              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+              </label>
+              <div
+                className="phoneRight-form1"
+                style={{
+                  flex: 1,
+                  padding: "12px 0",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span style={{ color: region ? "#000" : "#999" }}>
+                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
+            </div>
 
+            {openRegion && (
+              <div
+                className="phoneRight-form1-1"
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {regionList.map((r) => (
+                  <div
+                    key={r.ko}
+                    onClick={() => {
+                      setRegion(language === "VI" ? r.vi : r.ko);
+                      setOpenRegion(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {language === "VI" ? r.vi : r.ko}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!region && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+              </div>
+            )}
+          </div>
           {/* 이름 */}
           <div className="visitRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
             <div className="visitRight-form2-main"
@@ -2558,7 +2756,7 @@ export default function Consult() {
             {language === "VI" ? (<>TƯ VẤN</>) : ("CONSULT")}
           </h1>
 
-            <style>
+          <style>
             {`
       /* responsive chỉ chỉnh vị trí chữ */
       @media (max-width: 768px) {
@@ -2804,7 +3002,7 @@ export default function Consult() {
                 : "상담 신청"}
           </div>
         </div>
-              <div className="social-container">
+        <div className="social-container">
           {items.map((item) => {
             const isExpanded = effectiveId === item.id;
             return (

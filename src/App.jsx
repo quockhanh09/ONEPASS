@@ -36,7 +36,7 @@ import a32 from "./assets/img/image252.png";
 import a33 from "./assets/img/image253.png";
 import a35 from "./assets/img/a35.png";
 import a36 from "./assets/img/a36.png";
-
+import a37 from "./assets/img/n1-1-3.png";
 import n1 from "./assets/img/n19.png";
 import n2 from "./assets/img/n2.png";
 import n3 from "./assets/img/n3.png";
@@ -297,6 +297,7 @@ function App() {
     "인증 센터": [
       { img: a34, title: "번역 공증", desc: "베트남어, 한국어, 영어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증", tabKey: "a1", },
       { img: a1, title: "인증 센터", desc: "영사 확인, 사실인증", tabKey: "a2" },
+      { img: a37, title: "사실 공증", desc: "문서, 서류, 개인 서명 및 개인 정보의 정확성과 합법성 인증, 내용 사실 공증", tabKey: "a2" },
 
     ],
     "결혼 이민": [
@@ -309,13 +310,13 @@ function App() {
     ],
     "출생신고": [
       { img: a5, title: "출생 신고", desc: "신생아 출생 신고를 정확하고 신속하게 대행", tabKey: "a8" },
-      { img: a6, title: "기한 초과 출생신고", desc: "기간이 초과된 출생 신고 절차를 특별 지원", tabKey: "a9" },
+      { img: a6, title: "출생 재신고", desc: "출생신고서 및 출생신고증 분실 시 재신고", tabKey: "a9" },
       { img: a7, title: "사망 신고", desc: "사망 신고 및 관련 서류 처리 대행", tabKey: "a10" },
-      { img: a8, title: "기한 초과 사망신고", desc: "기간이 초과된 사망 신고 절차 지원 및 해결", tabKey: "a11" },
+      { img: a8, title: "사망 재신고", desc: "사망증명서 및 사망신고서 분실 시 재등록", tabKey: "a11" },
     ],
     "출입국 행정": [
       { img: a9, title: "베트남 국적 포기 신청", desc: "베트남 국적 포기 신청 및 서류 절차 대행", tabKey: "a12" },
-      { img: a10, title: "베트남 국적 유지 신청", desc: " 이중국적 유지를 위한 신고 및 관련 절차를지원", tabKey: "a13" },
+      
       { img: a11, title: "베트남 국적 재귀화 신청", desc: "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
       { img: a12, title: "베트남으로 시체, 유해, 유골 송환 허가 신청", desc: "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
       { img: a13, title: "베트남 국적 사실 확인", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
@@ -334,7 +335,7 @@ function App() {
 
     ],
     "비자 대행": [
-      { img: a22, title: "베트남 통행증 발급", desc: "재외 공관에서 발급받은 통증 발급 지원", tabKey: "a25" },
+    
       { img: a23, title: "초청 (단기방문 C-3-1 비자)", desc: "한국 단기 방문 비자(C-3-1) 신청 및 발급 절차 지원", tabKey: "a26" },
       { img: a24, title: "초청 (방문동거 F-1-5 비자)", desc: "한국 방문동거 비자(F-1-5) 신청에 필요한 서류 준비 및 절차 대행", tabKey: "a27" },
       { img: a25, title: "베트남 비자면제증 발급", desc: "베트남 비자 면제서의 신규 등록 및 재등록 절차 대행", tabKey: "a28" },
@@ -1363,6 +1364,7 @@ function App() {
                                 {language === "VI"
                                   ? card.title === "번역 공증" ? "Dịch thuật, công chứng"
                                     : card.title === "인증 센터" ? "Hợp pháp hoá"
+                                     : card.title === "사실 공증" ? "Chứng thực"
                                       : card.title === "한국에서 혼인 신고 " ? "Đăng ký kết hôn tại Hàn Quốc"
                                         : card.title === "혼인관계증명서 발급 신청" ? "Cấp giấy xác nhận tình trạng hôn nhân"
                                           : card.title === "혼인요건인증서 발급 신청" ? "Giấy xác nhận đủ điều kiện kết hôn"
@@ -1370,12 +1372,12 @@ function App() {
                                               : card.title === "결혼이민 비자신청" ? "Đăng ký Visa kết hôn"
 
                                                 : card.title === "출생 신고" ? "Đăng ký khai sinh"
-                                                  : card.title === "기한 초과 출생신고" ? "Đăng ký khai sinh quá hạn"
+                                                  : card.title === "출생 재신고" ? "Đăng ký lại khai sinh"
                                                     : card.title === "사망 신고" ? "Đăng ký việc tử"
-                                                      : card.title === "기한 초과 사망신고" ? "Đăng ký khai tử quá hạn"
+                                                      : card.title === "사망 재신고" ? "Đăng ký lại khai tử"
 
                                                         : card.title === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch Việt Nam"
-                                                          : card.title === "베트남 국적 유지 신청" ? "Đăng ký giữ quốc tịch Việt Nam"
+                                                          
                                                             : card.title === "베트남 국적 재귀화 신청" ? "Xin trở lại quốc tịch Việt Nam"
                                                               : card.title === "베트남으로 시체, 유해, 유골 송환 허가 신청" ? "Cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
                                                                 : card.title === "베트남 국적 사실 확인" ? "Thủ tục hồi hương (đăng ký thường trú ở Việt Nam) "
@@ -1390,7 +1392,6 @@ function App() {
                                                                               : card.title === "혼외자 자녀 인지" ? "Nhận cha, mẹ, con"
                                                                                 : card.title === "입양 절차 대행" ? "Đăng ký nhận con nuôi"
 
-                                                                                  : card.title === "베트남 통행증 발급" ? "Cấp giấy thông hành"
                                                                                     : card.title === "초청 (단기방문 C-3-1 비자)" ? "Visa thăm thân ngắn hạn (C-3-1)"
                                                                                       : card.title === "초청 (방문동거 F-1-5 비자)" ? "Visa thăm thân dài hạn (F-1-5)"
                                                                                         : card.title === "베트남 비자면제증 발급" ? "Cấp giấy miễn thị thực "
@@ -1417,10 +1418,11 @@ function App() {
                                 {language === "VI"
                                   ? card.desc ===
                                     "베트남어, 한국어, 영어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증"
-                                    ? "Dịch công chứng, lãnh sự hóa văn bản, hồ sơ sang tiếng Việt, Hàn, Anh, v.v"
+                                    ? "Dịch và công chứng bản dịch giấy tờ, hồ sơ, tài liệu đa ngôn ngữ: Tiếng Việt, Tiếng Hàn, Tiếng Anh và Tiếng Trung"
                                     : card.desc === "영사 확인, 사실인증"
                                       ? "Chứng nhận lãnh sự, hợp pháp hoá lãnh sự"
-
+                                      : card.desc === "문서, 서류, 개인 서명 및 개인 정보의 정확성과 합법성 인증, 내용 사실 공증"
+                                      ? "Chứng thực tính chính xác, hợp pháp của các giấy tờ, văn bản, chữ ký của cá nhân, thông tin cá nhân"
                                       : card.desc === "한국에서의 결혼 등록 절차 전반을 대행하고 지원"
                                         ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Hàn Quốc"
                                         : card.desc === "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원"
@@ -1430,12 +1432,12 @@ function App() {
 
                                             : card.desc === "신생아 출생 신고를 정확하고 신속하게 대행"
                                               ? "Tư vấn hồ sơ liên quan tới đăng ký khai sinh"
-                                              : card.desc === "기간이 초과된 출생 신고 절차를 특별 지원"
-                                                ? "Hỗ trợ tư vấn hồ sơ liên quan tới đăng ký khai sinh quá hạn"
+                                              : card.desc === "출생신고서 및 출생신고증 분실 시 재신고"
+                                                ? "Đăng ký lại Sổ đăng ký khai sinh và Giấy đăng ký khai sinh khi bị mất"
                                                 : card.desc === "사망 신고 및 관련 서류 처리 대행"
                                                   ? "Tư vấn hồ sơ liên quan tới đăng ký việc tử"
-                                                  : card.desc === "기간이 초과된 사망 신고 절차 지원 및 해결"
-                                                    ? "Hỗ trợ tư vấn hồ sơ liên quan tới đăng ký khai tử quá hạn"
+                                                  : card.desc === "사망증명서 및 사망신고서 분실 시 재등록"
+                                                    ? "Đăng ký lại Sổ đăng ký việc tử và bản chính Giấy chứng tử khi bị mất"
 
                                                     : card.desc === "베트남 국적 포기 신청 및 서류 절차 대행"
                                                       ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới xin thôi quốc tịch VIệt Nam"

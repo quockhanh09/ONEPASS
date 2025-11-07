@@ -15,17 +15,20 @@ function Countdown() {
   const [addresses] = useState([
     {
       ko: "서울: (03150) 서울특별시 종로구 삼봉로 81 두산위브 파빌리온, 1238호",
-      vi: "Seoul: Toà nhà Doosan We've Pavilion, Phòng 1238, 81,Sambong-ro Jongno-gu, Seoul, Hàn Quốc (03150) ",
+      vi: "Seoul: Toà nhà Doosan We've Pavilion, Phòng 1238, 81,Sambong-ro Jongno-gu, Seoul, Hàn Quốc (03150)",
+      map: "81 Sambong-ro, Jongno-gu, Seoul",
     },
     {
       ko: "부산: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)",
       vi: "Busan: Tòa nhà Byucksan e-Centum Classone, Phòng 915 - 916, 99 Centumdong-ro, Haeundae-gu, Busan, Hàn Quốc (48059)",
+      map: "99 Centumdong-ro, Haeundae-gu, Busan",
     },
-
   ]);
 
-  const mapQuery = encodeURIComponent("Centumdong-ro 99, Haeundae-gu, Busan");
-  const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+  // ✅ Map hiện tại
+  const [selectedMap, setSelectedMap] = useState(addresses[1].map); // mặc định Busan
+  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(selectedMap)}&output=embed`;
+
 
   return (
     <section
@@ -44,7 +47,8 @@ function Countdown() {
           }}
         >
           {/* Map trái */}
-          <div className="Map"
+          <div
+            className="Map"
             style={{
               flex: "1 1 520px",
               minWidth: 360,
@@ -52,7 +56,7 @@ function Countdown() {
               borderRadius: 12,
               overflow: "hidden",
               boxShadow: "0 2px 16px rgba(10,20,40,0.06)",
-              marginLeft: 20
+              marginLeft: 20,
             }}
           >
             <iframe
@@ -65,9 +69,6 @@ function Countdown() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-            <style>{`
-            
-            `}</style>
           </div>
 
           {/* Khối thông tin phải */}
@@ -120,10 +121,27 @@ function Countdown() {
               {/* 주소 */}
               <div style={{ fontSize: 18 }}>📍</div>
               <div>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Địa chỉ Văn phòng (Trụ sở chính)</>) : ("주소")}</div>
-                <div style={{ color: "#334155",lineHeight: 2 }}>
+                <div style={{ fontWeight: 800, marginBottom: 6 }}>
+                  {language === "VI" ? (
+                    <>Địa chỉ Văn phòng (Trụ sở chính)</>
+                  ) : (
+                    "주소"
+                  )}
+                </div>
+
+                <div style={{ color: "#334155", lineHeight: 2 }}>
                   {addresses.map((addr, index) => (
-                    <div className="addresses-text" key={index}>
+                    <div
+                      key={index}
+                      onClick={() => setSelectedMap(addr.map)} // ✅ chuyển map khi nhấn
+                      className="addresses-text"
+                      style={{
+                        cursor: "pointer",
+                        transition: "0.2s",
+                        fontWeight: selectedMap === addr.map ? 700 : 400,
+                        color: selectedMap === addr.map ? "#1e40af" : "#334155",
+                      }}
+                    >
                       * {language === "VI" ? addr.vi : addr.ko}
                     </div>
                   ))}

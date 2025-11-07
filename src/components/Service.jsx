@@ -3305,9 +3305,7 @@ function Service(props) {
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea6")} onClick={() => setActiveTab6("korea6")}>
-                {language === "VI" ? (<>Cấp giấy thông hành</>) : ("베트남 통행증 발급")}
-              </button>
+              
               <button style={tabStyle("vietnam6")} onClick={() => setActiveTab6("vietnam6")}>
                 {language === "VI" ? (<>Visa thăm thân C-3-1</>) : ("초청(단기방문 C-3-1 비자)")}
               </button>
@@ -3401,7 +3399,7 @@ function Service(props) {
                               }}>
                                 {language === "VI" ? (
                                   col === "비자 대행" ? "Thị Thực" :
-                                    col === "베트남 통행증 발급" ? "Cấp giấy thông hành" :
+                                    
                                       col === "별도 상담" ? "Trao đổi khi tư vấn" :
                                         col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
 

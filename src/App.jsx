@@ -1380,7 +1380,7 @@ function App() {
                                                               : card.title === "베트남으로 시체, 유해, 유골 송환 허가 신청" ? "Cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
                                                                 : card.title === "베트남 국적 사실 확인" ? "Thủ tục hồi hương (đăng ký thường trú ở Việt Nam) "
 
-                                                                  : card.title === "일반 여권 (재)발급·변경· 추가" ? "Cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
+                                                                  : card.title === "일반 여권 (재)발급·변경·추가" ? "Cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
                                                                     : card.title === "호적 변경·정정·추가, 민족 재확인, 성별 재확인 등" ? "Thay đổi, cải chính, bổ sung hộ tịch"
                                                                       : card.title === "베트남 국민 신고 업데이트" ? "Đăng ký công dân, cập nhật thông tin công dân"
                                                                         : card.title === "베트남 출신 증명서 발급" ? "Cấp giấy xác nhận người gốc Việt Nam"

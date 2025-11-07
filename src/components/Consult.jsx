@@ -81,6 +81,7 @@ export default function Consult() {
     { ko: "법률 컨설팅", vi: "Tư vấn pháp lý" },
     { ko: "B2B 서비스", vi: "Dịch vụ B2B" },
   ];
+  
   const [region, setRegion] = useState("");
   const [openRegion, setOpenRegion] = useState(false);
 

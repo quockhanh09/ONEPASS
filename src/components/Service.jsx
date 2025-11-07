@@ -1083,7 +1083,13 @@ function Service(props) {
       borderBottom: isActive ? "3px solid #111827" : "3px solid transparent",
     };
   };
+  const [region, setRegion] = useState("");
+  const [openRegion, setOpenRegion] = useState(false);
 
+  const regionList = [
+    { ko: "서울", vi: "Seoul" },
+    { ko: "부산", vi: "Busan" },
+  ];
   const currentTab = tabContents[activeTab];
   // UI CHANGE: Added serviceContents state to store editable content for each service
   // Each service has its own title, description, and styling options
@@ -4681,7 +4687,84 @@ function Service(props) {
                   </div>
                 )}
               </div>
+                <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+            <div
+              className="phoneRight-form-1"
+              onClick={() => setOpenRegion(!openRegion)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid #000",
+                fontSize: 18,
+                cursor: "pointer",
+              }}
+            >
+              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+              </label>
+              <div
+                className="phoneRight-form1"
+                style={{
+                  flex: 1,
+                  padding: "12px 0",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span style={{ color: region ? "#000" : "#999" }}>
+                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                </span>
+                <i
+                  className="fa-solid fa-chevron-down"
+                  style={{
+                    transition: ".2s",
+                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </div>
+            </div>
 
+            {openRegion && (
+              <div
+                className="phoneRight-form1-1"
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 120,
+                  right: 0,
+                  background: "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  zIndex: 10,
+                }}
+              >
+                {regionList.map((r) => (
+                  <div
+                    key={r.ko}
+                    onClick={() => {
+                      setRegion(language === "VI" ? r.vi : r.ko);
+                      setOpenRegion(false);
+                    }}
+                    style={{
+                      padding: "10px 12px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                  >
+                    {language === "VI" ? r.vi : r.ko}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!region && (
+              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+              </div>
+            )}
+          </div>
               {/* 이름 */}
               <div style={{ marginBottom: 20 }}>
                 <div

@@ -830,7 +830,13 @@ function Service(props) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initialTop]);
-
+  const [region, setRegion] = useState("");
+  const [openRegion, setOpenRegion] = useState(false);
+  const [regionError, setRegionError] = useState(true);
+  const regionList = [
+      { ko: "서울", vi: "Seoul" },
+      { ko: "부산", vi: "Busan" },
+    ];
   const { language } = useLanguage();
   const [service, setService] = useState("");
   const location = useLocation();
@@ -861,6 +867,7 @@ const [serviceEmailError, setServiceEmailError] = useState(false);
 const [servicePhoneError, setServicePhoneError] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState({ text: "", isError: false });
+
   const showTemporaryPopup = (message, isError = false) => {
     setPopupMessage({ text: message, isError });
     setShowPopup(true);
@@ -974,10 +981,10 @@ const handleSubmitService = async (e) => {
   setServiceNameError(!serviceName.trim());
   setServicePhoneError(!servicePhone.trim());
   setServiceEmailError(!serviceEmail.trim());
-
-  // 🔹 Nếu còn ô nào trống thì báo lỗi và dừng lại
+  setRegionError(!region);
   if (
     !serviceContents[activeIndex]?.title ||
+    !region ||
     !serviceName.trim() ||
     !servicePhone.trim() ||
     !serviceAgree ||
@@ -1000,6 +1007,7 @@ const handleSubmitService = async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         TenDichVu: translatedService,
+        CoSoTuVan: region,
         HoTen: serviceName,
         Email: serviceEmail,
         MaVung: serviceCountryCode,
@@ -1030,6 +1038,8 @@ const handleSubmitService = async (e) => {
     setServiceNameError(false);
     setServicePhoneError(false);
     setServiceEmailError(false);
+    setRegion("");
+    setRegionError(true);
   } catch (err) {
     console.error("Lỗi khi kết nối server:", err);
     showTemporaryPopup(messages[currentLang].fail, true);
@@ -4775,6 +4785,99 @@ const handleSubmitService = async (e) => {
                   </div>
                 )}
               </div>
+          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+                  <div
+                    className="phoneRight-form-1"
+                    onClick={() => setOpenRegion(!openRegion)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      borderBottom: "1px solid #000",
+                      fontSize: 18,
+                      cursor: "pointer",
+                      backgroundColor: "transparent",
+                    }}
+                  >
+                    <label style={{ width: 120, fontWeight: 600 }}>
+                      {language === "VI" ? "Cơ sở" : "지역"}{" "}
+                      <span style={{ color: "red" }}>*</span>
+                    </label>
+
+                    <div
+                      style={{
+                        flex: 1,
+                        padding: "12px 0",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span style={{ color: region ? "#000" : "#999" }}>
+                        {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                      </span>
+                      <i
+                        className="fa-solid fa-chevron-down"
+                        style={{
+                          transition: ".2s",
+                          transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {openRegion && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: 120,
+                        right: 0,
+                        background: "#fff",
+                        border: "1px solid #ccc",
+                        borderRadius: 4,
+                        zIndex: 10,
+                      }}
+                    >
+                      {regionList.map((r) => (
+                        <div
+                          key={r.ko}
+                          onClick={() => {
+                            setRegion(language === "VI" ? r.vi : r.ko);
+                            setRegionError(false);
+                            setOpenRegion(false);
+                          }}
+                          style={{
+                            padding: "10px 12px",
+                            fontSize: 16,
+                            cursor: "pointer",
+                          }}
+                          onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                          onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                        >
+                          {language === "VI" ? r.vi : r.ko}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* luôn hiển thị lỗi đỏ nếu chưa chọn */}
+                  {regionError && (
+                    <div
+                      style={{
+                        fontSize: 12,
+                        color: "red",
+                        marginTop: 4,
+                        marginLeft: 120,
+                      }}
+                    >
+                      {language === "VI"
+                        ? "*Đây là mục bắt buộc"
+                        : "*필수입력입니다"}
+                    </div>
+                  )}
+                </div>
+
+
 
               {/* 이름 */}
               <div style={{ marginBottom: 20 }}>

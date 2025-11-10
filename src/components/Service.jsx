@@ -833,51 +833,6 @@ function Service(props) {
 
   const { language } = useLanguage();
   const [service, setService] = useState("");
-  const handleSubmitConsult1 = async () => {
-    if (!service || !name || !phone || !agree) {
-      showTemporaryPopup("모든 항목을 입력하고 동의해 주세요.", true);
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          HoTen: name,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        showTemporaryPopup(`오류 발생: ${data.error || "Server error"}`, true);
-        console.error("Server Error:", data);
-        return;
-      }
-
-      showTemporaryPopup("상담 신청 완료되었습니다!");
-      console.log("Server response:", data);
-
-
-      setService("");
-      setName("");
-      setPhone("");
-      setAgree(false);
-    } catch (err) {
-      console.error("Lỗi khi kết nối server:", err);
-      showTemporaryPopup("서버 연결 실패");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
   const location = useLocation();
   const incomingTabKey = location.state?.tabKey || null;
   // incoming service index from App (0-based)
@@ -895,57 +850,196 @@ function Service(props) {
   const [emailError, setEmailError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
   const [submittedServiceForm, setSubmittedServiceForm] = useState(false);
+  const [serviceName, setServiceName] = useState("");
+  const [serviceEmail, setServiceEmail] = useState("");
+  const [servicePhone, setServicePhone] = useState("");
+  const [serviceCountryCode, setServiceCountryCode] = useState("선택");
+  const [serviceAgree, setServiceAgree] = useState(false);
+  const [serviceLoading, setServiceLoading] = useState(false);
+ const [serviceNameError, setServiceNameError] = useState(true);
+const [serviceEmailError, setServiceEmailError] = useState(false);
+const [servicePhoneError, setServicePhoneError] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState({ text: "", isError: false });
+  const showTemporaryPopup = (message, isError = false) => {
+    setPopupMessage({ text: message, isError });
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 5000);
+  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmittedServiceForm(true);
 
-    if (!name || !phone || !email || !agree) {
-      if (!name) setNameError(true);
-      if (!phone) setPhoneError(true);
-      if (!email) setEmailError(true);
-      alert("모든 항목을 입력하고 동의해 주세요.");
+
+ const handleSubmit = async () => {
+  const lang = localStorage.getItem("lang") || "ko";
+
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+      serverError: "서버 오류가 발생했습니다.",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối máy chủ thất bại.",
+      serverError: "Đã xảy ra lỗi máy chủ.",
+    },
+  };
+
+  if (!service || !name || !phone || !agree) {
+    showTemporaryPopup(messages[lang].empty, true);
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: service,
+        TenHinhThuc: null, 
+        HoTen: name,
+        MaVung: countryCode,
+        SoDienThoai: phone,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      showTemporaryPopup(`${messages[lang].serverError}`, true);
+      console.error("Server Error:", data);
       return;
     }
 
-    setLoading(true);
+    showTemporaryPopup(messages[lang].success);
+    setService("");
+    setName("");
+    setPhone("");
+    setAgree(false);
+  } catch (err) {
+    console.error("Lỗi khi kết nối server:", err);
+    showTemporaryPopup(messages[lang].fail, true);
+  } finally {
+    setLoading(false);
+  }
+};
 
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvandichvu", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: serviceContents[activeIndex]?.title,
-          HoTen: name,
-          Email: email,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-        }),
-      });
 
-      const data = await response.json();
+const translateServiceTitle = (title) => {
+  if (!title) return "";
 
-      if (!response.ok) {
-        alert(`❌ 오류 발생: ${data.error || "Server error"}`);
-        console.error("Server Error:", data);
-        return;
-      }
-
-      alert("✅ 상담 신청 완료되었습니다!");
-      console.log("✅ Server response:", data);
-
-      // Reset form
-      setName("");
-      setPhone("");
-      setEmail("");
-      setAgree(false);
-    } catch (err) {
-      console.error("❌ Lỗi khi kết nối server:", err);
-      alert("❌ 서버 연결 실패 (Server connection failed)");
-    } finally {
-      setLoading(false);
-    }
+  const translations = {
+    "영사 확인 • 사실인증": "Chứng thực",
+    "결혼 이민": "Kết hôn",
+    "출생 · 사망 신고": "Khai sinh · Khai tử",
+    "출입국 행정": "Xuất nhập cảnh",
+    "신분증명 서류": "Giấy tờ tùy thân",
+    "입양 • 자녀 인지": "Nhận nuôi",
+    "비자 대행": "Thị thực",
+    "법률 컨설팅": "Tư vấn pháp lý",
+    "B2B 서비스": "Dịch vụ B2B",
   };
+
+  return translations[title] || title; 
+};
+
+const handleSubmitService = async (e) => {
+  e.preventDefault();
+
+  const lang = localStorage.getItem("lang") || "ko";
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+      serverError: "서버 오류가 발생했습니다.",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối server thất bại.",
+      serverError: "Đã xảy ra lỗi máy chủ.",
+    },
+  };
+  const currentLang = messages[lang] ? lang : "ko";
+
+  // ✅ Đánh dấu đã nhấn Submit để bật check UI
+  setSubmittedServiceForm(true);
+
+  // ✅ Kiểm tra và đặt lỗi cho từng ô ngay khi bấm Gửi
+  setServiceNameError(!serviceName.trim());
+  setServicePhoneError(!servicePhone.trim());
+  setServiceEmailError(!serviceEmail.trim());
+
+  // 🔹 Nếu còn ô nào trống thì báo lỗi và dừng lại
+  if (
+    !serviceContents[activeIndex]?.title ||
+    !serviceName.trim() ||
+    !servicePhone.trim() ||
+    !serviceAgree ||
+    serviceCountryCode === "선택"
+  ) {
+    showTemporaryPopup(messages[currentLang].empty, true);
+    return;
+  }
+
+  // 🔄 Nếu qua được phần check => bắt đầu gửi
+  setServiceLoading(true);
+
+  try {
+    const translatedService = translateServiceTitle
+      ? translateServiceTitle(serviceContents[activeIndex]?.title)
+      : serviceContents[activeIndex]?.title;
+
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: translatedService,
+        HoTen: serviceName,
+        Email: serviceEmail,
+        MaVung: serviceCountryCode,
+        SoDienThoai: servicePhone,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      showTemporaryPopup(
+        `${data.message || messages[currentLang].serverError}`,
+        true
+      );
+      console.error("Server Error:", data);
+      return;
+    }
+
+    showTemporaryPopup(messages[currentLang].success);
+
+    // ✅ Reset form sau khi gửi thành công
+    setServiceName("");
+    setServiceEmail("");
+    setServicePhone("");
+    setServiceCountryCode("선택");
+    setServiceAgree(false);
+    setSubmittedServiceForm(false);
+    setServiceNameError(false);
+    setServicePhoneError(false);
+    setServiceEmailError(false);
+  } catch (err) {
+    console.error("Lỗi khi kết nối server:", err);
+    showTemporaryPopup(messages[currentLang].fail, true);
+  } finally {
+    setServiceLoading(false);
+  }
+};
+
+
+
 
 
 
@@ -1083,13 +1177,7 @@ function Service(props) {
       borderBottom: isActive ? "3px solid #111827" : "3px solid transparent",
     };
   };
-  const [region, setRegion] = useState("");
-  const [openRegion, setOpenRegion] = useState(false);
 
-  const regionList = [
-    { ko: "서울", vi: "Seoul" },
-    { ko: "부산", vi: "Busan" },
-  ];
   const currentTab = tabContents[activeTab];
   // UI CHANGE: Added serviceContents state to store editable content for each service
   // Each service has its own title, description, and styling options
@@ -1254,7 +1342,7 @@ function Service(props) {
         return (
           <div className="main-case0" style={{ maxWidth: 1200, margin: "60px auto", padding: "0 20px" }}>
             <div
-              cassName="main-case0-title"
+              className="main-case0-title"
               contentEditable
               onInput={(e) => updateField(activeIndex, 'title', e.target.innerText)}
               style={{
@@ -4278,7 +4366,7 @@ function Service(props) {
 
           {/* --- Nút gửi --- */}
           <div
-            onClick={loading ? undefined : handleSubmitConsult1}
+            onClick={loading ? undefined :  handleSubmit}
             style={{
               width: 310,
               background: "#d7c199",
@@ -4638,7 +4726,7 @@ function Service(props) {
             </h2>
 
             {/* FORM */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitService}>
               {/* 서비스 선택 */}
               <div style={{ marginBottom: 20 }}>
                 <div
@@ -4687,84 +4775,7 @@ function Service(props) {
                   </div>
                 )}
               </div>
-                <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
-            <div
-              className="phoneRight-form-1"
-              onClick={() => setOpenRegion(!openRegion)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                fontSize: 18,
-                cursor: "pointer",
-              }}
-            >
-              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
-              </label>
-              <div
-                className="phoneRight-form1"
-                style={{
-                  flex: 1,
-                  padding: "12px 0",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span style={{ color: region ? "#000" : "#999" }}>
-                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
-                </span>
-                <i
-                  className="fa-solid fa-chevron-down"
-                  style={{
-                    transition: ".2s",
-                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
-              </div>
-            </div>
 
-            {openRegion && (
-              <div
-                className="phoneRight-form1-1"
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 120,
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: 4,
-                  zIndex: 10,
-                }}
-              >
-                {regionList.map((r) => (
-                  <div
-                    key={r.ko}
-                    onClick={() => {
-                      setRegion(language === "VI" ? r.vi : r.ko);
-                      setOpenRegion(false);
-                    }}
-                    style={{
-                      padding: "10px 12px",
-                      fontSize: 16,
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
-                  >
-                    {language === "VI" ? r.vi : r.ko}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {!region && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
-              </div>
-            )}
-          </div>
               {/* 이름 */}
               <div style={{ marginBottom: 20 }}>
                 <div
@@ -4777,26 +4788,50 @@ function Service(props) {
                   <label style={{ width: 120, fontWeight: 600 }}>
                     {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
                   </label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => { setName(e.target.value); if (e.target.value.trim()) setNameError(false); }}
-                    on
-                    placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
-                    style={{
-                      flex: 1,
-                      border: "none",
-                      padding: "12px 0",
-                      outline: "none",
-                      background: "transparent",
-                    }}
-                  />
+                    <input
+                      type="text"
+                      value={serviceName}
+                      onChange={(e) => { 
+                        const value = e.target.value;
+                        setServiceName(value); 
+                       if (value.trim() === "") {
+                          setServiceNameError(true);
+                        } else {
+                          setServiceNameError(false);
+                        }
+                      }}
+                      on
+                      placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
+                      style={{
+                        flex: 1,
+                        border: "none",
+                        padding: "12px 0",
+                        outline: "none",
+                        background: "transparent",
+                      }}
+                      pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                      title={
+                        language === "VI"
+                          ? "Họ tên phải có ít nhất 2 ký tự hợp lệ."
+                          : "이름은 최소 2자 이상이어야 합니다."
+                      }
+                                  />
                 </div>
-                {nameError && submittedServiceForm && (
-                  <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
+                { serviceNameError && (
+                  <div
+                    style={{
+                      fontSize: 12,
+                      color: "red",
+                      marginTop: 4,
+                      marginLeft: 120,
+                    }}
+                  >
+                    {language === "VI"
+                      ? "*Đây là mục bắt buộc"
+                      : "*필수입력입니다"}
                   </div>
                 )}
+
               </div>
 
               {/* 이메일 */}
@@ -4811,8 +4846,9 @@ function Service(props) {
                   <label style={{ width: 120, fontWeight: 600 }}> {language === "VI" ? (<>Email</>) : ("이메일")}</label>
                   <input
                     type="email"
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); if (e.target.value.trim()) setEmailError(false); }}
+                    value={serviceEmail}
+                    onChange={(e) => { 
+                      setServiceEmail(e.target.value); if (e.target.value.trim()) setServiceEmailError(false); }}
                     placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
                     style={{
                       flex: 1,
@@ -4823,11 +4859,11 @@ function Service(props) {
                     }}
                   />
                 </div>
-                {emailError && submittedServiceForm && (
+                {/* {serviceEmailError && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
                     {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
                   </div>
-                )}
+                )} */}
               </div>
 
               {/* 전화번호 */}
@@ -4843,8 +4879,8 @@ function Service(props) {
                     {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}<span style={{ color: "red" }}>*</span>
                   </label>
                   <select
-                    value={countryCode}
-                    onChange={(e) => setCountryCode(e.target.value)}
+                    value={serviceCountryCode}
+                    onChange={(e) => setServiceCountryCode(e.target.value)}
                     style={{
                       width: 60,
                       border: "none",
@@ -4859,8 +4895,17 @@ function Service(props) {
                   </select>
                   <input
                     type="text"
-                    value={phone}
-                    onChange={(e) => { setPhone(e.target.value); if (e.target.value.trim()) setPhoneError(false); }}
+                    value={servicePhone}
+                    onChange={(e) => { 
+                      const value = e.target.value;
+                       setServicePhone(value);
+                       if (value.trim() === "") {
+                          setServicePhoneError(true);
+                        } else {
+                          setServicePhoneError(false);
+
+                        }
+                      }}
                     placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
                     style={{
                       flex: 1,
@@ -4872,11 +4917,12 @@ function Service(props) {
                     }}
                   />
                 </div>
-                {phoneError && submittedServiceForm && (
-                  <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
-                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
-                  </div>
-                )}
+                  {servicePhoneError && (
+                    <div style={{ fontSize: 12, color: "red", marginTop: 4 }}>
+                      {language === "VI" ? (<>*Đây là mục bắt buộc</>) : (" *필수입입니다")}
+                    </div>
+                  )}
+
               </div>
 
               {/* 개인정보 동의 */}
@@ -4884,8 +4930,8 @@ function Service(props) {
                 <label className="checkbox-label" style={{ fontSize: 14, display: "flex", alignItems: "center" }}>
                   <input
                     type="radio"
-                    checked={agree}
-                    onChange={(e) => setAgree(e.target.checked)}
+                    checked={serviceAgree}
+                    onChange={(e) => setServiceAgree(e.target.checked)}
                     style={{
                       marginRight: 6,
                       width: 16,
@@ -4928,6 +4974,7 @@ function Service(props) {
               {/* Nút submit */}
               <button
                 type="submit"
+                disabled={serviceLoading}
                 style={{
                   width: "100%",
                   background: "#d9c4a4",
@@ -4940,7 +4987,13 @@ function Service(props) {
                   cursor: "pointer",
                 }}
               >
-                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
+              {serviceLoading
+                ? language === "VI"
+                  ? "Đang gửi..."
+                  : "전송 중..."
+                : language === "VI"
+                ? "Tư vấn"
+                : "상담 신청"}
               </button>
             </form>
 
@@ -5104,7 +5157,26 @@ function Service(props) {
           </style>
         </div>
       )}
-
+         {showPopup && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: "20px",
+                  right: "20px",
+                  background: popupMessage.isError ? "#f44336" : "#4CAF50", 
+                  color: "white",
+                  padding: "16px 30px",
+                  borderRadius: "8px",
+                  fontSize: "20px",
+                  fontWeight: 600,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                  zIndex: 9999,
+                  animation: "pushDown 0.5s ease-out",
+                }}
+              >
+                {popupMessage.text}
+              </div>
+            )}
     </>
   );
 }

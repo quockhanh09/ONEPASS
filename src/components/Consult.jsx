@@ -24,49 +24,7 @@ export default function Consult() {
     { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
   ];
   const { language } = useLanguage();
-  const handleSubmitConsult1 = async () => {
-    if (!service || !name || !phone || !agree) {
-      showTemporaryPopup("모든 항목을 입력하고 동의해 주세요.", true);
-      return;
-    }
 
-    setLoading(true);
-
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          HoTen: name,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        showTemporaryPopup(`오류 발생: ${data.error || "Server error"}`, true);
-        console.error("Server Error:", data);
-        return;
-      }
-
-      showTemporaryPopup("상담 신청 완료되었습니다!");
-      console.log("Server response:", data);
-
-
-      setService("");
-      setName("");
-      setPhone("");
-      setAgree(false);
-    } catch (err) {
-      console.error("Lỗi khi kết nối server:", err);
-      showTemporaryPopup("서버 연결 실패");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
@@ -119,7 +77,35 @@ export default function Consult() {
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState("");
   const [showTimePopup, setShowTimePopup] = useState(false);
-
+ const [goiService, setGoiService] = useState('');
+  const [goiCoSo, setGoiCoSo] = useState('');
+  const [goiName, setGoiName] = useState(''); 
+  const [goiEmail, setGoiEmail] = useState(''); 
+  const [goiPhone, setGoiPhone] = useState(''); 
+  const [goiCountryCode, setGoiCountryCode] = useState(''); 
+  const [goiAgree, setGoiAgree] = useState(false);
+  const [goiLoading, setGoiLoading] = useState(false);
+  const [emailService, setEmailService] = useState(''); 
+  const [emailName, setEmailName] = useState(''); 
+  const [emailEmail, setEmailEmail] = useState('');
+  const [emailPhone, setEmailPhone] = useState(''); 
+  const [emailCountryCode, setEmailCountryCode] = useState(''); 
+  const [emailContent, setEmailContent] = useState(''); 
+  const [emailAgree, setEmailAgree] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false); 
+  const [visitService, setVisitService] = useState("");
+  const [visitName, setVisitName] = useState(''); 
+  const [visitEmail, setVisitEmail] = useState(''); 
+  const [visitPhone, setVisitPhone] = useState(''); 
+  const [visitCountryCode, setVisitCountryCode] = useState(''); 
+  const [visitDate, setVisitDate] = useState('');
+  const [visitCoSo, setVisitCoSo] = useState(''); 
+  const [visitTime, setVisitTime] = useState(''); 
+  const [visitAgree, setVisitAgree] = useState(false); 
+  const [visitLoading, setVisitLoading] = useState(false); 
+  const [timeError, setTimeError] = useState(false);
+  const [emailCoSo, setEmailCoSo] = useState('')
+  const [coSoError, setCoSoError] = useState(false);
   const [submittedPhone, setSubmittedPhone] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState(false);
   const [submittedVisit, setSubmittedVisit] = useState(false);
@@ -169,267 +155,338 @@ export default function Consult() {
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 5000);
   };
-  const handleSubmit = async (e) => {  // Gọi Điện
-    e.preventDefault();
+const handleSubmitConsult = async () => {
+  const lang = localStorage.getItem("lang") || "ko";
 
-    setSubmittedPhone(true);
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+      serverError: "서버 오류가 발생했습니다.",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối máy chủ thất bại.",
+      serverError: "Đã xảy ra lỗi máy chủ.",
+    },
+  };
 
-    const lang = localStorage.getItem("lang") || "ko";
-    const messages = {
-      ko: {
-        empty: "모든 항목을 입력하고 동의해 주세요.",
-        success: "상담 신청 완료되었습니다!",
-        fail: "서버 연결 실패 (Server connection failed)",
-      },
-      vi: {
-        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-        success: "Đăng ký tư vấn thành công!",
-        fail: "Kết nối server thất bại",
-      },
-      en: {
-        empty: "Please fill in all fields and agree.",
-        success: "Consultation request submitted!",
-        fail: "Server connection failed",
-      },
-    };
+  if (!service || !name || !phone || !agree) {
+    showTemporaryPopup(messages[lang].empty, true);
+    return;
+  }
 
+  setLoading(true);
 
-    let hasError = false;
+  try {
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: service,
+        TenHinhThuc: null, 
+        HoTen: name,
+        MaVung: countryCode,
+        SoDienThoai: phone,
+      }),
+    });
 
-    if (!name.trim()) {
-      setNameError(true);
-      hasError = true;
-    }
-    if (!phone.trim()) {
-      setPhoneError(true);
-      hasError = true;
-    }
-    if (!email.trim()) {
-      setEmailError(true);
-      hasError = true;
-    }
-    if (!agree) {
-      hasError = true;
-    }
+    const data = await response.json();
 
-    if (hasError) {
-      showTemporaryPopup(messages[lang].empty, true);
+    if (!response.ok) {
+      showTemporaryPopup(`${messages[lang].serverError}`, true);
+      console.error("Server Error:", data);
       return;
     }
 
-    setLoading(true);
+    showTemporaryPopup(messages[lang].success);
+    setService("");
+    setName("");
+    setPhone("");
+    setAgree(false);
+  } catch (err) {
+    console.error("Lỗi khi kết nối server:", err);
+    showTemporaryPopup(messages[lang].fail, true);
+  } finally {
+    setLoading(false);
+  }
+};
+const handleSubmitGoiDien = async (e) => {
+  e.preventDefault();
+  setSubmittedPhone(true);
 
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvangoidien", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          TenHinhThuc: "Gọi điện",
-          HoTen: name,
-          Email: email,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-        }),
-      });
+  const lang = localStorage.getItem("lang") || "ko";
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("Server Error:", data);
-        showTemporaryPopup(`❌ ${data.error || messages[lang].fail}`, true);
-        return;
-      }
-
-      showTemporaryPopup(messages[lang].success);
-
-      // Reset form
-      setName("");
-      setPhone("");
-      setEmail("");
-      setAgree(false);
-      setNameError(false);
-      setPhoneError(false);
-      setEmailError(false);
-
-    } catch (err) {
-      console.error("Lỗi khi kết nối server:", err);
-      showTemporaryPopup(messages[lang].fail, true);
-    } finally {
-      setLoading(false);
-    }
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối server thất bại",
+    },
   };
 
 
-  const handleSubmit1 = async (e) => { // Email
-    const lang = localStorage.getItem("lang") || "ko";
-    e.preventDefault();
-    setSubmittedEmail(true);
-    const messages = {
-      ko: {
-        empty: "모든 항목을 입력하고 동의해 주세요.",
-        success: "상담 신청 완료되었습니다!",
-        fail: "서버 연결 실패 (Server connection failed)",
-      },
-      vi: {
-        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-        success: "Đăng ký tư vấn thành công!",
-        fail: "Kết nối server thất bại",
-      },
-      en: {
-        empty: "Please fill in all fields and agree.",
-        success: "Consultation request submitted!",
-        fail: "Server connection failed",
-      },
-    };
-    if (!name || !phone || !email || !agree || !content || !title) {
-      if (!name) setNameError(true);
-      if (!phone) setPhoneError(true);
-      if (!email) setEmailError(true);
-      if (!title) setTitleError(true);
-      if (!content) setContentError(true);
-      showTemporaryPopup(messages[lang].empty, true);
+  const currentLang = messages[lang] ? lang : "ko";
+
+  if (!goiService.trim() || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo) {
+    showTemporaryPopup(messages[currentLang].empty, true);
+    return;
+  }
+
+  setGoiLoading(true);
+
+  try {
+    const res = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: goiService,
+        TenHinhThuc: "Gọi điện",
+        HoTen: goiName,
+        Email: goiEmail || null,
+        MaVung: goiCountryCode,
+        SoDienThoai: goiPhone,
+        CoSoTuVan: goiCoSo,
+        TieuDe: null,
+        NoiDung: null,
+        ChonNgay: null,
+        Gio: null,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showTemporaryPopup(`${data.message || messages[currentLang].fail}`, true);
       return;
     }
 
-    setLoading(true);
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvanemail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          TenHinhThuc: "Email",
-          HoTen: name,
-          Email: email,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-          TieuDe: title,
-          NoiDung: content,
-        }),
-      });
+    showTemporaryPopup(messages[currentLang].success);
 
-      const data = await response.json();
+    setGoiName("");
+    setGoiPhone("");
+    setGoiEmail("");
+    setGoiAgree(false);
+    setGoiService("");
+    setGoiCountryCode("");
+    setGoiCoSo("");
+    setSubmittedPhone(false);
+  } catch (err) {
+    console.error("Lỗi khi gửi yêu cầu:", err);
+    showTemporaryPopup(messages[currentLang].fail, true);
+  } finally {
+    setGoiLoading(false);
+  }
+};
 
-      if (!response.ok) {
-        console.error("Server Error:", data);
-        showTemporaryPopup(`${data.error || messages[lang].fail}`, true);
-        return;
-      }
+const handleSubmitEmail = async (e) => {
+  e.preventDefault();
+  setSubmittedEmail(true);
 
-      showTemporaryPopup(messages[lang].success);
-      // Reset form
-      setName("");
-      setPhone("");
-      setEmail("");
-      setAgree(false);
-      setTitle("");
-      setContent("");
-
-      console.log("✅ Server response:", data);
-    } catch (err) {
-      console.error(err);
-      showTemporaryPopup(messages[lang].fail, true);
-    } finally {
-      setLoading(false);
-    }
+  const lang = localStorage.getItem("lang") || "ko";
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối server thất bại.",
+    },
   };
-  const handleTimeChange = (e) => {
-    const value = e.target.value;
+  const currentLang = messages[lang] ? lang : "ko";
 
+  if (
+    !emailService?.trim() ||
+    !emailName?.trim() ||
+    !emailPhone?.trim() ||
+    !emailEmail?.trim() ||
+    !emailContent?.trim() ||
+    !emailAgree ||
+    !emailCoSo?.trim()
+  ) {
+    if (!emailName) setNameError(true);
+    if (!emailPhone) setPhoneError(true);
+    if (!emailEmail) setEmailError(true);
+    if (!emailContent) setContentError(true);
+    if (!emailCoSo) setCoSoError(true);
 
-    if (value < "09:00" || value > "18:00") {
-      setShowTimePopup(true);
-      setTimeout(() => setShowTimePopup(false), 5000);
+    showTemporaryPopup(messages[currentLang].empty, true);
+    return;
+  }
+
+  setEmailLoading(true);
+
+  try {
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: emailService,
+        TenHinhThuc: "Email",
+        HoTen: emailName,
+        Email: emailEmail,
+        MaVung: emailCountryCode,
+        SoDienThoai: emailPhone,
+        CoSoTuVan: emailCoSo,
+        TieuDe: null,
+        NoiDung: emailContent,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("Server Error:", data);
+      showTemporaryPopup(data.message || messages[currentLang].fail, true);
       return;
     }
 
+    showTemporaryPopup(messages[currentLang].success);
 
-    if (value >= "12:00" && value < "13:00") {
-      setShowTimePopup(true);
-      setTimeout(() => setShowTimePopup(false), 5000);
-      return;
-    }
+    
+    setEmailName("");
+    setEmailPhone("");
+    setEmailEmail("");
+    setEmailAgree(false);
+    setEmailContent("");
+    setEmailService("");
+    setEmailCountryCode("");
+    setEmailCoSo("");
+    setSubmittedEmail(false);
+  } catch (err) {
+    console.error("Lỗi khi gửi yêu cầu:", err);
+    showTemporaryPopup(messages[currentLang].fail, true);
+  } finally {
+    setEmailLoading(false);
+  }
+};
 
+const handleSubmitVisit = async (e) => {
+  e.preventDefault();
+  setSubmittedVisit(true);
 
-    setTime(value);
+  const lang = localStorage.getItem("lang") || "ko";
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối server thất bại.",
+    },
   };
-  const handleSubmit2 = async (e) => {
-    const lang = localStorage.getItem("lang") || "ko";
-    e.preventDefault();
-    // mark that user attempted to submit the visit form so errors will render
-    setSubmittedVisit(true);
-    const messages = {
-      ko: {
-        empty: "모든 항목을 입력하고 동의해 주세요.",
-        success: "상담 신청 완료되었습니다!",
-        fail: "서버 연결 실패 (Server connection failed)",
-      },
-      vi: {
-        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-        success: "Đăng ký tư vấn thành công!",
-        fail: "Kết nối server thất bại",
-      },
-      en: {
-        empty: "Please fill in all fields and agree.",
-        success: "Consultation request submitted!",
-        fail: "Server connection failed",
-      },
-    };
-    const formattedDate = date
-      ? new Date(date).toLocaleDateString("en-GB")
-      : "";
-    if (!name || !phone || !email || !date || !time || !agree) {
-      if (!name) setNameError(true);
-      if (!phone) setPhoneError(true);
-      if (!email) setEmailError(true);
-      if (!date) setDateError(true);
-      showTemporaryPopup(messages[lang].empty, true);
+  const currentLang = messages[lang] ? lang : "ko";
+
+
+  const formattedDate = visitDate
+    ? new Date(visitDate).toLocaleDateString("en-GB")
+    : "";
+
+
+  if (
+    !visitService?.trim() ||
+    !visitName?.trim() ||
+    !visitPhone?.trim() ||
+    !visitEmail?.trim() ||
+    !visitDate ||
+    !visitTime ||
+    !visitAgree ||
+    !visitCoSo?.trim()
+  ) {
+    if (!visitName) setNameError(true);
+    if (!visitPhone) setPhoneError(true);
+    if (!visitEmail) setEmailError(true);
+    if (!visitDate) setDateError(true);
+    if (!visitTime) setTimeError(true);
+    if (!visitCoSo) setCoSoError(true);
+
+    showTemporaryPopup(messages[currentLang].empty, true);
+    return;
+  }
+
+  setVisitLoading(true);
+
+  try {
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: visitService,
+        TenHinhThuc: "Trực tiếp",
+        HoTen: visitName,
+        Email: visitEmail,
+        MaVung: visitCountryCode,
+        SoDienThoai: visitPhone,
+        CoSoTuVan: visitCoSo,
+        ChonNgay: formattedDate,
+        Gio: visitTime,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("Server Error:", data);
+      showTemporaryPopup(data.message || messages[currentLang].fail, true);
       return;
     }
 
-    setLoading(true);
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvantructiep", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          TenHinhThuc: "Trực tiếp",
-          HoTen: name,
-          Email: email,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-          ChonNgay: formattedDate,
-          Gio: time
-        }),
-      });
+    showTemporaryPopup(messages[currentLang].success);
 
-      const data = await response.json();
+  
+    setVisitName("");
+    setVisitPhone("");
+    setVisitEmail("");
+    setVisitAgree(false);
+    setVisitDate("");
+    setVisitTime("");
+    setVisitService("");
+    setVisitCountryCode("");
+    setVisitCoSo("");
+    setSubmittedVisit(false);
+  } catch (err) {
+    console.error("Lỗi khi gửi yêu cầu:", err);
+    showTemporaryPopup(messages[currentLang].fail, true);
+  } finally {
+    setVisitLoading(false);
+  }
+};
+const handleTimeChange = (e) => {
+  const value = e.target.value;
+  
+  // Reset error trước
+  setTimeError(false);
+  
+  if (value < "09:00" || value > "18:00") {
+    setTimeError(true);
+    setShowTimePopup(true);
+    setTimeout(() => setShowTimePopup(false), 5000);
+    return;
+  }
 
-      if (!response.ok) {
-        console.error("Server Error:", data);
-        showTemporaryPopup(`${data.error || messages[lang].fail}`, true);
-        return;
-      }
+  if (value >= "12:00" && value < "13:00") {
+    setTimeError(true);
+    setShowTimePopup(true);
+    setTimeout(() => setShowTimePopup(false), 5000);
+    return;
+  }
 
-      showTemporaryPopup(messages[lang].success);
-      // Reset form
-      setName("");
-      setPhone("");
-      setEmail("");
-      setAgree(false);
-      setTitle("");
-      setContent("");
+  setVisitTime(value);
+};
 
-      console.log("✅ Server response:", data);
-    } catch (err) {
-      console.error(err);
-      showTemporaryPopup(messages[lang].fail, true);
-    } finally {
-      setLoading(false);
-    }
-  };
   const [activeTab, setActiveTab] = useState("sns");
   // read route state to allow opening a specific tab when navigated from elsewhere
   const location = useLocation();
@@ -806,7 +863,7 @@ export default function Consult() {
           {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
         </h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
-        <form className="phoneRight-form" onSubmit={handleSubmit}>
+         <form className="phoneRight-form" onSubmit={handleSubmitGoiDien}>
           {/* 서비스 선택 */}
           <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
             <div className="phoneRight-form-1"
@@ -823,8 +880,8 @@ export default function Consult() {
                 {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
               </label>
               <div className="phoneRight-form1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: selected ? "#000" : "#999" }}>
-                  {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                <span style={{ color: goiService ? "#000" : "#999" }}>
+                  {goiService || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                 </span>
                 <i
                   className="fa-solid fa-chevron-down"
@@ -854,8 +911,7 @@ export default function Consult() {
                     className="phoneRight-form1-2"
                     key={v.ko}
                     onClick={() => {
-                      setSelected(language === "VI" ? v.vi : v.ko);
-                      setService(v.ko); // nếu cần lưu giá trị gốc tiếng Hàn
+                      setGoiService(v.ko);
                       setOpen(false);
                     }}
                     style={{
@@ -872,91 +928,91 @@ export default function Consult() {
               </div>
             )}
 
-            {!selected && (
+            {!goiService && submittedPhone && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
             )}
           </div>
 
-          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
-            <div
-              className="phoneRight-form-1"
-              onClick={() => setOpenRegion(!openRegion)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                fontSize: 18,
-                cursor: "pointer",
-              }}
-            >
-              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
-              </label>
-              <div
-                className="phoneRight-form1"
-                style={{
-                  flex: 1,
-                  padding: "12px 0",
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span style={{ color: region ? "#000" : "#999" }}>
-                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
-                </span>
-                <i
-                  className="fa-solid fa-chevron-down"
+        <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+                <div
+                  className="phoneRight-form-1"
+                  onClick={() => setOpenRegion(!openRegion)}
                   style={{
-                    transition: ".2s",
-                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000",
+                    fontSize: 18,
+                    cursor: "pointer",
                   }}
-                />
-              </div>
-            </div>
-
-            {openRegion && (
-              <div
-                className="phoneRight-form1-1"
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 120,
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: 4,
-                  zIndex: 10,
-                }}
-              >
-                {regionList.map((r) => (
+                >
+                  <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+                  </label>
                   <div
-                    key={r.ko}
-                    onClick={() => {
-                      setRegion(language === "VI" ? r.vi : r.ko);
-                      setOpenRegion(false);
-                    }}
+                    className="phoneRight-form1"
                     style={{
-                      padding: "10px 12px",
-                      fontSize: 16,
-                      cursor: "pointer",
+                      flex: 1,
+                      padding: "12px 0",
+                      display: "flex",
+                      justifyContent: "space-between",
                     }}
-                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
                   >
-                    {language === "VI" ? r.vi : r.ko}
+                    <span style={{ color: goiCoSo ? "#000" : "#999" }}>
+                      {goiCoSo || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                    </span>
+                    <i
+                      className="fa-solid fa-chevron-down"
+                      style={{
+                        transition: ".2s",
+                        transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    />
                   </div>
-                ))}
-              </div>
-            )}
+                </div>
 
-            {!region && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+                {openRegion && (
+                  <div
+                    className="phoneRight-form1-1"
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 120,
+                      right: 0,
+                      background: "#fff",
+                      border: "1px solid #ccc",
+                      borderRadius: 4,
+                      zIndex: 10,
+                    }}
+                  >
+                    {regionList.map((r) => (
+                      <div
+                        key={r.ko}
+                        onClick={() => {
+                          setGoiCoSo(language === "VI" ? r.vi : r.ko);
+                          setOpenRegion(false);
+                        }}
+                        style={{
+                          padding: "10px 12px",
+                          fontSize: 16,
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                        onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                      >
+                        {language === "VI" ? r.vi : r.ko}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!goiCoSo && submittedPhone && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
           {/* 이름 */}
           <div className="phoneRight-form-2" style={{ marginBottom: 20, fontSize: 18, }}>
@@ -972,10 +1028,10 @@ export default function Consult() {
               </label>
               <input className="phoneRight-form2-input"
                 type="text"
-                value={name}
+                value={goiName}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setName(value);
+                  setGoiName(value);
                   if (value.trim() === "") {
                     setNameError(true);
                   } else {
@@ -1015,10 +1071,10 @@ export default function Consult() {
               </label>
               <input className="phoneRight-form3-input"
                 type="email"
-                value={email}
+                value={goiEmail}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setEmail(value);
+                  setGoiEmail(value);
                   if (value.trim() === "") {
                     setEmailError(true);
                   } else {
@@ -1037,11 +1093,6 @@ export default function Consult() {
                 title="유효한 이메일 주소를 입력해 주세요"
               />
             </div>
-            {/* {emailError && submittedPhone && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                *필수입력입니다
-              </div>
-            )} */}
           </div>
 
           {/* 전화번호 */}
@@ -1057,8 +1108,8 @@ export default function Consult() {
                 {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
               </label>
               <select className="phoneRight-form4-select"
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
+                value={goiCountryCode}
+                onChange={(e) => setGoiCountryCode(e.target.value)}
                 style={{
                   width: 65,
                   border: "none",
@@ -1073,10 +1124,10 @@ export default function Consult() {
               </select>
               <input className="phoneRight-form4-input"
                 type="tel"
-                value={phone}
+                value={goiPhone}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setPhone(value);
+                  setGoiPhone(value);
                   if (value.trim() === "") {
                     setPhoneError(true);
                   } else {
@@ -1092,25 +1143,25 @@ export default function Consult() {
                   background: "transparent",
                 }}
                 pattern={
-                  countryCode === "+82"
+                  goiCountryCode === "+82"
                     ? "[0-9]{9,11}"
-                    : countryCode === "+84"
+                    : goiCountryCode === "+84"
                       ? "[0-9]{9,10}"
                       : ".*"
                 }
                 title={
                   language === "VI"
                     ? (
-                      countryCode === "+82"
+                      goiCountryCode === "+82"
                         ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
-                        : countryCode === "+84"
+                        : goiCountryCode === "+84"
                           ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
                           : "Vui lòng chọn mã quốc gia trước."
                     )
                     : (
-                      countryCode === "+82"
+                      goiCountryCode === "+82"
                         ? "한국 전화번호는 9~11자리여야 합니다."
-                        : countryCode === "+84"
+                        : goiCountryCode === "+84"
                           ? "베트남 전화번호는 9~10자리여야 합니다."
                           : "국가 코드를 먼저 선택하세요."
                     )
@@ -1131,8 +1182,8 @@ export default function Consult() {
             >
               <input className="phoneRight-form5-input"
                 type="radio"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
+                checked={goiAgree}
+                onChange={(e) => setGoiAgree(e.target.checked)}
                 style={{
                   marginRight: 6,
                   width: 16,
@@ -1146,7 +1197,7 @@ export default function Consult() {
           <div
             style={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "center", 
               margin: "28px 0",
             }}
           >
@@ -1179,6 +1230,7 @@ export default function Consult() {
           {/* Nút submit */}
           <button className="phoneRight-submit"
             type="submit"
+            disabled={goiLoading}
             style={{
               width: "100%",
               background: "#d9c4a4",
@@ -1188,10 +1240,14 @@ export default function Consult() {
               borderRadius: 4,
               fontWeight: 600,
               fontSize: 18,
-              cursor: "pointer",
+              cursor: goiLoading ? "not-allowed" : "pointer",
+              opacity: goiLoading ? 0.6 : 1,
             }}
           >
-            {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
+            {goiLoading 
+              ? (language === "VI" ? "Đang gửi..." : "전송 중...") 
+              : (language === "VI" ? "Yêu cầu tư vấn" : "상담 신청")
+            }
           </button>
         </form>
       </div>
@@ -1393,474 +1449,465 @@ export default function Consult() {
         </h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
-        <form className="emailRight-form" onSubmit={handleSubmit1}>
-          {/* 서비스 선택 */}
-          <div className="emailRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
-            <div className="emailRight-form1"
-              onClick={() => setOpen(!open)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                fontSize: 18,
-                cursor: "pointer",
-              }}
-            >
-              <label className="emailRight-form1-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
-              </label>
-              <div className="emailRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: selected ? "#000" : "#999" }}>
-                  {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
-                </span>
-                <i
-                  className="fa-solid fa-chevron-down"
-                  style={{
-                    transition: ".2s",
-                    transform: open ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
-              </div>
-            </div>
-
-            {open && (
-              <div className="emailRight-form1-list"
+        <form className="emailRight-form" onSubmit={handleSubmitEmail}>
+            {/* 서비스 선택 */}
+            <div className="emailRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+              <div className="emailRight-form1"
+                onClick={() => setOpen(!open)}
                 style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 120,
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: 4,
-                  zIndex: 10,
-                }}
-              >
-                {list.map((v) => (
-                  <div
-                    className="phoneRight-form1-2"
-                    key={v.ko}
-                    onClick={() => {
-                      setSelected(language === "VI" ? v.vi : v.ko);
-                      setService(v.ko); // nếu cần lưu giá trị gốc tiếng Hàn
-                      setOpen(false);
-                    }}
-                    style={{
-                      padding: "10px 12px",
-                      fontSize: 16,
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
-                  >
-                    {language === "VI" ? v.vi : v.ko}
-                  </div>
-                ))}
-
-              </div>
-            )}
-
-            {!selected && (
-              <div className="emailRight-form1-selected" style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
-              </div>
-            )}
-          </div>
-          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
-            <div
-              className="phoneRight-form-1"
-              onClick={() => setOpenRegion(!openRegion)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                fontSize: 18,
-                cursor: "pointer",
-              }}
-            >
-              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
-              </label>
-              <div
-                className="phoneRight-form1"
-                style={{
-                  flex: 1,
-                  padding: "12px 0",
                   display: "flex",
-                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: "1px solid #000",
+                  fontSize: 18,
+                  cursor: "pointer",
                 }}
               >
-                <span style={{ color: region ? "#000" : "#999" }}>
-                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
-                </span>
-                <i
-                  className="fa-solid fa-chevron-down"
+                <label className="emailRight-form1-label" style={{ width: 120, fontWeight: 600 }}>
+                  {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
+                </label>
+                <div className="emailRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ color: emailService ? "#000" : "#999" }}>
+                    {emailService || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                  </span>
+                  <i
+                    className="fa-solid fa-chevron-down"
+                    style={{
+                      transition: ".2s",
+                      transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {open && (
+                <div className="emailRight-form1-list"
                   style={{
-                    transition: ".2s",
-                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                    position: "absolute",
+                    top: "100%",
+                    left: 120,
+                    right: 0,
+                    background: "#fff",
+                    border: "1px solid #ccc",
+                    borderRadius: 4,
+                    zIndex: 10,
+                  }}
+                >
+                  {list.map((v) => (
+                    <div
+                      className="phoneRight-form1-2"
+                      key={v.ko}
+                      onClick={() => {
+                        setEmailService(v.ko);
+                        setOpen(false);
+                      }}
+                      style={{
+                        padding: "10px 12px",
+                        fontSize: 16,
+                        cursor: "pointer",
+                      }}
+                      onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                      onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                    >
+                      {language === "VI" ? v.vi : v.ko}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {!emailService && submittedEmail && (
+                <div className="emailRight-form1-selected" style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                </div>
+              )}
+            </div>
+
+             <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+                <div
+                  className="phoneRight-form-1"
+                  onClick={() => setOpenRegion(!openRegion)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000",
+                    fontSize: 18,
+                    cursor: "pointer",
+                  }}
+                >
+                  <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <div
+                    className="phoneRight-form1"
+                    style={{
+                      flex: 1,
+                      padding: "12px 0",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <span style={{ color: emailCoSo ? "#000" : "#999" }}>
+                      {emailCoSo || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                    </span>
+                    <i
+                      className="fa-solid fa-chevron-down"
+                      style={{
+                        transition: ".2s",
+                        transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {openRegion && (
+                  <div
+                    className="phoneRight-form1-1"
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 120,
+                      right: 0,
+                      background: "#fff",
+                      border: "1px solid #ccc",
+                      borderRadius: 4,
+                      zIndex: 10,
+                    }}
+                  >
+                    {regionList.map((r) => (
+                      <div
+                        key={r.ko}
+                        onClick={() => {
+                          setEmailCoSo(language === "VI" ? r.vi : r.ko); // Sửa thành setEmailCoSo
+                          setOpenRegion(false);
+                        }}
+                        style={{
+                          padding: "10px 12px",
+                          fontSize: 16,
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                        onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                      >
+                        {language === "VI" ? r.vi : r.ko}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!emailCoSo && submittedEmail && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+                  </div>
+                )}
+              </div>
+
+            {/* 이름 */}
+            <div className="emailRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  borderBottom: "1px solid #000000ff",
+                }}
+              >
+                <label className="emailRight-form2-label1" style={{ width: 120, fontWeight: 600 }}>
+                  {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
+                </label>
+                <input className="emailRight-form2-input"
+                  type="text"
+                  value={emailName}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setEmailName(value);
+                    if (value.trim() === "") {
+                      setNameError(true);
+                    } else {
+                      setNameError(false);
+                    }
+                  }}
+                  placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
+                  style={{
+                    flex: 1,
+                    border: "none",
+                    padding: "12px 0",
+                    outline: "none",
+                    background: "transparent",
+                  }}
+                  pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                  title="이름은 최소 2자 이상이어야 합니다"
+                />
+              </div>
+              {nameError && submittedEmail && (
+                <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                </div>
+              )}
+            </div>
+
+            {/* 이메일 */}
+            <div className="emailRight-form3" style={{ marginBottom: 20, fontSize: 18 }}>
+              <div className="emailRight-form3-main"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  borderBottom: "1px solid #000000ff",
+                }}
+              >
+                <label className="emailRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
+                  {language === "VI" ? (<>Email</>) : ("이메일")}<span style={{ color: "red" }}>*</span>
+                </label>
+                <input className="emailRight-form3-input"
+                  type="email"
+                  value={emailEmail}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setEmailEmail(value);
+                    if (value.trim() === "") {
+                      setEmailError(true);
+                    } else {
+                      setEmailError(false);
+                    }
+                  }}
+                  placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
+                  style={{
+                    flex: 1,
+                    border: "none",
+                    padding: "12px 0",
+                    outline: "none",
+                    background: "transparent",
+                  }}
+                  pattern="^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
+                  title="유효한 이메일 주소를 입력해 주세요"
+                />
+              </div>
+              {emailError && submittedEmail && (
+                <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                </div>
+              )}
+            </div>
+
+            {/* 전화번호 */}
+            <div className="emailRight-form4" style={{ marginBottom: 20, fontSize: 18 }}>
+              <div className="emailRight-form4-main"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  borderBottom: "1px solid #000000ff",
+                }}
+              >
+                <label className="emailRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
+                  {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
+                </label>
+                <select className="emailRight-form4-select"
+                  value={emailCountryCode}
+                  onChange={(e) => setEmailCountryCode(e.target.value)}
+                  style={{
+                    width: 65,
+                    border: "none",
+                    outline: "none",
+                    padding: "12px 0",
+                    background: "transparent",
+                    marginRight: 10,
+                  }}
+                >
+                  <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
+                  <option value="+82">+82</option>
+                  <option value="+84">+84</option>
+                </select>
+                <input className="emailRight-form4-input"
+                  type="tel"
+                  value={emailPhone}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setEmailPhone(value);
+                    if (value.trim() === "") {
+                      setPhoneError(true);
+                    } else {
+                      setPhoneError(false);
+                    }
+                  }}
+                  placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
+                  style={{
+                    flex: 1,
+                    border: "none",
+                    outline: "none",
+                    padding: "12px 0",
+                    background: "transparent",
+                  }}
+                  pattern={
+                    emailCountryCode === "+82"
+                      ? "[0-9]{9,11}"
+                      : emailCountryCode === "+84"
+                        ? "[0-9]{9,10}"
+                        : ".*"
+                  }
+                  title={
+                    language === "VI"
+                      ? (
+                        emailCountryCode === "+82"
+                          ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
+                          : emailCountryCode === "+84"
+                            ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
+                            : "Vui lòng chọn mã quốc gia trước."
+                      )
+                      : (
+                        emailCountryCode === "+82"
+                          ? "한국 전화번호는 9~11자리여야 합니다."
+                          : emailCountryCode === "+84"
+                            ? "베트남 전화번호는 9~10자리여야 합니다."
+                            : "국가 코드를 먼저 선택하세요."
+                      )
+                  }
+                />
+              </div>
+              {phoneError && submittedEmail && (
+                <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                </div>
+              )}
+            </div>
+
+            {/* Nội dung */}
+            <div className="emailRight-form5" style={{ marginBottom: 20, fontSize: 18 }}>
+              <div className="emailRight-form5-main"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  borderBottom: "1px solid #000",
+                  padding: "4px 0",
+                }}
+              >
+                <label className="emailRight-form5-label" style={{ width: 120, fontWeight: 600 }}>
+                  {language === "VI" ? (<>Nội dung</>) : ("내용")}<span style={{ color: "red" }}>*</span>
+                </label>
+                <input className="emailRight-form5-input"
+                  value={emailContent}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setEmailContent(value);
+                    if (value.trim() === "") setContentError(true);
+                    else setContentError(false);
+                  }}
+                  onBlur={() => {
+                    if (emailContent.trim() === "") setContentError(true);
+                  }}
+                  placeholder={language === "VI" ? "Vui lòng nhập nội dung tư vấn " : "상담 내용을 입력해주세요"}
+                  rows={2}
+                  style={{
+                    flex: "none",
+                    width: 215,
+                    height: "40px",
+                    border: "none",
+                    outline: "none",
+                    background: "transparent",
+                    resize: "none",
+                    fontSize: 16,
+                    padding: "6px 0",
                   }}
                 />
               </div>
+
+              {contentError && submittedEmail && (
+                <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                </div>
+              )}
             </div>
 
-            {openRegion && (
-              <div
-                className="phoneRight-form1-1"
+            {/* 개인정보 동의 */}
+            <div
+              className="emailRight-form5"
+              style={{
+                marginBottom: 22,
+                fontSize: 18,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <label
+                className="emailRight-form5-label"
                 style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 120,
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: 4,
-                  zIndex: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  flexWrap: "nowrap",
+                  fontSize: "inherit",
+                  color: "#333",
+                  lineHeight: 1.5,
                 }}
               >
-                {regionList.map((r) => (
-                  <div
-                    key={r.ko}
-                    onClick={() => {
-                      setRegion(language === "VI" ? r.vi : r.ko);
-                      setOpenRegion(false);
-                    }}
-                    style={{
-                      padding: "10px 12px",
-                      fontSize: 16,
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
-                  >
-                    {language === "VI" ? r.vi : r.ko}
-                  </div>
-                ))}
-              </div>
-            )}
+                <input
+                  className="emailRight-form5-input"
+                  type="radio"
+                  name="agree"
+                  checked={emailAgree}
+                  onChange={(e) => setEmailAgree(e.target.checked)}
+                  style={{
+                    width: 18,
+                    height: 18,
+                    accentColor: "#000",
+                    flexShrink: 0,
+                  }}
+                />
+                {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
+              </label>
+            </div>
 
-            {!region && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
-              </div>
-            )}
-          </div>
-          {/* 이름 */}
-          <div className="emailRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                borderBottom: "1px solid #000000ff",
+                margin: "28px 0",
               }}
             >
-              <label className="emailRight-form2-label1" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
-              </label>
-              <input className="emailRight-form2-input"
-                type="text"
-                value={name}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setName(value);
-                  if (value.trim() === "") {
-                    setNameError(true);
-                  } else {
-                    setNameError(false);
-                  }
-                }}
-                placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-                pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                title="이름은 최소 2자 이상이어야 합니다"
-              />
+              <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+              <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>or</span>
+              <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
             </div>
-            {nameError && submittedEmail && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+
+            {/* Info liên hệ */}
+            <div className="emailRight-Contact"
+              style={{
+                fontSize: 18,
+                lineHeight: 1.8,
+                marginBottom: 26,
+                textAlign: "center",
+              }}
+            >
+              <div className="emailRight-Contact-1">
+                <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
               </div>
-            )}
-          </div>
-
-          {/* 이메일 */}
-          <div className="emailRight-form3" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="emailRight-form3-main"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-              <label className="emailRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Email</>) : ("이메일")}<span style={{ color: "red" }}>*</span>
-              </label>
-              <input className="emailRight-form3-input"
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setEmail(value);
-                  if (value.trim() === "") {
-                    setEmailError(true);
-                  } else {
-                    setEmailError(false);
-                  }
-                }}
-                placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                title="유효한 이메일 주소를 입력해 주세요"
-              />
-            </div>
-            {emailError && submittedEmail && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+              <div className="emailRight-Contact-2">
+                <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
               </div>
-            )}
-          </div>
-
-          {/* 전화번호 */}
-          <div className="emailRight-form4" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="emailRight-form4-main"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-              <label className="emailRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
-              </label>
-              <select className="emailRight-form4-select"
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
-                style={{
-                  width: 65,
-                  border: "none",
-                  outline: "none",
-                  padding: "12px 0",
-                  background: "transparent",
-                  marginRight: 10,
-                }}
-              >
-                <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
-                <option value="+82">+82</option>
-                <option value="+84">+84</option>
-              </select>
-              <input className="emailRight-form4-input"
-                type="tel"
-                value={phone}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setPhone(value);
-                  if (value.trim() === "") {
-                    setPhoneError(true);
-                  } else {
-                    setPhoneError(false);
-                  }
-                }}
-                placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
-                style={{
-                  flex: 1,
-                  border: "none",
-                  outline: "none",
-                  padding: "12px 0",
-                  background: "transparent",
-                }}
-                pattern={
-                  countryCode === "+82"
-                    ? "[0-9]{9,11}"
-                    : countryCode === "+84"
-                      ? "[0-9]{9,10}"
-                      : ".*"
-                }
-                title={
-                  language === "VI"
-                    ? (
-                      countryCode === "+82"
-                        ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
-                        : countryCode === "+84"
-                          ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
-                          : "Vui lòng chọn mã quốc gia trước."
-                    )
-                    : (
-                      countryCode === "+82"
-                        ? "한국 전화번호는 9~11자리여야 합니다."
-                        : countryCode === "+84"
-                          ? "베트남 전화번호는 9~10자리여야 합니다."
-                          : "국가 코드를 먼저 선택하세요."
-                    )
-                }
-              />
-            </div>
-            {phoneError && submittedEmail && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+              <div className="emailRight-Contact-3" style={{ color: "#444" }}>
+                {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
               </div>
-            )}
-          </div>
+            </div>
 
-          {/* 제목 */}
-          <div className="emailRight-form5" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="emailRight-form5-main"
+            {/* Nút submit */}
+            <button className="emailRight-submit"
+              type="submit"
+              disabled={emailLoading}
               style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                padding: "4px 0",
+                width: "100%",
+                background: "#d9c4a4",
+                color: "#fff",
+                padding: "16px",
+                border: "none",
+                borderRadius: 4,
+                fontWeight: 600,
+                fontSize: 18,
+                cursor: emailLoading ? "not-allowed" : "pointer",
+                opacity: emailLoading ? 0.6 : 1,
               }}
             >
-              <label className="emailRight-form5-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Nội dung</>) : ("내용")}<span style={{ color: "red" }}>*</span>
-              </label>
-              <input className="emailRight-form5-input"
-                value={content}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setContent(value);
-                  if (value.trim() === "") setContentError(true);
-                  else setContentError(false);
-                }}
-                onBlur={() => {
-                  if (content.trim() === "") setContentError(true);
-                }}
-                placeholder={language === "VI" ? "Vui lòng nhập nội dung tư vấn " : "상담 내용을 입력해주세요"}
-                rows={2} // 👈 Giảm chiều cao
-                style={{
-                  flex: "none",
-                  width: 215,
-                  height: "40px",
-                  border: "none",
-                  outline: "none",
-                  background: "transparent",
-                  resize: "none",
-                  fontSize: 16,
-                  padding: "6px 0",
-                }}
-              />
-            </div>
-
-            {contentError && submittedEmail && (
-              <div
-
-                style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
-              </div>
-            )}
-          </div>
-
-          {/* <div style={{ marginBottom: 20, fontSize: 18, marginTop: 50 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-            </div>
-            <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>*필수입력입니다</div>
-          </div> */}
-
-          {/* 개인정보 동의 */}
-          <div
-            className="emailRight-form5"
-            style={{
-              marginBottom: 22,
-              fontSize: 18,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <label
-              className="emailRight-form5-label"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                flexWrap: "nowrap",
-                fontSize: "inherit",
-                color: "#333",
-                lineHeight: 1.5,
-              }}
-            >
-              <input
-                className="emailRight-form5-input"
-                type="radio"
-                name="agree"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
-                style={{
-                  width: 18,
-                  height: 18,
-                  accentColor: "#000",
-                  flexShrink: 0,
-                }}
-              />
-              {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
-            </label>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "28px 0",
-            }}
-          >
-            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
-            <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>or</span>
-            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
-          </div>
-
-          {/* Info liên hệ */}
-          <div className="emailRight-Contact"
-            style={{
-              fontSize: 18,
-              lineHeight: 1.8,
-              marginBottom: 26,
-              textAlign: "center",
-            }}
-          >
-            <div className="emailRight-Contact-1">
-              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
-            </div>
-            <div className="emailRight-Contact-2">
-              <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
-            </div>
-            <div className="emailRight-Contact-3" style={{ color: "#444" }}>
-              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
-            </div>
-          </div>
-
-          {/* Nút submit */}
-          <button className="emailRight-submit"
-            type="submit"
-            style={{
-              width: "100%",
-              background: "#d9c4a4",
-              color: "#fff",
-              padding: "16px",
-              border: "none",
-              borderRadius: 4,
-              fontWeight: 600,
-              fontSize: 18,
-              cursor: "pointer",
-            }}
-          >
-            {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
-          </button>
-        </form>
+              {emailLoading 
+                ? (language === "VI" ? "Đang gửi..." : "전송 중...") 
+                : (language === "VI" ? "Yêu cầu tư vấn" : "상담 신청")
+              }
+            </button>
+          </form>
       </div>
       <style>
         {
@@ -2058,473 +2105,472 @@ export default function Consult() {
         <h2 className="visitRight-h2" style={{ fontSize: 32, fontWeight: 700, }}>{language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}</h2>
         <div style={{ height: 1, background: "#000000ff", marginBottom: 30 }}></div>
 
-        <form className="visitRight-form" onSubmit={handleSubmit2}>
-          {/* 서비스 선택 */}
-          <div className="visitRight-form1" style={{ marginBottom: 20, position: "relative" }}>
-            <div
-              onClick={() => setOpen(!open)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                fontSize: 18,
-                cursor: "pointer",
-              }}
-            >
-              <label className="visitRight-form1" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
-
-              </label>
-              <div className="visitRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: selected ? "#000" : "#999" }}>
-                  {selected || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
-                </span>
-                <i
-                  className="fa-solid fa-chevron-down"
+       <form className="visitRight-form" onSubmit={handleSubmitVisit}>
+              {/* 서비스 선택 */}
+              <div className="visitRight-form1" style={{ marginBottom: 20, position: "relative" }}>
+                <div
+                  onClick={() => setOpen(!open)}
                   style={{
-                    transition: ".2s",
-                    transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000",
+                    fontSize: 18,
+                    cursor: "pointer",
                   }}
-                />
-              </div>
-            </div>
-
-            {open && (
-              <div className="visitRight-form1-list"
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 120,
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: 4,
-                  zIndex: 10,
-                }}
-              >
-                {list.map((v) => (
-                  <div
-                    className="phoneRight-form1-2"
-                    key={v.ko}
-                    onClick={() => {
-                      setSelected(language === "VI" ? v.vi : v.ko);
-                      setService(v.ko); // nếu cần lưu giá trị gốc tiếng Hàn
-                      setOpen(false);
-                    }}
-                    style={{
-                      padding: "10px 12px",
-                      fontSize: 16,
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
-                  >
-                    {language === "VI" ? v.vi : v.ko}
+                >
+                  <label className="visitRight-form1" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? (<>Dịch vụ</>) : ("서비스 선택")} <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <div className="visitRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
+                    <span style={{ color: visitService ? "#000" : "#999" }}>
+                      {visitService || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                    </span>
+                    <i
+                      className="fa-solid fa-chevron-down"
+                      style={{
+                        transition: ".2s",
+                        transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    />
                   </div>
-                ))}
-              </div>
-            )}
+                </div>
 
-            {!selected && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                {open && (
+                  <div className="visitRight-form1-list"
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 120,
+                      right: 0,
+                      background: "#fff",
+                      border: "1px solid #ccc",
+                      borderRadius: 4,
+                      zIndex: 10,
+                    }}
+                  >
+                    {list.map((v) => (
+                      <div
+                        className="phoneRight-form1-2"
+                        key={v.ko}
+                        onClick={() => {
+                          setVisitService(v.ko);
+                          setOpen(false);
+                        }}
+                        style={{
+                          padding: "10px 12px",
+                          fontSize: 16,
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                        onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                      >
+                        {language === "VI" ? v.vi : v.ko}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!visitService && submittedVisit && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-             <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
-            <div
-              className="phoneRight-form-1"
-              onClick={() => setOpenRegion(!openRegion)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                fontSize: 18,
-                cursor: "pointer",
-              }}
-            >
-              <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
-              </label>
+
+              <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+                <div
+                  className="phoneRight-form-1"
+                  onClick={() => setOpenRegion(!openRegion)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000",
+                    fontSize: 18,
+                    cursor: "pointer",
+                  }}
+                >
+                  <label className="phoneRight-form-1-text" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? "Cơ sở" : "지역"} <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <div
+                    className="phoneRight-form1"
+                    style={{
+                      flex: 1,
+                      padding: "12px 0",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <span style={{ color: visitCoSo ? "#000" : "#999" }}>
+                      {visitCoSo || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
+                    </span>
+                    <i
+                      className="fa-solid fa-chevron-down"
+                      style={{
+                        transition: ".2s",
+                        transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {openRegion && (
+                  <div
+                    className="phoneRight-form1-1"
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 120,
+                      right: 0,
+                      background: "#fff",
+                      border: "1px solid #ccc",
+                      borderRadius: 4,
+                      zIndex: 10,
+                    }}
+                  >
+                    {regionList.map((r) => (
+                      <div
+                        key={r.ko}
+                        onClick={() => {
+                          setVisitCoSo(language === "VI" ? r.vi : r.ko);
+                          setOpenRegion(false);
+                        }}
+                        style={{
+                          padding: "10px 12px",
+                          fontSize: 16,
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
+                        onMouseLeave={(e) => (e.target.style.background = "#fff")}
+                      >
+                        {language === "VI" ? r.vi : r.ko}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!visitCoSo && submittedVisit && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
+                  </div>
+                )}
+              </div>
+
+              {/* 이름 */}
+              <div className="visitRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
+                <div className="visitRight-form2-main"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000000ff",
+                  }}
+                >
+                  <label className="visitRight-form2-label" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input className="visitRight-form2-input"
+                    type="text"
+                    value={visitName}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setVisitName(value);
+                      if (value.trim() === "") {
+                        setNameError(true);
+                      } else {
+                        setNameError(false);
+                      }
+                    }}
+                    placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
+                    style={{
+                      flex: 1,
+                      border: "none",
+                      padding: "12px 0",
+                      outline: "none",
+                      background: "transparent",
+                    }}
+                    pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
+                    title="이름은 최소 2자 이상이어야 합니다."
+                  />
+                </div>
+                {nameError && submittedVisit && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                  </div>
+                )}
+              </div>
+
+              {/* 이메일 */}
+              <div className="visitRight-form3" style={{ marginBottom: 20, fontSize: 18 }}>
+                <div className="visitRight-form3-main"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000000ff",
+                  }}
+                >
+                  <label className="visitRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? (<>Email</>) : ("이메일")}
+                    <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <input className="visitRight-form3-input"
+                    type="email"
+                    value={visitEmail}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setVisitEmail(value);
+                      if (value.trim() === "") {
+                        setEmailError(true);
+                      } else {
+                        setEmailError(false);
+                      }
+                    }}
+                    placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
+                    style={{
+                      flex: 1,
+                      border: "none",
+                      padding: "12px 0",
+                      outline: "none",
+                      background: "transparent",
+                    }}
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                    title="유효한 이메일 주소를 입력해 주세요"
+                  />
+                </div>
+                {emailError && submittedVisit && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                  </div>
+                )}
+              </div>
+
+              {/* 전화번호 */}
+              <div className="visitRight-form4" style={{ marginBottom: 20, fontSize: 18 }}>
+                <div className="visitRight-form4-main"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000000ff",
+                  }}
+                >
+                  <label className="visitRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
+                    {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <select className="visitRight-form4-select"
+                    value={visitCountryCode}
+                    onChange={(e) => setVisitCountryCode(e.target.value)}
+                    style={{
+                      width: 65,
+                      border: "none",
+                      outline: "none",
+                      padding: "12px 0",
+                      background: "transparent",
+                      marginRight: 10,
+                    }}
+                  >
+                    <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
+                    <option value="+82">+82</option>
+                    <option value="+84">+84</option>
+                  </select>
+                  <input className="visitRight-form4-input"
+                    type="tel"
+                    value={visitPhone}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setVisitPhone(value);
+                      if (value.trim() === "") {
+                        setPhoneError(true);
+                      } else {
+                        setPhoneError(false);
+                      }
+                    }}
+                    placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
+                    style={{
+                      flex: 1,
+                      border: "none",
+                      outline: "none",
+                      padding: "12px 0",
+                      background: "transparent",
+                    }}
+                    pattern={
+                      visitCountryCode === "+82"
+                        ? "[0-9]{9,11}"
+                        : visitCountryCode === "+84"
+                          ? "[0-9]{9,10}"
+                          : ".*"
+                    }
+                    title={
+                      language === "VI"
+                        ? (
+                          visitCountryCode === "+82"
+                            ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
+                            : visitCountryCode === "+84"
+                              ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
+                              : "Vui lòng chọn mã quốc gia trước."
+                        )
+                        : (
+                          visitCountryCode === "+82"
+                            ? "한국 전화번호는 9~11자리여야 합니다."
+                            : visitCountryCode === "+84"
+                              ? "베트남 전화번호는 9~10자리여야 합니다."
+                              : "국가 코드를 먼저 선택하세요."
+                        )
+                    }
+                  />
+                </div>
+                {phoneError && submittedVisit && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                  </div>
+                )}
+              </div>
+
+              {/* Ngày và giờ */}
+              <div className="visitRight-form5" style={{ marginBottom: 20, fontSize: 18 }}>
+                <div className="visitRight-form5-main"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid #000",
+                    paddingBottom: 6,
+                  }}
+                >
+                  {/* 날짜 선택 */}
+                  <label className="visitRight-form5-label" style={{ fontWeight: 600, marginRight: 8 }}>
+                    {language === "VI" ? (<>Chọn ngày</>) : ("날짜 선택")} <span style={{ color: "red" }}>*</span>
+                  </label>
+
+                  {/* input chọn ngày */}
+                  <input className="visitRight-form5-input"
+                    type="date"
+                    value={visitDate}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setVisitDate(value);
+                      if (value.trim() === "") {
+                        setDateError(true);
+                      } else {
+                        setDateError(false);
+                      }
+                    }}
+                    placeholder="yyyy/mm/dd"
+                    style={{
+                      border: "none",
+                      outline: "none",
+                      background: "transparent",
+                      fontSize: 16,
+                      marginRight: 6,
+                      marginLeft: 30,
+                      position: "relative",
+                      colorScheme: "light",
+                    }}
+                    onFocus={(e) => e.target.showPicker?.()}
+                  />
+
+                  {/* 시간 */}
+                  <label className="visitRight-form5-label1" style={{ fontWeight: 500, marginRight: 8 }}>
+                    {language === "VI" ? (<>Giờ</>) : ("시간")}
+                  </label>
+
+                  {/* input chọn giờ */}
+                  <input className="visitRight-form5-input1"
+                    type="time"
+                    value={visitTime}
+                    onChange={handleTimeChange}
+                    min="09:00"
+                    max="18:00"
+                    style={{
+                      border: "none",
+                      outline: "none",
+                      background: "transparent",
+                      fontSize: 18,
+                      marginRight: 6,
+                    }}
+                  />
+                </div>
+
+                {dateError && submittedVisit && (
+                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                    {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+                  </div>
+                )}
+                
+          
+              </div>
+
+              {/* 개인정보 동의 */}
+              <div className="visitRight-form6" style={{ marginBottom: 22, fontSize: 18 }}>
+                <label className=" visitRight-form6-checkbox" style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
+                  <input
+                    type="radio"
+                    name="agree"
+                    checked={visitAgree}
+                    onChange={(e) => setVisitAgree(e.target.checked)}
+                    style={{
+                      marginRight: 6,
+                      width: 16,
+                      height: 16,
+                      accentColor: "#000",
+                    }}
+                  />
+                  {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
+                </label>
+              </div>
+
               <div
-                className="phoneRight-form1"
                 style={{
-                  flex: 1,
-                  padding: "12px 0",
                   display: "flex",
-                  justifyContent: "space-between",
+                  alignItems: "center",
+                  margin: "28px 0",
                 }}
               >
-                <span style={{ color: region ? "#000" : "#999" }}>
-                  {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
-                </span>
-                <i
-                  className="fa-solid fa-chevron-down"
-                  style={{
-                    transition: ".2s",
-                    transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
+                <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
+                <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>or</span>
+                <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
               </div>
-            </div>
 
-            {openRegion && (
-              <div
-                className="phoneRight-form1-1"
+              {/* Info liên hệ */}
+              <div className="visitRight-Contact"
                 style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 120,
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: 4,
-                  zIndex: 10,
-                }}
-              >
-                {regionList.map((r) => (
-                  <div
-                    key={r.ko}
-                    onClick={() => {
-                      setRegion(language === "VI" ? r.vi : r.ko);
-                      setOpenRegion(false);
-                    }}
-                    style={{
-                      padding: "10px 12px",
-                      fontSize: 16,
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.background = "#f5f5f5")}
-                    onMouseLeave={(e) => (e.target.style.background = "#fff")}
-                  >
-                    {language === "VI" ? r.vi : r.ko}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {!region && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
-              </div>
-            )}
-          </div>
-          {/* 이름 */}
-          <div className="visitRight-form2" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="visitRight-form2-main"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-              <label className="visitRight-form2-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Họ tên</>) : ("이름")}<span style={{ color: "red" }}>*</span>
-              </label>
-              <input className="visitRight-form2-input"
-                type="text"
-                value={name}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setName(value);
-                  if (value.trim() === "") {
-                    setNameError(true);
-                  } else {
-                    setNameError(false);
-                  }
-                }}
-                placeholder={language === "VI" ? "Vui lòng nhập họ và tên" : "이름을 입력해주세요"}
-
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-                pattern="[A-Za-z가-힣À-ỹ\s]{2,}"
-                title="이름은 최소 2자 이상이어야 합니다."
-              />
-            </div>
-            {nameError && submittedVisit && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
-              </div>
-            )}
-          </div>
-
-          {/* 이메일 */}
-          <div className="visitRight-form3" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="visitRight-form3-main"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-              <label className="visitRight-form3-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Email</>) : ("이메일")}
-                <span style={{ color: "red" }}>*</span></label>
-              <input className="visitRight-form3-input"
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setEmail(value);
-                  if (value.trim() === "") {
-                    setEmailError(true);
-                  } else {
-                    setEmailError(false);
-                  }
-                }}
-                placeholder={language === "VI" ? "Vui lòng nhập Email" : "이메일을 입력해주세요"}
-                style={{
-                  flex: 1,
-                  border: "none",
-                  padding: "12px 0",
-                  outline: "none",
-                  background: "transparent",
-                }}
-                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                title="유효한 이메일 주소를 입력해 주세요"
-              />
-            </div>
-            {emailError && submittedVisit && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
-              </div>
-            )}
-          </div>
-
-          {/* 전화번호 */}
-          <div className="visitRight-form4" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="visitRight-form4-main"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000000ff",
-              }}
-            >
-              <label className="visitRight-form4-label" style={{ width: 120, fontWeight: 600 }}>
-                {language === "VI" ? (<>Điện thoại</>) : ("전화번호")} <span style={{ color: "red" }}>*</span>
-
-              </label>
-              <select className="visitRight-form4-select"
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
-                style={{
-                  width: 65,
-                  border: "none",
-                  outline: "none",
-                  padding: "12px 0",
-                  background: "transparent",
-                  marginRight: 10,
-                }}
-              >
-                <option value="선택">{language === "VI" ? (<>Chọn</>) : ("선택")}</option>
-                <option value="+82">+82</option>
-                <option value="+84">+84</option>
-              </select>
-              <input className="visitRight-form4-input"
-                type="tel"
-                value={phone}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setPhone(value);
-                  if (value.trim() === "") {
-                    setPhoneError(true);
-                  } else {
-                    setPhoneError(false);
-                  }
-                }}
-                placeholder={language === "VI" ? "Số điện thoại" : "전화번호"}
-                style={{
-                  flex: 1,
-                  border: "none",
-                  outline: "none",
-                  padding: "12px 0",
-                  background: "transparent",
-                }}
-                pattern={
-                  countryCode === "+82"
-                    ? "[0-9]{9,11}"
-                    : countryCode === "+84"
-                      ? "[0-9]{9,10}"
-                      : ".*"
-                }
-                title={
-                  language === "VI"
-                    ? (
-                      countryCode === "+82"
-                        ? "Số điện thoại Hàn Quốc phải có 9~11 chữ số."
-                        : countryCode === "+84"
-                          ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
-                          : "Vui lòng chọn mã quốc gia trước."
-                    )
-                    : (
-                      countryCode === "+82"
-                        ? "한국 전화번호는 9~11자리여야 합니다."
-                        : countryCode === "+84"
-                          ? "베트남 전화번호는 9~10자리여야 합니다."
-                          : "국가 코드를 먼저 선택하세요."
-                    )
-                }
-              />
-
-            </div>
-            {phoneError && submittedVisit && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
-              </div>
-            )}
-          </div>
-
-          {/* 제목 */}
-          <div className="visitRight-form5" style={{ marginBottom: 20, fontSize: 18 }}>
-            <div className="visitRight-form5-main"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid #000",
-                paddingBottom: 6,
-              }}
-            >
-              {/* 날짜 선택 */}
-              <label className="visitRight-form5-label" style={{ fontWeight: 600, marginRight: 8 }}>
-                {language === "VI" ? (<>Chọn ngày</>) : ("날짜 선택")} <span style={{ color: "red" }}>*</span>
-              </label>
-
-              {/* input chọn ngày */}
-              <input className="visitRight-form5-input"
-                type="date"
-                value={date}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setDate(value);
-                  if (value.trim() === "") {
-                    setDateError(true);
-                  } else {
-                    setDateError(false);
-                  }
-                }}
-
-                placeholder="yyyy/mm/dd"
-                style={{
-                  border: "none",
-                  outline: "none",
-                  background: "transparent",
-                  fontSize: 16,
-                  marginRight: 6,
-                  marginLeft: 30,
-                  position: "relative",
-                  colorScheme: "light",
-                }}
-                onFocus={(e) => e.target.showPicker?.()} // mở picker khi click
-              />
-
-              {/* 시간 */}
-              <label className="visitRight-form5-label1" style={{ fontWeight: 500, marginRight: 8 }}>
-                {language === "VI" ? (<>Giờ</>) : ("시간")}
-              </label>
-
-              {/* input chọn giờ */}
-              <input className="visitRight-form5-input1"
-                type="time"
-                value={time}
-                onChange={handleTimeChange}
-                min="09:00"
-                max="18:00"
-                style={{
-                  border: "none",
-                  outline: "none",
-                  background: "transparent",
                   fontSize: 18,
-                  marginRight: 6,
+                  lineHeight: 1.8,
+                  marginBottom: 26,
+                  textAlign: "center",
                 }}
-              />
-
-              {/* icon lịch (chỉ 1 cái cuối) */}
-              <i className="" style={{ fontSize: 18 }}></i>
-            </div>
-
-            {dateError && submittedVisit && (
-              <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
-                {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
+              >
+                <div className="visitRight-Contact-1">
+                  <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
+                </div>
+                <div className="visitRight-Contact-2">
+                  <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
+                </div>
+                <div className="visitRight-Contact-3" style={{ color: "#444" }}>
+                  {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
+                </div>
               </div>
-            )}
 
-          </div>
-
-          {/* 개인정보 동의 */}
-          <div className="visitRight-form6" style={{ marginBottom: 22, fontSize: 18 }}>
-            <label className=" visitRight-form6-checkbox" style={{ fontSize: 18, display: "flex", alignItems: "center" }}>
-              <input
-                type="radio"
-                name="agree"
-                checked={agree}
-                onChange={(e) => setAgree(e.target.checked)}
+              {/* Nút submit */}
+              <button className="visitRight-submit"
+                type="submit"
+                disabled={visitLoading}
                 style={{
-                  marginRight: 6,
-                  width: 16,
-                  height: 16,
-                  accentColor: "#000",
+                  width: "100%",
+                  background: "#d9c4a4",
+                  color: "#fff",
+                  padding: "16px",
+                  border: "none",
+                  borderRadius: 4,
+                  fontWeight: 600,
+                  fontSize: 18,
+                  cursor: visitLoading ? "not-allowed" : "pointer",
+                  opacity: visitLoading ? 0.6 : 1,
                 }}
-              />
-              {language === "VI" ? (<>Đồng ý xử lý thông tin cá nhân</>) : ("개인정보 수집 및 이용 동의")}
-
-            </label>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "28px 0",
-            }}
-          >
-            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
-            <span style={{ margin: "0 18px", color: "#000000ff", fontSize: 18 }}>or</span>
-            <div style={{ flex: 1, height: 1, background: "#000000ff" }}></div>
-          </div>
-
-          {/* Info liên hệ */}
-          <div className="visitRight-Contact"
-            style={{
-              fontSize: 18,
-              lineHeight: 1.8,
-              marginBottom: 26,
-              textAlign: "center",
-            }}
-          >
-            <div className="visitRight-Contact-1">
-              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
-            </div>
-            <div className="visitRight-Contact-2">
-              <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
-            </div>
-            <div className="visitRight-Contact-3" style={{ color: "#444" }}>
-              {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00,<br />  Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
-            </div>
-          </div>
-
-          {/* Nút submit */}
-          <button className="visitRight-submit"
-            type="submit"
-            style={{
-              width: "100%",
-              background: "#d9c4a4",
-              color: "#fff",
-              padding: "16px",
-              border: "none",
-              borderRadius: 4,
-              fontWeight: 600,
-              fontSize: 18,
-              cursor: "pointer",
-            }}
-          >
-            {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
-          </button>
-        </form>
+              >
+                {visitLoading 
+                  ? (language === "VI" ? "Đang gửi..." : "전송 중...") 
+                  : (language === "VI" ? "Yêu cầu tư vấn" : "상담 신청")
+                }
+              </button>
+            </form>
       </div>
       <style>
         {
@@ -2978,7 +3024,7 @@ export default function Consult() {
 
           {/* --- Nút gửi --- */}
           <div
-            onClick={loading ? undefined : handleSubmitConsult1}
+            onClick={loading ? undefined : handleSubmitConsult}
             style={{
               width: 310,
               background: "#d7c199",
@@ -3185,7 +3231,7 @@ export default function Consult() {
                   animation: "pushDown 0.5s ease-out",
                 }}
               >
-                {popupMessage.text} {/* Hiển thị nội dung popup động */}
+                {popupMessage.text}
               </div>
             )}
 

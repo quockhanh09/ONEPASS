@@ -71,48 +71,64 @@ function Introduction() {
     setTimeout(() => setShowPopup(false), 5000);
   };
 
-  const handleSubmit = async () => {
-    if (!service || !name || !phone || !agree) {
-      showTemporaryPopup("모든 항목을 입력하고 동의해 주세요.", true);
+ const handleSubmit = async () => {
+  const lang = localStorage.getItem("lang") || "ko";
+
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+      serverError: "서버 오류가 발생했습니다.",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối máy chủ thất bại.",
+      serverError: "Đã xảy ra lỗi máy chủ.",
+    },
+  };
+
+  if (!service || !name || !phone || !agree) {
+    showTemporaryPopup(messages[lang].empty, true);
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: service,
+        TenHinhThuc: null, 
+        HoTen: name,
+        MaVung: countryCode,
+        SoDienThoai: phone,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      showTemporaryPopup(`${messages[lang].serverError}`, true);
+      console.error("Server Error:", data);
       return;
     }
 
-    setLoading(true);
-
-    try {
-      const response = await fetch("https://op-backend-60ti.onrender.com/api/tuvan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          HoTen: name,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        showTemporaryPopup(`오류 발생: ${data.error || "Server error"}`, true);
-        console.error("Server Error:", data);
-        return;
-      }
-
-      showTemporaryPopup("상담 신청 완료되었습니다!");
-      console.log("Server response:", data);
-
-      setService("");
-      setName("");
-      setPhone("");
-      setAgree(false);
-    } catch (err) {
-      console.error("Lỗi khi kết nối server:", err);
-      showTemporaryPopup("서버 연결 실패");
-    } finally {
-      setLoading(false);
-    }
-  };
+    showTemporaryPopup(messages[lang].success);
+    setService("");
+    setName("");
+    setPhone("");
+    setAgree(false);
+  } catch (err) {
+    console.error("Lỗi khi kết nối server:", err);
+    showTemporaryPopup(messages[lang].fail, true);
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   const [selected, setSelected] = useState(0);

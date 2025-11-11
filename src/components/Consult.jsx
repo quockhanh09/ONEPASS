@@ -959,7 +959,7 @@ const handleTimeChange = (e) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <span style={{ color: goiCoSo ? "#000" : "#999" }}>
+                    <span className="span-form" style={{ color: goiCoSo ? "#000" : "#999" }}>
                       {goiCoSo || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
                     </span>
                     <i
@@ -970,6 +970,15 @@ const handleTimeChange = (e) => {
                       }}
                     />
                   </div>
+                  <style>
+                      {`
+                      @media (max-width: 400px) {
+                        .span-form{
+                          font-size: 14px;
+                          }
+                      }
+                      `}
+                    </style>
                 </div>
 
                 {openRegion && (
@@ -1326,7 +1335,7 @@ const handleTimeChange = (e) => {
       margin-bottom: 8px !important;
       }
       .phoneRight-form-main{
-       
+          margin-bottom: 8px !important;
       }
       
       /* ⚡ Dưới 400px */
@@ -1545,7 +1554,7 @@ const handleTimeChange = (e) => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <span style={{ color: emailCoSo ? "#000" : "#999" }}>
+                    <span className="span-form" style={{ color: emailCoSo ? "#000" : "#999" }}>
                       {emailCoSo || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
                     </span>
                     <i
@@ -1555,7 +1564,29 @@ const handleTimeChange = (e) => {
                         transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
                       }}
                     />
+                     <style>
+                      {`
+                      @media (max-width: 420px) {
+                      .phoneRight-form-1-text
+                          font-size: 14px;
+                          }
+
+                        .span-form{
+                          font-size: 14px;
+                          }
+                      }
+                      @media (max-width: 400px) {
+                      .phoneRight-form-1-text
+                          font-size: 14px;
+                          }
+                        .span-form{
+                          font-size: 14px;
+                          }
+                      }
+                      `}
+                    </style>
                   </div>
+                  
                 </div>
 
                 {openRegion && (

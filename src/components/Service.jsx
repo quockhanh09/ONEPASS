@@ -4837,7 +4837,7 @@ const handleSubmitService = async (e) => {
                         alignItems: "center",
                       }}
                     >
-                      <span style={{ color: region ? "#000" : "#999" }}>
+                      <span className="span-form" style={{ color: region ? "#000" : "#999" }}>
                         {region || (language === "VI" ? "Chọn khu vực" : "지역 선택")}
                       </span>
                       <i
@@ -4848,6 +4848,15 @@ const handleSubmitService = async (e) => {
                         }}
                       />
                     </div>
+                    <style>
+                      {`
+                      @media (max-width: 400px) {
+                        .span-form{
+                          font-size: 14px;
+                          }
+                      }
+                      `}
+                    </style>
                   </div>
 
                   {openRegion && (

@@ -302,10 +302,12 @@ function Support() {
                   <div style={{ fontSize: 18 }}>🚌</div>
                   <div>
                     <div style={{ fontWeight: 700, marginBottom: 6 }}>{language === "VI" ? (<>Phương tiện giao thông</>) : ("대중교통")}</div>
-                    <div style={{ color: "#334155" }}>
-                      {language === "VI" ? (<>Ga Centum City (Line 2) / Xe buýt: 100-1, 155, 200, 31, 5-1</>) : ("센텀시티역(2호선) / 100-1, 155, 200, 31, 5-1번")}
-
-                    </div>
+                     <div style={{ color: "#334155" }}>
+                  {language === "VI" ? (<>Seoul: Ga Jonggak (Line 1), Ga Gwanghwamun (Line 5) / Xe buýt: 109, 606, 151, 162, 172, 401, 406, 704, 7022, 1020</>) : ("서울: 종각역 (1호선), 광화문역 (5호선) / 109, 606, 151, 162, 172, 401, 406, 704, 7022, 1020번")}
+                </div>
+                <div style={{ color: "#334155" }}>
+                  {language === "VI" ? (<>Busan: Ga Centum City (Line 2) / Xe buýt: 100-1, 155, 200, 31, 5-1</>) : ("부산: 센텀시티역(2호선) /100-1, 155, 200, 31, 5-1번")}
+                </div>
                   </div>
                 </div>
               </div>

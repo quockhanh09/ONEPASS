@@ -667,11 +667,11 @@ function Introduction() {
                   <p style={{ fontSize: "16px", color: "#333" }}>{language === "VI" ? (<>Khách hàng</>) : ("만족 고객 수")}</p>
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>240</p>
+                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>450</p>
                   <p style={{ fontSize: "16px", color: "#333" }}>{language === "VI" ? (<>Hồ sơ</>) : ("접수 사례건 수")}</p>
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>2300</p>
+                  <p style={{ fontSize: "45px", fontWeight: "700", color: "#23366f" }}>800</p>
                   <p style={{ fontSize: "16px", color: "#333" }}>{language === "VI" ? (<>Lần tư vấn</>) : ("누적 상담건 수")}</p>
                 </div>
               </div>

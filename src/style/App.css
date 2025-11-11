@@ -5304,8 +5304,8 @@ a.nav-link.active .icon-img {
   }
 
   .case1-steps-content1 {
-    width: 150px !important;
-    height: 120px !important;
+    /* width: 150px !important;
+    height: 120px !important; */
   }
 
   .case1-steps-content1-text {

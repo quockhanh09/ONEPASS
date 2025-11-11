@@ -744,6 +744,21 @@ const tabContents8 = {
     ],
 
   },
+
+  end8: {
+    title: "회사/사업 해산 • 폐업",
+    rows: [
+      ["B2B 서비스", "회사/사업 해산 • 폐업", "별도 상담", "견적 상담 필요"],
+    ],
+    steps: [
+      { id: 1, text: "사업 종료 신고 – 재정청 제출 → 재정청으로부터 사업 종료 통지서 발급 받기" },
+      { id: 2, text: "회사 해산 신고 – 사업자등록실 제출" },
+      { id: 3, text: "회사 해산 서류 제출 – 세무서 제출 → 세무서로부터 세금 의무 이행 통지서 발급 받기" },
+      { id: 4, text: "회사 해산 서류 제출 – 재정청 제출 → 재정청으로부터 회사 해산 통지서 발급 받기" },
+
+    ],
+
+  },
   vietnam8: {
     title: "노동 허가서, 임시 거주증 발급",
     rows: [
@@ -3897,7 +3912,10 @@ const handleSubmitService = async (e) => {
               }}
             >
               <button style={tabStyle("korea8", activeTab8)} onClick={() => setActiveTab8("korea8")} tabKey="a33">
-                {language === "VI" ? (<>Thành lập pháp nhân </>) : ("법인 • 지사 • 대표사무실 설립")}
+                {language === "VI" ? (<>Thành lập công ty </>) : ("법인 • 지사 • 대표사무실 설립")}
+              </button>
+              <button style={tabStyle("end8", activeTab8)} onClick={() => setActiveTab8("end8")} tabKey="a39">
+                {language === "VI" ? (<>Giải thể công ty </>) : ("회사/사업 해산 • 폐업")}
               </button>
               <button style={tabStyle("vietnam8", activeTab8)} onClick={() => setActiveTab8("vietnam8")} tabKey="a34">
                 {language === "VI" ? (<>Đăng ký lao động, tạm trú</>) : ("노동 허가서, 임시 거주증 발급")}
@@ -3936,7 +3954,8 @@ const handleSubmitService = async (e) => {
                   {tabContents8[activeTab8].title && (
                     <h2 style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
                       {language === "VI" ? (
-                        tabContents8[activeTab8].title === "법인 • 지사 • 대표사무실 설립" ? "Thành lập pháp nhân "
+                        tabContents8[activeTab8].title === "법인 • 지사 • 대표사무실 설립" ? "Thành lập công ty "
+                          : tabContents8[activeTab8].title === "회사/사업 해산 • 폐업" ? "Giải thể công ty, chấm dứt dự án đầu tư"
                           : tabContents8[activeTab8].title === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú"
                             : tabContents8[activeTab8].title === "수입 허가서" ? "Giấy phép xuất nhập khẩu"
                               : tabContents8[activeTab8].title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
@@ -3988,10 +4007,10 @@ const handleSubmitService = async (e) => {
                               }}>
                                 {language === "VI" ? (
                                   col === "B2B 서비스" ? "Dịch vụ B2B" :
-                                    col === "법인 • 지사 • 대표사무실 설립" ? "Thành lập pháp nhân" :
+                                    col === "회사/사업 해산 • 폐업" ? "Giải thể công ty" :
                                       col === "별도 상담" ? "Trao đổi khi tư vấn" :
                                         col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
-
+                                          col === "법인 • 지사 • 대표사무실 설립" ? "Thành lập công ty, chi nhánh, văn phòng đại diện" :
                                           col === "노동 허가서, 임시 거주증 발급" ? "Đăng ký lao động, tạm trú" :
                                             col === "수입 허가서" ? "Giấy phép xuất nhập khẩu" :
                                               col === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B" :
@@ -4088,10 +4107,16 @@ const handleSubmitService = async (e) => {
                                 }}
                               >
                                 {language === "VI" ? (
-                                  step.text === "기업 정보 및 요구사항 파악" ? "Thu thập thông tin và yêu cầu của doanh nghiệp" :
+                                    step.text === "기업 정보 및 요구사항 파악" ? "Thu thập thông tin và yêu cầu của doanh nghiệp" :
                                     step.text === "원본 서류 준비 및 번역/공증" ? "Chuẩn bị hồ sơ và dịch / công chứng" :
                                       step.text === "현지에서 서류 제출 및 신청" ? "Nộp hồ sơ" :
                                         step.text === "심사시간 경과 후 증서 발급" ? "Cấp giấy phép và trả kết quả" :
+
+
+                                  step.text === "사업 종료 신고 – 재정청 제출 → 재정청으로부터 사업 종료 통지서 발급 받기" ? "Nộp chấm dứt dự án đầu tư tại Sở Tài Chính → Nhận Thông báo chấm dứt dự án của sở tài chính" :
+                                    step.text === "회사 해산 신고 – 사업자등록실 제출" ? "Thông báo giải thể công ty tại Phòng Đăng ký kinh doanh" :
+                                      step.text === "회사 해산 서류 제출 – 세무서 제출 → 세무서로부터 세금 의무 이행 통지서 발급 받기" ? "Nộp hồ sơ giải thể công ty cho cơ quan Thuế → Nhận Thông báo hoàn thành nghĩa vụ thuế của Cơ quan Thuế" :
+                                        step.text === "회사 해산 서류 제출 – 재정청 제출 → 재정청으로부터 회사 해산 통지서 발급 받기" ? "Nộp hồ sơ giải thể công ty tại Sở Tài chính → Nhận Thông báo giải thể công ty của sở tài chính" :
 
                                           step.text === "외국인 근로자 수요 승인" ? "Xét duyệt yêu cầu, hồ sơ" :
                                             step.text === "노동 허가증 신청 및 서류 준비" ? "Chuẩn bị hồ sơ và đăng ký giấy phép lao động" :

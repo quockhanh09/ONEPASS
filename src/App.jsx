@@ -37,6 +37,7 @@ import a33 from "./assets/img/image253.png";
 import a35 from "./assets/img/a35.png";
 import a36 from "./assets/img/a36.png";
 import a37 from "./assets/img/n1-1-3.png";
+import n39 from "./assets/img/n39.png";
 import n1 from "./assets/img/n19.png";
 import n2 from "./assets/img/n2.png";
 import n3 from "./assets/img/n3.png";
@@ -348,6 +349,7 @@ function App() {
     ],
     "B2B 서비스": [
       { img: a30, title: "베트남·한국에서 법인·지사·대표 사무실 설립", desc: "한국 또는 베트남 내 법인, 지사, 또는 사무소 설립에 필요한 행정 절차 대행", tabKey: "a33" },
+      { img: n39, title: "회사/사업 해산 • 폐업", desc: "회사 폐업 및 투자 사업 종료와 관련 절차 대행", tabKey: "a39" },
       { img: a31, title: "베트남·한국 내 노동 허가서, 임시 거주증 발급", desc: "한국/베트남 외국인 근로자의 취업 허가 및 임시 거주증 발급 절차 대행", tabKey: "a34" },
       { img: a32, title: "수출입 허가서", desc: "기업의 원활한 무역 활동을 위한 수출입 허가증 발급 및 관련 규제 준수 절차 대행", tabKey: "a35" },
       { img: a33, title: "B2B 바이어 매칭", desc: "B2B 파트너를 매칭하여 기업의 성공적인 시장 진출과 매출 확대", tabKey: "a36" },
@@ -1401,7 +1403,8 @@ function App() {
                                                                                               : card.title === "노동 관련 소송" ? "Liên quan tới lao động"
                                                                                                 : card.title === "체류자 관련 컨설팅" ? "Liên quan tới cư trú"
 
-                                                                                                  : card.title === "베트남·한국에서 법인·지사·대표 사무실 설립" ? "Thành lập văn phòng đại diện / pháp nhân "
+                                                                                                  : card.title === "베트남·한국에서 법인·지사·대표 사무실 설립" ? "Thành lập văn phòng đại diện / công ty"
+                                                                                                  : card.title === "회사/사업 해산 • 폐업" ? "Giải thể công ty, chấm dứt dự án đầu tư"
                                                                                                     : card.title === "베트남·한국 내 노동 허가서, 임시 거주증 발급" ? "Đăng ký giấy phép lao động, thẻ tạm trú"
                                                                                                       : card.title === "수출입 허가서" ? "Giấy phép xuất nhập khẩu"
                                                                                                         : card.title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
@@ -1486,7 +1489,9 @@ function App() {
                                                                                             : card.desc === "베트남/한국 내 체류자의 자진 출국 및 합법적 체류 전환 등 민감한 문제 상담"
                                                                                               ? "Tư vấn pháp lý các vấn đề liên quan tới cư trú"
                                                                                               : card.desc === "한국 또는 베트남 내 법인, 지사, 또는 사무소 설립에 필요한 행정 절차 대행"
-                                                                                                ? "Tư vấn hồ sơ và thực hiện thành lập văn phòng đại diện, pháp nhân, v.v"
+                                                                                                ? "Tư vấn hồ sơ và thực hiện thành lập văn phòng đại diện, công ty, v.v"
+                                                                                                : card.desc === "회사 폐업 및 투자 사업 종료와 관련 절차 대행"
+                                                                                                ? "Thực hiện các thủ tục liên quan tới đóng cửa công ty, chấm dứt dự án đầu tư"
                                                                                                 : card.desc === "한국/베트남 외국인 근로자의 취업 허가 및 임시 거주증 발급 절차 대행"
                                                                                                   ? "Hỗ trợ đăng ký giấy phép lao động, thẻ cư trú cho người Việt Nam, Hàn Quốc"
                                                                                                   : card.desc === "기업의 원활한 무역 활동을 위한 수출입 허가증 발급 및 관련 규제 준수 절차 대행"

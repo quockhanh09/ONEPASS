@@ -360,7 +360,7 @@ function App() {
   const [news, setNews] = useState(newsData);
 
   // animated stats: display numbers that count up on mount
-  const statsTarget = { satisfied: 380, cases: 240, consult: 2300 };
+  const statsTarget = { satisfied: 380, cases: 450, consult: 800 };
   const [displayStats, setDisplayStats] = useState({ satisfied: 0, cases: 0, consult: 0 });
 
   useEffect(() => {

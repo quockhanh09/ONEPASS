@@ -30,11 +30,6 @@ function Footer() {
         success: "Cảm ơn bạn đã để lại thông tin.",
         fail: "Vui lòng kiểm tra lại thông tin.",
       },
-      en: {
-        invalid: "Please enter a valid email address.",
-        success: "Thank you for your submission.",
-        fail: "Please check your information again.",
-      },
     }[lang];
   };
 
@@ -44,33 +39,42 @@ function Footer() {
     setTimeout(() => setShowPopup(false), 5000);
   };
 
-  const handleSend = async () => {
-    const messages = getMessages();
+ const handleSend = async () => {
+  const messages = getMessages();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
-      showTemporaryPopup(messages.invalid, true);
-      return;
-    }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    showTemporaryPopup(messages.invalid, true);
+    return;
+  }
 
-    setLoading(true);
-    try {
-      const res = await axios.post("https://op-backend-60ti.onrender.com/api/save-email", { email });
-      setEmail("");
+  setLoading(true);
+  try {
+    const res = await axios.post(
+      "https://onepasscms-backend.onrender.com/api/save-email",
+      { email }
+    );
+
+    if (res.data.success) {
       showTemporaryPopup(messages.success);
-    } catch (err) {
-      console.error("Lỗi gửi email:", err);
-      showTemporaryPopup(messages.fail, true);
-    } finally {
-      setLoading(false);
+      setEmail(""); 
+    } else {
+      showTemporaryPopup(res.data.message || messages.fail, true);
     }
-  };
+  } catch (err) {
+    console.error("❌ Lỗi gửi email:", err);
+    showTemporaryPopup(messages.fail, true);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSend();
-    }
-  };
+
+const handleKeyPress = (e) => {
+  if (e.key === "Enter") {
+    handleSend();
+  }
+};
 
   return (
     <>

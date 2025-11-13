@@ -694,15 +694,12 @@ const handleTimeChange = (e) => {
         {/* Contact */}
         <div className="snsRight-Contact" style={{ fontSize: 18, color: "#111827", lineHeight: 1.8, textAlign: "center" }}>
           <p className="snsRight-Contact-1">
-            <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
+            <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong><div style={{ color: "#334155" }}>{language === "VI" ? (<>Seoul: (+82) 02-737-0607 <br /> Busan: (+82) 51-715-0607 </>) : (<>서울: (+82) 02-737-0607 <br /> 부산: (+82) 51-715-0607 </>)}</div>
+            <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com <br />
+            {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00, Thứ Bảy, Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
           </p>
-          <p className="snsRight-Contact-2">
-            <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
-          </p>
-          <p className="snsRight-Contact-3" style={{ color: "#6b7280", fontSize: 16 }}>
-
-            {language === "VI" ? (<>*Giờ làm việc: 09:00 ~ 18:00 (Nghỉ trưa: 12:00~13:00, Thứ Bảy,<br /> Chủ Nhật và các ngày Lễ/Tết Hàn Quốc)</>) : ("*이용 시간: 평일 09:00 ~ 18:00 (점심 12:00~13:00, 주말 공휴일 휴무)")}
-          </p>
+          
+         
         </div>
       </div>
       <style>
@@ -1226,7 +1223,7 @@ const handleTimeChange = (e) => {
             }}
           >
             <div className="phoneRight-Contact-1">
-              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
+              <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> <div style={{ color: "#334155" }}>{language === "VI" ? (<>Seoul: (+82) 02-737-0607 <br /> Busan: (+82) 51-715-0607 </>) : (<>서울: (+82) 02-737-0607 <br /> 부산: (+82) 51-715-0607 </>)}</div>
             </div>
             <div className="phoneRight-Contact-2">
               <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
@@ -1906,7 +1903,7 @@ const handleTimeChange = (e) => {
               }}
             >
               <div className="emailRight-Contact-1">
-                <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
+                <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> <div style={{ color: "#334155" }}>{language === "VI" ? (<>Seoul: (+82) 02-737-0607 <br /> Busan: (+82) 51-715-0607 </>) : (<>서울: (+82) 02-737-0607 <br /> 부산: (+82) 51-715-0607 </>)}</div>
               </div>
               <div className="emailRight-Contact-2">
                 <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
@@ -2569,7 +2566,7 @@ const handleTimeChange = (e) => {
                 }}
               >
                 <div className="visitRight-Contact-1">
-                  <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
+                  <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> <div style={{ color: "#334155" }}>{language === "VI" ? (<>Seoul: (+82) 02-737-0607 <br /> Busan: (+82) 51-715-0607 </>) : (<>서울: (+82) 02-737-0607 <br /> 부산: (+82) 51-715-0607 </>)}</div>
                 </div>
                 <div className="visitRight-Contact-2">
                   <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com

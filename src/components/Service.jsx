@@ -4738,8 +4738,8 @@ const handleSubmitService = async (e) => {
             style={{
               background: "#f5f5f5",
               borderRadius: 0,
-              padding: "60px 80px",
-              width: 450,
+              padding: "24px 40px",
+              width: 380,
               maxWidth: "100%",
               position: "relative",
               fontFamily: "sans-serif",
@@ -4750,11 +4750,11 @@ const handleSubmitService = async (e) => {
           >
             <h2
               style={{
-                fontSize: 32,
+                fontSize: 24,
                 fontWeight: 700,
-                marginBottom: 28,
+                marginBottom: 16,
                 borderBottom: "1px solid #000",
-                paddingBottom: 30,
+                paddingBottom: 12,
               }}
             >
               {language === "VI" ? (<>Yêu cầu tư vấn</>) : ("상담 신청")}
@@ -4763,7 +4763,7 @@ const handleSubmitService = async (e) => {
             {/* FORM */}
             <form onSubmit={handleSubmitService}>
               {/* 서비스 선택 */}
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 12 }}>
                 <div
                   style={{
                     display: "flex",
@@ -4797,7 +4797,7 @@ const handleSubmitService = async (e) => {
                     style={{
                       flex: 1,
                       border: "none",
-                      padding: "12px 0",
+                      padding: "8px 0",
                       outline: "none",
                       background: "transparent",
                     }}
@@ -4810,7 +4810,7 @@ const handleSubmitService = async (e) => {
                   </div>
                 )}
               </div>
-          <div className="phoneRight-form-main" style={{ marginBottom: 20, position: "relative" }}>
+              <div className="phoneRight-form-main" style={{ marginBottom: 12, position: "relative" }}>
                   <div
                     className="phoneRight-form-1"
                     onClick={() => setOpenRegion(!openRegion)}
@@ -4831,7 +4831,7 @@ const handleSubmitService = async (e) => {
                     <div
                       style={{
                         flex: 1,
-                        padding: "12px 0",
+                        padding: "8px 0",
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
@@ -4862,15 +4862,15 @@ const handleSubmitService = async (e) => {
                   {openRegion && (
                     <div
                       style={{
-                        position: "absolute",
-                        top: "100%",
-                        left: 120,
-                        right: 0,
-                        background: "#fff",
-                        border: "1px solid #ccc",
-                        borderRadius: 4,
-                        zIndex: 10,
-                      }}
+                          position: "absolute",
+                          top: "100%",
+                          left: 120,
+                          right: 0,
+                          background: "#fff",
+                          border: "1px solid #ccc",
+                          borderRadius: 4,
+                          zIndex: 10,
+                        }}
                     >
                       {regionList.map((r) => (
                         <div
@@ -4914,7 +4914,7 @@ const handleSubmitService = async (e) => {
 
 
               {/* 이름 */}
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 12 }}>
                 <div
                   style={{
                     display: "flex",
@@ -4942,7 +4942,7 @@ const handleSubmitService = async (e) => {
                       style={{
                         flex: 1,
                         border: "none",
-                        padding: "12px 0",
+                        padding: "8px 0",
                         outline: "none",
                         background: "transparent",
                       }}
@@ -4972,7 +4972,7 @@ const handleSubmitService = async (e) => {
               </div>
 
               {/* 이메일 */}
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 12 }}>
                 <div
                   style={{
                     display: "flex",
@@ -4990,7 +4990,7 @@ const handleSubmitService = async (e) => {
                     style={{
                       flex: 1,
                       border: "none",
-                      padding: "12px 0",
+                      padding: "8px 0",
                       outline: "none",
                       background: "transparent",
                     }}
@@ -5004,13 +5004,13 @@ const handleSubmitService = async (e) => {
               </div>
 
               {/* 전화번호 */}
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 12 }}>
                 <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    borderBottom: "1px solid #999",
-                  }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      borderBottom: "1px solid #999",
+                    }}
                 >
                   <label style={{ width: 120, fontWeight: 600 }}>
                     {language === "VI" ? (<>Điện thoại</>) : ("전화번호")}<span style={{ color: "red" }}>*</span>
@@ -5022,7 +5022,7 @@ const handleSubmitService = async (e) => {
                       width: 60,
                       border: "none",
                       outline: "none",
-                      padding: "12px 0",
+                      padding: "8px 0",
                       background: "transparent",
                     }}
                   >
@@ -5048,7 +5048,7 @@ const handleSubmitService = async (e) => {
                       flex: 1,
                       border: "none",
                       outline: "none",
-                      padding: "12px 0",
+                      padding: "8px 0",
                       background: "transparent",
                       marginLeft: 8,
                     }}
@@ -5085,7 +5085,7 @@ const handleSubmitService = async (e) => {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  margin: "28px 0",
+                  margin: "20px 0",
                 }}
               >
                 <div style={{ flex: 1, height: 1, background: "#999" }}></div>
@@ -5096,9 +5096,9 @@ const handleSubmitService = async (e) => {
               </div>
 
               {/* Info liên hệ */}
-              <div style={{ fontSize: 15, lineHeight: 1.8, marginBottom: 26, textAlign: "center" }}>
+              <div style={{ fontSize: 15, lineHeight: 1.6, marginBottom: 16, textAlign: "center" }}>
                 <div>
-                  <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> (+82) 51-715-0607
+                  <strong>{language === "VI" ? (<>Liên hệ:</>) : ("전화 걸기:")}</strong> <div style={{ color: "#334155" }}>{language === "VI" ? (<>Seoul: (+82) 02-737-0607 <br /> Busan: (+82) 51-715-0607 </>) : (<>서울: (+82) 02-737-0607 <br /> 부산: (+82) 51-715-0607 </>)}</div>
                 </div>
                 <div>
                   <strong>{language === "VI" ? (<>Email: </>) : ("이메일 보내기:")}</strong> onepass.kr@gmail.com
@@ -5116,11 +5116,11 @@ const handleSubmitService = async (e) => {
                   width: "100%",
                   background: "#d9c4a4",
                   color: "#ffffffff",
-                  padding: "16px",
+                  padding: "12px",
                   border: "none",
                   borderRadius: 4,
                   fontWeight: 600,
-                  fontSize: 15,
+                  fontSize: 14,
                   cursor: "pointer",
                 }}
               >

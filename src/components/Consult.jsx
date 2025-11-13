@@ -1014,7 +1014,7 @@ const handleTimeChange = (e) => {
                 )}
 
                 {!goiCoSo && submittedPhone && (
-                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  <div  style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                     {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
                   </div>
                 )}
@@ -1622,7 +1622,7 @@ const handleTimeChange = (e) => {
                 )}
 
                 {!emailCoSo && submittedEmail && (
-                  <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
+                  <div className="emailRight-form1-selected" style={{ fontSize: 12, color: "red", marginTop: 4 }}>
                     {language === "VI" ? "*Đây là mục bắt buộc" : "*필수입력입니다"}
                   </div>
                 )}

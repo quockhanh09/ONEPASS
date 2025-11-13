@@ -4896,7 +4896,7 @@ const handleSubmitService = async (e) => {
 
                   {/* luôn hiển thị lỗi đỏ nếu chưa chọn */}
                   {regionError && (
-                    <div
+                    <div 
                       style={{
                         fontSize: 12,
                         color: "red",

@@ -152,7 +152,7 @@ function Countdown() {
               <div style={{ fontSize: 18 }}>📞</div>
               <div>
                 <div style={{ fontWeight: 800, marginBottom: 6 }}>{language === "VI" ? (<>Điện thoại</>) : ("전화")}</div>
-                <div style={{ color: "#334155" }}>(+82) 51-715-0607</div>
+                <div style={{ color: "#334155" }}>{language === "VI" ? (<>Seoul: (+82) 02-737-0607 <br/>Busan: (+82) 51-715-0607 </>) : (<>서울: (+82) 02-737-0607 <br/>부산: (+82) 51-715-0607 </>)}</div>
               </div>
 
               {/* 근무시간 */}

@@ -156,10 +156,11 @@ const handleKeyPress = (e) => {
               <img src={logo} alt="Logo" style={{ width: 180 }} />
             </div>
             <div className="info-text" style={{ color: "#E8EEF9", fontSize: 16, fontWeight: 400, lineHeight: 1.9 }}>
-              <div>TEL / FAX : (+82) 51-715-0607</div>
-              <div>{language === "VI" ? (<> Seoul: Toà nhà Doosan We've Pavilion, Phòng 1238, 81,Sambong-ro Jongno-gu, Seoul, Hàn Quốc (03150) </>) : (<> 서울: (03150) 서울특별시 종로구 삼봉로 81 두산위브 파빌리온, 1238호) </>)}</div>
+              <div>{language === "VI" ? (<> Seoul: Phòng 1238, Toà nhà Doosan We've Pavilion, 81 Sambong-ro Jongno-gu,  Hàn Quốc (03150) | +82 02-737-0607 </>) : (<> 서울: (03150) 서울특별시 종로구 삼봉로 81 두산위브 파빌리온, 1238호) | +82 02-737-0607</>)}</div>
+           
+              <div>{language === "VI" ? (<>Busan: Phòng 915 - 916, Tòa nhà Byucksan e-Centum Classone, 99 Centumdong-ro, Haeundae-gu,  Hàn Quốc (48059) | +82 51-715-0607</>) : (<>부산: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원) | +82 51-715-0607</>)}</div>
+
               
-              <div>{language === "VI" ? (<>Busan: Tòa nhà Byucksan e-Centum Classone, Phòng 915 - 916, 99 Centumdong-ro, Haeundae-gu, Busan, Hàn Quốc (48059)</>) : (<>부산: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원)</>)}</div>
               <div>{language === "VI" ? (<>Số đăng ký kinh doanh: 740-87-03727</>) : ("사업자등록번호: 740-87-03727")}</div>
             </div>
             <div className="reserve" style={{ color: "#AFC4E8", fontSize: 13, marginTop: 24 }}>
@@ -228,7 +229,7 @@ const handleKeyPress = (e) => {
                 disabled={loading}
                 style={{
                   height: 46,
-                  padding: "0 22px",
+                  padding: "0 12px",
                   background: loading ? "#ccc" : "#E8EEF9",
                   color: "#0B2447",
                   fontWeight: 600,

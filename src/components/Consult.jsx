@@ -235,7 +235,7 @@ const handleSubmitGoiDien = async (e) => {
 
   const currentLang = messages[lang] ? lang : "ko";
 
-  if (!goiService.trim() || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo) {
+  if (!goiService?.ko || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo) {
     showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
@@ -247,7 +247,7 @@ const handleSubmitGoiDien = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: goiService,
+        TenDichVu: goiService?.vi || goiService?.ko,
         TenHinhThuc: "Gọi điện",
         HoTen: goiName,
         Email: goiEmail || null,
@@ -306,7 +306,7 @@ const handleSubmitEmail = async (e) => {
   const currentLang = messages[lang] ? lang : "ko";
 
   if (
-    !emailService?.trim() ||
+    !emailService?.ko ||
     !emailName?.trim() ||
     !emailPhone?.trim() ||
     !emailEmail?.trim() ||
@@ -331,7 +331,7 @@ const handleSubmitEmail = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: emailService,
+        TenDichVu: emailService?.vi || emailService?.ko,
         TenHinhThuc: "Email",
         HoTen: emailName,
         Email: emailEmail,
@@ -397,7 +397,7 @@ const handleSubmitVisit = async (e) => {
 
 
   if (
-    !visitService?.trim() ||
+    !visitService?.ko ||
     !visitName?.trim() ||
     !visitPhone?.trim() ||
     !visitEmail?.trim() ||
@@ -424,7 +424,7 @@ const handleSubmitVisit = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: visitService,
+        TenDichVu: visitService?.vi || visitService?.ko,
         TenHinhThuc: "Trực tiếp",
         HoTen: visitName,
         Email: visitEmail,
@@ -878,7 +878,7 @@ const handleTimeChange = (e) => {
               </label>
               <div className="phoneRight-form1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: goiService ? "#000" : "#999" }}>
-                  {goiService || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                  {goiService ? (language === "VI" ? goiService.vi : goiService.ko) : (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                 </span>
                 <i
                   className="fa-solid fa-chevron-down"
@@ -908,7 +908,7 @@ const handleTimeChange = (e) => {
                     className="phoneRight-form1-2"
                     key={v.ko}
                     onClick={() => {
-                      setGoiService(v.ko);
+                      setGoiService(v);
                       setOpen(false);
                     }}
                     style={{
@@ -925,7 +925,7 @@ const handleTimeChange = (e) => {
               </div>
             )}
 
-            {!goiService && submittedPhone && (
+            {!goiService?.ko && submittedPhone && (
               <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                 {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
               </div>
@@ -1473,7 +1473,7 @@ const handleTimeChange = (e) => {
                 </label>
                 <div className="emailRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                   <span style={{ color: emailService ? "#000" : "#999" }}>
-                    {emailService || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                    {emailService ? (language === "VI" ? emailService.vi : emailService.ko) : (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                   </span>
                   <i
                     className="fa-solid fa-chevron-down"
@@ -1503,7 +1503,7 @@ const handleTimeChange = (e) => {
                       className="phoneRight-form1-2"
                       key={v.ko}
                       onClick={() => {
-                        setEmailService(v.ko);
+                        setEmailService(v);
                         setOpen(false);
                       }}
                       style={{
@@ -1520,7 +1520,7 @@ const handleTimeChange = (e) => {
                 </div>
               )}
 
-              {!emailService && submittedEmail && (
+              {!emailService?.ko && submittedEmail && (
                 <div className="emailRight-form1-selected" style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                   {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
                 </div>
@@ -2151,7 +2151,7 @@ const handleTimeChange = (e) => {
                   </label>
                   <div className="visitRight-form1-1" style={{ flex: 1, padding: "12px 0", display: "flex", justifyContent: "space-between" }}>
                     <span style={{ color: visitService ? "#000" : "#999" }}>
-                      {visitService || (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
+                      {visitService ? (language === "VI" ? visitService.vi : visitService.ko) : (language === "VI" ? "Chọn dịch vụ" : "서비스 선택")}
                     </span>
                     <i
                       className="fa-solid fa-chevron-down"
@@ -2181,7 +2181,7 @@ const handleTimeChange = (e) => {
                         className="phoneRight-form1-2"
                         key={v.ko}
                         onClick={() => {
-                          setVisitService(v.ko);
+                          setVisitService(v);
                           setOpen(false);
                         }}
                         style={{
@@ -2198,7 +2198,7 @@ const handleTimeChange = (e) => {
                   </div>
                 )}
 
-                {!visitService && submittedVisit && (
+                {!visitService?.ko && submittedVisit && (
                   <div style={{ fontSize: 12, color: "red", marginTop: 4, marginLeft: 120 }}>
                     {language === "VI" ? (<>*Đây là mục bắt buộc</>) : ("*필수입력입니다")}
                   </div>

@@ -173,7 +173,7 @@ const handleSubmitConsult = async () => {
     },
   };
 
-  if (!service || !name || !phone || !agree) {
+  if (!service || !name || !phone || !agree || !countryCode) {
     showTemporaryPopup(messages[lang].empty, true);
     return;
   }
@@ -235,7 +235,7 @@ const handleSubmitGoiDien = async (e) => {
 
   const currentLang = messages[lang] ? lang : "ko";
 
-  if (!goiService?.ko || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo) {
+  if (!goiService?.ko || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo ||!goiCountryCode || goiCountryCode === "선택" || goiCountryCode === "Chọn") {
     showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
@@ -310,6 +310,7 @@ const handleSubmitEmail = async (e) => {
     !emailName?.trim() ||
     !emailPhone?.trim() ||
     !emailEmail?.trim() ||
+    !emailCountryCode || emailCountryCode === "선택" || emailCountryCode === "Chọn" ||
     !emailContent?.trim() ||
     !emailAgree ||
     !emailCoSo?.trim()
@@ -401,6 +402,7 @@ const handleSubmitVisit = async (e) => {
     !visitName?.trim() ||
     !visitPhone?.trim() ||
     !visitEmail?.trim() ||
+    !visitCountryCode || visitCountryCode === "선택"|| visitCountryCode === "Chọn" ||
     !visitDate ||
     !visitTime ||
     !visitAgree ||

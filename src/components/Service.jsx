@@ -4783,10 +4783,10 @@ const handleSubmitService = async (e) => {
                           serviceContents[activeIndex]?.title === "영사 확인 • 사실인증" ? "Chứng thực"
                             : serviceContents[activeIndex]?.title === "결혼 이민" ? "Kết hôn"
                               : serviceContents[activeIndex]?.title === "출생 · 사망 신고" ? "Khai sinh · Khai tử"
-                                : serviceContents[activeIndex]?.title === "출입국 행정" ? "Xuất nhận cảnh"
+                                : serviceContents[activeIndex]?.title === "출입국 행정" ? "Xuất nhập cảnh"
                                   : serviceContents[activeIndex]?.title === "신분증명 서류" ? "Giấy tờ tùy thân"
                                     : serviceContents[activeIndex]?.title === "입양 • 자녀 인지" ? "Nhận nuôi"
-                                      : serviceContents[activeIndex]?.title === "비자 대행" ? "Thi thực"
+                                      : serviceContents[activeIndex]?.title === "비자 대행" ? "Thị thực"
                                         : serviceContents[activeIndex]?.title === "법률 컨설팅" ? "Tư vấn pháp lý"
                                           : serviceContents[activeIndex]?.title === "B2B 서비스" ? "Dịch vụ B2B"
                                             : serviceContents[activeIndex]?.title || ''

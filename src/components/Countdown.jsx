@@ -26,7 +26,7 @@ function Countdown() {
   ]);
 
   // ✅ Map hiện tại
-  const [selectedMap, setSelectedMap] = useState(addresses[1].map); // mặc định Busan
+  const [selectedMap, setSelectedMap] = useState(addresses[0].map); // mặc định Busan
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(selectedMap)}&output=embed`;
 
 

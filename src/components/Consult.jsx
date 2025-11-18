@@ -3097,7 +3097,7 @@ const handleTimeChange = (e) => {
                 <span className="label"> {language === "VI" ? (
                   item.name === "페이스북" ? "Liên Kết Facebook"
                     : item.name === "카카오톡" ? " Liên Kết KakaoTalk"
-                      : item.name === "Zalo" ? <>Liên Kết Zalo</>
+                      : item.name === "Zalo" ? "Liên Kết Zalo"
                         : item.name === "네이버" ? "Liên Kết Naver"
                           : item.name
                 ) : (

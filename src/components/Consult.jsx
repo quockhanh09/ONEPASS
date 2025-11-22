@@ -156,7 +156,8 @@ export default function Consult() {
     setTimeout(() => setShowPopup(false), 5000);
   };
 const handleSubmitConsult = async () => {
-  const lang = localStorage.getItem("lang") || "ko";
+ 
+  const currentLang = language === "VI" ? "vi" : "ko";
 
   const messages = {
     ko: {
@@ -174,7 +175,7 @@ const handleSubmitConsult = async () => {
   };
 
   if (!service || !name || !phone || !agree || !countryCode) {
-    showTemporaryPopup(messages[lang].empty, true);
+    showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
 
@@ -196,19 +197,22 @@ const handleSubmitConsult = async () => {
     const data = await response.json();
 
     if (!response.ok) {
-      showTemporaryPopup(`${messages[lang].serverError}`, true);
+   
+      showTemporaryPopup(`${messages[currentLang].serverError}`, true);
       console.error("Server Error:", data);
       return;
     }
 
-    showTemporaryPopup(messages[lang].success);
+
+    showTemporaryPopup(messages[currentLang].success);
     setService("");
     setName("");
     setPhone("");
     setAgree(false);
   } catch (err) {
     console.error("Lỗi khi kết nối server:", err);
-    showTemporaryPopup(messages[lang].fail, true);
+
+    showTemporaryPopup(messages[currentLang].fail, true);
   } finally {
     setLoading(false);
   }
@@ -217,7 +221,8 @@ const handleSubmitGoiDien = async (e) => {
   e.preventDefault();
   setSubmittedPhone(true);
 
-  const lang = localStorage.getItem("lang") || "ko";
+
+  const currentLang = language === "VI" ? "vi" : "ko";
 
   const messages = {
     ko: {
@@ -232,10 +237,7 @@ const handleSubmitGoiDien = async (e) => {
     },
   };
 
-
-  const currentLang = messages[lang] ? lang : "ko";
-
-  if (!goiService?.ko || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo ||!goiCountryCode || goiCountryCode === "선택" || goiCountryCode === "Chọn") {
+  if (!goiService?.ko || !goiName.trim() || !goiPhone.trim() || !goiAgree || !goiCoSo || !goiCountryCode || goiCountryCode === "선택" || goiCountryCode === "Chọn") {
     showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
@@ -264,10 +266,12 @@ const handleSubmitGoiDien = async (e) => {
     const data = await res.json();
 
     if (!res.ok) {
+  
       showTemporaryPopup(`${data.message || messages[currentLang].fail}`, true);
       return;
     }
 
+    
     showTemporaryPopup(messages[currentLang].success);
 
     setGoiName("");
@@ -290,7 +294,8 @@ const handleSubmitEmail = async (e) => {
   e.preventDefault();
   setSubmittedEmail(true);
 
-  const lang = localStorage.getItem("lang") || "ko";
+  const currentLang = language === "VI" ? "vi" : "ko";
+
   const messages = {
     ko: {
       empty: "모든 항목을 입력하고 동의해 주세요.",
@@ -303,7 +308,6 @@ const handleSubmitEmail = async (e) => {
       fail: "Kết nối server thất bại.",
     },
   };
-  const currentLang = messages[lang] ? lang : "ko";
 
   if (
     !emailService?.ko ||
@@ -371,12 +375,12 @@ const handleSubmitEmail = async (e) => {
     setEmailLoading(false);
   }
 };
-
 const handleSubmitVisit = async (e) => {
   e.preventDefault();
   setSubmittedVisit(true);
 
-  const lang = localStorage.getItem("lang") || "ko";
+  const currentLang = language === "VI" ? "vi" : "ko";
+
   const messages = {
     ko: {
       empty: "모든 항목을 입력하고 동의해 주세요.",
@@ -389,13 +393,10 @@ const handleSubmitVisit = async (e) => {
       fail: "Kết nối server thất bại.",
     },
   };
-  const currentLang = messages[lang] ? lang : "ko";
-
 
   const formattedDate = visitDate
     ? new Date(visitDate).toLocaleDateString("en-GB")
     : "";
-
 
   if (
     !visitService?.ko ||
@@ -415,6 +416,7 @@ const handleSubmitVisit = async (e) => {
     if (!visitTime) setTimeError(true);
     if (!visitCoSo) setCoSoError(true);
 
+   
     showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
@@ -448,7 +450,6 @@ const handleSubmitVisit = async (e) => {
 
     showTemporaryPopup(messages[currentLang].success);
 
-  
     setVisitName("");
     setVisitPhone("");
     setVisitEmail("");
@@ -469,7 +470,7 @@ const handleSubmitVisit = async (e) => {
 const handleTimeChange = (e) => {
   const value = e.target.value;
   
-  // Reset error trước
+  
   setTimeError(false);
   
   if (value < "09:00" || value > "18:00") {
@@ -490,13 +491,13 @@ const handleTimeChange = (e) => {
 };
 
   const [activeTab, setActiveTab] = useState("sns");
-  // read route state to allow opening a specific tab when navigated from elsewhere
+
   const location = useLocation();
 
   useEffect(() => {
     if (location && location.state && location.state.tab) {
       const tab = location.state.tab;
-      // validate allowed tabs
+    
       const allowed = ["sns", "phone", "email", "visit"];
       if (allowed.includes(tab)) setActiveTab(tab);
     }

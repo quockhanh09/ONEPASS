@@ -891,8 +891,9 @@ const [servicePhoneError, setServicePhoneError] = useState(true);
 
 
 
- const handleSubmit = async () => {
-  const lang = localStorage.getItem("lang") || "ko";
+const handleSubmit = async () => {
+
+  const currentLang = language === "VI" ? "vi" : "ko";
 
   const messages = {
     ko: {
@@ -910,7 +911,8 @@ const [servicePhoneError, setServicePhoneError] = useState(true);
   };
 
   if (!service || !name || !phone || !agree) {
-    showTemporaryPopup(messages[lang].empty, true);
+
+    showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
 
@@ -932,19 +934,21 @@ const [servicePhoneError, setServicePhoneError] = useState(true);
     const data = await response.json();
 
     if (!response.ok) {
-      showTemporaryPopup(`${messages[lang].serverError}`, true);
+
+      showTemporaryPopup(`${messages[currentLang].serverError}`, true);
       console.error("Server Error:", data);
       return;
     }
 
-    showTemporaryPopup(messages[lang].success);
+
+    showTemporaryPopup(messages[currentLang].success);
     setService("");
     setName("");
     setPhone("");
     setAgree(false);
   } catch (err) {
     console.error("Lỗi khi kết nối server:", err);
-    showTemporaryPopup(messages[lang].fail, true);
+    showTemporaryPopup(messages[currentLang].fail, true);
   } finally {
     setLoading(false);
   }
@@ -972,7 +976,9 @@ const translateServiceTitle = (title) => {
 const handleSubmitService = async (e) => {
   e.preventDefault();
 
-  const lang = localStorage.getItem("lang") || "ko";
+  
+  const currentLang = language === "VI" ? "vi" : "ko";
+
   const messages = {
     ko: {
       empty: "모든 항목을 입력하고 동의해 주세요.",
@@ -987,16 +993,16 @@ const handleSubmitService = async (e) => {
       serverError: "Đã xảy ra lỗi máy chủ.",
     },
   };
-  const currentLang = messages[lang] ? lang : "ko";
 
-  // ✅ Đánh dấu đã nhấn Submit để bật check UI
+ 
   setSubmittedServiceForm(true);
 
-  // ✅ Kiểm tra và đặt lỗi cho từng ô ngay khi bấm Gửi
+  
   setServiceNameError(!serviceName.trim());
   setServicePhoneError(!servicePhone.trim());
   setServiceEmailError(!serviceEmail.trim());
   setRegionError(!region);
+  
   if (
     !serviceContents[activeIndex]?.title ||
     !region ||
@@ -1005,11 +1011,12 @@ const handleSubmitService = async (e) => {
     !serviceAgree ||
     serviceCountryCode === "선택"
   ) {
+    
     showTemporaryPopup(messages[currentLang].empty, true);
     return;
   }
 
-  // 🔄 Nếu qua được phần check => bắt đầu gửi
+ 
   setServiceLoading(true);
 
   try {
@@ -1033,6 +1040,7 @@ const handleSubmitService = async (e) => {
     const data = await response.json();
 
     if (!response.ok) {
+
       showTemporaryPopup(
         `${data.message || messages[currentLang].serverError}`,
         true
@@ -1041,9 +1049,10 @@ const handleSubmitService = async (e) => {
       return;
     }
 
+
     showTemporaryPopup(messages[currentLang].success);
 
-    // ✅ Reset form sau khi gửi thành công
+    
     setServiceName("");
     setServiceEmail("");
     setServicePhone("");
@@ -1062,7 +1071,6 @@ const handleSubmitService = async (e) => {
     setServiceLoading(false);
   }
 };
-
 
 
 

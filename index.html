@@ -2,7 +2,29 @@
 <html lang="en">
 
 <head>
+  <!-- Google Meta Tags -->
+  <meta name="google-site-verification" content="your-google-verification-code" />
+  <meta name="description" content="ONE PASS - Dịch vụ tư vấn visa, hộ chiếu và các dịch vụ lãnh sự chuyên nghiệp" />
+  <meta name="keywords" content="visa, hộ chiếu, lãnh sự, ONE PASS, tư vấn visa, dịch vụ visa" />
+  <meta name="author" content="ONE PASS" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ONE PASS - Dịch vụ Tư Vấn Visa & Lãnh Sự" />
+  <meta property="og:description" content="Dịch vụ tư vấn visa, hộ chiếu và các dịch vụ lãnh sự chuyên nghiệp" />
+  <meta property="og:url" content="https://onepass.vn" />
+  <meta property="og:site_name" content="ONE PASS" />
+  <meta property="og:image" content="https://onepass.vn/og-image.jpg" />
+  
+  <!-- Naver Meta Tags -->
   <meta name="naver-site-verification" content="39a6d38ec6c998382763049a8da656b425f0f95c" />
+  <meta property="naver:title" content="ONE PASS - Dịch vụ Tư Vấn Visa & Lãnh Sự" />
+  <meta property="naver:description" content="Dịch vụ tư vấn visa, hộ chiếu và các dịch vụ lãnh sự chuyên nghiệp" />
+  <meta property="naver:image" content="https://onepass.vn/naver-image.jpg" />
+  
+  <!-- Other Meta Tags -->
   <meta charset="UTF-8" />
   <link rel="icon" href="src/assets/img/favicon-trắng-viền-đen.ico" />
   <link rel="shortcut icon" href="src/assets/img/favicon-trắng-viền-đen.ico" />
@@ -24,6 +46,107 @@
     rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ONE PASS</title>
+  
+  <!-- JSON-LD Structured Data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ONE PASS",
+    "description": "Dịch vụ tư vấn visa, hộ chiếu và các dịch vụ lãnh sự chuyên nghiệp",
+    "url": "https://onepass.vn",
+    "logo": "https://onepass.vn/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+84-XXX-XXX-XXX",
+      "contactType": "Customer Service",
+      "areaServed": "VN",
+      "availableLanguage": ["Vietnamese", "English", "Korean"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Địa chỉ của bạn",
+      "addressLocality": "Thành phố",
+      "addressRegion": "Tỉnh/Thành phố",
+      "postalCode": "700000",
+      "addressCountry": "VN"
+    },
+    "sameAs": [
+      "https://www.facebook.com/onepass",
+      "https://www.instagram.com/onepass"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "250"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ONE PASS",
+    "image": "https://onepass.vn/office-image.jpg",
+    "@id": "https://onepass.vn",
+    "url": "https://onepass.vn",
+    "telephone": "+84-XXX-XXX-XXX",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Địa chỉ của bạn",
+      "addressLocality": "Thành phố",
+      "addressRegion": "Tỉnh/Thành phố",
+      "postalCode": "700000",
+      "addressCountry": "VN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 10.762622,
+      "longitude": 106.660172
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "17:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/onepass",
+      "https://www.instagram.com/onepass"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ONE PASS",
+    "url": "https://onepass.vn",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://onepass.vn/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </head>
 
 <body>

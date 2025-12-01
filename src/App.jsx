@@ -142,6 +142,13 @@ function App() {
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Google Analytics pageview tracking
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('config', 'G-XXXXXXXXXX', {
+        page_path: location.pathname,
+      });
+    }
   }, [location.pathname]);
 
   const newsData = {

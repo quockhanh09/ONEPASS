@@ -641,7 +641,7 @@ function App() {
                     >
                       {language === "VI"
                         ? "ONE PASS\n GIẢI PHÁP NHANH, KẾT QUẢ CHẮC!"
-                        : "ONE PASS, 한번에 PASS"}
+                        : "ONE PASS, 한번에 패스"}
                     </h1>
 
                     

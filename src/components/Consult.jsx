@@ -186,7 +186,7 @@ const handleSubmitConsult = async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: service,
+        LoaiDichVu: service,
         TenHinhThuc: null, 
         HoTen: name,
         MaVung: countryCode,
@@ -249,7 +249,7 @@ const handleSubmitGoiDien = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: goiService?.vi || goiService?.ko,
+        LoaiDichVu: goiService?.vi || goiService?.ko,
         TenHinhThuc: "Gọi điện",
         HoTen: goiName,
         Email: goiEmail || null,
@@ -336,7 +336,7 @@ const handleSubmitEmail = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: emailService?.vi || emailService?.ko,
+        LoaiDichVu: emailService?.vi || emailService?.ko,
         TenHinhThuc: "Email",
         HoTen: emailName,
         Email: emailEmail,
@@ -428,7 +428,7 @@ const handleSubmitVisit = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: visitService?.vi || visitService?.ko,
+        LoaiDichVu: visitService?.vi || visitService?.ko,
         TenHinhThuc: "Trực tiếp",
         HoTen: visitName,
         Email: visitEmail,

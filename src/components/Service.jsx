@@ -923,7 +923,7 @@ const handleSubmit = async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: service,
+        LoaiDichVu: service,
         TenHinhThuc: null, 
         HoTen: name,
         MaVung: countryCode,
@@ -1028,7 +1028,7 @@ const handleSubmitService = async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        TenDichVu: translatedService,
+        LoaiDichVu: translatedService,
         CoSoTuVan: region,
         HoTen: serviceName,
         Email: serviceEmail,

@@ -89,7 +89,7 @@ export default function NewsDetail() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           TenDichVu: service,
-          TenHinhThuc: null, 
+          TenHinhThuc: "Tư Vấn Nhanh", 
           HoTen: name,
           MaVung: countryCode,
           SoDienThoai: phone,

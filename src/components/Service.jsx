@@ -924,7 +924,7 @@ const handleSubmit = async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         LoaiDichVu: service,
-        TenHinhThuc: null, 
+        TenHinhThuc: "Tư Vấn Nhanh", 
         HoTen: name,
         MaVung: countryCode,
         SoDienThoai: phone,
@@ -1029,6 +1029,7 @@ const handleSubmitService = async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         LoaiDichVu: translatedService,
+        TenHinhThuc:"FormService",
         CoSoTuVan: region,
         HoTen: serviceName,
         Email: serviceEmail,

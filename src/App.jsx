@@ -257,13 +257,13 @@ function App() {
       hoverIcon: birthHover
     },
     {
-      title: "출입국 행정",
+      title: "국적",
       icon: travelIcon,
       activeIcon: travelActive,
       hoverIcon: travelHover
     },
     {
-      title: "신분증명 서류",
+      title: "여권 • 호적",
       icon: idIcon,
       activeIcon: idActive,
       hoverIcon: idHover
@@ -322,14 +322,14 @@ function App() {
       { img: a7, title: "사망 신고", desc: "사망 신고 및 관련 서류 처리 대행", tabKey: "a10" },
       { img: a8, title: "사망 재신고", desc: "사망증명서 및 사망신고서 분실 시 재등록", tabKey: "a11" },
     ],
-    "출입국 행정": [
+    "국적": [
       { img: a9, title: "베트남 국적 포기 신청", desc: "베트남 국적 포기 신청 및 서류 절차 대행", tabKey: "a12" },
       
       { img: a11, title: "베트남 국적 재귀화 신청", desc: "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
       { img: a12, title: "베트남으로 시체, 유해, 유골 송환 허가 신청", desc: "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
       { img: a13, title: "베트남 국적 사실 확인", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
     ],
-    "신분증명 서류": [
+    "여권 • 호적": [
       { img: a14, title: "일반 여권 (재)발급·변경·추가", desc: "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행", tabKey: "a17" },
       { img: a15, title: "호적 변경·정정·추가, 민족 재확인, 성별 재확인 등", desc: "이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원", tabKey: "a18" },
       { img: a16, title: "베트남 국민 신고 업데이트", desc: "재외 베트남인으로서의 국민 등록 및 정보 갱신 대행", tabKey: "a19" },
@@ -784,8 +784,8 @@ function App() {
                       <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
                       <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
                       <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
-                      <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
-                      <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
+                      <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
+                      <option value="여권 • 호적 대행">{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적 대행")}</option>
                       <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
                       <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
                       <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
@@ -1318,8 +1318,8 @@ function App() {
                               service.title === "인증 센터" ? "CHỨNG THỰC"
                                 : service.title === "결혼 이민" ? "KẾT HÔN"
                                   : service.title === "출생신고" ? <>KHAI SINH <br /> KHAI TỬ</>
-                                    : service.title === "출입국 행정" ? "XUẤT NHẬP CẢNH"
-                                      : service.title === "신분증명 서류" ? <>GIẤY TỜ <br /> TÙY THÂN</>
+                                    : service.title === "국적" ? "QUỐC TỊCH"
+                                      : service.title === "여권 • 호적" ? <>HỘ CHIẾU <br /> HỘ TỊCH</>
                                         : service.title === "입양 • 자녀 인지" ? "NHẬN NUÔI "
                                           : service.title === "비자 대행" ? "THỊ THỰC "
                                             : service.title === "법률 컨설팅" ? "TƯ VẤN PHÁP LÝ"

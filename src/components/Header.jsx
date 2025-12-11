@@ -252,8 +252,8 @@ function Header() {
                   <li><Link to="/Service" state={{ serviceIndex: 0 }}>{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 1 }}>{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 2 }}>{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고")}</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 3 }}>{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정")}</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 4 }}>{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 3 }}>{language === "VI" ? (<>Quốc tịch</>) : ("국적")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 4 }}>{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 5 }}>{language === "VI" ? (<>Nhận nuôi</>) : ("입양 • 자녀 인지")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 6 }}>{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 7 }}>{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</Link></li>

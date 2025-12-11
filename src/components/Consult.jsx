@@ -32,8 +32,8 @@ export default function Consult() {
     { ko: "인증 센터", vi: "Chứng thực" },
     { ko: "결혼 이민", vi: "Kết hôn" },
     { ko: "출생신고 대행", vi: "Khai sinh, khai tử" },
-    { ko: "출입국 행정 대행", vi: "Xuất nhập cảnh" },
-    { ko: "신분증명 서류 대행", vi: "Giấy tờ tuỳ thân" },
+    { ko: "국적 대행", vi: "Quốc tịch" },
+    { ko: "여권 • 호적 대행", vi: "Hộ chiếu, Hộ tịch" },
     { ko: "입양 절차 대행", vi: "Nhận nuôi" },
     { ko: "비자 대행", vi: "Thị thực" },
     { ko: "법률 컨설팅", vi: "Tư vấn pháp lý" },
@@ -2952,8 +2952,8 @@ const handleTimeChange = (e) => {
               <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
               <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
               <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
-              <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
-              <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
+              <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
+              <option value="여권 • 호적 대행">{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적 대행")}</option>
               <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
               <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
               <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>

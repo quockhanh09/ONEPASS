@@ -169,7 +169,7 @@ const tabContents3 = {
   korea3: {
     title: "베트남 국적 포기 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 포기 신청", "별도 상담", "견적 상담 필요"],
+      ["국적", "베트남 국적 포기 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -469,7 +469,7 @@ const tabContents3 = {
   vietnam3: {
     title: "베트남 국적 유지 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 유지 신청", "별도 상담", "견적 상담 필요"],
+      ["국적", "베트남 국적 유지 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -483,7 +483,7 @@ const tabContents3 = {
   certificate3: {
     title: "베트남 국적 재귀화 신청",
     rows: [
-      ["출입국 행정", "베트남 국적 재귀화 신청", "별도 상담", "견적 상담 필요"],
+      ["국적", "베트남 국적 재귀화 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -495,7 +495,7 @@ const tabContents3 = {
   visa3: {
     title: "시체 등 송환 허가 신청",
     rows: [
-      ["출입국 행정", "시체 등 송환 허가 신청", "별도 상담", "견적 상담 필요"],
+      ["국적", "시체 등 송환 허가 신청", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -506,7 +506,7 @@ const tabContents3 = {
   cc3: {
     title: "베트남 국적 사실 확인",
     rows: [
-      ["출입국 행정", "베트남 국적 사실 확인", "별도 상담", "견적 상담 필요"],
+      ["국적", "베트남 국적 사실 확인", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -522,7 +522,7 @@ const tabContents4 = {
   korea4: {
     title: "일반 여권 발급 • 변경 • 추가",
     rows: [
-      ["신분증명 서류", "일반 여권 발급 • 변경 • 추가", "별도 상담", "견적 상담 필요"],
+      ["여권 • 호적", "일반 여권 발급 • 변경 • 추가", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -534,7 +534,7 @@ const tabContents4 = {
   vietnam4: {
     title: "호적 정보 정정",
     rows: [
-      ["신분증명 서류", "호적  정보 정정", "별도 상담", "견적 상담 필요"],
+      ["여권 • 호적", "호적  정보 정정", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -547,7 +547,7 @@ const tabContents4 = {
   certificate4: {
     title: "베트남 국민 신고  • 업데이트",
     rows: [
-      ["신분증명 서류", "베트남 국민 신고 • 업데이트", "별도 상담", "견적 상담 필요"],
+      ["여권 • 호적", "베트남 국민 신고 • 업데이트", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -559,7 +559,7 @@ const tabContents4 = {
   visa4: {
     title: "베트남 출신 증명서 발급",
     rows: [
-      ["신분증명 서류", "베트남 출신 증명서 발급", "별도 상담", "견적 상담 필요"],
+      ["여권 • 호적", "베트남 출신 증명서 발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -570,7 +570,7 @@ const tabContents4 = {
   cc4: {
     title: "호적증서 반사오 재발급",
     rows: [
-      ["신분증명 서류", "호적증서 반사오 재발급", "별도 상담", "견적 상담 필요"],
+      ["여권 • 호적", "호적증서 반사오 재발급", "별도 상담", "견적 상담 필요"],
     ],
     steps: [
       { id: 1, text: "서류 준비 및 접수	(고객님 → 원패스)" },
@@ -799,8 +799,8 @@ const services = [
   { icon: certIcon, hoverIcon: certHover, activeIcon: certActive, title: "인증 센터" },
   { icon: marriageIcon, hoverIcon: marriageHover, activeIcon: marriageActive, title: "결혼 이민" },
   { icon: birthIcon, hoverIcon: birthHover, activeIcon: birthActive, title: "출생신고" },
-  { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "출입국 행정" },
-  { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "신분증명 서류" },
+  { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
+  { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
   { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
   { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
   { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
@@ -962,8 +962,8 @@ const translateServiceTitle = (title) => {
     "영사 확인 • 사실인증": "Chứng thực",
     "결혼 이민": "Kết hôn",
     "출생 · 사망 신고": "Khai sinh · Khai tử",
-    "출입국 행정": "Xuất nhập cảnh",
-    "신분증명 서류": "Giấy tờ tùy thân",
+    "국적": "Quốc tịch",
+    "여권 • 호적": "Hộ chiếu, Hộ tịch",
     "입양 • 자녀 인지": "Nhận nuôi",
     "비자 대행": "Thị thực",
     "법률 컨설팅": "Tư vấn pháp lý",
@@ -1256,7 +1256,7 @@ const handleSubmitService = async (e) => {
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
     },
     {
-      title: "출입국 행정",
+      title: "국적",
       mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
       personalTitle: "개인서류",
       personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",
@@ -1272,7 +1272,7 @@ const handleSubmitService = async (e) => {
       businessTable2Desc: "세관 신고서, 선하 증권, 포장 명세서, 수출입 허가서, 원산지 증명서, 수입 허가서, 검사 성적서 등",
     },
     {
-      title: "신분증명 서류",
+      title: "여권 • 호적",
       mainDescription: "베트남어, 한국어, 영어, 중국어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증",
       personalTitle: "개인서류",
       personalDesc: "영사 확인을 받기 위해 개인관련 각종증명서 번역 및 공증 • 인증",
@@ -2646,7 +2646,7 @@ const handleSubmitService = async (e) => {
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
-              {language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정")}
+              {language === "VI" ? (<>Quốc tịch</>) : ("국적")}
             </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
 
@@ -2764,7 +2764,7 @@ const handleSubmitService = async (e) => {
                                 width: `${100 / 5}%`,
                               }}>
                                 {language === "VI" ? (
-                                  col === "출입국 행정" ? "Xuất nhập cảnh" :
+                                  col === "국적" ? "Quốc tịch" :
                                     col === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch" :
                                       col === "별도 상담" ? "Trao đổi khi tư vấn" :
                                         col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
@@ -2908,7 +2908,7 @@ const handleSubmitService = async (e) => {
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
             <h1 className="main-case1-h1" style={{ textAlign: "center", fontSize: 32, fontWeight: "bold", marginBottom: 8, color: "#486284" }}>
-              {language === "VI" ? (<>GIẤY TỜ TÙY THÂN</>) : ("신분증명 서류")}
+              {language === "VI" ? (<>HỘ CHIẾU, HỘ TỊCH</>) : ("여권 • 호적")}
             </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
 
@@ -3022,7 +3022,7 @@ const handleSubmitService = async (e) => {
                                 width: `${100 / 5}%`,
                               }}>
                                 {language === "VI" ? (
-                                  col === "신분증명 서류" ? "Giấy tờ tùy thân" :
+                                  col === "여권 • 호적" ? "Hộ chiếu, Hộ tịch" :
                                     col === "일반 여권 발급 • 변경 • 추가" ? "Cấp, bổ sung hộ chiếu" :
                                       col === "별도 상담" ? "Trao đổi khi tư vấn" :
                                         col === "견적 상담 필요" ? "Trao đổi khi tư vấn" :
@@ -4307,8 +4307,8 @@ const handleSubmitService = async (e) => {
               <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
               <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
               <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
-              <option value="출입국 행정 대행">{language === "VI" ? (<>Xuất nhập cảnh</>) : ("출입국 행정 대행")}</option>
-              <option value="신분증명 서류 대행">{language === "VI" ? (<>Giấy tờ tuỳ thân</>) : ("신분증명 서류 대행")}</option>
+              <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
+              <option value="여권 • 호적 대행">{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적 대행")}</option>
               <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
               <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
               <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
@@ -4565,8 +4565,8 @@ const handleSubmitService = async (e) => {
                           item.title === "인증 센터" ? "Chứng thực"
                             : item.title === "결혼 이민" ? "Kết hôn"
                               : item.title === "출생신고" ? <>Khai sinh, khai tử</>
-                                : item.title === "출입국 행정" ? <>Xuất nhập cảnh</>
-                                  : item.title === "신분증명 서류" ? "Giấy tờ tuỳ thân"
+                                : item.title === "국적" ? <>Quốc tịch </>
+                                  : item.title === "여권 • 호적" ? "Hộ chiếu, Hộ tịch"
                                     : item.title === "입양 • 자녀 인지" ? <>Nhận nuôi </>
                                       : item.title === "비자 대행" ? <>Thị thực</>
                                         : item.title === "법률 컨설팅" ? "Tư vấn pháp lý"
@@ -4792,8 +4792,8 @@ const handleSubmitService = async (e) => {
                           serviceContents[activeIndex]?.title === "영사 확인 • 사실인증" ? "Chứng thực"
                             : serviceContents[activeIndex]?.title === "결혼 이민" ? "Kết hôn"
                               : serviceContents[activeIndex]?.title === "출생 · 사망 신고" ? "Khai sinh · Khai tử"
-                                : serviceContents[activeIndex]?.title === "출입국 행정" ? "Xuất nhập cảnh"
-                                  : serviceContents[activeIndex]?.title === "신분증명 서류" ? "Giấy tờ tùy thân"
+                                : serviceContents[activeIndex]?.title === "국적" ? "Quốc tịch"
+                                  : serviceContents[activeIndex]?.title === "여권 • 호적" ? "Hộ chiếu, Hộ tịch"
                                     : serviceContents[activeIndex]?.title === "입양 • 자녀 인지" ? "Nhận nuôi"
                                       : serviceContents[activeIndex]?.title === "비자 대행" ? "Thị thực"
                                         : serviceContents[activeIndex]?.title === "법률 컨설팅" ? "Tư vấn pháp lý"

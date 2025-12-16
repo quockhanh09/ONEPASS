@@ -455,7 +455,7 @@ function Introduction() {
             justifyContent: "space-between"
           }}>
             {/* Card 1 */}
-            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")} style={{ flex: "1 1 30%", minWidth: 300 }}>
+            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")} style={{ flex: "1 1 30%", minWidth: 300,cursor: "pointer" }}>
               <img src={n8} alt="추석 연휴 안내"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}</p>
@@ -466,7 +466,7 @@ function Introduction() {
             </div>
 
             {/* Card 2 */}
-            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")} style={{ flex: "1 1 30%", minWidth: 300 }}>
+            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")} style={{ flex: "1 1 30%", minWidth: 300,cursor: "pointer" }}>
               <img src={n2} alt="베트남 총영사관 개소"
                 style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}</p>
@@ -477,7 +477,7 @@ function Introduction() {
             </div>
 
             {/* Card 3 */}
-            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")} style={{ flex: "1 1 30%", minWidth: 300 }}>
+            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")} style={{ flex: "1 1 30%", minWidth: 300,cursor: "pointer" }}>
               <img src={n3} alt="원패스 업무 개시 안내"
                 style={{ width: "100%", height: 215.91, borderRadius: 8, marginBottom: 12 }} />
               <p style={{ fontSize: 13, color: "#6b7280", margin: "4px 0" }}>{language === "VI" ? (<>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>) : (" 2025년 09월 25일 | 오전 09:00")}</p>
@@ -594,6 +594,7 @@ function Introduction() {
               style={{
                 width: 380,
                 flexShrink: 0,
+                cursor: "pointer"
               }}
             >
               <img
@@ -633,6 +634,7 @@ function Introduction() {
               style={{
                 width: 380,
                 flexShrink: 0,
+                cursor: "pointer"
               }}
             >
               <img

@@ -160,7 +160,7 @@ export default function DynamicNewsDetail() {
 
       <section className="news-detail-body" style={{ maxWidth: 1250, margin: "0 auto", padding: "32px 16px 80px" }}>
         {/* Title below hero */}
-        <h2 style={{ fontSize: 32, fontWeight: 900, color: "#111827", margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 32, fontWeight: 700, color: "#111827", margin: "0 0 18px" }}>
           {language === "VI" ? item.TieuDeVN : item.TieuDeKR || item.TieuDeVN}
         </h2>
         {/* Optional date */}

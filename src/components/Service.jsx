@@ -3261,7 +3261,7 @@ const handleSubmitService = async (e) => {
                           >
                             {row.map((col, j) => (
                               <td className="case1-td2" key={j} style={{
-                                padding: "14px 16px", padding: "14px 16px",
+                                padding: "14px 16px",
                                 width: `${100 / 5}%`,
                               }}>
                                 {language === "VI" ? (

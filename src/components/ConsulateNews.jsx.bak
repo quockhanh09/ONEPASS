@@ -1,39 +1,93 @@
-import React from "react";
-import n1 from "../assets/img/n19.png";
+import n1 from "../assets/img/n1.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
+import n4 from "../assets/img/N4.png";
+import n5 from "../assets/img/n5.png";
 import heroBg from "../assets/img/herobanner-1.png";
-import consulate from "../assets/img/n8.png";
 import fbIcon from "../assets/img/image20.png";
 import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
 import naverIcon from "../assets/img/image19.png";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
-const relatedNews = [
-  {
-    id: 1,
-    img: n1,
-    title: "영사과 휴무 일정 안내",
-    desc: "2023년 9월 추석 연휴 기간 동안...",
-  },
-  {
-    id: 2,
-    img: n2,
-    title: "베트남 총영사관 개소식",
-    desc: "호찌민시 외교부는 새로운 총영사관 개소를...",
-  },
-  {
-    id: 3,
-    img: n3,
-    title: "비자 신청 접수 안내",
-    desc: "비자 관련 업무는 10월 1일부터 재개됩니다.",
-  },
-];
+import axiosClient from "../axiosClient";
 
-export default function NewsDetail() {
+export default function ConsulateNews() {
+  const [newsItems, setNewsItems] = useState([]);
+  const [newsLoading, setNewsLoading] = useState(true);
   const [activeId, setActiveId] = useState(null);
     const [hoverId, setHoverId] = useState(null);
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  const fetchNews = async () => {
+    try {
+      setNewsLoading(true);
+      const response = await axiosClient.get("/api/tintuc");
+      if (response.data?.data && Array.isArray(response.data.data)) {
+        const filtered = response.data.data.filter(
+          (item) => item.DanhMuc === "대사관•총영사관 소식"
+        );
+        setNewsItems(filtered);
+      }
+    } catch (error) {
+      console.error("Error fetching consulate news:", error);
+    } finally {
+      setNewsLoading(false);
+    }
+  };
+
+  const getTitle = (item) => {
+    const lang = localStorage.getItem("lang") || "ko";
+    return lang === "vi" ? item.TieuDeVN : item.TieuDeKR || item.TieuDeVN;
+  };
+
+  const getSummary = (item) => {
+    let blocks = [];
+    try {
+      blocks = JSON.parse(item.NoiDungVN || "[]");
+    } catch (e) {
+      blocks = [];
+    }
+    const lang = localStorage.getItem("lang") || "ko";
+    const textBlocks = blocks.filter(b => ["text", "quote", "video"].includes(b.type));
+    let summary = "";
+    for (const block of textBlocks) {
+      const content = lang === "vi" ? (block.contentVN || "") : (block.contentKR || block.contentVN || "");
+      summary += content + " ";
+    }
+    return summary.trim().slice(0, 140) + (summary.length > 140 ? "..." : "");
+  };
+
+  const getImage = (item) => {
+    let blocks = [];
+    try {
+      blocks = JSON.parse(item.NoiDungVN || "[]");
+    } catch (e) {
+      blocks = [];
+    }
+    const imgBlock = blocks.find(b => b.type === "image" && b.imageUrl);
+    return imgBlock?.imageUrl || item.UrlHinhAnh || n4;
+  };
+
+  const formatDateTimeRich = (dateString) => {
+    const d = new Date(dateString);
+    const hours = d.getHours();
+    const hh = String(hours).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    const lang = localStorage.getItem("lang") || "ko";
+    if (lang === "vi") {
+      const period = hours < 12 ? "Sáng" : "Chiều";
+      return `${hh}:00 ${period} | Ngày ${day} tháng ${month} năm ${year}`;
+    }
+    const period = hours < 12 ? "오전" : "오후";
+    return `${period} ${hh}:00 | ${year}년 ${month}월 ${day}일`;
+  };
     const effectiveId = hoverId ?? activeId;
     const items = [
       { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
@@ -58,105 +112,92 @@ export default function NewsDetail() {
     setTimeout(() => setShowPopup(false), 5000);
   };
 
-    const handleSubmit = async () => {
-    const lang = localStorage.getItem("lang") || "ko";
+  const handleSubmit = async () => {
+  const lang = localStorage.getItem("lang") || "ko";
 
-    const messages = {
-      ko: {
-        empty: "모든 항목을 입력하고 동의해 주세요.",
-        success: "상담 신청 완료되었습니다!",
-        fail: "서버 연결 실패 (Server connection failed)",
-        serverError: "서버 오류가 발생했습니다.",
-      },
-      vi: {
-        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-        success: "Đăng ký tư vấn thành công!",
-        fail: "Kết nối máy chủ thất bại.",
-        serverError: "Đã xảy ra lỗi máy chủ.",
-      },
-    };
+  const messages = {
+    ko: {
+      empty: "모든 항목을 입력하고 동의해 주세요.",
+      success: "상담 신청 완료되었습니다!",
+      fail: "서버 연결 실패 (Server connection failed)",
+      serverError: "서버 오류가 발생했습니다.",
+    },
+    vi: {
+      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+      success: "Đăng ký tư vấn thành công!",
+      fail: "Kết nối máy chủ thất bại.",
+      serverError: "Đã xảy ra lỗi máy chủ.",
+    },
+  };
 
-    if (!service || !name || !phone || !agree) {
-      showTemporaryPopup(messages[lang].empty, true);
+  if (!service || !name || !phone || !agree) {
+    showTemporaryPopup(messages[lang].empty, true);
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        TenDichVu: service,
+        TenHinhThuc: "Tư Vấn Nhanh", 
+        HoTen: name,
+        MaVung: countryCode,
+        SoDienThoai: phone,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      showTemporaryPopup(`${messages[lang].serverError}`, true);
+      console.error("Server Error:", data);
       return;
     }
 
-    setLoading(true);
+    showTemporaryPopup(messages[lang].success);
+    setService("");
+    setName("");
+    setPhone("");
+    setAgree(false);
+  } catch (err) {
+    console.error("Lỗi khi kết nối server:", err);
+    showTemporaryPopup(messages[lang].fail, true);
+  } finally {
+    setLoading(false);
+  }
+};
 
-    try {
-      const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          TenDichVu: service,
-          TenHinhThuc: "Tư Vấn Nhanh", 
-          HoTen: name,
-          MaVung: countryCode,
-          SoDienThoai: phone,
-        }),
-      });
 
-      const data = await response.json();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-      if (!response.ok) {
-        showTemporaryPopup(`${messages[lang].serverError}`, true);
-        console.error("Server Error:", data);
-        return;
-      }
-
-      showTemporaryPopup(messages[lang].success);
-      setService("");
-      setName("");
-      setPhone("");
-      setAgree(false);
-    } catch (err) {
-      console.error("Lỗi khi kết nối server:", err);
-      showTemporaryPopup(messages[lang].fail, true);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  const currentPath = location.pathname;
   return (
     <>
-      <section
-        style={{
-          margin: 0,
-          padding: 0,
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top center",
-          minHeight: "50vh",
-          width: "100vw",
-          paddingTop: "120px",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            textAlign: "center",
-            marginTop: 60,
-            marginBottom: 30,
-          }}
-        >
-          <h1
-            style={{
-              fontFamily: 'TrajanPro3, "Times New Roman", serif',
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: 60,
-              lineHeight: 1.5,
-              margin: 0,
-              letterSpacing: 1,
-            }}
-          >
-            {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
+      <section style={{
+        margin: 0,
+        padding: 0,
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "top center",
+        minHeight: "50vh",
+        width: "100vw",
+        paddingTop: "120px",
+      }}>
+        {/* Header title center */}
+        <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
+          <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
+            NEWSROOM
           </h1>
         </div>
 
 
-        <div className="consultation-bar"
+        <div
           style={{
             position: "fixed",
             bottom: 0,
@@ -390,76 +431,113 @@ export default function NewsDetail() {
         </div>
       </section>
 
-      <section>
-        <div
-          style={{
-            maxWidth: "1250px",
-            margin: "0 auto",
-            padding: "40px 20px",
-            fontFamily: "Arial, sans-serif",
-            color: "#222",
-            lineHeight: "1.8",
-          }}
-        >
-          <h1
+      <section style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          {/* Thanh menu nhỏ */}
+          <div
             style={{
-              fontSize: "28px",
-              fontWeight: "bold",
-              marginBottom: "20px",
+              background: "#f9fbfc",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "14px 24px",
+              borderRadius: 4,
+              marginBottom: 50,
             }}
           >
-            {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Quốc (Chuseok) 2025</>) : ("추석 연휴 휴무 안내")}
-          </h1>
+            {/* Tabs */}
 
-          <p style={{ fontSize: "14px", marginBottom: "10px" }}>
-            {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác,</>) : ("안녕하세요, 고객 여러분!")}
-          </p>
-          <p style={{ fontSize: "14px", marginBottom: "20px" }}>
+            <div style={{ display: "flex", gap: 24}}>
+              {/* 전체 뉴스 */}
+              <span
+                onClick={() => navigate("/news/전체 뉴스")}
+                style={{
+                  fontWeight: currentPath === "/news/전체 뉴스" ? 700 : 400,
+                  color: currentPath === "/news/전체 뉴스" ? "#111827" : "#6b7280",
+                  borderBottom:
+                    currentPath === "/news/전체 뉴스" ? "2px solid #111827" : "none",
+                  paddingBottom: currentPath === "/news/전체 뉴스" ? 4 : 0,
+                  cursor: "pointer",
+                }}
+              >
+                 {language === "VI" ? (<>Tất cả tin tức</>) : (" 전체 뉴스")}
+              </span>
 
-            {language === "VI" ? (<>One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm 2025 như sau,</>) : ("저희 총영사관은 추석 연휴를 맞이하여 아래와 같이 휴무 일정을 시행하고자 합니다. 일정을 꼭 확인하시어 업무에 차질이 없으시길 바랍니다.")}
-          </p>
+              {/* 대사관·총영사관 소식 */}
+              <span
+                onClick={() => navigate("/news/대사관•총영사관 소식")}
+                style={{
+                  fontWeight:
+                    currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
+                  color:
+                    currentPath === "/news/대사관•총영사관 소식"
+                      ? "#111827"
+                      : "#6b7280",
+                  borderBottom:
+                    currentPath === "/news/대사관•총영사관 소식"
+                      ? "2px solid #111827"
+                      : "none",
+                  paddingBottom:
+                    currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
+                  cursor: "pointer",
+                }}
+              >
+                {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
 
-          <div style={{ textAlign: "center", margin: "30px 0" }}>
-            <img
-              src={consulate}
-              alt="추석 안내"
+              </span>
+            </div>
+
+            {/* Search box */}
+            <div
               style={{
-                width: "100%",
-                borderRadius: "12px",
-                boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+                display: "flex",
+                alignItems: "center",
+                background: "#fff",
+                borderRadius: 20,
+                padding: "6px 14px",
+                border: "1px solid #e5e7eb",
+                width: 220,
               }}
-            />
+            >
+              <input
+                type="text"
+                placeholder="검색어를 입력하세요"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  fontSize: 14,
+                  color: "#111827",
+                }}
+              />
+              <span
+                style={{
+                  color: "#6b7280",
+                  fontSize: 16,
+                  marginLeft: 4,
+                  cursor: "pointer",
+                }}
+              >
+                🔍
+              </span>
+            </div>
           </div>
 
-          <div style={{ fontSize: "14px", marginBottom: "40px",textAlign:"justify" }}>
-            <p>
-              📅 <strong>{language === "VI" ? (<>Thời gian nghỉ lễ:</>) : ("휴무 기간:")}</strong>{language === "VI" ? (<>Từ ngày 03 tháng 10 (Thứ Sáu) đến hết ngày 09 tháng 10 (Thứ Năm) năm 2025. </>) : ("2025년 10월 3일(금)부터 10월 9일(목)까지.")}
-            </p>
-            <p>
-              🕒 <strong>{language === "VI" ? (<>Bắt đầu làm việc lại:</>) : ("업무 재개:")}</strong>{language === "VI" ? (<>Ngày 10 tháng 10 năm 2025 (Thứ Sáu).</>) : (" 2025년 10월 10일(금).")}
-            </p>
-            <p>
-
-              {language === "VI" ? (<>Trong thời gian nghỉ, mọi nghiệp vụ và dịch vụ hỗ trợ khách hàng sẽ tạm thời ngừng hoạt động. Đối với các vấn đề khẩn cấp hoặc cần gửi hồ sơ/tài liệu, vui lòng gửi email đến: onepass.kr@gmail.com. Chúng tôi cam kết sẽ kiểm tra và xử lý nhanh chóng ngay sau khi trở lại làm việc</>) : ("휴무 기간 동안 영사 업무 및 민원 접수는 중단됩니다. 긴급한 사안이 있는 경우, 총영사관 대표 이메일을 통해 문의해 주시기 바랍니다.")}
-            </p>
-            <p>{language === "VI" ? (<>One Pass xin chân thành cảm ơn sự quan tâm và ủng hộ của Quý khách hàng trong suốt thời gian qua.</>) : ("항상 성원해 주시는 모든 분들께 감사드립니다.")}</p>
-            <p style={{ color: "#666", fontSize: "14px", marginTop: "20px" }}>
-              {language === "VI" ? (<>Đăng lúc 09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : ("2025년 9월 30일 | 주한 베트남 총영사관 드림")}
-            </p>
-          </div>
-
+          {/* Tiêu đề */}
           <h2
             style={{
-              fontSize: "22px",
-              fontWeight: "600",
-
-              paddingBottom: "10px",
-              marginBottom: "25px",
+              fontSize: 26,
+              fontWeight: 700,
+              color: "#111827",
+              marginBottom: 40,
             }}
           >
-            {language === "VI" ? (<>Tin tức liên quan</>) : ("관련 뉴스")}
+            {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
+
           </h2>
 
+          {/* News Grid */}
           <div
             style={{
               display: "grid",
@@ -467,14 +545,19 @@ export default function NewsDetail() {
               gap: 32,
             }}
           >
-            {/* 1 */}
-            <div
-              onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail")}
-              style={{ cursor: "pointer" }}
-            >
+            {newsLoading ? (
+              <p>Loading...</p>
+            ) : newsItems.length === 0 ? (
+              <p>{language === "VI" ? "Không có tin tức" : "뉴스가 없습니다"}</p>
+            ) : (
+              newsItems.map((item) => (
+                <div
+                  key={item.ID}
+                  onClick={() => navigate(`/news/${item.ID}`)}
+                            style={{ cursor: "pointer" }}>
               <img
-                src={n1}
-                alt="추석 연휴 휴무 안내"
+                src={n4}
+                alt="국경일 행사"
                 style={{
                   width: "100%",
                   borderRadius: 8,
@@ -483,7 +566,8 @@ export default function NewsDetail() {
                 }}
               />
               <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                {language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}
+                    {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
+
               </p>
               <h3
                 style={{
@@ -493,13 +577,13 @@ export default function NewsDetail() {
                   marginBottom: 8,
                 }}
               >
-                {language === "VI" ? (<>Thông báo lịch nghỉ Tết Trung thu Hàn Qu...</>) : ("추석 연휴 휴무 안내")}
+                 {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân t...</>) : ("주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화...")}
+
               </h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                {language === "VI" ? (<>Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm</>) : ("안녕하세요. 고객 여러분께 저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다...")}
+                  {language === "VI" ? (<>Ngày mùng 1 tháng 10 năm 2025, Công ty One Pass đã vinh dự được Tổng Lãnh sự quán Việt N</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...")}
               </p>
-              <a
-                href="/news전체 뉴스/NewsDetail"
+              <span
                 style={{
                   fontSize: 14,
                   color: "#2563eb",
@@ -509,26 +593,27 @@ export default function NewsDetail() {
                 }}
               >
                 →
-              </a>
-            </div>
+              </span>
+                </div>
+              ))
+            )}
+          </div>
 
-
-            {/* 2 */}
-            <div
-              onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")}
-            >
+          {/* Pagination */}
               <img
-                src={n2}
-                alt="베트남 총영사관 개소"
+                src={n5}
+                alt="문화 행사"
                 style={{
                   width: "100%",
+                  height:309.15,
                   borderRadius: 8,
                   marginBottom: 12,
                   objectFit: "cover",
                 }}
               />
               <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                {language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}
+                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : ("2025년 09월 27일 | 오전 09:00")}
+
               </p>
               <h3
                 style={{
@@ -538,13 +623,13 @@ export default function NewsDetail() {
                   marginBottom: 8,
                 }}
               >
-                {language === "VI" ? (<>Tổng lãnh sự quán Việt Nam tại Busan chí...</>) : ("주부산 베트남 총영사관 공식 개소")}
+                {language === "VI" ? (<>“Xin chào”... Tổng lãnh sự quán Việt Nam</>) : ("“쑥쑥안(안녕하세요)”…주부산 베트남총영사관 문화 행사 ")}
+
               </h3>
               <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : (" 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며... ")}
+                 {language === "VI" ? (<>Tổng Lãnh sự quán Việt Nam chuẩn bị có mặt tại Thành phố Busan . Ngày 13 tháng 8 vừa qua, th...</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...")}
               </p>
-              <a
-                href="#"
+              <span
                 style={{
                   fontSize: 14,
                   color: "#2563eb",
@@ -554,55 +639,126 @@ export default function NewsDetail() {
                 }}
               >
                 →
-              </a>
-            </div>
+              </span>
+                </div>
+              ))
+            )}
+          </div>
 
-            {/* 3 */}
-            <div onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")}>
-              <img
-                src={n3}
-                alt="원패스(One Pass) 업무 개시"
+          {/* Pagination */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 40,
+              gap: 10,
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <button
+                key={n}
                 style={{
-                  width: "100%",
-                  height: 215.91,
-                  borderRadius: 8,
-                  marginBottom: 12,
-                  objectFit: "cover",
-                }}
-              />
-              <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                {language === "VI" ? (<>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>) : (" 2025년 09월 25일 | 오전 09:00")}
-              </p>
-              <h3
-                style={{
-                  fontSize: 14,
-                  fontWeight: 700,
-                  color: "#111827",
-                  marginBottom: 8,
-                }}
-              >
-                {language === "VI" ? (<>Kể từ tháng 10/2025, One Pass chính thức ...</>) : ("원패스(One Pass) 공식 업무 개시 안내")}
-              </h3>
-              <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                {language === "VI" ? (<>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành ...</>) : ("2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...")}
-              </p>
-              <a
-                href="#"
-                style={{
-                  fontSize: 14,
-                  color: "#2563eb",
-                  textDecoration: "none",
-                  display: "inline-block",
-                  marginTop: 10,
+                  border: "none",
+                  background: n === 1 ? "#111827" : "transparent",
+                  color: n === 1 ? "#fff" : "#6b7280",
+                  borderRadius: 4,
+                  padding: "4px 8px",
+                  cursor: "pointer",
                 }}
               >
-                →
-              </a>
-            </div>
-
-
+                {n}
+              </button>
+            ))}
           </div>
         </div>
+       <style>
+{`
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  section {
+    padding: 40px 0 !important;
+  }
+
+  /* Khung chính */
+  section > div {
+    padding: 0 16px !important;
+  }
+
+  /* Thanh menu nhỏ */
+  section > div > div:first-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+
+  /* Tabs */
+  section > div > div:first-child > div:first-child {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+
+  /* Ô tìm kiếm */
+  section input {
+    font-size: 13px !important;
+  }
+
+  section > div > div:first-child > div:last-child {
+    width: 100% !important;
+  }
+
+  /* Tiêu đề */
+  section h2 {
+    font-size: 20px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Lưới tin tức */
+  section div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Hình ảnh */
+  section img {
+    height: auto !important;
+  }
+
+  /* Nội dung bài */
+  section h3 {
+    font-size: 15px !important;
+  }
+
+  section p {
+    font-size: 13px !important;
+  }
+
+  /* Nút phân trang */
+  section button {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  section > div {
+    padding: 0 24px !important;
+  }
+
+  section div[style*="grid"] {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 28px !important;
+  }
+
+  section h2 {
+    font-size: 22px !important;
+  }
+}
+`}
+</style>
+
       </section>
     </>
   );

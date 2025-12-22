@@ -144,16 +144,16 @@ export default function NewsDetail4() {
                 >
                     <h1
                         style={{
-                            fontFamily: "SVN-Gilroy",
+                            fontFamily: 'TrajanPro3, "Times New Roman", serif',
                             color: "#fff",
-                            fontWeight: 900,
+                            fontWeight: 700,
                             fontSize: 60,
                             lineHeight: 1.5,
                             margin: 0,
                             letterSpacing: 1,
                         }}
                     >
-                        NEWSROOM
+                        {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
                     </h1>
                 </div>
                 <div className="consultation-bar"

@@ -102,6 +102,7 @@ import NewsDetail2 from "./components/NewDeatail2.jsx";
 import NewsDetail3 from "./components/NewDeatail3.jsx";
 import NewsDetail4 from "./components/NewDeatail4.jsx";
 import NewsDetail5 from "./components/NewDeatail5.jsx";
+import DynamicNewsDetail from "./components/DynamicNewsDetail.jsx";
 
 import { useLanguage } from "./LanguageContext.jsx";
 import "./style/App.css";
@@ -2196,6 +2197,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/news/전체 뉴스" element={<AllNewsPage />} />
         <Route path="/news/대사관•총영사관 소식" element={<ConsulateNews />} />
+        <Route path="/news/:id" element={<DynamicNewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail" element={<NewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail2" element={<NewsDetail2 />} />
         <Route path="/news전체 뉴스/NewsDetail3" element={<NewsDetail3 />} />

@@ -1,10 +1,9 @@
-﻿import axiosClient from "../axiosClient";
+
 import n1 from "../assets/img/n1.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
 import n4 from "../assets/img/N4.png"
 import n5 from "../assets/img/n5.png"
-import n8 from "../assets/img/n19.png";
 import heroBg from "../assets/img/herobanner-1.png";
 import fbIcon from "../assets/img/image20.png";
 import kakaotalkIcon from "../assets/img/image17.png";
@@ -14,10 +13,80 @@ import naverIcon from "../assets/img/image19.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
-import { io } from "socket.io-client";
+import axiosClient from "../axiosClient";
+
 export default function AllNewsPage() {
+    const [newsItems, setNewsItems] = useState([]);
+    const [newsLoading, setNewsLoading] = useState(true);
     const [activeId, setActiveId] = useState(null);
     const [hoverId, setHoverId] = useState(null);
+
+    useEffect(() => {
+        fetchNews();
+    }, []);
+
+    const fetchNews = async () => {
+        try {
+            setNewsLoading(true);
+            const response = await axiosClient.get("/api/tintuc");
+            if (response.data?.data && Array.isArray(response.data.data)) {
+                setNewsItems(response.data.data);
+            }
+        } catch (error) {
+            console.error("Error fetching news:", error);
+        } finally {
+            setNewsLoading(false);
+        }
+    };
+
+    const getTitle = (item) => {
+        const lang = localStorage.getItem("lang") || "ko";
+        return lang === "vi" ? item.TieuDeVN : item.TieuDeKR || item.TieuDeVN;
+    };
+
+    const getSummary = (item) => {
+        let blocks = [];
+        try {
+            blocks = JSON.parse(item.NoiDungVN || "[]");
+        } catch (e) {
+            blocks = [];
+        }
+        const lang = localStorage.getItem("lang") || "ko";
+        const textBlocks = blocks.filter(b => ["text", "quote", "video"].includes(b.type));
+        let summary = "";
+        for (const block of textBlocks) {
+            const content = lang === "vi" ? (block.contentVN || "") : (block.contentKR || block.contentVN || "");
+            summary += content + " ";
+        }
+        return summary.trim().slice(0, 140) + (summary.length > 140 ? "..." : "");
+    };
+
+    const getImage = (item) => {
+        let blocks = [];
+        try {
+            blocks = JSON.parse(item.NoiDungVN || "[]");
+        } catch (e) {
+            blocks = [];
+        }
+        const imgBlock = blocks.find(b => b.type === "image" && b.imageUrl);
+        return imgBlock?.imageUrl || item.UrlHinhAnh || n1;
+    };
+
+    const formatDateTimeRich = (dateString) => {
+        const d = new Date(dateString);
+        const hours = d.getHours();
+        const hh = String(hours).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const year = d.getFullYear();
+        const lang = localStorage.getItem("lang") || "ko";
+        if (lang === "vi") {
+            const period = hours < 12 ? "Sáng" : "Chiều";
+            return `${hh}:00 ${period} | Ngày ${day} tháng ${month} năm ${year}`;
+        }
+        const period = hours < 12 ? "오전" : "오후";
+        return `${period} ${hh}:00 | ${year}년 ${month}월 ${day}일`;
+    };
     const effectiveId = hoverId ?? activeId;
     const items = [
         { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
@@ -36,95 +105,6 @@ export default function AllNewsPage() {
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState({ text: "", isError: false });
-
-    // News from API
-    const [newsItems, setNewsItems] = useState([]);
-    const [newsLoading, setNewsLoading] = useState(false);
-
-    const fetchNews = async () => {
-        try {
-            setNewsLoading(true);
-            const res = await axiosClient.get("/api/tintuc");
-            const data = res?.data?.data;
-            if (Array.isArray(data)) {
-                setNewsItems(data);
-            } else {
-                setNewsItems([]);
-            }
-        } catch (err) {
-            console.error("❌ Lỗi lấy tin tức:", err);
-            setNewsItems([]);
-        } finally {
-            setNewsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchNews();
-        const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend.onrender.com";
-        const socket = io(API_URL, { transports: ["websocket"] });
-        socket.on("news-changed", () => fetchNews());
-        return () => socket.disconnect();
-    }, []);
-
-    const getTitle = (item) => {
-        if (language === "VI") return item?.TieuDeVN || "";
-        return item?.TieuDeKR || item?.TieuDeVN || "";
-    };
-
-    const stripHtmlTags = (html) => {
-        const div = document.createElement("div");
-        div.innerHTML = html;
-        return div.textContent || div.innerText || "";
-    };
-
-    const getSummary = (item) => {
-        if (!item) return "";
-        try {
-            const blocks = JSON.parse(item.NoiDungVN || "[]");
-            if (Array.isArray(blocks) && blocks.length > 0) {
-                const textBlocks = blocks.filter((b) => ["text", "quote", "video"].includes(b.type));
-                const summaryVN = textBlocks.map((b) => stripHtmlTags(b.contentVN || "")).join(" ");
-                const summaryKR = textBlocks.map((b) => stripHtmlTags(b.contentKR || "")).join(" ");
-                const text = language === "VI" ? summaryVN : summaryKR || summaryVN;
-                return text?.substring(0, 140) + (text?.length > 140 ? "..." : "");
-            }
-        } catch (e) {
-            // fall back below
-        }
-        const fallback = language === "VI" ? item.NoiDungVN : item.NoiDungKR || item.NoiDungVN;
-        return fallback ? stripHtmlTags(fallback).substring(0, 140) + (stripHtmlTags(fallback).length > 140 ? "..." : "") : "";
-    };
-
-    const getImage = (item) => {
-        if (!item) return null;
-        try {
-            const blocks = JSON.parse(item.NoiDungVN || "[]");
-            if (Array.isArray(blocks)) {
-                const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
-                if (imgBlock) return imgBlock.imageUrl;
-            }
-        } catch (e) {
-            // ignore
-        }
-        return item.UrlHinhAnh || null;
-    };
-
-    const formatDateTimeRich = (dateString) => {
-        if (!dateString) return "";
-        const d = new Date(dateString);
-        const hours = d.getHours();
-        const hh = String(hours).padStart(2, "0");
-        const day = String(d.getDate()).padStart(2, "0");
-        const month = String(d.getMonth() + 1).padStart(2, "0");
-        const year = d.getFullYear();
-        if (language === "VI") {
-            const period = hours < 12 ? "Sáng" : "Chiều";
-            return `${hh}:00 ${period} | Ngày ${day} tháng ${month} năm ${year}`;
-        }
-        const period = hours < 12 ? "오전" : "오후";
-        return `${period} ${hh}:00 | ${year}년 ${month}월 ${day}일`;
-    };
 
     const showTemporaryPopup = (message, isError = false) => {
         setPopupMessage({ text: message, isError });
@@ -209,8 +189,8 @@ export default function AllNewsPage() {
             }}>
                 {/* Header title center */}
                 <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
-                    <h1 style={{ fontFamily: 'TrajanPro3, "Times New Roman", serif', color: "#ffffffff", fontWeight: 700, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-                        {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
+                    <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
+                        NEWSROOM
                     </h1>
                 </div>
 
@@ -556,81 +536,244 @@ export default function AllNewsPage() {
                     <div
                         style={{
                             display: "grid",
-                                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                                gap: 24,
+                            gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
+                            gap: 32,
                         }}
                     >
-                        {newsLoading && (
-                            <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
-                                {language === "VI" ? "Đang tải tin tức..." : "뉴스를 불러오는 중입니다..."}
-                            </div>
-                        )}
-                        {!newsLoading && newsItems.map((item) => {
-                            const imgSrc = getImage(item) || n8;
-                            return (
+                        {newsLoading ? (
+                            <p>Loading...</p>
+                        ) : (
+                            newsItems.map((item) => (
                                 <div
                                     key={item.ID}
                                     onClick={() => navigate(`/news/${item.ID}`)}
-                                    style={{
-                                        cursor: "pointer",
-                                        borderRadius: "16px",
-                                        padding: "0",
-                                        background: "#fff",
-                                        height: "100%",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        overflow: "hidden",
-                                    }}
+                                    style={{ cursor: "pointer" }}
                                 >
-                                    <div style={{ background: "#fff", borderRadius: "0", overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
-                                        <div style={{ height: 180, width: "100%", overflow: "hidden", display: "block", flexShrink: 0 }}>
-                                            <img
-                                                src={imgSrc}
-                                                alt={getTitle(item)}
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    objectFit: "cover",
-                                                    display: "block",
-                                                    borderRadius: 16,
-                                                }}
-                                            />
-                                        </div>
-                                        <div style={{ padding: "12px 14px", borderTop: "none", flex: 1, display: "flex", flexDirection: "column" }}>
-                                            <p style={{ fontSize: 11, color: "#666", marginBottom: 4, marginLeft: "0px", letterSpacing: "0.08em", textTransform: "capitalize" }}>
-                                                {formatDateTimeRich(item.NgayXuatBan)}
-                                            </p>
-                                            <h3
-                                                style={{
-                                                    fontSize: 14,
-                                                    fontWeight: 700,
-                                                    color: "#000",
-                                                    marginBottom: 6,
-                                                    marginLeft: "0px",
-                                                    textTransform: "none",
-                                                    lineHeight: 1.4,
-                                                    display: "-webkit-box",
-                                                    WebkitLineClamp: 2,
-                                                    WebkitBoxOrient: "vertical",
-                                                    overflow: "hidden",
-                                                    textOverflow: "ellipsis",
-                                                }}
-                                            >
-                                                {getTitle(item)}
-                                            </h3>
-                                            <p style={{ fontSize: 12, color: "#666", lineHeight: 1.5, marginLeft: "0px", marginBottom: "8px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                                {getSummary(item)}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <img
+                                        src={getImage(item)}
+                                        alt={getTitle(item)}
+                                        style={{
+                                            width: "100%",
+                                            height: 240,
+                                            borderRadius: 8,
+                                            marginBottom: 12,
+                                            objectFit: "cover",
+                                        }}
+                                    />
+                                    <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
+                                        {formatDateTimeRich(item.NgayXuatBan)}
+                                    </p>
+                                    <h3
+                                        style={{
+                                            fontSize: 16,
+                                            fontWeight: 700,
+                                            color: "#111827",
+                                            marginBottom: 8,
+                                        }}
+                                    >
+                                        {getTitle(item)}
+                                    </h3>
+                                    <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
+                                        {getSummary(item)}
+                                    </p>
+                                    <span
+                                        style={{
+                                            fontSize: 14,
+                                            color: "#2563eb",
+                                            textDecoration: "none",
+                                            display: "inline-block",
+                                            marginTop: 10,
+                                        }}
+                                    >
+                                        →
+                                    </span>
                                 </div>
-                            );
-                        })}
-                        {!newsLoading && newsItems.length === 0 && (
-                            <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
-                                {language === "VI" ? "Chưa có tin tức." : "등록된 뉴스가 없습니다."}
-                            </div>
+                            ))
                         )}
+
+
+                        {/* 2 */}
+                        <div
+                            onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail2")}
+                            style={{ cursor: "pointer" }}
+                        >
+                            <img
+
+                                src={n2}
+                                alt="베트남 총영사관 개소"
+                                style={{
+                                    width: "100%",
+                                    borderRadius: 8,
+                                    marginBottom: 12,
+                                    objectFit: "cover",
+                                }}
+                            />
+                            <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 30 tháng 09 năm 2025</>) : (" 2025년 09월 30일 | 오전 09:00")}
+                            </p>
+                            <h3
+                                style={{
+                                    fontSize: 16,
+                                    fontWeight: 700,
+                                    color: "#111827",
+                                    marginBottom: 8,
+                                }}
+                            >
+                                {language === "VI" ? (<>Tổng lãnh sự quán Việt Nam tại Busan chí...</>) : ("주부산 베트남 총영사관 공식 개소")}
+                            </h3>
+                            <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
+                                {language === "VI" ? (<>Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ...</>) : (" 2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며... ")}
+
+                            </p>
+                            <a
+                                href="/news전체%20뉴스/NewsDetail2"
+                                style={{
+                                    fontSize: 14,
+                                    color: "#2563eb",
+                                    textDecoration: "none",
+                                    display: "inline-block",
+                                    marginTop: 10,
+                                }}
+                            >
+                                →
+                            </a>
+                        </div>
+
+                        {/* 3 */}
+                        <div
+                            onClick={() => (window.location.href = "/news전체 뉴스/NewsDetail3")}
+                            style={{ cursor: "pointer" }}
+                        >
+                            <img
+                                src={n3}
+                                alt="원패스(One Pass) 업무 개시"
+                                style={{
+                                    width: "100%",
+                                    height: 215.91,
+                                    borderRadius: 8,
+                                    marginBottom: 12,
+                                    objectFit: "cover",
+                                }}
+                            />
+                            <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>) : (" 2025년 09월 25일 | 오전 09:00")}
+                            </p>
+                            <h3
+                                style={{
+                                    fontSize: 16,
+                                    fontWeight: 700,
+                                    color: "#111827",
+                                    marginBottom: 8,
+                                }}
+                            >
+                                {language === "VI" ? (<>Kể từ tháng 10/2025, One Pass chính thức ...</>) : ("원패스(One Pass) 공식 업무 개시 안내")}
+                            </h3>
+                            <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
+                                {language === "VI" ? (<>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành ...</>) : ("2025년 10월 1일, 원패스가 고객 여러분을 찾아갑니다...")}
+
+                            </p>
+                            <a
+                                href="/news전체%20뉴스/NewsDetail3"
+                                style={{
+                                    fontSize: 14,
+                                    color: "#2563eb",
+                                    textDecoration: "none",
+                                    display: "inline-block",
+                                    marginTop: 10,
+                                }}
+                            >
+                                →
+                            </a>
+                        </div>
+
+                        {/* 4 */}
+                        <div
+                            onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail4")}
+                            style={{ cursor: "pointer" }}>
+                            <img
+                                src={n4}
+                                alt="국경일 행사"
+                                style={{
+                                    width: "100%",
+                                    borderRadius: 8,
+                                    marginBottom: 12,
+                                    objectFit: "cover",
+                                }}
+                            />
+                            <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
+                            </p>
+                            <h3
+                                style={{
+                                    fontSize: 16,
+                                    fontWeight: 700,
+                                    color: "#111827",
+                                    marginBottom: 8,
+                                }}
+                            >
+                                {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân t...</>) : ("주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화...")}
+                            </h3>
+                            <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
+
+                                {language === "VI" ? (<>Ngày mùng 1 tháng 10 năm 2025, Công ty One Pass đã vinh dự được Tổng Lãnh sự quán Việt N</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...")}
+                            </p>
+                            <a
+                                href="#"
+                                style={{
+                                    fontSize: 14,
+                                    color: "#2563eb",
+                                    textDecoration: "none",
+                                    display: "inline-block",
+                                    marginTop: 10,
+                                }}
+                            >
+                                →
+                            </a>
+                        </div>
+
+                        {/* 5 */}
+                        <div
+                            onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail5")}
+                            style={{ cursor: "pointer" }}>
+                            <img
+                                src={n5}
+                                alt="문화 행사"
+                                style={{
+                                    width: "100%",
+                                    borderRadius: 8,
+                                    marginBottom: 12,
+                                    objectFit: "cover",
+                                }}
+                            />
+                            <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
+                                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : ("2025년 09월 27일 | 오전 09:00")}
+                            </p>
+                            <h3
+                                style={{
+                                    fontSize: 16,
+                                    fontWeight: 700,
+                                    color: "#111827",
+                                    marginBottom: 8,
+                                }}
+                            >
+                                {language === "VI" ? (<>“Xin chào”... Tổng lãnh sự quán Việt Nam</>) : ("“쑥쑥안(안녕하세요)”…주부산 베트남총영사관 문화 행사 ")}
+                            </h3>
+                            <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
+                                {language === "VI" ? (<>Tổng Lãnh sự quán Việt Nam chuẩn bị có mặt tại Thành phố Busan . Ngày 13 tháng 8 vừa qua, th...</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...")}
+
+                            </p>
+                            <a
+                                href="#"
+                                style={{
+                                    fontSize: 14,
+                                    color: "#2563eb",
+                                    textDecoration: "none",
+                                    display: "inline-block",
+                                    marginTop: 10,
+                                }}
+                            >
+                            </a>
+                        </div>
                     </div>
 
                     {/* Pagination */}
@@ -751,3 +894,4 @@ export default function AllNewsPage() {
         </>
     );
 }
+

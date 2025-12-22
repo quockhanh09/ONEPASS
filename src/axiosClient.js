@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://be-onpass.onrender.com",
+  baseURL: import.meta.env.VITE_API_URL || "https://onepasscms-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },

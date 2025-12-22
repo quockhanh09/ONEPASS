@@ -1,8 +1,10 @@
+﻿import axiosClient from "../axiosClient";
 import n1 from "../assets/img/n1.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
 import n4 from "../assets/img/N4.png";
 import n5 from "../assets/img/n5.png";
+import n8 from "../assets/img/n19.png";
 import heroBg from "../assets/img/herobanner-1.png";
 import fbIcon from "../assets/img/image20.png";
 import kakaotalkIcon from "../assets/img/image17.png";
@@ -11,6 +13,7 @@ import naverIcon from "../assets/img/image19.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 export default function ConsulateNews() {
   const [activeId, setActiveId] = useState(null);
     const [hoverId, setHoverId] = useState(null);
@@ -31,6 +34,97 @@ export default function ConsulateNews() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState({ text: "", isError: false });
+
+  // News from API - filtered by category
+  const [newsItems, setNewsItems] = useState([]);
+  const [newsLoading, setNewsLoading] = useState(false);
+
+  const fetchNews = async () => {
+    try {
+      setNewsLoading(true);
+      const res = await axiosClient.get("/api/tintuc");
+      const data = res?.data?.data;
+      if (Array.isArray(data)) {
+        // Filter only consulate news
+        const consulateNews = data.filter(item => item.DanhMuc === "대사관•총영사관 소식");
+        setNewsItems(consulateNews);
+      } else {
+        setNewsItems([]);
+      }
+    } catch (err) {
+      console.error("❌ Lỗi lấy tin tức:", err);
+      setNewsItems([]);
+    } finally {
+      setNewsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();
+    const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend.onrender.com";
+    const socket = io(API_URL, { transports: ["websocket"] });
+    socket.on("news-changed", () => fetchNews());
+    return () => socket.disconnect();
+  }, []);
+
+  const getTitle = (item) => {
+    if (language === "VI") return item?.TieuDeVN || "";
+    return item?.TieuDeKR || item?.TieuDeVN || "";
+  };
+
+const stripHtmlTags = (html) => {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        return div.textContent || div.innerText || "";
+    };
+
+    const getSummary = (item) => {
+        if (!item) return "";
+        try {
+            const blocks = JSON.parse(item.NoiDungVN || "[]");
+            if (Array.isArray(blocks) && blocks.length > 0) {
+                const textBlocks = blocks.filter((b) => ["text", "quote", "video"].includes(b.type));
+                const summaryVN = textBlocks.map((b) => stripHtmlTags(b.contentVN || "")).join(" ");
+                const summaryKR = textBlocks.map((b) => stripHtmlTags(b.contentKR || "")).join(" ");
+                const text = language === "VI" ? summaryVN : summaryKR || summaryVN;
+                return text?.substring(0, 140) + (text?.length > 140 ? "..." : "");
+            }
+        } catch (e) {
+            // fall back below
+        }
+        const fallback = language === "VI" ? item.NoiDungVN : item.NoiDungKR || item.NoiDungVN;
+        return fallback ? stripHtmlTags(fallback).substring(0, 140) + (stripHtmlTags(fallback).length > 140 ? "..." : "") : "";
+  };
+
+  const getImage = (item) => {
+    if (!item) return null;
+    try {
+      const blocks = JSON.parse(item.NoiDungVN || "[]");
+      if (Array.isArray(blocks)) {
+        const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
+        if (imgBlock) return imgBlock.imageUrl;
+      }
+    } catch (e) {
+      // ignore
+    }
+    return item.UrlHinhAnh || null;
+  };
+
+  const formatDateTimeRich = (dateString) => {
+    if (!dateString) return "";
+    const d = new Date(dateString);
+    const hours = d.getHours();
+    const hh = String(hours).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    if (language === "VI") {
+      const period = hours < 12 ? "Sáng" : "Chiều";
+      return `${hh}:00 ${period} | Ngày ${day} tháng ${month} năm ${year}`;
+    }
+    const period = hours < 12 ? "오전" : "오후";
+    return `${period} ${hh}:00 | ${year}년 ${month}월 ${day}일`;
+  };
 
   const showTemporaryPopup = (message, isError = false) => {
     setPopupMessage({ text: message, isError });
@@ -117,8 +211,8 @@ export default function ConsulateNews() {
       }}>
         {/* Header title center */}
         <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
-          <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-            NEWSROOM
+          <h1 style={{ fontFamily: 'TrajanPro3, "Times New Roman", serif', color: "#ffffffff", fontWeight: 700, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
+            {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
           </h1>
         </div>
 
@@ -467,104 +561,80 @@ export default function ConsulateNews() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
-              gap: 32,
+              gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+              gap: 24,
             }}
-          >
-            {/* 1 */}
-
-
-            {/* 4 */}
-            <div
-             onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail4")}
-                            style={{ cursor: "pointer" }}>
-              <img
-                src={n4}
-                alt="국경일 행사"
-                style={{
-                  width: "100%",
-                  borderRadius: 8,
-                  marginBottom: 12,
-                  objectFit: "cover",
-                }}
-              />
-              <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                    {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : (" 2025년 09월 27일 | 오전 09:00")}
-
-              </p>
-              <h3
-                style={{
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: "#111827",
-                  marginBottom: 8,
-                }}
-              >
-                 {language === "VI" ? (<>One Pass vinh dự nhận bằng khen tri ân t...</>) : ("주부산 베트남 총영사관 공식 개소: 한-베트남 관계 강화...")}
-
-              </h3>
-              <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                  {language === "VI" ? (<>Ngày mùng 1 tháng 10 năm 2025, Công ty One Pass đã vinh dự được Tổng Lãnh sự quán Việt N</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며, 한-베트남 관계, 동남아 협력 등...")}
-              </p>
-              <a
-                href="#"
-                style={{
-                  fontSize: 14,
-                  color: "#2563eb",
-                  textDecoration: "none",
-                  display: "inline-block",
-                  marginTop: 10,
-                }}
-              >
-                →
-              </a>
-            </div>
-
-            {/* 5 */}
-            <div  onClick={() => (window.location.href = "/news대사관•총영사관%20소식/NewsDetail5")}
-                            style={{ cursor: "pointer" }}>
-              <img
-                src={n5}
-                alt="문화 행사"
-                style={{
-                  width: "100%",
-                  height:309.15,
-                  borderRadius: 8,
-                  marginBottom: 12,
-                  objectFit: "cover",
-                }}
-              />
-              <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>
-                {language === "VI" ? (<>09:00 Sáng | Ngày 27 tháng 09 năm 2025</>) : ("2025년 09월 27일 | 오전 09:00")}
-
-              </p>
-              <h3
-                style={{
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: "#111827",
-                  marginBottom: 8,
-                }}
-              >
-                {language === "VI" ? (<>“Xin chào”... Tổng lãnh sự quán Việt Nam</>) : ("“쑥쑥안(안녕하세요)”…주부산 베트남총영사관 문화 행사 ")}
-
-              </h3>
-              <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
-                 {language === "VI" ? (<>Tổng Lãnh sự quán Việt Nam chuẩn bị có mặt tại Thành phố Busan . Ngày 13 tháng 8 vừa qua, th...</>) : ("2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 문을 개시하며...")}
-              </p>
-              <a
-                href="#"
-                style={{
-                  fontSize: 14,
-                  color: "#2563eb",
-                  textDecoration: "none",
-                  display: "inline-block",
-                  marginTop: 10,
-                }}
-              >
-                →
-              </a>
-            </div>
+          >            {newsLoading && (
+              <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
+                {language === "VI" ? "Äang táº£i tin tá»©c..." : "ë‰´ìŠ¤ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ìž…ë‹ˆë‹¤..."}
+              </div>
+            )}
+            {!newsLoading && newsItems.map((item) => {
+              const imgSrc = getImage(item) || n8;
+              return (
+                <div
+                  key={item.ID}
+                  onClick={() => navigate(`/news/${item.ID}`)}
+                  style={{
+                    cursor: "pointer",
+                    borderRadius: "16px",
+                    padding: "0",
+                    background: "#fff",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ background: "#fff", borderRadius: "0", overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+                    <div style={{ height: 180, width: "100%", overflow: "hidden", display: "block", flexShrink: 0 }}>
+                      <img
+                        src={imgSrc}
+                        alt={getTitle(item)}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                          borderRadius: 16,
+                        }}
+                      />
+                    </div>
+                    <div style={{ padding: "12px 14px", borderTop: "none", flex: 1, display: "flex", flexDirection: "column" }}>
+                      <p style={{ fontSize: 11, color: "#666", marginBottom: 4, marginLeft: "0px", letterSpacing: "0.08em", textTransform: "capitalize" }}>
+                        {formatDateTimeRich(item.NgayXuatBan)}
+                      </p>
+                      <h3
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 700,
+                          color: "#000",
+                          marginBottom: 6,
+                          marginLeft: "0px",
+                          textTransform: "none",
+                          lineHeight: 1.4,
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {getTitle(item)}
+                      </h3>
+                      <p style={{ fontSize: 12, color: "#666", lineHeight: 1.5, marginLeft: "0px", marginBottom: "8px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        {getSummary(item)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            {!newsLoading && newsItems.length === 0 && (
+              <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
+                {language === "VI" ? "ChÆ°a cÃ³ tin tá»©c Äáº¡i sá»© / LÃ£nh sá»± quÃ¡n." : "ëŒ€ì‚¬ê´€Â·ì´ì˜ì‚¬ê´€ ì†Œì‹ì´ ì—†ìŠµë‹ˆë‹¤."}
+              </div>
+            )}
           </div>
 
           {/* Pagination */}

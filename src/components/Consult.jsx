@@ -182,7 +182,7 @@ const handleSubmitConsult = async () => {
   setLoading(true);
 
   try {
-    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+    const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -245,7 +245,7 @@ const handleSubmitGoiDien = async (e) => {
   setGoiLoading(true);
 
   try {
-    const res = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+    const res = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -332,7 +332,7 @@ const handleSubmitEmail = async (e) => {
   setEmailLoading(true);
 
   try {
-    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+    const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -424,7 +424,7 @@ const handleSubmitVisit = async (e) => {
   setVisitLoading(true);
 
   try {
-    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+    const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

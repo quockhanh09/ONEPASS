@@ -36,7 +36,7 @@ export default function DynamicNewsDetail() {
   }, [fetchOne]);
 
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend.onrender.com";
+    const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
     const socket = io(API_URL, { transports: ["websocket"] });
     socket.on("news-changed", (payload) => {
       if (payload?.action === "delete" && String(payload.id) === String(id)) {

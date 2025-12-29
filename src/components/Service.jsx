@@ -919,7 +919,7 @@ const handleSubmit = async () => {
   setLoading(true);
 
   try {
-    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+    const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1024,7 +1024,7 @@ const handleSubmitService = async (e) => {
       ? translateServiceTitle(serviceContents[activeIndex]?.title)
       : serviceContents[activeIndex]?.title;
 
-    const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+    const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

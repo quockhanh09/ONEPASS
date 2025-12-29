@@ -51,7 +51,7 @@ function Footer() {
   setLoading(true);
   try {
     const res = await axios.post(
-      "https://onepasscms-backend.onrender.com/api/save-email",
+      "https://onepasscms-backend-tvdy.onrender.com/api/save-email",
       { email }
     );
 

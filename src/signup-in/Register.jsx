@@ -104,7 +104,7 @@ function Register() {
 
     // ===== Gửi API tới backend =====
     try {
-      const response = await fetch("https://onepasscms-backend.onrender.com/api/auth/register", {
+      const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

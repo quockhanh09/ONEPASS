@@ -61,7 +61,7 @@ export default function AllNewsPage() {
 
     useEffect(() => {
         fetchNews();
-        const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend.onrender.com";
+        const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
         const socket = io(API_URL, { transports: ["websocket"] });
         socket.on("news-changed", () => fetchNews());
         return () => socket.disconnect();
@@ -158,7 +158,7 @@ export default function AllNewsPage() {
         setLoading(true);
 
         try {
-          const response = await fetch("https://onepasscms-backend.onrender.com/api/tuvan", {
+          const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

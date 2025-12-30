@@ -13,7 +13,7 @@ import naverIcon from "../assets/img/image19.png";
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { io } from "socket.io-client";
 export default function AllNewsPage() {
     const [activeId, setActiveId] = useState(null);
@@ -110,6 +110,10 @@ export default function AllNewsPage() {
         return item.UrlHinhAnh || null;
     };
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname;
+
     const formatDateTimeRich = (dateString) => {
         if (!dateString) return "";
         const d = new Date(dateString);
@@ -125,6 +129,26 @@ export default function AllNewsPage() {
         const period = hours < 12 ? "오전" : "오후";
         return `${period} ${hh}:00 | ${year}년 ${month}월 ${day}일`;
     };
+
+    const filteredNews = useMemo(() => {
+        if (currentPath === "/news/대사관•총영사관 소식") {
+            return newsItems.filter((item) => item.DanhMuc === "대사관•총영사관 소식");
+        }
+        if (currentPath === "/news/기타") {
+            return newsItems.filter((item) => item.DanhMuc === "기타");
+        }
+        return newsItems;
+    }, [currentPath, newsItems]);
+
+    const headingText = useMemo(() => {
+        if (currentPath === "/news/대사관•총영사관 소식") {
+            return language === "VI" ? "Tin tức Đại sứ / Lãnh sự quán" : "대사관•총영사관 소식";
+        }
+        if (currentPath === "/news/기타") {
+            return language === "VI" ? "Bài viết" : "기타";
+        }
+        return language === "VI" ? "Tất cả tin tức" : "전체 뉴스";
+    }, [currentPath, language]);
 
     const showTemporaryPopup = (message, isError = false) => {
         setPopupMessage({ text: message, isError });
@@ -191,9 +215,6 @@ export default function AllNewsPage() {
         }
       };
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const currentPath = location.pathname;
     return (
         <>
             <section style={{
@@ -503,6 +524,28 @@ export default function AllNewsPage() {
                             >
                                 {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
                             </span>
+
+                            {/* Bài viết */}
+                            <span
+                                onClick={() => navigate("/news/기타")}
+                                style={{
+                                    fontWeight:
+                                        currentPath === "/news/기타" ? 700 : 400,
+                                    color:
+                                        currentPath === "/news/기타"
+                                            ? "#111827"
+                                            : "#6b7280",
+                                    borderBottom:
+                                        currentPath === "/news/기타"
+                                            ? "2px solid #111827"
+                                            : "none",
+                                    paddingBottom:
+                                        currentPath === "/news/기타" ? 4 : 0,
+                                    cursor: "pointer",
+                                }}
+                            >
+                                {language === "VI" ? "Bài viết" : "기타"}
+                            </span>
                         </div>
                         {/* Search box */}
                         <div
@@ -549,7 +592,7 @@ export default function AllNewsPage() {
                             marginBottom: 40,
                         }}
                     >
-                        {language === "VI" ? (<>Tất cả tin tức</>) : ("전체 뉴스")}
+                        {headingText}
                     </h2>
 
                     {/* News Grid */}
@@ -565,7 +608,7 @@ export default function AllNewsPage() {
                                 {language === "VI" ? "Đang tải tin tức..." : "뉴스를 불러오는 중입니다..."}
                             </div>
                         )}
-                        {!newsLoading && newsItems.map((item) => {
+                        {!newsLoading && filteredNews.map((item) => {
                             const imgSrc = getImage(item) || n8;
                             return (
                                 <div
@@ -626,7 +669,7 @@ export default function AllNewsPage() {
                                 </div>
                             );
                         })}
-                        {!newsLoading && newsItems.length === 0 && (
+                        {!newsLoading && filteredNews.length === 0 && (
                             <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
                                 {language === "VI" ? "Chưa có tin tức." : "등록된 뉴스가 없습니다."}
                             </div>

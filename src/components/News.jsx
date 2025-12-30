@@ -97,6 +97,7 @@ function Introduction() {
 
   // Filtered consulate news
   const consulateNewsItems = newsItems.filter(item => item.DanhMuc === "대사관•총영사관 소식").slice(0, 6);
+  const articleNewsItems = newsItems.filter(item => item.DanhMuc === "기타").slice(0, 6);
 
   const getTitle = (item) => {
     if (language === "VI") return item?.TieuDeVN || "";
@@ -809,6 +810,124 @@ const stripHtmlTags = (html) => {
             {!newsLoading && consulateNewsItems.length === 0 && (
               <div style={{ flex: "1 1 100%", textAlign: "center", color: "#6b7280" }}>
                 {language === "VI" ? "Chưa có tin tức Đại sứ / Lãnh sự quán." : "대사관•총영사관 소식이 없습니다."}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div
+            className="news-top-header"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 30,
+            }}
+          >
+            <h2>
+              <a
+                href="/news/기타"
+                style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }}
+              >
+                {language === "VI" ? "Bài viết" : "기타"}
+              </a>
+            </h2>
+            <a
+              href="/news/기타"
+              style={{
+                fontSize: 15,
+                color: "#384D8D",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              {language === "VI" ? "Xem thêm →" : " 더보기 →"}
+            </a>
+          </div>
+
+          <div
+            className="news-top-card"
+            style={{
+              display: "flex",
+              gap: 30,
+              flexWrap: "wrap",
+            }}
+          >
+            {newsLoading && (
+              <div style={{ flex: "1 1 100%", textAlign: "center", color: "#6b7280" }}>
+                {language === "VI" ? "Đang tải tin tức..." : "뉴스를 불러오는 중입니다..."}
+              </div>
+            )}
+            {!newsLoading && articleNewsItems.map((item) => {
+              const imgSrc = getImage(item) || n1;
+              return (
+                <div
+                  key={item.ID}
+                  onClick={() => navigate(`/news/${item.ID}`)}
+                  style={{
+                    width: 380,
+                    flexShrink: 0,
+                    cursor: "pointer",
+                    borderRadius: "16px",
+                    padding: "0",
+                    background: "#fff",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ background: "#fff", borderRadius: "0", overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+                    <div style={{ height: 180, width: "100%", overflow: "hidden", display: "block", flexShrink: 0 }}>
+                      <img
+                        src={imgSrc}
+                        alt={getTitle(item)}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                      />
+                    </div>
+                    <div style={{ padding: "12px 14px", borderTop: "none", flex: 1, display: "flex", flexDirection: "column" }}>
+                      <p style={{ fontSize: 11, color: "#666", margin: "4px 0", marginLeft: "0px", letterSpacing: "0.08em", textTransform: "capitalize" }}>
+                        {formatDateTimeRich(item.NgayXuatBan)}
+                      </p>
+                      <h3
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 700,
+                          color: "#000",
+                          marginBottom: 6,
+                          marginLeft: "0px",
+                          textTransform: "none",
+                          lineHeight: 1.4,
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {getTitle(item)}
+                      </h3>
+                      <p style={{ fontSize: 12, color: "#666", lineHeight: 1.5, marginLeft: "0px", marginBottom: "8px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        {getSummary(item)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            {!newsLoading && articleNewsItems.length === 0 && (
+              <div style={{ flex: "1 1 100%", textAlign: "center", color: "#6b7280" }}>
+                {language === "VI" ? "Chưa có bài viết." : "기타 카테고리 게시글이 없습니다."}
               </div>
             )}
           </div>

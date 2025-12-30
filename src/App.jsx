@@ -2197,6 +2197,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/news/전체 뉴스" element={<AllNewsPage />} />
         <Route path="/news/대사관•총영사관 소식" element={<ConsulateNews />} />
+        <Route path="/news/기타" element={<AllNewsPage />} />
         <Route path="/news/:id" element={<DynamicNewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail" element={<NewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail2" element={<NewsDetail2 />} />

@@ -561,7 +561,7 @@ export default function AllNewsPage() {
                         >
                             <input
                                 type="text"
-                                placeholder="검색어를 입력하세요"
+                                placeholder={language === "VI" ? "Nhập từ khóa tìm kiếm" : "Search keywords"}
                                 style={{
                                     flex: 1,
                                     border: "none",

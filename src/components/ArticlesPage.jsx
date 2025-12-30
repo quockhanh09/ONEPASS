@@ -1,4 +1,4 @@
-﻿import axiosClient from "../axiosClient";
+import axiosClient from "../axiosClient";
 import n1 from "../assets/img/n1.png";
 import n2 from "../assets/img/n2.png";
 import n3 from "../assets/img/n3.png";
@@ -14,16 +14,18 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
-export default function ConsulateNews() {
+
+export default function ArticlesPage() {
   const [activeId, setActiveId] = useState(null);
-    const [hoverId, setHoverId] = useState(null);
-    const effectiveId = hoverId ?? activeId;
-    const items = [
-      { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
-      { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
-      { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
-      { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
-    ];
+  const [hoverId, setHoverId] = useState(null);
+  const effectiveId = hoverId ?? activeId;
+  const items = [
+    { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
+    { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
+    { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
+    { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+  ];
+
   const { language } = useLanguage();
   const [service, setService] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -45,9 +47,9 @@ export default function ConsulateNews() {
       const res = await axiosClient.get("/api/tintuc");
       const data = res?.data?.data;
       if (Array.isArray(data)) {
-        // Filter only consulate news
-        const consulateNews = data.filter(item => item.DanhMuc === "대사관•총영사관 소식");
-        setNewsItems(consulateNews);
+        // Filter only "기타" (Articles) news
+        const articlesNews = data.filter(item => item.DanhMuc === "기타");
+        setNewsItems(articlesNews);
       } else {
         setNewsItems([]);
       }
@@ -72,28 +74,28 @@ export default function ConsulateNews() {
     return item?.TieuDeKR || item?.TieuDeVN || "";
   };
 
-const stripHtmlTags = (html) => {
-        const div = document.createElement("div");
-        div.innerHTML = html;
-        return div.textContent || div.innerText || "";
-    };
+  const stripHtmlTags = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  };
 
-    const getSummary = (item) => {
-        if (!item) return "";
-        try {
-            const blocks = JSON.parse(item.NoiDungVN || "[]");
-            if (Array.isArray(blocks) && blocks.length > 0) {
-                const textBlocks = blocks.filter((b) => ["text", "quote", "video"].includes(b.type));
-                const summaryVN = textBlocks.map((b) => stripHtmlTags(b.contentVN || "")).join(" ");
-                const summaryKR = textBlocks.map((b) => stripHtmlTags(b.contentKR || "")).join(" ");
-                const text = language === "VI" ? summaryVN : summaryKR || summaryVN;
-                return text?.substring(0, 140) + (text?.length > 140 ? "..." : "");
-            }
-        } catch (e) {
-            // fall back below
-        }
-        const fallback = language === "VI" ? item.NoiDungVN : item.NoiDungKR || item.NoiDungVN;
-        return fallback ? stripHtmlTags(fallback).substring(0, 140) + (stripHtmlTags(fallback).length > 140 ? "..." : "") : "";
+  const getSummary = (item) => {
+    if (!item) return "";
+    try {
+      const blocks = JSON.parse(item.NoiDungVN || "[]");
+      if (Array.isArray(blocks) && blocks.length > 0) {
+        const textBlocks = blocks.filter((b) => ["text", "quote", "video"].includes(b.type));
+        const summaryVN = textBlocks.map((b) => stripHtmlTags(b.contentVN || "")).join(" ");
+        const summaryKR = textBlocks.map((b) => stripHtmlTags(b.contentKR || "")).join(" ");
+        const text = language === "VI" ? summaryVN : summaryKR || summaryVN;
+        return text?.substring(0, 140) + (text?.length > 140 ? "..." : "");
+      }
+    } catch (e) {
+      // fall back below
+    }
+    const fallback = language === "VI" ? item.NoiDungVN : item.NoiDungKR || item.NoiDungVN;
+    return fallback ? stripHtmlTags(fallback).substring(0, 140) + (stripHtmlTags(fallback).length > 140 ? "..." : "") : "";
   };
 
   const getImage = (item) => {
@@ -133,64 +135,63 @@ const stripHtmlTags = (html) => {
   };
 
   const handleSubmit = async () => {
-  const lang = localStorage.getItem("lang") || "ko";
+    const lang = localStorage.getItem("lang") || "ko";
 
-  const messages = {
-    ko: {
-      empty: "모든 항목을 입력하고 동의해 주세요.",
-      success: "상담 신청 완료되었습니다!",
-      fail: "서버 연결 실패 (Server connection failed)",
-      serverError: "서버 오류가 발생했습니다.",
-    },
-    vi: {
-      empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
-      success: "Đăng ký tư vấn thành công!",
-      fail: "Kết nối máy chủ thất bại.",
-      serverError: "Đã xảy ra lỗi máy chủ.",
-    },
-  };
+    const messages = {
+      ko: {
+        empty: "모든 항목을 입력하고 동의해 주세요.",
+        success: "상담 신청 완료되었습니다!",
+        fail: "서버 연결 실패 (Server connection failed)",
+        serverError: "서버 오류가 발생했습니다.",
+      },
+      vi: {
+        empty: "Vui lòng điền đầy đủ thông tin và đồng ý.",
+        success: "Đăng ký tư vấn thành công!",
+        fail: "Kết nối máy chủ thất bại.",
+        serverError: "Đã xảy ra lỗi máy chủ.",
+      },
+    };
 
-  if (!service || !name || !phone || !agree) {
-    showTemporaryPopup(messages[lang].empty, true);
-    return;
-  }
-
-  setLoading(true);
-
-  try {
-    const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        TenDichVu: service,
-        TenHinhThuc: "Tư Vấn Nhanh", 
-        HoTen: name,
-        MaVung: countryCode,
-        SoDienThoai: phone,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      showTemporaryPopup(`${messages[lang].serverError}`, true);
-      console.error("Server Error:", data);
+    if (!service || !name || !phone || !agree) {
+      showTemporaryPopup(messages[lang].empty, true);
       return;
     }
 
-    showTemporaryPopup(messages[lang].success);
-    setService("");
-    setName("");
-    setPhone("");
-    setAgree(false);
-  } catch (err) {
-    console.error("Lỗi khi kết nối server:", err);
-    showTemporaryPopup(messages[lang].fail, true);
-  } finally {
-    setLoading(false);
-  }
-};
+    setLoading(true);
 
+    try {
+      const response = await fetch("https://onepasscms-backend-tvdy.onrender.com/api/tuvan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          TenDichVu: service,
+          TenHinhThuc: "Tư Vấn Nhanh",
+          HoTen: name,
+          MaVung: countryCode,
+          SoDienThoai: phone,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        showTemporaryPopup(`${messages[lang].serverError}`, true);
+        console.error("Server Error:", data);
+        return;
+      }
+
+      showTemporaryPopup(messages[lang].success);
+      setService("");
+      setName("");
+      setPhone("");
+      setAgree(false);
+    } catch (err) {
+      console.error("Lỗi khi kết nối server:", err);
+      showTemporaryPopup(messages[lang].fail, true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -212,10 +213,9 @@ const stripHtmlTags = (html) => {
         {/* Header title center */}
         <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'TrajanPro3, "Times New Roman", serif', color: "#ffffffff", fontWeight: 700, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-            {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
+            {language === "VI" ? "BÀI VIẾT" : "기사"}
           </h1>
         </div>
-
 
         <div
           style={{
@@ -420,6 +420,7 @@ const stripHtmlTags = (html) => {
                 : "상담 신청"}
           </div>
         </div>
+
         <div className="social-container">
           {items.map((item) => {
             const isExpanded = effectiveId === item.id;
@@ -575,7 +576,7 @@ const stripHtmlTags = (html) => {
               marginBottom: 40,
             }}
           >
-            {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
+            {language === "VI" ? (<>Bài viết</>) : (" 기사")}
 
           </h2>
 
@@ -586,9 +587,10 @@ const stripHtmlTags = (html) => {
               gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
               gap: 24,
             }}
-          >            {newsLoading && (
+          >            
+            {newsLoading && (
               <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
-                {language === "VI" ? "Äang táº£i tin tá»©c..." : "ë‰´ìŠ¤ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ìž…ë‹ˆë‹¤..."}
+                {language === "VI" ? "Đang tải tin tức..." : "뉴스를 불러오는 중입니다..."}
               </div>
             )}
             {!newsLoading && newsItems.map((item) => {
@@ -654,7 +656,7 @@ const stripHtmlTags = (html) => {
             })}
             {!newsLoading && newsItems.length === 0 && (
               <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
-                {language === "VI" ? "ChÆ°a cÃ³ tin tá»©c Äáº¡i sá»© / LÃ£nh sá»± quÃ¡n." : "ëŒ€ì‚¬ê´€Â·ì´ì˜ì‚¬ê´€ ì†Œì‹ì´ ì—†ìŠµë‹ˆë‹¤."}
+                {language === "VI" ? "Chưa có bài viết." : "기사가 없습니다."}
               </div>
             )}
           </div>

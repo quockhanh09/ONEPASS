@@ -199,6 +199,7 @@ function Header() {
                 <ul>
                   <li><Link to="/news/전체 뉴스">{language === "VI" ? (<>Tất cả tin tức</>) : ("전체뉴스")}</Link></li>
                   <li><Link to="/news/대사관•총영사관 소식">{language === "VI" ? (<>Tin tức lãnh sự</>) : ("대사관·총영사관 소식")}</Link></li>
+                  <li><Link to="/news/기타">{language === "VI" ? (<>Bài viết</>) : ("기타")}</Link></li>
                 </ul>
               </div>
             </div>

@@ -97,6 +97,7 @@ import Login from "./signup-in/Login.jsx";
 import Consult from "./components/Consult.jsx";
 import AllNewsPage from "./components/AllNewsPage.jsx";
 import ConsulateNews from "./components/ConsulateNews.jsx";
+import ArticlesPage from "./components/ArticlesPage.jsx";
 import NewsDetail from "./components/NewDeatail.jsx";
 import NewsDetail2 from "./components/NewDeatail2.jsx";
 import NewsDetail3 from "./components/NewDeatail3.jsx";
@@ -2197,7 +2198,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/news/전체 뉴스" element={<AllNewsPage />} />
         <Route path="/news/대사관•총영사관 소식" element={<ConsulateNews />} />
-        <Route path="/news/기타" element={<AllNewsPage />} />
+        <Route path="/news/기타" element={<ArticlesPage />} />
         <Route path="/news/:id" element={<DynamicNewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail" element={<NewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail2" element={<NewsDetail2 />} />

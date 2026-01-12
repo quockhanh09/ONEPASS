@@ -3,12 +3,12 @@
   "short_name": "ONEPASS",
   "icons": [
     {
-      "src": "https://www.onepasskr.com/favicon-trắng-viền-đen.png",
+      "src": "/favicon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://www.onepasskr.com/favicon-trắng-viền-đen.png",
+      "src": "/favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -18,6 +18,8 @@ export default function ConsulateNews() {
   const [activeId, setActiveId] = useState(null);
     const [hoverId, setHoverId] = useState(null);
     const effectiveId = hoverId ?? activeId;
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
     const items = [
       { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
       { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
@@ -58,6 +60,12 @@ export default function ConsulateNews() {
       setNewsLoading(false);
     }
   };
+
+  // Pagination calculation
+  const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentNews = newsItems.slice(startIndex, endIndex);
 
   useEffect(() => {
     fetchNews();
@@ -591,7 +599,7 @@ const stripHtmlTags = (html) => {
                 {language === "VI" ? "Äang táº£i tin tá»©c..." : "ë‰´ìŠ¤ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ìž…ë‹ˆë‹¤..."}
               </div>
             )}
-            {!newsLoading && newsItems.map((item) => {
+            {!newsLoading && currentNews.map((item) => {
               const imgSrc = getImage(item) || n8;
               return (
                 <div
@@ -660,31 +668,36 @@ const stripHtmlTags = (html) => {
           </div>
 
           {/* Pagination */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 40,
-              gap: 10,
-            }}
-          >
-            {[1, 2, 3, 4, 5, 6].map((n) => (
-              <button
-                key={n}
-                style={{
-                  border: "none",
-                  background: n === 1 ? "#111827" : "transparent",
-                  color: n === 1 ? "#fff" : "#6b7280",
-                  borderRadius: 4,
-                  padding: "4px 8px",
-                  cursor: "pointer",
-                }}
-              >
-                {n}
-              </button>
-            ))}
-          </div>
+          {totalPages > 0 && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 40,
+                gap: 10,
+              }}
+            >
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                <button
+                  key={pageNum}
+                  onClick={() => setCurrentPage(pageNum)}
+                  style={{
+                    border: "none",
+                    background: pageNum === currentPage ? "#111827" : "transparent",
+                    color: pageNum === currentPage ? "#fff" : "#6b7280",
+                    borderRadius: 4,
+                    padding: "4px 8px",
+                    cursor: "pointer",
+                    minWidth: 32,
+                    fontSize: 14,
+                  }}
+                >
+                  {pageNum}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
        <style>
 {`

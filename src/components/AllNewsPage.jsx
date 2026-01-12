@@ -19,6 +19,8 @@ export default function AllNewsPage() {
     const [activeId, setActiveId] = useState(null);
     const [hoverId, setHoverId] = useState(null);
     const effectiveId = hoverId ?? activeId;
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
     const items = [
         { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
         { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
@@ -139,6 +141,17 @@ export default function AllNewsPage() {
         }
         return newsItems;
     }, [currentPath, newsItems]);
+
+    // Pagination calculation
+    const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentNews = filteredNews.slice(startIndex, endIndex);
+
+    // Reset to page 1 when switching categories
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [currentPath]);
 
     const headingText = useMemo(() => {
         if (currentPath === "/news/대사관•총영사관 소식") {
@@ -608,7 +621,7 @@ export default function AllNewsPage() {
                                 {language === "VI" ? "Đang tải tin tức..." : "뉴스를 불러오는 중입니다..."}
                             </div>
                         )}
-                        {!newsLoading && filteredNews.map((item) => {
+                        {!newsLoading && currentNews.map((item) => {
                             const imgSrc = getImage(item) || n8;
                             return (
                                 <div
@@ -677,31 +690,36 @@ export default function AllNewsPage() {
                     </div>
 
                     {/* Pagination */}
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            marginTop: 40,
-                            gap: 10,
-                        }}
-                    >
-                        {[1, 2, 3, 4, 5, 6].map((n) => (
-                            <button
-                                key={n}
-                                style={{
-                                    border: "none",
-                                    background: n === 1 ? "#111827" : "transparent",
-                                    color: n === 1 ? "#fff" : "#6b7280",
-                                    borderRadius: 4,
-                                    padding: "4px 8px",
-                                    cursor: "pointer",
-                                }}
-                            >
-                                {n}
-                            </button>
-                        ))}
-                    </div>
+                    {totalPages > 0 && (
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                marginTop: 40,
+                                gap: 10,
+                            }}
+                        >
+                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                                <button
+                                    key={pageNum}
+                                    onClick={() => setCurrentPage(pageNum)}
+                                    style={{
+                                        border: "none",
+                                        background: pageNum === currentPage ? "#111827" : "transparent",
+                                        color: pageNum === currentPage ? "#fff" : "#6b7280",
+                                        borderRadius: 4,
+                                        padding: "4px 8px",
+                                        cursor: "pointer",
+                                        minWidth: 32,
+                                        fontSize: 14,
+                                    }}
+                                >
+                                    {pageNum}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <style>
                     {`

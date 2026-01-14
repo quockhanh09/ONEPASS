@@ -1,4 +1,3 @@
-
 import a1 from "./assets/img/image22.png";
 import a34 from "./assets/img/a1-1.png";
 import a2 from "./assets/img/image222.png";
@@ -84,6 +83,8 @@ import { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import axiosClient from "./axiosClient";
+import { io } from "socket.io-client";
 // import Layout from "./Layout.jsx";
 import Header from "./components/Header.jsx";
 import Countdown from "./components/Countdown.jsx";
@@ -202,7 +203,7 @@ function App() {
         date: "15 tháng 07, 2025"
       },
       {
-        img: "https://www.centrala.vn/storage/news/1744355533BACKDOOR%20-%20T%E1%BA%A4T%20T%E1%BA%A6N%20T%E1%BA%ACT%20V%E1%BB%80%20BACKDOOR%20B%E1%BA%A0N%20C%E1%BA%A6N%20N%C3%8AN%20BI%E1%BA%BET%20(3).png",
+        img: "https://www.centrala.vn/storage/news/1744355533BACKDOOR%20-%20T%E1%BA%A4T%20T%E1%BA%A6N%20T%E1%BA%ACT%20V%E1%BB%80%20BACKDOOR%20B%E1%BA%A0N%20C%E1%BA%A6N%20N%C3%8IN%20BI%E1%BA%BET%20(3).png",
         title: "Hội thảo: Bảo vệ bản quyền trong thời đại số",
         author: "VCPC Event",
         date: "10 tháng 07, 2025"
@@ -370,9 +371,97 @@ function App() {
   const [tab, setTab] = useState("copyright");
   const [news, setNews] = useState(newsData);
 
+  // Add state for fetching latest news from CMS
+  const [latestNews, setLatestNews] = useState([]);
+  const [newsLoading, setNewsLoading] = useState(false);
+
   // animated stats: display numbers that count up on mount
   const statsTarget = { satisfied: 380, cases: 450, consult: 800 };
   const [displayStats, setDisplayStats] = useState({ satisfied: 0, cases: 0, consult: 0 });
+
+  // Fetch latest 3 news from CMS
+  const fetchLatestNews = async () => {
+    try {
+      setNewsLoading(true);
+      const res = await axiosClient.get("/api/tintuc");
+      const data = res?.data?.data;
+      if (Array.isArray(data)) {
+        // Sort by publish date (newest first) and take first 3
+        const sorted = [...data].sort((a, b) => {
+          const dateA = new Date(a.NgayXuatBan || a.CreatedAt);
+          const dateB = new Date(b.NgayXuatBan || b.CreatedAt);
+          return dateB - dateA;
+        });
+        setLatestNews(sorted.slice(0, 3));
+      }
+    } catch (err) {
+      console.error("❌ Error fetching latest news:", err);
+      setLatestNews([]);
+    } finally {
+      setNewsLoading(false);
+    }
+  };
+
+  // Helper functions for news display
+  const getNewsTitle = (item) => {
+    if (language === "VI") return item?.TieuDeVN || "";
+    return item?.TieuDeKR || item?.TieuDeVN || "";
+  };
+
+  const stripHtmlTags = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  };
+
+  const getNewsSummary = (item) => {
+    if (!item) return "";
+    try {
+      const blocks = JSON.parse(item.NoiDungVN || "[]");
+      if (Array.isArray(blocks) && blocks.length > 0) {
+        const textBlocks = blocks.filter((b) => ["text", "quote"].includes(b.type));
+        const summaryVN = textBlocks.map((b) => stripHtmlTags(b.contentVN || "")).join(" ");
+        const summaryKR = textBlocks.map((b) => stripHtmlTags(b.contentKR || "")).join(" ");
+        const text = language === "VI" ? summaryVN : summaryKR || summaryVN;
+        return text?.substring(0, 100) + (text?.length > 100 ? "..." : "");
+      }
+    } catch (e) {
+      // fallback
+    }
+    const fallback = language === "VI" ? item.NoiDungVN : item.NoiDungKR || item.NoiDungVN;
+    return fallback ? stripHtmlTags(fallback).substring(0, 100) + "..." : "";
+  };
+
+  const getNewsImage = (item) => {
+    if (!item) return n1;
+    try {
+      const blocks = JSON.parse(item.NoiDungVN || "[]");
+      if (Array.isArray(blocks)) {
+        const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
+        if (imgBlock) return imgBlock.imageUrl;
+      }
+    } catch (e) {
+      // ignore
+    }
+    return item.UrlHinhAnh || n1;
+  };
+
+  const formatNewsDate = (dateString) => {
+    if (!dateString) return "";
+    const d = new Date(dateString);
+    const hours = d.getHours();
+    const hh = String(hours).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    
+    if (language === "VI") {
+      const period = hours < 12 ? "Sáng" : "Chiều";
+      return `${hh}:00 ${period} | Ngày ${day} tháng ${month} năm ${year}`;
+    }
+    const period = hours < 12 ? "오전" : "오후";
+    return `${period} ${hh}:00 | ${year}년 ${month}월 ${day}일`;
+  };
 
   useEffect(() => {
     const duration = 1500; // ms
@@ -395,7 +484,19 @@ function App() {
     requestAnimationFrame(step);
   }, []);
 
-
+  // Fetch news on mount and setup real-time updates
+  useEffect(() => {
+    fetchLatestNews();
+    
+    const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
+    const socket = io(API_URL, { transports: ["websocket"] });
+    
+    socket.on("news-changed", () => {
+      fetchLatestNews();
+    });
+    
+    return () => socket.disconnect();
+  }, []);
 
   const tabList = [
     { key: "copyright", label: "Tin tức bản quyền", color: "#BFD6FF", text: "#224394" },
@@ -1405,7 +1506,7 @@ function App() {
                                                         : card.title === "베트남 국적 포기 신청" ? "Xin thôi quốc tịch Việt Nam"
                                                           
                                                             : card.title === "베트남 국적 재귀화 신청" ? "Xin trở lại quốc tịch Việt Nam"
-                                                              : card.title === "베트남으로 시체, 유해, 유골 송환 허가 신청" ? "Cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
+                                                              : card.title === "베트남으로 시체, 유해, 유골 송환 허가 신청" ? "Cấp Giấy phép nhập cảnh thi hài, hài cốt"
                                                                 : card.title === "베트남 국적 사실 확인" ? "Thủ tục hồi hương (đăng ký thường trú ở Việt Nam) "
 
                                                                   : card.title === "일반 여권 (재)발급·변경·추가" ? "Cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
@@ -1454,7 +1555,7 @@ function App() {
                                         ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Hàn Quốc"
                                         : card.desc === "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원"
                                           ? "Tư vấn, xử lý hồ sơ liên quan tới cấp giấy xác nhận tình trạng hôn nhân"
-                                          : card.desc === "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원"
+                                          : card.desc === "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원"
                                             ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Việt Nam"
 
                                             : card.desc === "신생아 출생 신고를 정확하고 신속하게 대행"
@@ -1470,7 +1571,7 @@ function App() {
                                                       ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới xin thôi quốc tịch VIệt Nam"
                                                       : card.desc === " 이중국적 유지를 위한 신고 및 관련 절차를지원"
                                                         ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới giữ quốc tịch Việt Nam"
-                                                        : card.desc === "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행"
+                                                        : card.desc === "베트남 국적 재귀화를 위한 신청 및 행정 절 trình 대행"
                                                           ? "Tư vấn hồ sơ và thực hiện đăng ký xin trở lại quốc tịch Việt Nam"
                                                           : card.desc === "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행"
                                                             ? "Thực hiện đăng ký cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
@@ -1751,145 +1852,137 @@ function App() {
                   </div>
                 </div>
 
-                {/* POSTS */}
-                <div
-                  className="news-grid"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr 1fr",
-                    gap: 40,
-                  }}
-                >
-                  {posts.map((p, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        position: "relative", 
-                        overflow: "hidden",
-                        borderRadius: 12,
-                        cursor: "pointer",
-                        transition: "transform 0.15s ease, box-shadow 0.15s ease",
-                        boxSizing: "border-box", // 👈 tránh cộng padding/viền ngoài ý muốn
-                      }}
-                      onClick={(e) => {
-                        e.currentTarget.style.transform = "translateY(-4px)";
-                        e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.1)";
-                        setTimeout(() => {
-                          e.currentTarget.style.transform = "translateY(0)";
-                          e.currentTarget.style.boxShadow = "none";
-                        }, 150);
-                      }}
-                    >
-                      {/* Overlay link phủ toàn card */}
-                      <Link
-                        to={
-                          idx === 0
-                            ? "/news전체 뉴스/NewsDetail"
-                            : idx === 1
-                              ? "/news전체 뉴스/NewsDetail2"
-                              : "/news전체 뉴스/NewsDetail3"
-                        }
+                {/* POSTS - Dynamic from CMS */}
+                {newsLoading ? (
+                  <div style={{ textAlign: "center", padding: "40px 0", color: "#666" }}>
+                    {language === "VI" ? "Đang tải tin tức..." : "뉴스를 불러오는 중입니다..."}
+                  </div>
+                ) : (
+                  <div
+                    className="news-grid"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr",
+                      gap: 40,
+                    }}
+                  >
+                    {latestNews.map((newsItem, idx) => (
+                      <div
+                        key={newsItem.ID}
                         style={{
-                          position: "absolute",
-                          inset: 0,
-                          zIndex: 2,
-                          textDecoration: "none",
-                          color: "inherit",
-                          borderRadius: 12, // 👈 giữ đúng bo góc cha
-                          overflow: "hidden", // 👈 chặn phình kích thước
-                          display: "block",
-                        }}
-                      />
-
-                      <img
-                        src={p.img}
-                        alt={p.title}
-                        style={{
-                          width: "100%",
-                          height: 220,
+                          position: "relative",
+                          overflow: "hidden",
                           borderRadius: 12,
-                          objectFit: "cover",
-                          display: "block",
+                          cursor: "pointer",
+                          transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                          boxSizing: "border-box",
                         }}
-                      />
-
-                      <div style={{ paddingTop: 16,  zIndex: 1 }}>
-                        <div
+                        onClick={(e) => {
+                          e.currentTarget.style.transform = "translateY(-4px)";
+                          e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.1)";
+                          setTimeout(() => {
+                            e.currentTarget.style.transform = "translateY(0)";
+                            e.currentTarget.style.boxShadow = "none";
+                          }, 150);
+                        }}
+                      >
+                        {/* Overlay link */}
+                        <Link
+                          to={`/news/${newsItem.ID}`}
                           style={{
-                            color: "#7A8797",
-                            fontSize: 14,
-                            marginBottom: 8,
+                            position: "absolute",
+                            inset: 0,
+                            zIndex: 2,
+                            textDecoration: "none",
+                            color: "inherit",
+                            borderRadius: 12,
+                            overflow: "hidden",
+                            display: "block",
                           }}
-                        >
+                        />
 
-
-                          {language === "VI" ? (
-                            p.date === "2025년 09월 30일 | 오전 09:00" ? "09:00 Sáng | Ngày 30 tháng 09 năm 2025"
-                              : p.date === "2025년 09월 27일 | 오전 09:00" ? "09:00 Sáng | Ngày 27 tháng 09 năm 2025"
-                                : p.date === "2025년 09월  25일 | 오전 09:00" ? <>09:00 Sáng | Ngày 25 tháng 09 năm 2025</>
-                                  : p.date
-                          ) : (
-                            p.date
-                          )}
-                        </div>
-                        <div
+                        <img
+                          src={getNewsImage(newsItem)}
+                          alt={getNewsTitle(newsItem)}
                           style={{
-                            color: "#0B2447",
-                            fontWeight: 700,
-                            fontSize: 18,
-                            lineHeight: 1.5,
-                            marginBottom: 8,
+                            width: "100%",
+                            height: 220,
+                            borderRadius: 12,
+                            objectFit: "cover",
+                            display: "block",
                           }}
-                        >
+                        />
 
-                          {language === "VI" ? (
-                            p.title === "추석 연휴 휴무 안내" ? "Thông báo lịch nghỉ Tết Trung thu Hàn Qu..."
-                              : p.title === "주부산 베트남 총영사관 공식 개소..." ? "Tổng lãnh sự quán Việt Nam tại Busan chí..."
-                                : p.title === "2025년 10월 1일, 원패스가 고객 여러분을..." ? <>Kể từ tháng 10/2025, One Pass chính thứ...</>
-                                  : p.title
-                          ) : (
-                            p.title
-                          )}
-                        </div>
-                        <div
-                          style={{
-                            color: "#6F7C8F",
-                            fontSize: 16,
-                            lineHeight: 1.6,
-                          }}
-                        >
+                        <div style={{ paddingTop: 16, zIndex: 1 }}>
+                          <div
+                            style={{
+                              color: "#7A8797",
+                              fontSize: 14,
+                              marginBottom: 8,
+                            }}
+                          >
+                            {formatNewsDate(newsItem.NgayXuatBan || newsItem.CreatedAt)}
+                          </div>
+                          <div
+                            style={{
+                              color: "#0B2447",
+                              fontWeight: 700,
+                              fontSize: 18,
+                              lineHeight: 1.5,
+                              marginBottom: 8,
+                              display: "-webkit-box",
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {getNewsTitle(newsItem)}
+                          </div>
+                          <div
+                            style={{
+                              color: "#6F7C8F",
+                              fontSize: 16,
+                              lineHeight: 1.6,
+                              display: "-webkit-box",
+                              WebkitLineClamp: 3,
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {getNewsSummary(newsItem)}
+                          </div>
 
-                          {language === "VI" ? (
-                            p.desc === "안녕하세요, 고객 여러분!  저희 원패스는 추석 연휴를 맞아 아래와 같이 휴무를 시행함을 알려드립니다..." ? "Kính gửi Quý Khách hàng và Đối tác, One Pass xin trân trọng thông báo lịch nghỉ Tết Trung thu năm"
-                              : p.desc === "2025년 10월 1일, 주부산 베트남 총영사관이 공식적으로 업무를 개시하며, 한-베트남 관계,..." ? "Ngày 01 tháng 10 năm 2025, Tổng Lãnh sự quán Việt Nam tại Busan đã chính thức đi vào hoạt đ..."
-                                : p.desc === "안녕하세요, 고객 여러분! 베트남 행정 절차 대행 및 솔루션 전문 회사 원패스(One Pass)가 드디어..." ? <>Chúng tôi xin vui mừng thông báo: Công ty cung cấp giải pháp và đại diện thực hiện thủ tục hành...</>
-                                  : p.desc
-                          ) : (
-                            p.desc
-                          )}
-                        </div>
-
-                        <div
-                          style={{
-                            marginTop: 12,
-                            width: 28,
-                            height: 28,
-                            borderRadius: 6,
-                            border: "1px solid #D6DDE7",
-                            background: "#fff",
-                            color: "#0B2447",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 18,
-                          }}
-                        >
-                          →
+                          <div
+                            style={{
+                              marginTop: 12,
+                              width: 28,
+                              height: 28,
+                              borderRadius: 6,
+                              border: "1px solid #D6DDE7",
+                              background: "#fff",
+                              color: "#0B2447",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              fontSize: 18,
+                            }}
+                          >
+                            →
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Empty state */}
+                {!newsLoading && latestNews.length === 0 && (
+                  <div style={{ textAlign: "center", padding: "40px 0", color: "#666" }}>
+                    {language === "VI" ? "Chưa có tin tức nào." : "등록된 뉴스가 없습니다."}
+                  </div>
+                )}
 
                 {/* MORE BUTTON */}
                 <div style={{ textAlign: "center", marginTop: 26 }}>
@@ -1903,12 +1996,12 @@ function App() {
                         fontWeight: 700,
                       }}
                     >
-                      {language === "VI" ? (<>Xem thêm</>) : ("더 보기")}
+                      {language === "VI" ? "Xem thêm" : "더 보기"}
                     </button>
                   </Link>
                 </div>
 
-                {/* ✅ Responsive CSS (no effect on desktop) */}
+                {/* Responsive CSS */}
                 <style>
                   {`
                     @media (max-width: 768px) {
@@ -1920,47 +2013,44 @@ function App() {
                            margin-bottom: 24px !important;
                       }
 
-                     
+                      section > div:first-child div:nth-child(2) {
+                        font-size: 14px !important;
+                        line-height: 1.4 !important;
+                      }
 
-        section > div:first-child div:nth-child(2) {
-          font-size: 14px !important;
-          line-height: 1.4 !important;
-          
-        }
+                      .news-grid {
+                        display: flex !important;
+                        overflow-x: auto !important;
+                        scroll-snap-type: x mandatory !important;
+                        gap: 16px !important;
+                        padding: 0 8px !important;
+                        -webkit-overflow-scrolling: touch !important;
+                      }
 
-        .news-grid {
-          display: flex !important;
-          overflow-x: auto !important;
-          scroll-snap-type: x mandatory !important;
-          gap: 16px !important;
-          padding: 0 8px !important;
-          -webkit-overflow-scrolling: touch !important;
-        }
+                      .news-grid > div {
+                        flex: 0 0 80% !important;
+                        scroll-snap-align: start !important;
+                        background: #fff !important;
+                        border-radius: 12px !important;
+                        padding-bottom: 12px !important;
+                      }
 
-        .news-grid > div {
-          flex: 0 0 80% !important;
-          scroll-snap-align: start !important;
-          background: #fff !important;
-          border-radius: 12px !important;
-          
-          padding-bottom: 12px !important;
-        }
+                      .news-grid img {
+                        height: 180px !important;
+                      }
 
-        .news-grid img {
-          height: 180px !important;
-        }
+                      .news-grid::-webkit-scrollbar {
+                        display: none !important;
+                      }
 
-        .news-grid::-webkit-scrollbar {
-          display: none !important;
-        }
-
-        button {
-          font-size: 14px !important;
-        }
-      }
-    `}
+                      button {
+                        font-size: 14px !important;
+                      }
+                    }
+                  `}
                 </style>
               </section>
+
               {/* ===== TRENDING COPYRIGHT SECTION (Carousel) ===== */}
 
               <section className="consult-section" style={{ background: '#2B3A67', padding: '80px 0' }}>

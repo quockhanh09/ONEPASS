@@ -516,28 +516,6 @@ export default function AllNewsPage() {
                                 {language === "VI" ? (<>Tất cả tin tức</>) : (" 전체 뉴스")}
                             </span>
 
-                            {/* 대사관·총영사관 소식 */}
-                            <span
-                                onClick={() => navigate("/news/대사관•총영사관 소식")}
-                                style={{
-                                    fontWeight:
-                                        currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
-                                    color:
-                                        currentPath === "/news/대사관•총영사관 소식"
-                                            ? "#111827"
-                                            : "#6b7280",
-                                    borderBottom:
-                                        currentPath === "/news/대사관•총영사관 소식"
-                                            ? "2px solid #111827"
-                                            : "none",
-                                    paddingBottom:
-                                        currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
-                                    cursor: "pointer",
-                                }}
-                            >
-                                {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
-                            </span>
-
                             {/* Bài viết */}
                             <span
                                 onClick={() => navigate("/news/기타")}
@@ -558,6 +536,28 @@ export default function AllNewsPage() {
                                 }}
                             >
                                 {language === "VI" ? "Bài viết" : "기타"}
+                            </span>
+
+                            {/* 대사관·총영사관 소식 */}
+                            <span
+                                onClick={() => navigate("/news/대사관•총영사관 소식")}
+                                style={{
+                                    fontWeight:
+                                        currentPath === "/news/대사관•총영사관 소식" ? 700 : 400,
+                                    color:
+                                        currentPath === "/news/대사관•총영사관 소식"
+                                            ? "#111827"
+                                            : "#6b7280",
+                                    borderBottom:
+                                        currentPath === "/news/대사관•총영사관 소식"
+                                            ? "2px solid #111827"
+                                            : "none",
+                                    paddingBottom:
+                                        currentPath === "/news/대사관•총영사관 소식" ? 4 : 0,
+                                    cursor: "pointer",
+                                }}
+                            >
+                                {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
                             </span>
                         </div>
                         {/* Search box */}

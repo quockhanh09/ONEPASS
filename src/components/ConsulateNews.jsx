@@ -492,6 +492,28 @@ const stripHtmlTags = (html) => {
                  {language === "VI" ? (<>Tất cả tin tức</>) : (" 전체 뉴스")}
               </span>
 
+              {/* Bài viết */}
+              <span
+                onClick={() => navigate("/news/기타")}
+                style={{
+                  fontWeight:
+                    currentPath === "/news/기타" ? 700 : 400,
+                  color:
+                    currentPath === "/news/기타"
+                      ? "#111827"
+                      : "#6b7280",
+                  borderBottom:
+                    currentPath === "/news/기타"
+                      ? "2px solid #111827"
+                      : "none",
+                  paddingBottom:
+                    currentPath === "/news/기타" ? 4 : 0,
+                  cursor: "pointer",
+                }}
+              >
+                {language === "VI" ? "Bài viết" : "기타"}
+              </span>
+
               {/* 대사관·총영사관 소식 */}
               <span
                 onClick={() => navigate("/news/대사관•총영사관 소식")}
@@ -513,28 +535,6 @@ const stripHtmlTags = (html) => {
               >
                 {language === "VI" ? (<>Tin tức Đại sứ / Lãnh sự quán</>) : (" 대사관·총영사관 소식")}
 
-              </span>
-
-              {/* Bài viết */}
-              <span
-                onClick={() => navigate("/news/기타")}
-                style={{
-                  fontWeight:
-                    currentPath === "/news/기타" ? 700 : 400,
-                  color:
-                    currentPath === "/news/기타"
-                      ? "#111827"
-                      : "#6b7280",
-                  borderBottom:
-                    currentPath === "/news/기타"
-                      ? "2px solid #111827"
-                      : "none",
-                  paddingBottom:
-                    currentPath === "/news/기타" ? 4 : 0,
-                  cursor: "pointer",
-                }}
-              >
-                {language === "VI" ? "Bài viết" : "기타"}
               </span>
             </div>
 

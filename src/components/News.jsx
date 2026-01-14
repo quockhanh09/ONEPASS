@@ -832,7 +832,7 @@ const stripHtmlTags = (html) => {
                 href="/news/기타"
                 style={{ fontSize: 24, fontWeight: 700, color: "#384D8D", textDecoration: "none" }}
               >
-                {language === "VI" ? "Bài viết" : "기타"}
+                {language === "VI" ? "Bài viết" : "게시물"}
               </a>
             </h2>
             <a

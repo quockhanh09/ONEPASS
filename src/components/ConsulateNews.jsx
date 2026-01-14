@@ -511,7 +511,7 @@ const stripHtmlTags = (html) => {
                   cursor: "pointer",
                 }}
               >
-                {language === "VI" ? "Bài viết" : "기타"}
+                {language === "VI" ? "Bài viết" : "게시물"}
               </span>
 
               {/* 대사관·총영사관 소식 */}

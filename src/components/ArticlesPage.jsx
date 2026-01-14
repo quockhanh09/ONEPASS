@@ -298,7 +298,7 @@ export default function ArticlesPage() {
               </span>
 
               <span onClick={() => navigate("/news/기타")} style={{ fontWeight: currentPath === "/news/기타" ? 700 : 400, color: currentPath === "/news/기타" ? "#111827" : "#6b7280", borderBottom: currentPath === "/news/기타" ? "2px solid #111827" : "none", paddingBottom: currentPath === "/news/기타" ? 4 : 0, cursor: "pointer" }}>
-                {language === "VI" ? "Bài viết" : "기타"}
+                {language === "VI" ? "Bài viết" : "게시물"}
               </span>
 
               <span onClick={() => navigate("/news/대사관•총영사관 소식")} style={{ fontWeight: currentPath === "/news/대사관•총영사관 소식" ? 700 : 400, color: currentPath === "/news/대사관•총영사관 소식" ? "#111827" : "#6b7280", borderBottom: currentPath === "/news/대사관•총영사관 소식" ? "2px solid #111827" : "none", paddingBottom: currentPath === "/news/대사관•총영사관 소식" ? 4 : 0, cursor: "pointer" }}>
@@ -313,7 +313,7 @@ export default function ArticlesPage() {
           </div>
 
           <h2 style={{ fontSize: 26, fontWeight: 700, color: "#111827", marginBottom: 40 }}>
-            {language === "VI" ? "Bài viết" : "기타"}
+            {language === "VI" ? "Bài viết" : "게시물"}
           </h2>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 24 }}>
@@ -347,7 +347,7 @@ export default function ArticlesPage() {
             })}
             {!newsLoading && newsItems.length === 0 && (
               <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
-                {language === "VI" ? "Chưa có bài viết." : "등록된 기타 뉴스가 없습니다."}
+                {language === "VI" ? "Chưa có bài viết." : "등록된 게시물이 없습니다."}
               </div>
             )}
           </div>

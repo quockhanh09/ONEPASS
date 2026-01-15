@@ -10,7 +10,7 @@ import iconNaver from "../assets/img/iconna.png";
 import qrZalo from "../assets/img/qrZalo.png";
 import { em, i } from "framer-motion/client";
 import fbIcon from "../assets/img/image20.png";
-import iconMess from "../assets/img/iconmess.png";
+
 import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
 import naverIcon from "../assets/img/image19.png";

@@ -182,7 +182,7 @@ export default function DynamicNewsDetail() {
               </div>
               {heroImage && (
                 <div className="news-detail-hero-image" style={{ margin: "24px 0" }}>
-                  <img src={heroImage} alt={item.TieuDeVN} style={{ width: "100%", borderRadius: 12, boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }} />
+                  <img src={heroImage} alt={item.TieuDeVN} style={{ width: "75%", borderRadius: 12, boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }} />
                 </div>
               )}
               <div className="news-detail-content">

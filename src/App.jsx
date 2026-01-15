@@ -124,7 +124,7 @@ import event1 from "./assets/img/lucarly-08.png";
 import event2 from "./assets/img/lucarly-02.png";
 import event3 from "./assets/img/lucarly-01.png";
 import event4 from "./assets/img/kram-11.png";
-
+import iconMess from "./assets/img/iconmess.png";
 import fbIcon from "./assets/img/image20.png";
 import kakaotalkIcon from "./assets/img/image17.png";
 import zaloIcon from "./assets/img/image18.png";
@@ -613,6 +613,7 @@ function App() {
   ];
 
   const items = [
+    { id: 0, name: "Messenger", icon: iconMess, link: "http://m.me/803644846172440" },
     { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
     { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
     { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },

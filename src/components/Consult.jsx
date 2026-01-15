@@ -10,6 +10,7 @@ import iconNaver from "../assets/img/iconna.png";
 import qrZalo from "../assets/img/qrZalo.png";
 import { em, i } from "framer-motion/client";
 import fbIcon from "../assets/img/image20.png";
+import iconMess from "../assets/img/iconmess.png";
 import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
 import naverIcon from "../assets/img/image19.png";
@@ -18,6 +19,7 @@ export default function Consult() {
   const [hoverId, setHoverId] = useState(null);
   const effectiveId = hoverId ?? activeId;
   const items = [
+    { id: 0, name: "Messenger", icon: iconMess, link: "http://m.me/803644846172440" },
     { id: 1, name: "페이스북", icon: fbIcon, link: "https://www.facebook.com/profile.php?id=61581863960708" },
     { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
     { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },

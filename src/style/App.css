@@ -5172,7 +5172,6 @@ a.nav-link.active .icon-img {
 /* ✅ Mobile trung bình (<= 480px) */
 @media (max-width: 480px) {
   
-  
   .social-container {
     right: 5px;
     top: 70%;
@@ -5180,15 +5179,15 @@ a.nav-link.active .icon-img {
   }
 
   .social-btn {
-    width: 44px;
-    height: 44px;
+    width: 60px;
+    height: 60px;
   }
 
   .social-btn img.icon {
     position: relative;
-    right: 3px;
-    width: 26px;
-    height: 26px;
+    right: -3px;
+    width: 30px;
+    height: 30px;
   }
 }
 

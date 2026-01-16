@@ -130,8 +130,10 @@ const stripHtmlTags = (html) => {
         return fallback ? stripHtmlTags(fallback).substring(0, 140) + (stripHtmlTags(fallback).length > 140 ? "..." : "") : "";
   };
 
+  // Luôn ưu tiên lấy ảnh đại diện (UrlHinhAnh) nếu có
   const getImage = (item) => {
     if (!item) return null;
+    if (item.UrlHinhAnh) return item.UrlHinhAnh;
     try {
       const blocks = JSON.parse(item.NoiDungVN || "[]");
       if (Array.isArray(blocks)) {
@@ -141,7 +143,7 @@ const stripHtmlTags = (html) => {
     } catch (e) {
       // ignore
     }
-    return item.UrlHinhAnh || null;
+    return null;
   };
 
   const formatDate = (dateString) => {

@@ -76,8 +76,8 @@ export default function DynamicNewsDetail() {
     switch (block.type) {
       case "image":
         return (
-          <figure key={block.id} className="news-detail-block image">
-            <img src={block.imageUrl || placeholder} alt={item?.TieuDeVN || "news"} style={{ maxWidth: "100%", height: "auto" }} />
+          <figure key={block.id} className="news-detail-block image" style={{ display: "flex", justifyContent: "center" }}>
+            <img src={block.imageUrl || placeholder} alt={item?.TieuDeVN || "news"} style={{ maxWidth: "70%", height: "auto" }} />
           </figure>
         );
       case "quote":

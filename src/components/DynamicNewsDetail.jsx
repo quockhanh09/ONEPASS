@@ -8,7 +8,17 @@ import n8 from "../assets/img/n19.png";
 import { io } from "socket.io-client";
 
 export default function DynamicNewsDetail() {
-  const { id } = useParams();
+  const { slug } = useParams();
+  // Hàm chuyển tiêu đề thành slug
+  const toSlug = (str) =>
+    str
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036F]/g, "")
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-+|-+$/g, "");
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [item, setItem] = useState(null);
@@ -19,9 +29,10 @@ export default function DynamicNewsDetail() {
     try {
       setLoading(true);
       const res = await axiosClient.get("/api/tintuc");
-      const list = res?.data?.data || [];
+      let list = res?.data?.data || [];
       setAllNews(list);
-      const found = list.find((n) => String(n.ID) === String(id));
+      // Tìm theo slug
+      const found = list.find((n) => toSlug(n.TieuDeVN || "") === slug);
       setItem(found || null);
     } catch (err) {
       console.error("❌ Lỗi lấy tin chi tiết:", err);
@@ -29,23 +40,24 @@ export default function DynamicNewsDetail() {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [slug]);
 
   useEffect(() => {
     fetchOne();
   }, [fetchOne]);
 
-  useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
-    const socket = io(API_URL, { transports: ["websocket"] });
-    socket.on("news-changed", (payload) => {
-      if (payload?.action === "delete" && String(payload.id) === String(id)) {
-        setItem(null);
-      }
-      fetchOne();
-    });
-    return () => socket.disconnect();
-  }, [fetchOne, id]);
+  // useEffect(() => {
+  //   const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
+  //   const socket = io(API_URL, { transports: ["websocket"] });
+  //   socket.on("news-changed", (payload) => {
+  //     // Nếu xóa tin có slug trùng
+  //     if (payload?.action === "delete" && allNews.some(n => toSlug(n.TieuDeVN || "") === slug && String(n.ID) === String(payload.id))) {
+  //       setItem(null);
+  //     }
+  //     fetchOne();
+  //   });
+  //   return () => socket.disconnect();
+  // }, [fetchOne, slug, allNews]);
 
   const blocks = useMemo(() => {
     if (!item) return [];
@@ -118,6 +130,42 @@ export default function DynamicNewsDetail() {
     return (
       <section className="news-detail" style={{ padding: "100px 16px", textAlign: "center" }}>
         {language === "VI" ? "Đang tải..." : "불러오는 중..."}
+        {/* Share button */}
+        <div style={{ marginTop: 32, textAlign: "right" }}>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              const msg = document.createElement("div");
+              msg.innerText = language === "VI" ? "Đã sao chép link bài viết!" : "링크가 복사되었습니다!";
+              msg.style.position = "fixed";
+              msg.style.bottom = "40px";
+              msg.style.right = "40px";
+              msg.style.background = "#222";
+              msg.style.color = "#fff";
+              msg.style.padding = "12px 24px";
+              msg.style.borderRadius = "8px";
+              msg.style.fontSize = "16px";
+              msg.style.zIndex = 9999;
+              msg.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+              document.body.appendChild(msg);
+              setTimeout(() => { msg.remove(); }, 1800);
+            }}
+            style={{
+              background: "#2563eb",
+              color: "#fff",
+              border: "none",
+              borderRadius: 6,
+              padding: "10px 22px",
+              fontWeight: 700,
+              fontSize: 16,
+              cursor: "pointer",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              transition: "background 0.2s"
+            }}
+          >
+            {language === "VI" ? "Chia sẻ bài viết" : "공유하기"}
+          </button>
+        </div>
       </section>
     );
   }
@@ -196,6 +244,43 @@ export default function DynamicNewsDetail() {
           );
         })()}
 
+        {/* Share button above related news */}
+        <div style={{ margin: "32px 0 0 0", textAlign: "right" }}>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              const msg = document.createElement("div");
+              msg.innerText = language === "VI" ? "Đã sao chép link bài viết!" : "링크가 복사되었습니다!";
+              msg.style.position = "fixed";
+              msg.style.bottom = "40px";
+              msg.style.right = "40px";
+              msg.style.background = "#222";
+              msg.style.color = "#fff";
+              msg.style.padding = "12px 24px";
+              msg.style.borderRadius = "8px";
+              msg.style.fontSize = "16px";
+              msg.style.zIndex = 9999;
+              msg.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+              document.body.appendChild(msg);
+              setTimeout(() => { msg.remove(); }, 1800);
+            }}
+            style={{
+              background: "#2563eb",
+              color: "#fff",
+              border: "none",
+              borderRadius: 6,
+              padding: "10px 22px",
+              fontWeight: 700,
+              fontSize: 16,
+              cursor: "pointer",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              transition: "background 0.2s"
+            }}
+          >
+            {language === "VI" ? "Chia sẻ bài viết" : "공유하기"}
+          </button>
+        </div>
+
         {related.length > 0 && (
           <div className="news-detail-related" style={{ marginTop: 40 }}>
             <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 16 }}>
@@ -210,7 +295,7 @@ export default function DynamicNewsDetail() {
                   if (imgBlock) thumb = imgBlock.imageUrl;
                 } catch {}
                 return (
-                  <div key={r.ID} style={{ flex: "1 1 30%", minWidth: 240, cursor: "pointer" }} onClick={() => navigate(`/news/${r.ID}`)}>
+                  <div key={r.ID} style={{ flex: "1 1 30%", minWidth: 240, cursor: "pointer" }} onClick={() => navigate(`/news/${toSlug(r.TieuDeVN || "")}`)}>
                     <img src={thumb} alt={r.TieuDeVN} style={{ width: "100%", borderRadius: 8, marginBottom: 8, height: 140, objectFit: "cover" }} />
                     <p style={{ fontSize: 13, color: "#6b7280", margin: 0 }}>
                       {r.NgayXuatBan ? new Date(r.NgayXuatBan).toLocaleDateString(language === "VI" ? "vi-VN" : "ko-KR") : ""}

@@ -1,6 +1,4 @@
-﻿
-
-import { useLanguage } from "../LanguageContext.jsx";
+﻿import { useLanguage } from "../LanguageContext.jsx";
 
 import { useState, useEffect, useRef } from "react";
 import axiosClient from "../axiosClient";
@@ -47,6 +45,17 @@ const CARDS = [
   },
 ];
 
+function toSlug(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036F]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function Introduction() {
   const [activeId, setActiveId] = useState(null);
     const [hoverId, setHoverId] = useState(null);
@@ -75,23 +84,24 @@ function Introduction() {
   const [newsItems, setNewsItems] = useState([]);
   const [newsLoading, setNewsLoading] = useState(false);
 
-  const fetchNews = async () => {
-    try {
-      setNewsLoading(true);
-      const res = await axiosClient.get("/api/tintuc");
-      const data = res?.data?.data;
-      if (Array.isArray(data)) {
-        setNewsItems(data);
-      } else {
-        setNewsItems([]);
-      }
-    } catch (err) {
-      console.error("❌ Lỗi lấy tin tức VCPC:", err);
-      setNewsItems([]);
-    } finally {
-      setNewsLoading(false);
-    }
-  };
+  // Sau khi lấy dữ liệu tin tức từ backend, thêm slug cho từng item
+const fetchNews = async () => {
+  try {
+    setNewsLoading(true);
+    const res = await axiosClient.get("/api/tintuc");
+    const data = res?.data?.data || [];
+    // Thêm slug cho từng item
+    const withSlug = data.map(item => ({
+      ...item,
+      slug: toSlug(item.TieuDeVN || "")
+    }));
+    setNewsItems(withSlug);
+  } catch (err) {
+    setNewsItems([]);
+  } finally {
+    setNewsLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchNews();
@@ -579,7 +589,7 @@ const stripHtmlTags = (html) => {
               return (
                 <div
                   key={item.ID}
-                  onClick={() => navigate(`/news/${item.ID}`)}
+                  onClick={() => item.slug && navigate(`/news/${item.slug}`)}
                   style={{
                     width: "100%",
                     cursor: "pointer",
@@ -759,7 +769,7 @@ const stripHtmlTags = (html) => {
               return (
                 <div
                   key={item.ID}
-                  onClick={() => navigate(`/news/${item.ID}`)}
+                  onClick={() => item.slug && navigate(`/news/${item.slug}`)}
                   style={{
                     width: 380,
                     flexShrink: 0,
@@ -871,7 +881,7 @@ const stripHtmlTags = (html) => {
               return (
                 <div
                   key={item.ID}
-                  onClick={() => navigate(`/news/${item.ID}`)}
+                  onClick={() => item.slug && navigate(`/news/${item.slug}`)}
                   style={{
                     width: 380,
                     flexShrink: 0,

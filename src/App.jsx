@@ -84,7 +84,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import axiosClient from "./axiosClient";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 // import Layout from "./Layout.jsx";
 import Header from "./components/Header.jsx";
 import Countdown from "./components/Countdown.jsx";
@@ -137,6 +137,18 @@ import icVisit from "./assets/img/12.png";
 import icChat from "./assets/img/11.png";
 import icMail from "./assets/img/10.png";
 const eventImages = [event1, event2, event3, event4];
+
+// Hàm chuyển tiêu đề thành slug
+function toSlug(str) {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036F]/g, "") // loại bỏ dấu tiếng Việt
+    .replace(/[^a-z0-9\s-]/g, "") // loại bỏ ký tự đặc biệt
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 function App() {
   const { language } = useLanguage();
@@ -314,9 +326,9 @@ function App() {
     "결혼 이민": [
       { img: a2, title: "한국에서 혼인 신고 ", desc: "한국에서의 결혼 등록 절차 전반을 대행하고 지원", tabKey: "a3" },
       { img: a3, title: "혼인관계증명서 발급 신청", desc: "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원", tabKey: "a4" },
-      { img: a35, title: "혼인요건인증서 발급 신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a5" },
-      { img: a36, title: "혼인 재신고", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a6" },
-      { img: a4, title: "결혼이민 비자신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a7" },
+      { img: a35, title: "혼인요건인증서 발급 신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원", tabKey: "a5" },
+      { img: a36, title: "혼인 재신고", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원", tabKey: "a6" },
+      { img: a4, title: "결혼이민 비자신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원", tabKey: "a7" },
 
     ],
     "출생신고": [
@@ -488,14 +500,14 @@ function App() {
   useEffect(() => {
     fetchLatestNews();
     
-    const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
-    const socket = io(API_URL, { transports: ["websocket"] });
+    // const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
+    // const socket = io(API_URL, { transports: ["websocket"] });
     
-    socket.on("news-changed", () => {
-      fetchLatestNews();
-    });
+    // socket.on("news-changed", () => {
+    //   fetchLatestNews();
+    // });
     
-    return () => socket.disconnect();
+    // return () => socket.disconnect();
   }, []);
 
   const tabList = [
@@ -1522,7 +1534,7 @@ function App() {
 
                                                                                     : card.title === "초청 (단기방문 C-3-1 비자)" ? "Visa thăm thân ngắn hạn (C-3-1)"
                                                                                       : card.title === "초청 (방문동거 F-1-5 비자)" ? "Visa thăm thân dài hạn (F-1-5)"
-                                                                                        : card.title === "베트남 비자면제증 발급" ? "Cấp giấy miễn thị thực "
+                                                                                        : card.title === "베트남 비자 면제증 발급" ? "Cấp giấy miễn thị thực "
                                                                                           : card.title === "베트남 전자비자·상용비자 발급" ? "Đăng ký cấp thị thực điện tử / thị thực công tác"
 
                                                                                             : card.title === "이혼 소송" ? "Liên quan tới ly hôn"
@@ -1530,7 +1542,7 @@ function App() {
                                                                                                 : card.title === "체류자 관련 컨설팅" ? "Liên quan tới cư trú"
 
                                                                                                   : card.title === "베트남·한국에서 법인·지사·대표 사무실 설립" ? "Thành lập văn phòng đại diện / công ty"
-                                                                                                  : card.title === "회사/사업 해산 • 폐업" ? "Giải thể công ty, chấm dứt dự án đầu tư"
+                                                                                                  : card.title === "회사 폐업 및 투자 사업 종료와 관련 절차 대행" ? "Giải thể công ty, chấm dứt dự án đầu tư"
                                                                                                     : card.title === "베트남·한국 내 노동 허가서, 임시 거주증 발급" ? "Đăng ký giấy phép lao động, thẻ tạm trú"
                                                                                                       : card.title === "수출입 허가서" ? "Giấy phép xuất nhập khẩu"
                                                                                                         : card.title === "B2B 바이어 매칭" ? "Kết nối khách hàng B2B"
@@ -1556,7 +1568,7 @@ function App() {
                                         ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Hàn Quốc"
                                         : card.desc === "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원"
                                           ? "Tư vấn, xử lý hồ sơ liên quan tới cấp giấy xác nhận tình trạng hôn nhân"
-                                          : card.desc === "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원"
+                                          : card.desc === "혼인요건인증서 발급 신청에 필요한 서류 준비 및 절 trình 지원"
                                             ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Việt Nam"
 
                                             : card.desc === "신생아 출생 신고를 정확하고 신속하게 대행"
@@ -1576,16 +1588,16 @@ function App() {
                                                           ? "Tư vấn hồ sơ và thực hiện đăng ký xin trở lại quốc tịch Việt Nam"
                                                           : card.desc === "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행"
                                                             ? "Thực hiện đăng ký cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
-                                                            : card.desc === "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행"
+                                                            : card.desc === "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대 hành"
                                                               ? "Hướng dẫn và hỗ trợ thực hiện thủ tục hồi hương"
 
                                                               : card.desc === "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행"
                                                                 ? "Hỗ trợ thực hiện cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
                                                                 : card.desc === "이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원"
                                                                   ? "Tư vấn và thực hiện thủ tục thay đổi, cải chính, bổ sung hộ tịch"
-                                                                  : card.desc === "재외 베트남인으로서의 국민 등록 및 정보 갱신 대행"
+                                                                  : card.desc === "재외 베트남인으로서의 국민 등록 và 정보 갱신 대행"
                                                                     ? "Thực hiện đăng ký công dân và cập nhật thông tin công dân"
-                                                                    : card.desc === "베트남 출신 확인서 발급을 위한 서류 준비 및 절차 지원"
+                                                                    : card.desc === "베트남 출신 확인서 발급을 위한 서류 준비 및 절 trình hỗ trợ"
                                                                       ? "Hỗ trợ tư vấn và thực hiện thủ tục về cấp Giấy xác nhận người gốc Việt Nam"
                                                                       : card.desc === "출생, 혼인 등 각종 호적 서류의 사본 재발급 대행"
                                                                         ? "Thực hiện thủ tục cấp bản sao giấy tờ hộ tịch (Khai sinh, Đăng ký kết hôn, v.v)"
@@ -1869,7 +1881,7 @@ function App() {
                   >
                     {latestNews.map((newsItem, idx) => (
                       <div
-                        key={newsItem.ID}
+                        key={newsItem.ID || newsItem.slug || idx}
                         style={{
                           position: "relative",
                           overflow: "hidden",
@@ -1885,11 +1897,13 @@ function App() {
                             e.currentTarget.style.transform = "translateY(0)";
                             e.currentTarget.style.boxShadow = "none";
                           }, 150);
+                          // Chuyển hướng bằng navigate thay vì Link
+                          navigate(`/news/${toSlug(newsItem.TieuDeVN || "")}`);
                         }}
                       >
                         {/* Overlay link */}
-                        <Link
-                          to={`/news/${newsItem.ID}`}
+                        {/* <Link
+                          to={`/news/${toSlug(newsItem.TieuDeVN || "")}`}
                           style={{
                             position: "absolute",
                             inset: 0,
@@ -1900,7 +1914,7 @@ function App() {
                             overflow: "hidden",
                             display: "block",
                           }}
-                        />
+                        /> */}
 
                         <img
                           src={getNewsImage(newsItem)}
@@ -2290,14 +2304,14 @@ function App() {
         <Route path="/news/전체 뉴스" element={<AllNewsPage />} />
         <Route path="/news/대사관•총영사관 소식" element={<ConsulateNews />} />
         <Route path="/news/기타" element={<ArticlesPage />} />
-        <Route path="/news/:id" element={<DynamicNewsDetail />} />
+        {/* <Route path="/news/:id" element={<DynamicNewsDetail />} /> */}
         <Route path="/news전체 뉴스/NewsDetail" element={<NewsDetail />} />
         <Route path="/news전체 뉴스/NewsDetail2" element={<NewsDetail2 />} />
         <Route path="/news전체 뉴스/NewsDetail3" element={<NewsDetail3 />} />
         <Route path="/news대사관•총영사관 소식/NewsDetail4" element={<NewsDetail4 />} />
         <Route path="/news대사관•총영사관 소식/NewsDetail5" element={<NewsDetail5 />} />
+        <Route path="/news/:slug" element={<DynamicNewsDetail />} />
       </Routes>
-      <Countdown />
       {/* ===== FOOTER ===== */}
       <Footer />
       {showPopup && (

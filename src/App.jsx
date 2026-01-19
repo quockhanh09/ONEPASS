@@ -1406,7 +1406,7 @@ function App() {
                       top: isServiceBarFixed ? 60 : undefined,
                       left: isServiceBarFixed ? '50%' : undefined,
                       width: isServiceBarFixed ? '100vw' : '100%',
-                      maxWidth: isServiceBarFixed ? 1400 : 1400,
+                      maxWidth: isServiceBarFixed ? 1300 : 1300,
                       transform: isServiceBarFixed ? 'translateX(-50%)' : 'none',
                       zIndex: isServiceBarFixed ? 1000 : undefined,
                       background: isServiceBarFixed ? '#CFEAEC' : undefined,

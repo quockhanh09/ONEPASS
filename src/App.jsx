@@ -1,3 +1,4 @@
+import React from "react";
 import a1 from "./assets/img/image22.png";
 import a34 from "./assets/img/a1-1.png";
 import a2 from "./assets/img/image222.png";
@@ -709,6 +710,27 @@ function App() {
     setLoading(false);
   }
 };
+
+  // --- Fixed service icons bar on scroll ---
+  const [isServiceBarFixed, setIsServiceBarFixed] = React.useState(false);
+  const [serviceBarOffset, setServiceBarOffset] = React.useState(0);
+  const serviceBarRef = React.useRef(null);
+
+  React.useEffect(() => {
+    // Lưu vị trí offset ban đầu của thanh khi mount
+    if (serviceBarRef.current) {
+      setServiceBarOffset(serviceBarRef.current.offsetTop);
+    }
+    const handleScroll = () => {
+      if (!serviceBarRef.current) return;
+      // Nếu scrollY >= vị trí ban đầu thì fixed, ngược lại thì trả về bình thường
+      setIsServiceBarFixed(window.scrollY >= serviceBarOffset);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [serviceBarOffset]);
+
+  // --- End fixed service icons bar ---
   return (
 
     <div className="index-page" style={{ background: "#ffffffff" }}>
@@ -897,7 +919,7 @@ function App() {
                       }}
                     >
                       <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
-                      <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+                      <option value="인증 센터">{language === "VI" ? (<>hợp pháp hóa, công chứng</>) : ("영사확인, 공증")}</option>
                       <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
                       <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
                       <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
@@ -1367,18 +1389,32 @@ function App() {
 
 
                   {/* Service Icons Carousel */}
-                  <div className="service-icons-container" style={{
-                    display: 'flex',
-                    overflowX: 'auto',
-                    scrollBehavior: 'smooth',
-                    gap: 24,
-                    padding: '20px 0',
-                    marginBottom: 40,
-                    scrollbarWidth: 'none',
-                    msOverflowStyle: 'none',
-                    WebkitOverflowScrolling: 'touch',
-
-                  }}>
+                  <div
+                    ref={serviceBarRef}
+                    className="service-icons-container"
+                    style={{
+                      display: 'flex',
+                      overflowX: 'auto',
+                      scrollBehavior: 'smooth',
+                      gap: 24,
+                      padding: '20px 0',
+                      marginBottom: 40,
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none',
+                      WebkitOverflowScrolling: 'touch',
+                      position: isServiceBarFixed ? 'fixed' : 'static',
+                      top: isServiceBarFixed ? 60 : undefined,
+                      left: isServiceBarFixed ? '50%' : undefined,
+                      width: isServiceBarFixed ? '100vw' : '100%',
+                      maxWidth: isServiceBarFixed ? 1400 : 1400,
+                      transform: isServiceBarFixed ? 'translateX(-50%)' : 'none',
+                      zIndex: isServiceBarFixed ? 1000 : undefined,
+                      background: isServiceBarFixed ? '#CFEAEC' : undefined,
+                      boxShadow: isServiceBarFixed ? '0 2px 8px rgba(0,0,0,0.07)' : undefined,
+                      transition: 'box-shadow 0.2s',
+                      
+                    }}
+                  >
                     {services.map((service, index) => {
                       const isActive = active === index;
                       return (
@@ -1431,7 +1467,7 @@ function App() {
                             }}
                           >
                             {language === "VI" ? (
-                              service.title === "인증 센터" ? "CHỨNG THỰC"
+                              service.title === "인증 센터" ? "HỢP PHÁP HÓA, CÔNG CHỨNG"
                                 : service.title === "결혼 이민" ? "KẾT HÔN"
                                   : service.title === "출생신고" ? <>KHAI SINH <br /> KHAI TỬ</>
                                     : service.title === "국적" ? "QUỐC TỊCH"
@@ -1504,7 +1540,7 @@ function App() {
                                 {language === "VI"
                                   ? card.title === "번역 공증" ? "Dịch thuật, công chứng"
                                     : card.title === "인증 센터" ? "Hợp pháp hoá"
-                                     : card.title === "사실 공증" ? "Chứng thực"
+                                     : card.title === "영사확인, 공증" ? "hợp pháp hóa, công chứng"
                                       : card.title === "한국에서 혼인 신고 " ? "Đăng ký kết hôn tại Hàn Quốc"
                                         : card.title === "혼인관계증명서 발급 신청" ? "Cấp giấy xác nhận tình trạng hôn nhân"
                                           : card.title === "혼인요건인증서 발급 신청" ? "Giấy xác nhận đủ điều kiện kết hôn"
@@ -2297,6 +2333,7 @@ function App() {
         <Route path="/Support" element={<Support />} />
         <Route path="/Introduction" element={<Introduction />} />
         <Route path="/Service" element={<Service />} />
+        <Route path="/service/:slug" element={<Service />} />
         <Route path="/News" element={<News />} />
         <Route path="/Consult" element={<Consult />} />
         <Route path="/Register" element={<Register />} />

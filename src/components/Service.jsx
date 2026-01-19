@@ -1,5 +1,5 @@
 import { useLanguage } from "../LanguageContext.jsx";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
@@ -797,7 +797,7 @@ const tabContents8 = {
   },
 };
 const services = [
-  { icon: certIcon, hoverIcon: certHover, activeIcon: certActive, title: "인증 센터" },
+  { icon: certIcon, hoverIcon: certHover, activeIcon: certActive, title: "영사확인, 공증" },
   { icon: marriageIcon, hoverIcon: marriageHover, activeIcon: marriageActive, title: "결혼 이민" },
   { icon: birthIcon, hoverIcon: birthHover, activeIcon: birthActive, title: "출생신고" },
   { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
@@ -808,7 +808,21 @@ const services = [
   { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
 ];
 
+// Mapping English slugs for each service
+const serviceSlugs = [
+  "certification-notarization",
+  "marriage",
+  "birth-death-registration",
+  "nationality",
+  "passport-civil-registration",
+  "adoption",
+  "visa",
+  "legal-advice",
+  "b2b-services",
+];
+
 function Service(props) {
+  const { slug } = useParams();
   const [activeId, setActiveId] = useState(null);
   const [hoverId, setHoverId] = useState(null);
   const effectiveId = hoverId ?? activeId;
@@ -860,7 +874,78 @@ function Service(props) {
   const incomingTabKey = location.state?.tabKey || null;
   // incoming service index from App (0-based)
   const incomingServiceIndex = typeof location.state?.serviceIndex === 'number' ? location.state.serviceIndex : null;
-  const [activeIndex, setActiveIndex] = useState(0); // 👉 mặc định chọn "인증 센터"
+  // Nếu có slug trên URL, chọn đúng dịch vụ tương ứng
+  const [activeIndex, setActiveIndex] = useState(() => {
+    if (!slug) return 0;
+    const idx = serviceSlugs.indexOf(slug);
+    return idx >= 0 ? idx : 0;
+  });
+
+  // Nếu slug thay đổi (chuyển link), cập nhật activeIndex
+  useEffect(() => {
+    let idx = 0;
+    if (slug) {
+      idx = serviceSlugs.indexOf(slug);
+      if (idx < 0) idx = 0;
+    }
+    setActiveIndex(idx);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [slug]);
+  const navigate = useNavigate();
+
+  // Khi nhấn vào dịch vụ, chuyển hướng đến /service/slug
+  const handleServiceClick = (idx) => {
+    setActiveIndex(idx);
+    navigate(`/service/${serviceSlugs[idx]}`);
+  };
+
+  // Render danh sách dịch vụ dạng icon, mỗi icon click sẽ chuyển hướng đúng slug
+  const renderServiceList = () => (
+    <div className="service-list" style={{ display: "flex", flexDirection: "row", gap: 32, justifyContent: "center", margin: "40px 0" }}>
+      {serviceContents.map((svc, idx) => (
+        <div
+          key={idx}
+          onClick={() => handleServiceClick(idx)}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <div
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: "50%",
+              background: idx === activeIndex ? "#334785" : "#e5e7eb",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: 8,
+              transition: "all 0.2s",
+            }}
+          >
+            {/* Hiển thị icon tương ứng, ví dụ: certIcon, marriageIcon,... */}
+            <img src={[
+              certIcon,
+              marriageIcon,
+              birthIcon,
+              travelIcon,
+              idIcon,
+              adoptionIcon,
+              visaIcon,
+              lawIcon,
+              etcIcon,
+            ][idx]} alt={svc.title} style={{ width: 40, height: 40, filter: idx === activeIndex ? "none" : "grayscale(1)" }} />
+          </div>
+          <span style={{ color: idx === activeIndex ? "#334785" : "#374151", fontWeight: idx === activeIndex ? 700 : 400, fontSize: 15, textAlign: "center" }}>
+            {svc.title}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
   const [hoverIndex, setHoverIndex] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
   const [countryCode, setCountryCode] = useState("");
@@ -961,7 +1046,7 @@ const translateServiceTitle = (title) => {
   if (!title) return "";
 
   const translations = {
-    "영사 확인 • 사실인증": "Chứng thực",
+    "영사확인, 공증": "hợp pháp hóa, công chứng",
     "결혼 이민": "Kết hôn",
     "출생 · 사망 신고": "Khai sinh · Khai tử",
     "국적": "Quốc tịch",
@@ -1363,11 +1448,13 @@ const handleSubmitService = async (e) => {
     setServiceContents(prev => prev.map((content, i) => i === index ? { ...content, [field]: value } : content));
   };
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % services.length);
+    const nextIdx = (activeIndex + 1) % serviceContents.length;
+    handleServiceClick(nextIdx);
   };
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+    const prevIdx = (activeIndex - 1 + serviceContents.length) % serviceContents.length;
+    handleServiceClick(prevIdx);
   };
   // UI CHANGE: Created renderServiceContent function to provide distinct UI layouts for each service
   // Each service has its own unique interface design and editable content
@@ -1392,8 +1479,8 @@ const handleSubmitService = async (e) => {
               }}
             >
               {language === "VI"
-                ? serviceContents[activeIndex]?.title_vi || "CHỨNG THỰC"
-                : serviceContents[activeIndex]?.title_kr || "영사 확인 • 사실인증"}
+                ? serviceContents[activeIndex]?.title_vi || "HỢP PHÁP HÓA, CÔNG CHỨNG"
+                : serviceContents[activeIndex]?.title_kr || "영사확인, 공증"}
             </div>
 
             <div
@@ -4306,7 +4393,7 @@ const handleSubmitService = async (e) => {
               }}
             >
               <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
-              <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+              <option value="인증 센터">{language === "VI" ? (<>Hợp pháp hóa, công chứng</>) : ("영사확인, 공증")}</option>
               <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
               <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
               <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
@@ -4527,7 +4614,7 @@ const handleSubmitService = async (e) => {
                     <div
                       key={i}
                       className={`main-icon-item ${isActive ? "active" : ""}`}
-                      onClick={() => handleClick(i)}
+                      onClick={() => handleServiceClick(i)}
                       onMouseEnter={() => setHoverIndex(i)}
                       onMouseLeave={() => setHoverIndex(null)}
                       style={{
@@ -4564,7 +4651,7 @@ const handleSubmitService = async (e) => {
 
 
                         {language === "VI" ? (
-                          item.title === "인증 센터" ? "Chứng thực"
+                          item.title === "영사확인, 공증" ? <>Hợp pháp hóa,<br/> công chứng</>
                             : item.title === "결혼 이민" ? "Kết hôn"
                               : item.title === "출생신고" ? <>Khai sinh, khai tử</>
                                 : item.title === "국적" ? <>Quốc tịch </>
@@ -4791,7 +4878,7 @@ const handleSubmitService = async (e) => {
                     value={
                       language === "VI"
                         ? (
-                          serviceContents[activeIndex]?.title === "영사 확인 • 사실인증" ? "Chứng thực"
+                          serviceContents[activeIndex]?.title === "영사확인, 공증" ? "Hợp pháp hóa, công chứng"
                             : serviceContents[activeIndex]?.title === "결혼 이민" ? "Kết hôn"
                               : serviceContents[activeIndex]?.title === "출생 · 사망 신고" ? "Khai sinh · Khai tử"
                                 : serviceContents[activeIndex]?.title === "국적" ? "Quốc tịch"

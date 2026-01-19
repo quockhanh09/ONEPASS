@@ -250,7 +250,7 @@ function Header() {
                   margin: 0,
                   listStyle: "none"
                 }}>
-                  <li><Link to="/Service" state={{ serviceIndex: 0 }}>{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</Link></li>
+                  <li><Link to="/Service" state={{ serviceIndex: 0 }}>{language === "VI" ? (<>Hợp pháp hóa, công chứng</>) : ("영사확인, 공증")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 1 }}>{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 2 }}>{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 3 }}>{language === "VI" ? (<>Quốc tịch</>) : ("국적")}</Link></li>

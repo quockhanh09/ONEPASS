@@ -31,7 +31,7 @@ export default function Consult() {
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
   const list = [
-    { ko: "인증 센터", vi: "Chứng thực" },
+    { ko: "영사확인, 공증", vi: "Hợp pháp hóa, công chứng" },
     { ko: "결혼 이민", vi: "Kết hôn" },
     { ko: "출생신고 대행", vi: "Khai sinh, khai tử" },
     { ko: "국적 대행", vi: "Quốc tịch" },
@@ -2951,7 +2951,7 @@ const handleTimeChange = (e) => {
               }}
             >
               <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
-              <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+              <option value="인증 센터">{language === "VI" ? (<>Hợp pháp hóa, công chứng</>) : ("영사확인, 공증")}</option>
               <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
               <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
               <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>

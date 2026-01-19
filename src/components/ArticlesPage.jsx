@@ -235,7 +235,7 @@ export default function ArticlesPage() {
             <label style={{ fontSize: 16 }}>{language === "VI" ? "Dịch vụ" : "서비스 선택"}</label>
             <select value={service} onChange={(e) => setService(e.target.value)} style={{ background: "#fff", color: "#000", border: "none", borderRadius: 6, padding: "6px 10px", fontSize: 16, width: 160, height: 38, boxSizing: "border-box", marginRight: 15 }}>
               <option value="">{language === "VI" ? "Chọn dịch vụ" : "서비스 선택"}</option>
-              <option value="인증 센터">{language === "VI" ? "Chứng thực" : "인증 센터"}</option>
+              <option value="인증 센터">{language === "VI" ? "Hợp pháp hóa, công chứng" : "영사확인, 공증"}</option>
               <option value="결혼 이민">{language === "VI" ? "Kết hôn" : "결혼 이민"}</option>
               <option value="출생신고 대행">{language === "VI" ? "Khai sinh, khai tử" : "출생신고 대행"}</option>
               <option value="국적 대행">{language === "VI" ? "Quốc tịch" : "국적 대행"}</option>
@@ -326,8 +326,19 @@ export default function ArticlesPage() {
             )}
             {!newsLoading && currentNews.map((item) => {
               const imgSrc = getImage(item) || n8;
+              // Generate slug from title
+              const toSlug = (str) =>
+                str
+                  .toLowerCase()
+                          .normalize("NFD")
+                          .replace(/[\u0300-\u036F]/g, "")
+                  .replace(/[^a-z0-9\s-]/g, "")
+                  .replace(/\s+/g, "-")
+                  .replace(/-+/g, "-")
+                  .replace(/^-+|-+$/g, "");
+              const slug = toSlug(item.TieuDeVN || "");
               return (
-                <div key={item.ID} onClick={() => navigate(`/news/${item.ID}`)} style={{ cursor: "pointer", borderRadius: "16px", padding: "0", background: "#fff", height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+                <div key={item.ID} onClick={() => navigate(`/news/${slug}`)} style={{ cursor: "pointer", borderRadius: "16px", padding: "0", background: "#fff", height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" }}>
                   <div style={{ background: "#fff", borderRadius: "0", overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
                     <div style={{ height: 180, width: "100%", overflow: "hidden", display: "block", flexShrink: 0 }}>
                       <img src={imgSrc} alt={getTitle(item)} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 16 }} />

@@ -323,7 +323,7 @@ export default function AllNewsPage() {
                             }}
                         >
                             <option value="">{language === "VI" ? (<>Chọn dịch vụ</>) : ("서비스 선택")}</option>
-                            <option value="인증 센터">{language === "VI" ? (<>Chứng thực</>) : ("인증 센터")}</option>
+                            <option value="인증 센터">{language === "VI" ? (<>Hợp pháp hóa, công chứng</>) : ("영사확인, 공증")}</option>
                             <option value="결혼 이민">{language === "VI" ? (<>Kết hôn</>) : ("결혼 이민")}</option>
                             <option value="출생신고 대행">{language === "VI" ? (<>Khai sinh, khai tử</>) : ("출생신고 대행")}</option>
                             <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
@@ -625,10 +625,21 @@ export default function AllNewsPage() {
                         )}
                         {!newsLoading && currentNews.map((item) => {
                             const imgSrc = getImage(item) || n8;
+                            // Generate slug from title
+                            const toSlug = (str) =>
+                              str
+                                .toLowerCase()
+                                .normalize("NFD")
+                                .replace(/[ -6F]/g, "")
+                                .replace(/[^a-z0-9\s-]/g, "")
+                                .replace(/\s+/g, "-")
+                                .replace(/-+/g, "-")
+                                .replace(/^-+|-+$/g, "");
+                            const slug = toSlug(item.TieuDeVN || "");
                             return (
                                 <div
                                     key={item.ID}
-                                    onClick={() => navigate(`/news/${item.ID}`)}
+                                    onClick={() => navigate(`/news/${slug}`)}
                                     style={{
                                         cursor: "pointer",
                                         borderRadius: "16px",

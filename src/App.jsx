@@ -327,9 +327,9 @@ function App() {
     "결혼 이민": [
       { img: a2, title: "한국에서 혼인 신고 ", desc: "한국에서의 결혼 등록 절차 전반을 대행하고 지원", tabKey: "a3" },
       { img: a3, title: "혼인관계증명서 발급 신청", desc: "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원", tabKey: "a4" },
-      { img: a35, title: "혼인요건인증서 발급 신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원", tabKey: "a5" },
-      { img: a36, title: "혼인 재신고", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원", tabKey: "a6" },
-      { img: a4, title: "결혼이민 비자신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절 trình 지원", tabKey: "a7" },
+      { img: a35, title: "혼인요건인증서 발급 신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a5" },
+      { img: a36, title: "혼인 재신고", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a6" },
+      { img: a4, title: "결혼이민 비자신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a7" },
 
     ],
     "출생신고": [
@@ -1604,7 +1604,7 @@ function App() {
                                         ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Hàn Quốc"
                                         : card.desc === "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원"
                                           ? "Tư vấn, xử lý hồ sơ liên quan tới cấp giấy xác nhận tình trạng hôn nhân"
-                                          : card.desc === "혼인요건인증서 발급 신청에 필요한 서류 준비 및 절 trình 지원"
+                                          : card.desc === "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원"
                                             ? "Hỗ trợ, thực hiện các thủ tục đăng ký kết hôn tại Việt Nam"
 
                                             : card.desc === "신생아 출생 신고를 정확하고 신속하게 대행"
@@ -1620,20 +1620,20 @@ function App() {
                                                       ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới xin thôi quốc tịch VIệt Nam"
                                                       : card.desc === " 이중국적 유지를 위한 신고 및 관련 절차를지원"
                                                         ? "Tư vấn và hỗ trợ thực hiện thủ tục liên quan tới giữ quốc tịch Việt Nam"
-                                                        : card.desc === "베트남 국적 재귀화를 위한 신청 및 행정 절 trình 대행"
+                                                        : card.desc === "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행"
                                                           ? "Tư vấn hồ sơ và thực hiện đăng ký xin trở lại quốc tịch Việt Nam"
                                                           : card.desc === "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행"
                                                             ? "Thực hiện đăng ký cấp Giấy phép nhập cảnh thi hài, hài cốt, tro cốt"
-                                                            : card.desc === "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대 hành"
+                                                            : card.desc === "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행"
                                                               ? "Hướng dẫn và hỗ trợ thực hiện thủ tục hồi hương"
 
                                                               : card.desc === "일반 여권의 신규 발급, 정보 변경 및 추가 절차를 대행"
                                                                 ? "Hỗ trợ thực hiện cấp, bổ sung, sửa đổi hộ chiếu phổ thông"
                                                                 : card.desc === "이름, 성별, 국적 등 호적 정보 변경 신청 및 관련 절차 지원"
                                                                   ? "Tư vấn và thực hiện thủ tục thay đổi, cải chính, bổ sung hộ tịch"
-                                                                  : card.desc === "재외 베트남인으로서의 국민 등록 và 정보 갱신 대행"
+                                                                  : card.desc === "재외 베트남인으로서의 국민 등록 및 정보 갱신 대행"
                                                                     ? "Thực hiện đăng ký công dân và cập nhật thông tin công dân"
-                                                                    : card.desc === "베트남 출신 확인서 발급을 위한 서류 준비 및 절 trình hỗ trợ"
+                                                                    : card.desc === "베트남 출신 확인서 발급을 위한 서류 준비 및 절차 지원"
                                                                       ? "Hỗ trợ tư vấn và thực hiện thủ tục về cấp Giấy xác nhận người gốc Việt Nam"
                                                                       : card.desc === "출생, 혼인 등 각종 호적 서류의 사본 재발급 대행"
                                                                         ? "Thực hiện thủ tục cấp bản sao giấy tờ hộ tịch (Khai sinh, Đăng ký kết hôn, v.v)"

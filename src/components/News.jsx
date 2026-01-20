@@ -557,7 +557,7 @@ const stripHtmlTags = (html) => {
       </section>
 
       <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Header */}
           <div className="news-top-header" style={{
             display: "flex",
@@ -717,8 +717,8 @@ const stripHtmlTags = (html) => {
           `}
         </style>
       </section>
-<section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+   <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div
             className="news-top-header"
             style={{
@@ -754,9 +754,9 @@ const stripHtmlTags = (html) => {
           <div
             className="news-top-card"
             style={{
-              display: "flex",
-              gap: 30,
-              flexWrap: "wrap",
+              display: "grid",
+              gap: 24,
+              gridTemplateColumns:"repeat(3, minmax(0px, 1fr))"
             }}
           >
             {newsLoading && (
@@ -771,7 +771,7 @@ const stripHtmlTags = (html) => {
                   key={item.ID}
                   onClick={() => item.slug && navigate(`/news/${item.slug}`)}
                   style={{
-                    width: 380,
+                    
                     flexShrink: 0,
                     cursor: "pointer",
                     borderRadius: "16px",
@@ -836,7 +836,7 @@ const stripHtmlTags = (html) => {
       </section>
       
       <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {/* Header */}
           <div className="news-top-header"
             style={{
@@ -949,365 +949,7 @@ const stripHtmlTags = (html) => {
 
       
 
-      <section style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
-        <div className="Calendar-main" style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between" }}>
-
-          {/* LEFT: Calendar */}
-          <div className="Calendar-title" style={{ flex: "0 0 45%" }}>
-            <h2 className="Calendar-title-h2" style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
-               {language === "VI" ? (<>Lịch làm việc</>) : ("업무 일정 (휴일 일정)")}
-            </h2>
-            <div style={{
-              width: 460,
-              maxWidth: '100%',
-              background: "#fff",
-              borderRadius: 18,
-              boxShadow: "0 8px 24px rgba(12,20,40,0.08)",
-              border: '1px solid rgba(15,23,42,0.06)',
-              padding: "15px 20px",
-              textAlign: "center",
-              fontFamily: 'Inter, Arial, sans-serif'
-            }}>
-              {/* Styled Calendar (matches provided design) */}
-              <div className="Calendar-title-Styled" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'flex-start', marginBottom: 8 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                  <div style={{ fontSize: 16, fontWeight: 700, color: '#0b1220', lineHeight: 1 }}>{calendarDate.getMonth() + 1}</div>
-                  <div style={{ fontSize: 16, color: '#6b7280', fontWeight: 600, lineHeight: 1, transform: 'translateY(1px)' }}>▾</div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                  <div style={{ fontSize: 16, fontWeight: 700, color: '#0b1220', lineHeight: 1 }}>{calendarDate.getFullYear()}</div>
-                  <div style={{ fontSize: 16, color: '#6b7280', fontWeight: 600, lineHeight: 1, transform: 'translateY(1px)' }}>▾</div>
-                </div>
-              </div>
-
-              <div className="Calendar-title-date"  style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 6, justifyContent: 'center', marginBottom: 12 }}>
-                {['일', '월', '화', '수', '목', '금', '토'].map((d, i) => (
-                  <div key={d} style={{ width: 56, fontSize: 13, color: '#9aa4b8', textAlign: 'center', lineHeight: '18px' }}>{d}</div>
-                ))}
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 56px)', gap: 8, justifyContent: 'center' }}>
-                {(() => {
-                  const year = calendarDate.getFullYear();
-                  const month = calendarDate.getMonth();
-                  const firstDay = new Date(year, month, 1).getDay();
-                  const daysInMonth = new Date(year, month + 1, 0).getDate();
-                  const totalCells = 35; // 5 rows x 7 cols
-                  const today = new Date(); // 🔴 Lấy ngày hiện tại
-                  const cells = [];
-
-                  for (let i = 0; i < totalCells; i++) {
-                    const dayNum = i - firstDay + 1;
-                    const isValid = dayNum >= 1 && dayNum <= daysInMonth;
-                    const col = i % 7;
-                    const isWeekend = col === 0 || col === 6;
-
-                    const isSelected =
-                      selectedDate &&
-                      isValid &&
-                      selectedDate.getFullYear() === year &&
-                      selectedDate.getMonth() === month &&
-                      selectedDate.getDate() === dayNum;
-
-                    const isToday =
-                      isValid &&
-                      today.getFullYear() === year &&
-                      today.getMonth() === month &&
-                      today.getDate() === dayNum; // ✅ So sánh với ngày hiện tại
-
-                    cells.push(
-                      <div
-                        key={i}
-                        onClick={() => isValid && setSelectedDate(new Date(year, month, dayNum))}
-                        style={{
-                          height: 56,
-                          width: 56,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: 16,
-                          fontWeight: isSelected || isToday ? 700 : 400,
-                          color: isValid
-                            ? isToday
-                              ? '#fff' // chữ trắng
-                              : isSelected
-                                ? '#ef4444'
-                                : isWeekend
-                                  ? '#ef4444'
-                                  : '#111827'
-                            : 'transparent',
-                          cursor: isValid ? 'pointer' : 'default',
-                          borderRadius: 10,
-                          background: isToday ? '#5C7DE1' : 'transparent', // 🔴 tô nền đỏ cho hôm nay
-                          transition: 'all 0.2s ease',
-                        }}
-                      >
-                        {isValid ? dayNum : ''}
-                      </div>
-                    );
-                  }
-                  return cells;
-                })()}
-              </div>
-            </div>
-          </div>
-                
-          {/* RIGHT: News */}
-          {/* <div style={{ flex: "0 0 50%" }}>
-            <h2 style={{ fontSize: 22, fontWeight: 700, color: "#1e3a8a", marginBottom: 20 }}>
-              법률 관련 뉴스
-            </h2>
-
-            {[...Array(4)].map((_, idx) => (
-              <div key={idx} style={{
-                borderBottom: "1px solid #e5e7eb",
-                padding: "12px 0",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center"
-              }}>
-                <div>
-                  <p style={{ fontSize: 15, fontWeight: 600, color: "#111827", marginBottom: 4 }}>
-                    한국 체류 베트남 교민 대상 주요 법률 안내 강화
-                  </p>
-                  <p style={{ fontSize: 13, color: "#9ca3af", margin: 0 }}>📅 2025.10.15</p>
-                </div>
-                <a href="#" style={{
-                  color: "#3b82f6",
-                  fontSize: 14,
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4
-                }}>
-                  더 보기 →
-                </a>
-              </div>
-            ))}
-          </div> */}
-        </div>
-        <style>
-                 {`
-                  
-                  /* ----- Responsive cho mobile (không ảnh hưởng web chính) ----- */
-  @media (max-width: 768px) {
-    .Calendar-main {
-      flex-direction: column !important;
-      align-items: center !important;
-      gap: 40px !important;
-      padding: 0 16px !important;
-    }
-
-    .Calendar-title {
-      flex: none !important;
-      width: 100% !important;
-    }
-
-    .Calendar-title-h2 {
-      font-size: 20px !important;
-      text-align: center !important;
-      margin-bottom: 16px !important;
-    }
-
-    .Calendar-title-Styled {
-      justify-content: center !important;
-    }
-
-    .Calendar-title-date {
-      grid-template-columns: repeat(7, 1fr) !important;
-      gap: 4px !important;
-    }
-
-    /* Các ô ngày trong lịch */
-    .Calendar-title-date div {
-      font-size: 12px !important;
-    }
-
-    /* Ô ngày (grid chính) */
-    .Calendar-title + div > div {
-      width: 44px !important;
-      height: 44px !important;
-      font-size: 14px !important;
-    }
-
-    section {
-      padding: 40px 0 !important;
-    }
-  }
-@media (max-width: 400px) {
-  .Calendar-title {
-    width: 100% !important;
-  }
-
-  .Calendar-title-h2 {
-    font-size: 18px !important;
-  }
-
-  /* Khối lịch chính */
-  .Calendar-title > div {
-    padding: 12px !important;
-  }
-
-  /* Tên ngày (일, 월, 화...) */
-  .Calendar-title-date div {
-    font-size: 11px !important;
-  }
-
-  /* Grid ngày */
-  .Calendar-title + div {
-    grid-template-columns: repeat(7, 1fr) !important;
-    gap: 4px !important;
-    justify-content: space-between !important;
-  }
-
-  /* Ô ngày */
-  .Calendar-title + div > div {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 13px !important;
-    border-radius: 8px !important;
-  }
-}
-
-/* ----- Responsive cho màn hình 370px ----- */
-@media (max-width: 370px) {
-  .Calendar-title-h2 {
-    font-size: 16px !important;
-  }
-
-  .Calendar-title-date div {
-    font-size: 10px !important;
-  }
-
-  .Calendar-title + div {
-    gap: 3px !important;
-  }
-
-  .Calendar-title + div > div {
-    width: 34px !important;
-    height: 34px !important;
-    font-size: 12px !important;
-    border-radius: 6px !important;
-  }
-
-  .Calendar-title > div {
-    padding: 10px !important;
-  }
-}
-@media (max-width: 400px) {
-  .Calendar-title {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
-  .Calendar-title-h2 {
-    font-size: 18px !important;
-    text-align: center !important;
-    margin-bottom: 12px !important;
-  }
-
-  /* khung chứa lịch (hộp trắng) */
-  .Calendar-title > div {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 10px 12px !important;
-    margin: 0 auto !important;
-    box-sizing: border-box !important;
-    border-radius: 14px !important;
-  }
-
-  /* hàng tiêu đề ngày (일, 월...) */
-  .Calendar-title-date {
-    grid-template-columns: repeat(7, 1fr) !important;
-    gap: 4px !important;
-    justify-items: center !important;
-    margin-bottom: 8px !important;
-  }
-  .Calendar-title-date div {
-    font-size: 11px !important;
-    width: 100% !important;
-    text-align: center !important;
-  }
-
-  /* grid chứa các ô ngày: chọn phần tử con cuối cùng trong khung lịch */
-  .Calendar-title > div > div:last-child {
-    display: grid !important;
-    grid-template-columns: repeat(7, 1fr) !important;
-    gap: 6px !important;
-    justify-content: center !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* từng ô ngày */
-  .Calendar-title > div > div:last-child > div {
-    width: 100% !important;       /* cho co giãn theo 1fr */
-    max-width: 44px !important;   /* giới hạn chiều ngang ô */
-    height: 44px !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 13px !important;
-    border-radius: 8px !important;
-    margin: 0 auto !important;
-  }
-
-  /* nền và chữ cho ngày hôm nay / ngày chọn (giữ nguyên màu hiện tại bằng inline styles) */
-  .Calendar-title > div > div:last-child > div[style*="background"] {
-    /* đảm bảo ô ngày hôm nay không bị co kéo bất thường */
-    min-width: 36px !important;
-    min-height: 36px !important;
-    display: inline-flex !important;
-  }
-
-  /* tránh overflow dọc */
-  .Calendar-title > div, .Calendar-title > div > div:last-child {
-    overflow: hidden !important;
-  }
-}
-
-/* thêm một bước co nhỏ nữa cho <=370px */
-@media (max-width: 370px) {
-  .Calendar-title-h2 {
-    font-size: 16px !important;
-  }
-
-  .Calendar-title > div {
-    padding: 8px 10px !important;
-    border-radius: 12px !important;
-  }
-
-  .Calendar-title-date div {
-    font-size: 10px !important;
-  }
-
-  .Calendar-title > div > div:last-child {
-    gap: 4px !important;
-  }
-
-  .Calendar-title > div > div:last-child > div {
-    max-width: 40px !important;
-    height: 40px !important;
-    font-size: 12px !important;
-    border-radius: 6px !important;
-  }
-}
-
-/* tiny helper: khi box trắng quá rộng, giữ max-width để không chạm sát mép màn */
-@media (max-width: 420px) {
-  .Calendar-title > div {
-    max-width: 420px !important;
-  }
-}
-Những điểm chính mình
-  
-                 `}
-
-                </style>
-      </section>
+      
     </>
   );
 }

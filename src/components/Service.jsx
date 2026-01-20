@@ -2298,21 +2298,66 @@ const handleSubmitService = async (e) => {
                                 width: `${100 / 5}%`,
                               }}
                             >
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -2582,23 +2627,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -2869,23 +2957,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10,
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -3127,23 +3258,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10,
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -3368,23 +3542,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10,
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -3631,23 +3848,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10,
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -3871,23 +4131,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10,
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -4119,23 +4422,66 @@ const handleSubmitService = async (e) => {
                               </td>
                             ))}
                             <td className="case1-td2-1" style={{ padding: "14px 16px" }}>
-                              <button className="case1-td2-button"
-                                onClick={() => setShowModal(true)}
-                                style={{
-                                  color: "#fff",
-                                  background: "#D6B97B",
-                                  border: "none",
-                                  padding: "10px 20px",
-                                  borderRadius: 4,
-                                  fontSize: 15,
-                                  fontWeight: "bold",
-                                  cursor: "pointer",
-                                  marginBottom: 10,
-                                  marginTop:10,
-                                }}
-                              >
-                                {language === "VI" ? (<>Tư vấn</>) : ("상담 신청")}
-                              </button>
+                              <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+                                <button className="case1-td2-button"
+                                  onClick={() => setShowModal(true)}
+                                  style={{
+                                    color: "#fff",
+                                    background: "#D6B97B",
+                                    border: "none",
+                                    width: "100%",
+                                    minWidth: "90px",
+                                    maxWidth: "140px",
+                                    height: "38px",
+                                    borderRadius: "12px",
+                                    fontSize: 17,
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textAlign: "center",
+                                    lineHeight: 1.2,
+                                    whiteSpace: "nowrap",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {language === "VI" ? ("Hẹn tư vấn") : ("예약 상담")}
+                                </button>
+                                <a
+                                  href="https://m.me/onepass.vn"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <button
+                                    style={{
+                                      color: "#fff",
+                                      background: "#1e88e5",
+                                      border: "none",
+                                      width: "100%",
+                                      minWidth: "90px",
+                                      maxWidth: "140px",
+                                      height: "38px",
+                                      borderRadius: "12px",
+                                      fontSize: 17,
+                                      fontWeight: "bold",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                      lineHeight: 1.2,
+                                      whiteSpace: "nowrap",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {language === "VI" ? ("Tư vấn ngay") : ("바로 상담")}
+                                  </button>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         ))}

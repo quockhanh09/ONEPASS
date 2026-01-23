@@ -675,7 +675,7 @@ const stripHtmlTags = (html) => {
             })}
             {!newsLoading && newsItems.length === 0 && (
               <div style={{ gridColumn: "1 / -1", textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
-                {language === "VI" ? "ChÆ°a cÃ³ tin tá»©c Äáº¡i sá»© / LÃ£nh sá»± quÃ¡n." : "ëŒ€ì‚¬ê´€Â·ì´ì˜ì‚¬ê´€ ì†Œì‹ì´ ì—†ìŠµë‹ˆë‹¤."}
+                {language === "VI" ? "Chưa có tin tức Đại sứ / Lãnh sự quán." : "대사관/영사관 소식은 없다."}
               </div>
             )}
           </div>

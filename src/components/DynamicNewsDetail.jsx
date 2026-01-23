@@ -232,8 +232,8 @@ export default function DynamicNewsDetail() {
               }}>
                 <button
                   style={{
-                    width: 150,
-                    padding: '12px 0',
+                    width: 180,
+                    padding: '12px 5px',
                     background: '#fff',
                     color: '#2563eb',
                     border: 'none',
@@ -246,19 +246,21 @@ export default function DynamicNewsDetail() {
                     boxShadow: '0 2px 8px rgba(37,99,235,0.08)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'flex-start',
                     gap: 8,
+                    textTransform: 'uppercase',
+                    textAlign: 'left',
                   }}
                   onMouseOver={e => { e.currentTarget.style.background = '#2563eb'; e.currentTarget.style.color = '#fff'; }}
                   onMouseOut={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#2563eb'; }}
                   onClick={() => navigate('/news/전체 뉴스')}
                 >
-                  <span style={{fontSize:20,display:'flex',alignItems:'center'}}>📰</span> tất cả tin tức
+                  <span style={{fontSize:20,display:'flex',alignItems:'center'}}>📰</span> TẤT CẢ TIN TỨC
                 </button>
                 <button
                   style={{
-                    width: 150,
-                    padding: '12px 0',
+                    width: 180,
+                    padding: '12px 5px',
                     background: '#fff',
                     color: '#0ea5e9',
                     border: 'none',
@@ -271,19 +273,21 @@ export default function DynamicNewsDetail() {
                     boxShadow: '0 2px 8px rgba(14,165,233,0.08)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'flex-start',
                     gap: 8,
+                    textTransform: 'uppercase',
+                    textAlign: 'left',
                   }}
                   onMouseOver={e => { e.currentTarget.style.background = '#0ea5e9'; e.currentTarget.style.color = '#fff'; }}
                   onMouseOut={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#0ea5e9'; }}
                   onClick={() => navigate('/news/기타')}
                 >
-                  <span style={{fontSize:20,display:'flex',alignItems:'center'}}>✍️</span> bài viết
+                  <span style={{fontSize:20,display:'flex',alignItems:'center'}}>✍️</span> BÀI VIẾT
                 </button>
                 <button
                   style={{
-                    width: 150,
-                    padding: '12px 0',
+                    width: 180,
+                    padding: '12px 2px',
                     background: '#fff',
                     color: '#0891b2',
                     border: 'none',
@@ -295,14 +299,16 @@ export default function DynamicNewsDetail() {
                     boxShadow: '0 2px 8px rgba(8,145,178,0.08)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'flex-start',
                     gap: 8,
+                    textTransform: 'uppercase',
+                    textAlign: 'left',
                   }}
                   onMouseOver={e => { e.currentTarget.style.background = '#0891b2'; e.currentTarget.style.color = '#fff'; }}
                   onMouseOut={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#0891b2'; }}
                   onClick={() => navigate('/news/대사관•총영사관 소식')}
                 >
-                  <span style={{fontSize:20,display:'flex',alignItems:'center'}}>🏛️</span> tin tức lãnh sự
+                  <span style={{fontSize:20,display:'flex',alignItems:'center'}}>🏛️</span> TIN TỨC LÃNH SỰ
                 </button>
               </div>
             </div>

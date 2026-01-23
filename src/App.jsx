@@ -2350,6 +2350,7 @@ function App() {
         <Route path="/news/:slug" element={<DynamicNewsDetail />} />
       </Routes>
       {/* ===== FOOTER ===== */}
+      <Countdown />
       <Footer />
       {showPopup && (
         <div

@@ -2,6 +2,34 @@
 
 import { useLanguage } from "../LanguageContext.jsx";
 import { useState } from "react";
+import MainIconBar from "./MainIconBar";
+import certIcon from "../assets/img/s1icon.png";
+import certActive from "../assets/img/s1-1icon.png";
+import certHover from "../assets/img/s1-1icon.png";
+import marriageIcon from "../assets/img/s2icon.png";
+import marriageActive from "../assets/img/s2-2icon.png";
+import marriageHover from "../assets/img/s2-2icon.png";
+import birthIcon from "../assets/img/s3icon.png";
+import birthActive from "../assets/img/s3-3icon.png";
+import birthHover from "../assets/img/s3-3icon.png";
+import travelHover from "../assets/img/s4-4icon.png";
+import travelIcon from "../assets/img/s4icon.png";
+import travelActive from "../assets/img/s4-4icon.png";
+import idHover from "../assets/img/s5-5icon.png";
+import idIcon from "../assets/img/s5icon.png";
+import idActive from "../assets/img/s5-5icon.png";
+import adoptionHover from "../assets/img/s6-6icon.png";
+import adoptionIcon from "../assets/img/s6icon.png";
+import adoptionActive from "../assets/img/s6-6icon.png";
+import visaHover from "../assets/img/s7-7icon.png";
+import visaIcon from "../assets/img/s7icon.png";
+import visaActive from "../assets/img/s7-7icon.png";
+import lawIcon from "../assets/img/s8icon.png";
+import lawActive from "../assets/img/s8-8icon.png";
+import lawHover from "../assets/img/s8-8icon.png";
+import etcHover from "../assets/img/s9-9icon.png";
+import etcIcon from "../assets/img/s9icon.png";
+import etcActive from "../assets/img/s9-9icon.png";
 import vcpcLogo from "../assets/img/vcpc-header.png";
 import meetingImg from "../assets/img/image8.png";
 import heroBg from "../assets/img/herobanner-1.png";
@@ -130,7 +158,7 @@ function Introduction() {
     };
 
   return (
-    <>
+    <div>
       {/* PHẦN GIỚI THIỆU */}
       <section style={{
         margin: 0,
@@ -144,67 +172,83 @@ function Introduction() {
         paddingTop: "120px",
       }}>
         {/* Header title center */}
-        <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
-          <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 40, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
-            {language === "VI" ? (<>VỀ CHÚNG TÔI</>) : ("ABOUT US")}
-          </h1>
-          <style>
-            {`
-      /* responsive chỉ chỉnh vị trí chữ */
-      @media (max-width: 768px) {
-        .services-h1 {
-          position: relative;
-          top: 50%;
-          transform: translateY(-30%);
-          margin-top: 0;
-          margin-bottom: 0;
-        }
+         <div className="services-h1" style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
+           <h1 style={{ fontFamily: 'SVN-Gilroy', color: "#ffffffff", fontWeight: 900, fontSize: 40, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
+             {language === "VI" ? (<>VỀ CHÚNG TÔI</>) : ("ABOUT US")}
+           </h1>
+           <style>
+             {`
+       /* responsive chỉ chỉnh vị trí chữ */
+       @media (max-width: 768px) {
+         .services-h1 {
+           position: relative;
+           top: 50%;
+           transform: translateY(-30%);
+           margin-top: 0;
+           margin-bottom: 0;
+         }
 
-        .services-h1 h1 {
-          font-size: 38px;
-        }
-      }
+         .services-h1 h1 {
+           font-size: 38px;
+         }
+       }
 
-      @media (max-width: 480px) {
-        .services-h1 {
-          top: 50%;
-          transform: translateY(-60%);
-        }
+       @media (max-width: 480px) {
+         .services-h1 {
+           top: 50%;
+           transform: translateY(-60%);
+         }
 
-        .services-h1 h1 {
-          font-size: 28px;
-        }
-      }
+         .services-h1 h1 {
+           font-size: 28px;
+         }
+       }
 
-      @media (max-width: 360px) {
-        .services-h1 {
-          top: 60%;
-          transform: translateY(-30%);
-        }
+       @media (max-width: 360px) {
+         .services-h1 {
+           top: 60%;
+           transform: translateY(-30%);
+         }
 
-        .services-h1 h1 {
-          font-size: 24px;
-        }
-      }
-    `}
-          </style>
-        </div>
-        {/* Main content row */}
-
-        <div className="consultation-bar"
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: 60,
-            fontFamily: "sans-serif",
-            zIndex: 9999,
-          }}
-        >
+         .services-h1 h1 {
+           font-size: 24px;
+         }
+       }
+     `}
+           </style>
+         </div>
+        {/* MainIconBar dưới tiêu đề */}
+         <div>
+           <div style={{ maxWidth: 1200, margin: '0 auto', marginTop: 0, marginBottom: 30 }}>
+             <MainIconBar
+               language={language}
+               services={[
+                 { icon: certIcon, hoverIcon: certHover, activeIcon: certActive, title: "영사확인, 공증" },
+                 { icon: marriageIcon, hoverIcon: marriageHover, activeIcon: marriageActive, title: "결혼 이민" },
+                 { icon: birthIcon, hoverIcon: birthHover, activeIcon: birthActive, title: "출생신고" },
+                 { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
+                 { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
+                 { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
+                 { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
+                 { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
+                 { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
+               ]}
+             />
+           </div>
+           <div className="consultation-bar"
+            style={{
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height: 60,
+              fontFamily: "sans-serif",
+              zIndex: 9999,
+            }}
+          >
           {/* --- Bên trái --- */}
           <div
             style={{
@@ -424,6 +468,7 @@ function Introduction() {
             );
           })}
         </div>
+      </div>
       </section>
 
       <section className="about-section" style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
@@ -1007,7 +1052,7 @@ function Introduction() {
         </style>
       </section>
 
-    </>
+    </div>
   );
 }
 

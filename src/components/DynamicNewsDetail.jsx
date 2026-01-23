@@ -28,7 +28,8 @@ export default function DynamicNewsDetail() {
   const fetchOne = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axiosClient.get("/api/tintuc");
+      // Lấy tất cả tin tức, bỏ giới hạn 20 tin mặc định
+      const res = await axiosClient.get("/api/tintuc?limit=1000");
       let list = res?.data?.data || [];
       setAllNews(list);
       // Tìm theo slug
@@ -187,6 +188,10 @@ export default function DynamicNewsDetail() {
 
   return (
     <div className="news-detail-page" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      {/* Header image section - added above hero section */}
+      <table style={{ width: '100%', marginBottom: 0 }}>
+        
+      </table>
       {/* Hero section */}
       <section
         className="news-detail-hero"
@@ -306,6 +311,8 @@ export default function DynamicNewsDetail() {
 
         {/* Center: Main content */}
         <main style={{ flex: 1, minWidth: 0, padding: "0 32px" }}>
+          {/* Header image section - moved to top of news detail */}
+          
           <h2 style={{ fontSize: 32, fontWeight: 700, color: "#111827", margin: "0 0 18px" }}>
             {language === "VI" ? item.TieuDeVN : item.TieuDeKR || item.TieuDeVN}
           </h2>
@@ -335,6 +342,47 @@ export default function DynamicNewsDetail() {
                 )}
                 <div className="news-detail-content">
                   {(firstImgIdx >= 0 ? after : []).map(renderBlock)}
+                </div>
+                {/* Contact & Social block - added at the end of news detail */}
+                <div style={{ margin: '48px 0 0 0', background: 'linear-gradient(90deg, #5EA7C6 0%, #3D80A9 50%, #C4D39B 100%)', padding: '30px 20px 35px', textAlign: 'center', color: '#fff', borderRadius: 18 }}>
+                  <img src="https://res.cloudinary.com/dldxuqann/image/upload/v1762789031/logo_uyzqbi.png" width="260" style={{ marginBottom: 20 }} alt="Logo" />
+                  
+                  {/* SOCIAL ICONS */}
+                  <table cellSpacing="0" cellPadding="0" border="0" align="center" style={{ marginBottom: 35, marginLeft: 'auto', marginRight: 'auto' }}>
+                    <tbody>
+                      <tr>
+                        <td style={{ padding: '0 12px' }}>
+                          <a href="https://www.onepasskr.com/"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1766736012/Frame_2087327537_zwnuse.png" width="32" style={{ display: 'block' }} alt="Web" /></a>
+                        </td>
+                        <td style={{ padding: '0 12px' }}>
+                          <a href="https://www.facebook.com/profile.php?id=61581863960708"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763360942/Facebook_sbufox.png" width="32" style={{ display: 'block' }} alt="Facebook" /></a>
+                        </td>
+                        <td style={{ padding: '0 12px' }}>
+                          <a href="https://www.tiktok.com/@onepass_kr"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763360981/tiktok_l6rszn.png" width="32" style={{ display: 'block' }} alt="TikTok" /></a>
+                        </td>
+                        <td style={{ padding: '0 12px' }}>
+                          <a href="https://www.youtube.com/@ONEPASSINC"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763363074/Youtube_zkcgiv.png" width="32" style={{ display: 'block' }} alt="YouTube" /></a>
+                        </td>
+                        <td style={{ padding: '0 12px' }}>
+                          <a href="https://blog.naver.com/onepass_kr"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763360941/Nav_urbctg.png" width="32" style={{ display: 'block' }} alt="Naver" /></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p style={{ fontSize: 14, letterSpacing: 1 }}>ONE PASS INC. © all right reserve</p>
+                  {/* CONSULTATION BUTTON */}
+                  <table align="center" cellSpacing="0" cellPadding="0" border="0" style={{ marginTop: 20, marginLeft: 'auto', marginRight: 'auto' }}>
+                    <tbody>
+                      <tr>
+                        <td align="center" bgcolor="#ffffff" style={{ borderRadius: 999 }}>
+                          <a href="http://pf.kakao.com/_BHALn/chat"
+                            style={{ background: '#fff', color: '#A6CFBB', padding: '14px 38px', fontSize: 18, fontWeight: 700, borderRadius: 999, display: 'inline-block', textDecoration: 'underline', border: 'none', fontFamily: 'Arial, sans-serif' }}>
+                            Liên hệ tư vấn
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </>
             );

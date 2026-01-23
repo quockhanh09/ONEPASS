@@ -88,7 +88,8 @@ function Introduction() {
 const fetchNews = async () => {
   try {
     setNewsLoading(true);
-    const res = await axiosClient.get("/api/tintuc");
+    // Lấy tất cả tin tức, bỏ giới hạn 20 tin mặc định
+    const res = await axiosClient.get("/api/tintuc?limit=1000");
     const data = res?.data?.data || [];
     // Thêm slug cho từng item
     const withSlug = data.map(item => ({
@@ -102,14 +103,9 @@ const fetchNews = async () => {
     setNewsLoading(false);
   }
 };
-
-  useEffect(() => {
-    fetchNews();
-  }, []);
-
-  // Filtered consulate news
-  const consulateNewsItems = newsItems.filter(item => item.DanhMuc === "대사관•총영사관 소식").slice(0, 6);
   const articleNewsItems = newsItems.filter(item => item.DanhMuc === "기타").slice(0, 6);
+  // Thêm biến consulateNewsItems để tránh lỗi ReferenceError
+  const consulateNewsItems = newsItems.filter(item => item.DanhMuc === "대사관•총영사관 소식").slice(0, 6);
 
   const getTitle = (item) => {
     if (language === "VI") return item?.TieuDeVN || "";
@@ -253,6 +249,7 @@ const stripHtmlTags = (html) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
+    fetchNews(); // Lấy tin tức khi component mount
     const API_URL = import.meta.env.VITE_API_URL || "https://onepasscms-backend-tvdy.onrender.com";
     const socket = io(API_URL, { transports: ["websocket"] });
     socket.on("news-changed", () => {

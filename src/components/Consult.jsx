@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MainIconBar from "./MainIconBar";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
 import axios from "axios";
@@ -14,6 +15,33 @@ import fbIcon from "../assets/img/image20.png";
 import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
 import naverIcon from "../assets/img/image19.png";
+import certIcon from "../assets/img/s1icon.png";
+import certActive from "../assets/img/s1-1icon.png";
+import certHover from "../assets/img/s1-1icon.png";
+import marriageIcon from "../assets/img/s2icon.png";
+import marriageActive from "../assets/img/s2-2icon.png";
+import marriageHover from "../assets/img/s2-2icon.png";
+import birthIcon from "../assets/img/s3icon.png";
+import birthActive from "../assets/img/s3-3icon.png";
+import birthHover from "../assets/img/s3-3icon.png";
+import travelIcon from "../assets/img/s4icon.png";
+import travelActive from "../assets/img/s4-4icon.png";
+import travelHover from "../assets/img/s4-4icon.png";
+import idIcon from "../assets/img/s5icon.png";
+import idActive from "../assets/img/s5-5icon.png";
+import idHover from "../assets/img/s5-5icon.png";
+import adoptionIcon from "../assets/img/s6icon.png";
+import adoptionActive from "../assets/img/s6-6icon.png";
+import adoptionHover from "../assets/img/s6-6icon.png";
+import visaIcon from "../assets/img/s7icon.png";
+import visaActive from "../assets/img/s7-7icon.png";
+import visaHover from "../assets/img/s7-7icon.png";
+import lawIcon from "../assets/img/s8icon.png";
+import lawActive from "../assets/img/s8-8icon.png";
+import lawHover from "../assets/img/s8-8icon.png";
+import etcIcon from "../assets/img/s9icon.png";
+import etcActive from "../assets/img/s9-9icon.png";
+import etcHover from "../assets/img/s9-9icon.png";
 export default function Consult() {
   const [activeId, setActiveId] = useState(null);
   const [hoverId, setHoverId] = useState(null);
@@ -24,6 +52,19 @@ export default function Consult() {
     { id: 2, name: "카카오톡", icon: kakaotalkIcon, link: "https://pf.kakao.com/_BHALn" },
     { id: 3, name: "Zalo", icon: zaloIcon, link: "https://zalo.me/0395944818" },
     { id: 4, name: "네이버", icon: naverIcon, link: "https://blog.naver.com/onepass_kr" },
+  ];
+
+  // Danh sách dịch vụ cho MainIconBar (icon, hover, active chuẩn như Service.jsx)
+  const services = [
+    { icon: certIcon, hoverIcon: certHover, activeIcon: certActive, title: "영사확인, 공증" },
+    { icon: marriageIcon, hoverIcon: marriageHover, activeIcon: marriageActive, title: "결혼 이민" },
+    { icon: birthIcon, hoverIcon: birthHover, activeIcon: birthActive, title: "출생신고" },
+    { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
+    { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
+    { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
+    { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
+    { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
+    { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
   ];
   const { language } = useLanguage();
 
@@ -560,17 +601,18 @@ const handleTimeChange = (e) => {
   };
 
   const snsForm = (
-    <div
-      style={{
-        maxWidth: 1200,
-        margin: "60px auto",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
-        flexWrap: "wrap",
-        gap: 40,
-      }}
-    >
+    <>
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "60px auto",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          flexWrap: "wrap",
+          gap: 40,
+        }}
+      >
       {/* Left */}
       <div style={{ flex: 1, minWidth: 340, maxWidth: 460 }}>
         <h3
@@ -795,7 +837,9 @@ const handleTimeChange = (e) => {
 }
         `}
       </style>
-    </div>
+      {/* ...existing code... */}
+        </div>
+      </>
   );
 
 
@@ -842,6 +886,7 @@ const handleTimeChange = (e) => {
             lineHeight: 1.8,
             letterSpacing: "-0.2px",
           }}
+
         >
 
           {language === "VI" ? (<>Giải quyết các vấn đề cấp bách bằng cách liên hệ với tổng đài của chúng tôi. Bạn sẽ được nối máy và tư vấn với đội ngũ chuyên gia ngay tức thì.</>) :
@@ -1566,7 +1611,8 @@ const handleTimeChange = (e) => {
                         transform: openRegion ? "rotate(180deg)" : "rotate(0deg)",
                       }}
                     />
-                     <style>
+                  </div>
+                  <style>
                       {`
                       @media (max-width: 420px) {
                       .phoneRight-form-1-text
@@ -1587,8 +1633,6 @@ const handleTimeChange = (e) => {
                       }
                       `}
                     </style>
-                  </div>
-                  
                 </div>
 
                 {openRegion && (
@@ -1890,6 +1934,7 @@ const handleTimeChange = (e) => {
               style={{
                 display: "flex",
                 alignItems: "center",
+ 
                 margin: "28px 0",
               }}
             >
@@ -2365,7 +2410,7 @@ const handleTimeChange = (e) => {
                       outline: "none",
                       background: "transparent",
                     }}
-                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                    pattern="^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
                     title="유효한 이메일 주소를 입력해 주세요"
                   />
                 </div>
@@ -2648,8 +2693,12 @@ const handleTimeChange = (e) => {
   .visitRight-form1-list {
     left: 0 !important;
   }
-
-  .visitRight-form5-input {
+          
+  .visitRight-form1-selected,
+  .visitRight-form2 div + div,
+  .visitRight-form3 div + div,
+  .visitRight-form4 div + div,
+  .visitRight-form5 div + div {
     margin-left: 0 !important;
   }
 
@@ -2682,7 +2731,7 @@ const handleTimeChange = (e) => {
   }
 
   .visitRight-h2 {
-    font-size: 22px !important;
+    font-size: 24px !important;
   }
 
   .visitRight-form label {
@@ -3029,7 +3078,7 @@ const handleTimeChange = (e) => {
                 countryCode === "+82"
                   ? "Số điện thoại Hàn Quốc phải có 9–11 chữ số."
                   : countryCode === "+84"
-                    ? "Số điện thoại Việt Nam phải có 9–10 chữ số."
+                    ? "Số điện thoại Việt Nam phải có 9~10 chữ số."
                     : "Vui lòng chọn mã quốc gia trước khi nhập số điện thoại."
               }
             />
@@ -3115,6 +3164,10 @@ const handleTimeChange = (e) => {
 
       <section style={{ background: "#fff", minHeight: 400, width: "100vw", padding: "40px 0" }}>
         <div style={{ maxWidth: 1250, margin: "0 auto", padding: "0 20px" }}>
+          {/* MainIconBar moved above Tabs */}
+          <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: 60 }}>
+            <MainIconBar services={services} language={language} />
+          </div>
           {/* Tabs */}
           <div
             style={{

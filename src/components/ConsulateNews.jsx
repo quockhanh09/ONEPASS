@@ -46,7 +46,8 @@ export default function ConsulateNews() {
   const fetchNews = async () => {
     try {
       setNewsLoading(true);
-      const res = await axiosClient.get("/api/tintuc");
+      // Lấy tất cả tin tức, bỏ giới hạn 20 tin mặc định
+      const res = await axiosClient.get("/api/tintuc?limit=1000");
       const data = res?.data?.data;
       if (Array.isArray(data)) {
         // Filter only consulate news

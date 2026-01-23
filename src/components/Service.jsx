@@ -16,41 +16,41 @@ import iconMess from "../assets/img/iconmess.png";
 import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
 import naverIcon from "../assets/img/image19.png";
-import certIcon from "../assets/img/s1icon.png";
-import certActive from "../assets/img/s1-1icon.png";
-import certHover from "../assets/img/s1-1icon.png";
+import certIcon from "../assets/img/s1icon.png"; // Hợp pháp hóa công chứng
+import certActive from "../assets/img/s1-1icon.png"; // Hợp pháp hóa công chứng
+import certHover from "../assets/img/s1-1icon.png"; // Hợp pháp hóa công chứng
 
-import marriageIcon from "../assets/img/s2icon.png";
-import marriageActive from "../assets/img/s2-2icon.png";
-import marriageHover from "../assets/img/s2-2icon.png";
+import marriageIcon from "../assets/img/s2icon.png"; // Kết hôn
+import marriageActive from "../assets/img/s2-2icon.png"; // Kết hôn
+import marriageHover from "../assets/img/s2-2icon.png"; // Kết hôn
 
-import birthIcon from "../assets/img/s3icon.png";
-import birthActive from "../assets/img/s3-3icon.png";
-import birthHover from "../assets/img/s3-3icon.png";
+import birthIcon from "../assets/img/s3icon.png"; // Khai sinh, khai tử
+import birthActive from "../assets/img/s3-3icon.png"; // Khai sinh, khai tử
+import birthHover from "../assets/img/s3-3icon.png"; // Khai sinh, khai tử
 
-import travelHover from "../assets/img/s4-4icon.png";
-import travelIcon from "../assets/img/s4icon.png";
-import travelActive from "../assets/img/s4-4icon.png";
+import travelHover from "../assets/img/s4-4icon.png"; // Quốc tịch
+import travelIcon from "../assets/img/s4icon.png"; // Quốc tịch
+import travelActive from "../assets/img/s4-4icon.png"; // Quốc tịch
 
-import idHover from "../assets/img/s5-5icon.png";
-import idIcon from "../assets/img/s5icon.png";
-import idActive from "../assets/img/s5-5icon.png";
+import idHover from "../assets/img/s5-5icon.png"; // Hộ chiếu, Hộ tịch
+import idIcon from "../assets/img/s5icon.png"; // Hộ chiếu, Hộ tịch
+import idActive from "../assets/img/s5-5icon.png"; // Hộ chiếu, Hộ tịch
 
-import adoptionHover from "../assets/img/s6-6icon.png";
-import adoptionIcon from "../assets/img/s6icon.png";
-import adoptionActive from "../assets/img/s6-6icon.png";
+import adoptionHover from "../assets/img/s6-6icon.png"; // Nhận nuôi
+import adoptionIcon from "../assets/img/s6icon.png"; // Nhận nuôi
+import adoptionActive from "../assets/img/s6-6icon.png"; // Nhận nuôi
 
-import visaHover from "../assets/img/s7-7icon.png";
-import visaIcon from "../assets/img/s7icon.png";
-import visaActive from "../assets/img/s7-7icon.png";
+import visaHover from "../assets/img/s7-7icon.png"; // Thị thực
+import visaIcon from "../assets/img/s7icon.png"; // Thị thực
+import visaActive from "../assets/img/s7-7icon.png"; // Thị thực
 
-import lawIcon from "../assets/img/s8icon.png";
-import lawActive from "../assets/img/s8-8icon.png";
-import lawHover from "../assets/img/s8-8icon.png";
+import lawIcon from "../assets/img/s8icon.png"; // Tư vấn pháp lý
+import lawActive from "../assets/img/s8-8icon.png"; // Tư vấn pháp lý
+import lawHover from "../assets/img/s8-8icon.png"; // Tư vấn pháp lý
 
-import etcHover from "../assets/img/s9-9icon.png";
-import etcIcon from "../assets/img/s9icon.png";
-import etcActive from "../assets/img/s9-9icon.png";
+import etcHover from "../assets/img/s9-9icon.png"; // Dịch vụ B2B
+import etcIcon from "../assets/img/s9icon.png"; // Dịch vụ B2B
+import etcActive from "../assets/img/s9-9icon.png"; // Dịch vụ B2B
 import { style } from "framer-motion/client";
 
 const steps = [
@@ -810,15 +810,15 @@ const services = [
 
 // Mapping English slugs for each service
 const serviceSlugs = [
-  "certification-notarization",
-  "marriage",
-  "birth-death-registration",
-  "nationality",
-  "passport-civil-registration",
-  "adoption",
-  "visa",
-  "legal-advice",
-  "b2b-services",
+  "hop-phap-hoa-cong-chung",
+  "ket-hon",
+  "khai-sinh-khai-tu",
+  "quoc-tich",
+  "ho-chieu-ho-tich",
+  "nhan-nuoi",
+  "thi-thuc",
+  "tu-van-phap-ly",
+  "dich-vu-b2b",
 ];
 
 function Service(props) {
@@ -4997,7 +4997,7 @@ const handleSubmitService = async (e) => {
 
 
                         {language === "VI" ? (
-                          item.title === "영사확인, 공증" ? <>Hợp pháp hóa,<br/> công chứng</>
+                          item.title === "영사확인, 공증" ? <>Hợp pháp hóa<br/> công chứng</>
                             : item.title === "결혼 이민" ? "Kết hôn"
                               : item.title === "출생신고" ? <>Khai sinh, khai tử</>
                                 : item.title === "국적" ? <>Quốc tịch </>

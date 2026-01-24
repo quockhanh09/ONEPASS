@@ -6,7 +6,9 @@ import heroBg from "../assets/img/herobanner-1.png";
 import placeholder from "../assets/img/n19.png";
 import n8 from "../assets/img/n19.png";
 import { io } from "socket.io-client";
-
+import zaloicon from "../assets/img/icons8-zalo-50.png"
+import kakaotalk from "../assets/img/icons8-kakaotalk-48.png"
+import messenger from "../assets/img/icons8-messenger-64.png"
 export default function DynamicNewsDetail() {
   const { slug } = useParams();
   // Hàm chuyển tiêu đề thành slug
@@ -357,14 +359,14 @@ export default function DynamicNewsDetail() {
                   <table cellSpacing="0" cellPadding="0" border="0" align="center" style={{ marginBottom: 35, marginLeft: 'auto', marginRight: 'auto' }}>
                     <tbody>
                       <tr>
-                        <td style={{ padding: '0 12px' }}>
-                          <a href="https://www.onepasskr.com/"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1766736012/Frame_2087327537_zwnuse.png" width="32" style={{ display: 'block' }} alt="Web" /></a>
+                          <td style={{ padding: '0 12px' }}>
+                          <a href="https://zalo.me/84395944818"><img src={zaloicon} width="42" style={{ display: 'block' }} alt="Facebook" /></a>
                         </td>
                         <td style={{ padding: '0 12px' }}>
-                          <a href="https://www.facebook.com/profile.php?id=61581863960708"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763360942/Facebook_sbufox.png" width="32" style={{ display: 'block' }} alt="Facebook" /></a>
+                          <a href="https://www.messenger.com/t/803644846172440"><img src={messenger}width="32" style={{ display: 'block' }} alt="Facebook" /></a>
                         </td>
                         <td style={{ padding: '0 12px' }}>
-                          <a href="https://www.tiktok.com/@onepass_kr"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763360981/tiktok_l6rszn.png" width="32" style={{ display: 'block' }} alt="TikTok" /></a>
+                          <a href="https://pf.kakao.com/_BHALn"><img src={kakaotalk} width="32" style={{ display: 'block' }} alt="TikTok" /></a>
                         </td>
                         <td style={{ padding: '0 12px' }}>
                           <a href="https://www.youtube.com/@ONEPASSINC"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763363074/Youtube_zkcgiv.png" width="32" style={{ display: 'block' }} alt="YouTube" /></a>

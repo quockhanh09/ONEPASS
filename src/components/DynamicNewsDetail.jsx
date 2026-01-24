@@ -502,7 +502,7 @@ export default function DynamicNewsDetail() {
         <aside className="news-detail-right" style={{ flex: "0 0 320px", maxWidth: 340, padding: "0 16px", borderLeft: "1px solid #eee", minHeight: 400 }}>
           {related.length > 0 && (
             <div className="news-detail-related" style={{ marginTop: 0 }}>
-              <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 16, color: "#222" }}>
+              <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16, color: "#222" }}>
                 {language === "VI" ? "Tin tức liên quan" : "관련 소식"}
               </h3>
               <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>

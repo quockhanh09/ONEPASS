@@ -9,6 +9,7 @@ import { io } from "socket.io-client";
 import zaloicon from "../assets/img/icons8-zalo-50.png"
 import kakaotalk from "../assets/img/icons8-kakaotalk-48.png"
 import messenger from "../assets/img/icons8-messenger-64.png"
+import navertalk from "../assets/img/icon-navertalk.png"
 export default function DynamicNewsDetail() {
   const { slug } = useParams();
   // Hàm chuyển tiêu đề thành slug
@@ -215,11 +216,75 @@ export default function DynamicNewsDetail() {
       </section>
 
       {/* Main 3-column layout */}
-      <div style={{ display: "flex", flex: 1, maxWidth: 1400, margin: "0 auto", width: "100%", padding: "32px 0 80px" }}>
+      {/* Responsive styles for main layout */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .news-detail-left-menu {
+              margin-top: 32px;
+            }
+            @media (max-width: 900px) {
+              .news-detail-main-layout {
+                flex-direction: column !important;
+                padding: 0 0 40px !important;
+              }
+              .news-detail-left, .news-detail-right {
+                max-width: 100% !important;
+                border: none !important;
+                padding: 0 8px !important;
+                min-height: unset !important;
+              }
+              .news-detail-left {
+                margin-bottom: 24px !important;
+              }
+              .news-detail-hero-image img {
+                width: 100% !important;
+                max-width: 100vw !important;
+              }
+            }
+            @media (max-width: 600px) {
+              .news-detail-left-menu {
+                margin-top: 18px !important;
+              }
+            @media (max-width: 600px) {
+              .news-detail-hero {
+                padding: 60px 0 40px !important;
+              }
+              .news-detail-main-layout {
+                padding: 0 0 24px !important;
+              }
+              .news-detail-content {
+                font-size: 15px !important;
+              }
+              .news-detail-hero-image img {
+                width: 100% !important;
+                border-radius: 8px !important;
+              }
+              .news-detail-hero h1 {
+                font-size: 32px !important;
+              }
+              .news-detail-related h3 {
+                font-size: 16px !important;
+              }
+              .news-detail-block.text {
+                font-size: 15px !important;
+              }
+              .news-detail-left, .news-detail-right {
+                padding: 0 2px !important;
+              }
+              .news-detail-left > div {
+                width: 100% !important;
+                min-width: 0 !important;
+              }
+            }
+          `
+        }}
+      />
+      <div className="news-detail-main-layout" style={{ display: "flex", flex: 1, maxWidth: 1400, margin: "0 auto", width: "100%", padding: "32px 0 80px" }}>
         {/* Left: Menu */}
-        <aside style={{ flex: "0 0 220px", maxWidth: 240, padding: "0 16px", borderRight: "1px solid #eee", minHeight: 400 }}>
+        <aside className="news-detail-left" style={{ flex: "0 0 220px", maxWidth: 240, padding: "0 16px", borderRight: "1px solid #eee", minHeight: 400 }}>
           <div style={{ position: "sticky", top: 40, display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 22, alignItems: "center" }}>
+            <div className="news-detail-left-menu" style={{ width: "100%", display: "flex", flexDirection: "column", gap: 22, alignItems: "center" }}>
               <div style={{
                 width: 200,
                 background: 'linear-gradient(135deg, #e0f2fe 60%, #bae6fd 100%)',
@@ -318,7 +383,7 @@ export default function DynamicNewsDetail() {
         </aside>
 
         {/* Center: Main content */}
-        <main style={{ flex: 1, minWidth: 0, padding: "0 32px" }}>
+        <main className="news-detail-center" style={{ flex: 1, minWidth: 0, padding: "0 32px" }}>
           {/* Header image section - moved to top of news detail */}
           
           <h2 style={{ fontSize: 32, fontWeight: 700, color: "#111827", margin: "0 0 18px" }}>
@@ -368,8 +433,8 @@ export default function DynamicNewsDetail() {
                         <td style={{ padding: '0 12px' }}>
                           <a href="https://pf.kakao.com/_BHALn"><img src={kakaotalk} width="32" style={{ display: 'block' }} alt="TikTok" /></a>
                         </td>
-                        <td style={{ padding: '0 12px' }}>
-                          <a href="https://www.youtube.com/@ONEPASSINC"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763363074/Youtube_zkcgiv.png" width="32" style={{ display: 'block' }} alt="YouTube" /></a>
+                        <td style={{ padding: '0 0px' }}>
+                          <a href="talk.naver.com/W3OU8NH"><img src={navertalk} width="52" style={{ display: 'block' }} alt="YouTube" /></a>
                         </td>
                         <td style={{ padding: '0 12px' }}>
                           <a href="https://blog.naver.com/onepass_kr"><img src="https://res.cloudinary.com/da1olnwuu/image/upload/v1763360941/Nav_urbctg.png" width="32" style={{ display: 'block' }} alt="Naver" /></a>
@@ -434,7 +499,7 @@ export default function DynamicNewsDetail() {
         </main>
 
         {/* Right: Related news */}
-        <aside style={{ flex: "0 0 320px", maxWidth: 340, padding: "0 16px", borderLeft: "1px solid #eee", minHeight: 400 }}>
+        <aside className="news-detail-right" style={{ flex: "0 0 320px", maxWidth: 340, padding: "0 16px", borderLeft: "1px solid #eee", minHeight: 400 }}>
           {related.length > 0 && (
             <div className="news-detail-related" style={{ marginTop: 0 }}>
               <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 16, color: "#222" }}>

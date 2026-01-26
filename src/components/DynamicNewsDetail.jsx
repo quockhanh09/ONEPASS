@@ -330,6 +330,10 @@ export default function DynamicNewsDetail() {
                 border: none !important;
                 padding: 0 2px !important;
               }
+              .news-detail-related {
+                padding-left: 24px !important;
+                padding-right: 24px !important;
+              }
               .news-detail-related > div {
                 flex-direction: column !important;
                 gap: 22px !important;

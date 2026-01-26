@@ -47,9 +47,9 @@ export default function MainIconBar({ services, language }) {
       ref={barRef}
       style={{
         position: fixed ? "sticky" : "relative",
-        top: 50,
+        top: 10,
         zIndex: 1000,
-        background: "#fff",
+        background: "rgb(207, 234, 236)",
         width: "100%",
       }}
     >
@@ -177,7 +177,7 @@ export default function MainIconBar({ services, language }) {
         align-items: center;
         justify-content: center;
         transition: all 0.4s ease;
-        background: #fff;
+        background: rgb(207, 234, 236);
         z-index: 1000;
       }
       .main-icon-container.fixed {
@@ -188,6 +188,7 @@ export default function MainIconBar({ services, language }) {
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         padding: 10px 0;
         z-index: 1000;
+        background: rgb(207, 234, 236);
       }
       .main-icon-item {
         display: flex;
@@ -210,6 +211,7 @@ export default function MainIconBar({ services, language }) {
           justify-content: flex-start !important;
           scrollbar-width: none !important;
           -ms-overflow-style: none !important;
+          background: rgb(207, 234, 236) !important;
         }
         .main-icon-container::-webkit-scrollbar { display: none !important; }
         .main-icon-item {

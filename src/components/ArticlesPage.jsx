@@ -1,4 +1,32 @@
 import axiosClient from "../axiosClient";
+import MainIconBar from "./MainIconBar";
+import certIcon from "../assets/img/s1icon.png";
+import certActive from "../assets/img/s1-1icon.png";
+import certHover from "../assets/img/s1-1icon.png";
+import marriageIcon from "../assets/img/s2icon.png";
+import marriageActive from "../assets/img/s2-2icon.png";
+import marriageHover from "../assets/img/s2-2icon.png";
+import birthIcon from "../assets/img/s3icon.png";
+import birthActive from "../assets/img/s3-3icon.png";
+import birthHover from "../assets/img/s3-3icon.png";
+import travelIcon from "../assets/img/s4icon.png";
+import travelActive from "../assets/img/s4-4icon.png";
+import travelHover from "../assets/img/s4-4icon.png";
+import idIcon from "../assets/img/s5icon.png";
+import idActive from "../assets/img/s5-5icon.png";
+import idHover from "../assets/img/s5-5icon.png";
+import adoptionIcon from "../assets/img/s6icon.png";
+import adoptionActive from "../assets/img/s6-6icon.png";
+import adoptionHover from "../assets/img/s6-6icon.png";
+import visaIcon from "../assets/img/s7icon.png";
+import visaActive from "../assets/img/s7-7icon.png";
+import visaHover from "../assets/img/s7-7icon.png";
+import lawIcon from "../assets/img/s8icon.png";
+import lawActive from "../assets/img/s8-8icon.png";
+import lawHover from "../assets/img/s8-8icon.png";
+import etcIcon from "../assets/img/s9icon.png";
+import etcActive from "../assets/img/s9-9icon.png";
+import etcHover from "../assets/img/s9-9icon.png";
 import n8 from "../assets/img/n19.png";
 import heroBg from "../assets/img/herobanner-1.png";
 import fbIcon from "../assets/img/image20.png";
@@ -211,10 +239,28 @@ export default function ArticlesPage() {
         width: "100vw",
         paddingTop: "120px",
       }}>
+
         <div style={{ width: "100%", textAlign: "center", marginTop: 60, marginBottom: 30 }}>
           <h1 style={{ fontFamily: 'TrajanPro3, "Times New Roman", serif', color: "#ffffffff", fontWeight: 700, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
             {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
           </h1>
+        </div>
+        {/* MainIconBar dưới tiêu đề */}
+        <div style={{ margin: '0 auto', marginBottom: 30, maxWidth: 1200 }}>
+          <MainIconBar
+            language={language}
+            services={[
+              { title: "영사확인, 공증", icon: certIcon, activeIcon: certActive, hoverIcon: certHover },
+              { title: "결혼 이민", icon: marriageIcon, activeIcon: marriageActive, hoverIcon: marriageHover },
+              { title: "출생신고", icon: birthIcon, activeIcon: birthActive, hoverIcon: birthHover },
+              { title: "국적", icon: travelIcon, activeIcon: travelActive, hoverIcon: travelHover },
+              { title: "여권 • 호적", icon: idIcon, activeIcon: idActive, hoverIcon: idHover },
+              { title: "입양 • 자녀 인지", icon: adoptionIcon, activeIcon: adoptionActive, hoverIcon: adoptionHover },
+              { title: "비자 대행", icon: visaIcon, activeIcon: visaActive, hoverIcon: visaHover },
+              { title: "법률 컨설팅", icon: lawIcon, activeIcon: lawActive, hoverIcon: lawHover },
+              { title: "B2B 서비스", icon: etcIcon, activeIcon: etcActive, hoverIcon: etcHover },
+            ]}
+          />
         </div>
 
         {/* Quick consultation bar */}

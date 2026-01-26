@@ -5,12 +5,53 @@ import n3 from "../assets/img/n3.png";
 import n4 from "../assets/img/N4.png"
 import n5 from "../assets/img/n5.png"
 import n8 from "../assets/img/n19.png";
+import n6 from "../assets/img/n6.png";
+import n7 from "../assets/img/n7.png";
+import n19 from "../assets/img/n19.png";
 import heroBg from "../assets/img/herobanner-1.png";
 import fbIcon from "../assets/img/image20.png";
 import iconMess from "../assets/img/iconmess.png";
 import kakaotalkIcon from "../assets/img/image17.png";
 import zaloIcon from "../assets/img/image18.png";
+
 import naverIcon from "../assets/img/image19.png";
+import MainIconBar from "./MainIconBar";
+import certIcon from "../assets/img/s1icon.png"; // Hợp pháp hóa công chứng
+import certActive from "../assets/img/s1-1icon.png"; // Hợp pháp hóa công chứng
+import certHover from "../assets/img/s1-1icon.png"; // Hợp pháp hóa công chứng
+
+import marriageIcon from "../assets/img/s2icon.png"; // Kết hôn
+import marriageActive from "../assets/img/s2-2icon.png"; // Kết hôn
+import marriageHover from "../assets/img/s2-2icon.png"; // Kết hôn
+
+import birthIcon from "../assets/img/s3icon.png"; // Khai sinh, khai tử
+import birthActive from "../assets/img/s3-3icon.png"; // Khai sinh, khai tử
+import birthHover from "../assets/img/s3-3icon.png"; // Khai sinh, khai tử
+
+import travelHover from "../assets/img/s4-4icon.png"; // Quốc tịch
+import travelIcon from "../assets/img/s4icon.png"; // Quốc tịch
+import travelActive from "../assets/img/s4-4icon.png"; // Quốc tịch
+
+import idHover from "../assets/img/s5-5icon.png"; // Hộ chiếu, Hộ tịch
+import idIcon from "../assets/img/s5icon.png"; // Hộ chiếu, Hộ tịch
+import idActive from "../assets/img/s5-5icon.png"; // Hộ chiếu, Hộ tịch
+
+import adoptionHover from "../assets/img/s6-6icon.png"; // Nhận nuôi
+import adoptionIcon from "../assets/img/s6icon.png"; // Nhận nuôi
+import adoptionActive from "../assets/img/s6-6icon.png"; // Nhận nuôi
+
+import visaHover from "../assets/img/s7-7icon.png"; // Thị thực
+import visaIcon from "../assets/img/s7icon.png"; // Thị thực
+import visaActive from "../assets/img/s7-7icon.png"; // Thị thực
+
+import lawIcon from "../assets/img/s8icon.png"; // Tư vấn pháp lý
+import lawActive from "../assets/img/s8-8icon.png"; // Tư vấn pháp lý
+import lawHover from "../assets/img/s8-8icon.png"; // Tư vấn pháp lý
+
+import etcHover from "../assets/img/s9-9icon.png"; // Dịch vụ B2B
+import etcIcon from "../assets/img/s9icon.png"; // Dịch vụ B2B
+import etcActive from "../assets/img/s9-9icon.png"; // Dịch vụ B2B
+// Nếu có icon hover/active riêng thì import thêm
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../LanguageContext.jsx";
@@ -232,6 +273,7 @@ export default function AllNewsPage() {
       };
 
     return (
+
         <>
             <section style={{
                 margin: 0,
@@ -249,6 +291,23 @@ export default function AllNewsPage() {
                     <h1 style={{ fontFamily: 'TrajanPro3, "Times New Roman", serif', color: "#ffffffff", fontWeight: 700, fontSize: 60, lineHeight: 1.5, margin: 0, letterSpacing: 1 }}>
                         {language === "VI" ? "TIN TỨC" : "NEWSROOM"}
                     </h1>
+                </div>
+                {/* MainIconBar dưới tiêu đề */}
+                <div style={{ margin: '0 auto', marginBottom: 30, maxWidth: 1200 }}>
+                                <MainIconBar
+                                    language={language}
+                                    services={[
+                                        { title: "영사확인, 공증", icon: certIcon, activeIcon: certActive, hoverIcon: certHover },
+                                        { title: "결혼 이민", icon: marriageIcon, activeIcon: marriageActive, hoverIcon: marriageHover },
+                                        { title: "출생신고", icon: birthIcon, activeIcon: birthActive, hoverIcon: birthHover },
+                                        { title: "국적", icon: travelIcon, activeIcon: travelActive, hoverIcon: travelHover },
+                                        { title: "여권 • 호적", icon: idIcon, activeIcon: idActive, hoverIcon: idHover },
+                                        { title: "입양 • 자녀 인지", icon: adoptionIcon, activeIcon: adoptionActive, hoverIcon: adoptionHover },
+                                        { title: "비자 대행", icon: visaIcon, activeIcon: visaActive, hoverIcon: visaHover },
+                                        { title: "법률 컨설팅", icon: lawIcon, activeIcon: lawActive, hoverIcon: lawHover },
+                                        { title: "B2B 서비스", icon: etcIcon, activeIcon: etcActive, hoverIcon: etcHover },
+                                    ]}
+                                />
                 </div>
 
 

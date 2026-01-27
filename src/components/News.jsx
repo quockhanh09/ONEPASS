@@ -398,7 +398,7 @@ const stripHtmlTags = (html) => {
                 </span>
               </div>
               <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
-                (+82) 051-715-0607
+                (+82) 02-737-0607
               </div>
             </div>
 

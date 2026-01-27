@@ -1546,7 +1546,7 @@ function App() {
                                           : card.title === "혼인요건인증서 발급 신청" ? "Giấy xác nhận đủ điều kiện kết hôn"
                                             : card.title === "혼인 재신고" ? "Đăng ký lại việc kết hôn"
                                               : card.title === "결혼이민 비자신청" ? "Đăng ký Visa kết hôn"
-
+                                                : card.title === "사실 공증" ? "Chứng thực"
                                                 : card.title === "출생 신고" ? "Đăng ký khai sinh"
                                                   : card.title === "출생 재신고" ? "Đăng ký lại khai sinh"
                                                     : card.title === "사망 신고" ? "Đăng ký việc tử"

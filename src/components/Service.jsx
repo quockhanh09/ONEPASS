@@ -2187,7 +2187,7 @@ const handleSubmitService = async (e) => {
                 marginBottom: 32,
                 width: '100%',
                 gap: 0,
-                padding: '0 24px',
+                
                 background: 'transparent',
                 position: 'relative',
               }}
@@ -2213,7 +2213,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 500,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -2588,7 +2588,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -2935,7 +2935,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -3263,7 +3263,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -3580,7 +3580,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -3905,7 +3905,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -4220,7 +4220,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',
@@ -4529,7 +4529,7 @@ const handleSubmitService = async (e) => {
                   <button style={{
                     ...tabStyle(tab.key),
                     minWidth: 110,
-                    maxWidth: 180,
+                    maxWidth: 400,
                     margin: 0,
                     borderRadius: 0,
                     background: 'transparent',

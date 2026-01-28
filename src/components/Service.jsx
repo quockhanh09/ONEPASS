@@ -3,6 +3,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+
 import vcpcLogo from "../assets/img/vcpc-header.png";
 import meetingImg from "../assets/img/image8.png";
 import heroBg from "../assets/img/herobanner-1.png";
@@ -2139,7 +2141,32 @@ const handleSubmitService = async (e) => {
 
       // Service 1: 결혼 이민 - Side-by-Side Layout with image and content
       case 1:
+
         if (!tabContents[activeTab]) return null;
+        // Hàm tạo slug cho đường dẫn
+        const toSlug = (str) => {
+          return str
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036F]/g, "")
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-+|-+$/g, "");
+        };
+        // Map tab key sang tên tiếng Việt cho slug
+        const tabSlugMap = {
+          korea1: "Dang-ky-ket-hon-tai-HQ",
+          vietnam1: "Xac-nhan-tinh-trang-hon-nhan",
+          certificate1: "Giay-du-dieu-kien-ket-hon",
+          cc1: "Dang-ky-lai-viec-ket-hon",
+          visa1: "Dang-ky-Visa-ket-hon"
+        };
+        // Map tab key sang tên tiếng Hàn cho slug nếu cần
+
+        // Đường dẫn gốc dịch vụ kết hôn
+        const baseMarriagePath = "/service/ket-hon";
+
         return (
           <div className="main-case1" style={{ maxWidth: 1200, margin: "60px auto", padding: 24, fontFamily: "sans-serif", color: "#111827" }}>
             {/* Title */}
@@ -2147,41 +2174,63 @@ const handleSubmitService = async (e) => {
               {language === "VI" ? (<>KẾT HÔN</>) : ("결혼 이민")}
             </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
-
-
               {language === "VI" ? (<>Xử lý hồ sơ và thực hiện các thủ tục hành chính liên quan tới <br />
                 đăng ký kết hôn, đăng ký visa kết hôn F-6</>) : (<>국제 결혼 신고, F-6 비자 발급 등 베트남-한국 간의 법적 및 행정 절차를 <br />
                   단순화하여 한 번에 불편함 없이 처리해 드립니다.</>)}
             </p>
-
             <div className="main-case1-buttton"
               style={{
-                display: "flex",
-                borderBottom: "1px solid #d1d5db",
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderBottom: '1px solid #d1d5db',
                 marginBottom: 32,
-                width: "100%",
-                overflowX: "auto", // Cho phép scroll ngang
-                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
-                scrollbarWidth: "none",
+                width: '100%',
+                gap: 0,
+                padding: '0 24px',
+                background: 'transparent',
+                position: 'relative',
               }}
             >
-              <button style={tabStyle("korea1")} onClick={() => setActiveTab("korea1")}>
-                {language === "VI" ? (<>Đăng ký kết hôn tại HQ</>) : (" 한국 내 혼인신고")}
-              </button>
-              <button style={tabStyle("vietnam1")} onClick={() => setActiveTab("vietnam1")}>
-                {language === "VI" ? (<>Xác nhận tình trạng hôn nhân</>) : ("혼인관계증명서")}
-              </button>
-              <button style={tabStyle("certificate1")} onClick={() => setActiveTab("certificate1")}>
-                {language === "VI" ? (<>Giấy đủ điều kiện kết hôn</>) : ("혼인요건인증서")}
-              </button>
-              <button style={tabStyle("cc1")} onClick={() => setActiveTab("cc1")}>
-                {language === "VI" ? (<>Đăng ký lại việc kết hôn</>) : ("결혼 재신고")}
-              </button>
-              <button style={tabStyle("visa1")} onClick={() => setActiveTab("visa1")}>
-                {language === "VI" ? (<>Đăng ký Visa kết hôn</>) : ("결혼이민 비자신청")}
-              </button>
-
-
+              {/* Thay button bằng Link để có đường dẫn động */}
+              {[
+                { key: "korea1", labelVI: "Đăng ký kết hôn tại HQ", labelKR: "한국 내 혼인신고" },
+                { key: "vietnam1", labelVI: "Xác nhận tình trạng hôn nhân", labelKR: "혼인관계증명서" },
+                { key: "certificate1", labelVI: "Giấy đủ điều kiện kết hôn", labelKR: "혼인요건인증서" },
+                { key: "cc1", labelVI: "Đăng ký lại việc kết hôn", labelKR: "결혼 재신고" },
+                { key: "visa1", labelVI: "Đăng ký Visa kết hôn", labelKR: "결혼이민 비자신청" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`${baseMarriagePath}/${tabSlugMap[tab.key]}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab(tab.key);
+                    window.history.pushState({}, '', `${baseMarriagePath}/${tabSlugMap[tab.key]}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
             </div>
 
             {/* Table */}
@@ -2515,24 +2564,48 @@ const handleSubmitService = async (e) => {
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
-                overflowX: "auto", // Cho phép scroll ngang
-                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                overflowX: "auto",
+                whiteSpace: "nowrap",
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea2")} onClick={() => setActiveTab2("korea2")}>
-                {language === "VI" ? (<>Đăng ký khai sinh</>) : (" 출생 신고")}
-              </button>
-              <button style={tabStyle("vietnam2")} onClick={() => setActiveTab2("vietnam2")}>
-                {language === "VI" ? (<>Đăng ký khai sinh quá hạn</>) : ("기한 초과 출생신고")}
-              </button>
-              <button style={tabStyle("certificate2")} onClick={() => setActiveTab2("certificate2")}>
-                {language === "VI" ? (<>Đăng ký việc tử</>) : ("사망 신고")}
-              </button>
-              <button style={tabStyle("visa2")} onClick={() => setActiveTab2("visa2")}>
-                {language === "VI" ? (<>Đăng ký khai tử quá hạn</>) : ("기한 초과 사망신고")}
-              </button>
-
+              {[
+                { key: "korea2", labelVI: "Đăng ký khai sinh", labelKR: "출생 신고", slug: "dang-ky-khai-sinh" },
+                { key: "vietnam2", labelVI: "Đăng ký khai sinh quá hạn", labelKR: "기한 초과 출생신고", slug: "dang-ky-khai-sinh-qua-han" },
+                { key: "certificate2", labelVI: "Đăng ký việc tử", labelKR: "사망 신고", slug: "dang-ky-viec-tu" },
+                { key: "visa2", labelVI: "Đăng ký khai tử quá hạn", labelKR: "기한 초과 사망신고", slug: "dang-ky-khai-tu-qua-han" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/khai-sinh-khai-tu/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab2(tab.key);
+                    window.history.pushState({}, '', `/service/khai-sinh-khai-tu/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
             </div>
 
             {/* Table */}
@@ -2837,26 +2910,49 @@ const handleSubmitService = async (e) => {
                 borderBottom: "1px solid #d1d5db",
                 marginBottom: 32,
                 width: "100%",
-                overflowX: "auto", // Cho phép scroll ngang
-                whiteSpace: "nowrap", // Giữ các nút nằm cùng hàng
+                overflowX: "auto",
+                whiteSpace: "nowrap",
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea3")} onClick={() => setActiveTab3("korea3")}>
-                {language === "VI" ? (<>Xin thôi quốc tịch</>) : ("베트남 국적 포기 신청")}
-              </button>
-              <button style={tabStyle("vietnam3")} onClick={() => setActiveTab3("vietnam3")}>
-                {language === "VI" ? (<>Đăng ký giữ quốc tịch</>) : ("베트남 국적 유지 신청")}
-              </button>
-              <button style={tabStyle("certificate3")} onClick={() => setActiveTab3("certificate3")}>
-                {language === "VI" ? (<>Xin trở lại quốc tịch</>) : ("베트남 국적 재귀화 신청")}
-              </button>
-              <button style={tabStyle("visa3")} onClick={() => setActiveTab3("visa3")}>
-                {language === "VI" ? (<>Nhập cảnh thi hài, tro cốt</>) : ("시체 등 송환 허가 신청")}
-              </button>
-              <button style={tabStyle("cc3")} onClick={() => setActiveTab3("cc3")}>
-                {language === "VI" ? (<>Thủ tục hồi hương</>) : ("베트남 국적 사실 확인")}
-              </button>
+              {[
+                { key: "korea3", labelVI: "Xin thôi quốc tịch", labelKR: "베트남 국적 포기 신청", slug: "xin-thoi-quoc-tich" },
+                { key: "vietnam3", labelVI: "Đăng ký giữ quốc tịch", labelKR: "베트남 국적 유지 신청", slug: "dang-ky-giu-quoc-tich" },
+                { key: "certificate3", labelVI: "Xin trở lại quốc tịch", labelKR: "베트남 국적 재귀화 신청", slug: "xin-tro-lai-quoc-tich" },
+                { key: "visa3", labelVI: "Nhập cảnh thi hài, tro cốt", labelKR: "시체 등 송환 허가 신청", slug: "nhap-canh-thi-hai-tro-cot" },
+                { key: "cc3", labelVI: "Thủ tục hồi hương", labelKR: "베트남 국적 사실 확인", slug: "thu-tuc-hoi-huong" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/quoc-tich/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab3(tab.key);
+                    window.history.pushState({}, '', `/service/quoc-tich/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
             </div>
 
             {/* Table */}
@@ -3147,21 +3243,44 @@ const handleSubmitService = async (e) => {
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea4")} onClick={() => setActiveTab4("korea4")}>
-                {language === "VI" ? (<>Cấp, bổ sung hộ chiếu</>) : ("일반 여권 발급 • 변경 • 추가")}
-              </button>
-              <button style={tabStyle("vietnam4")} onClick={() => setActiveTab4("vietnam4")}>
-                {language === "VI" ? (<>Thay đổi thông tin hộ tịch</>) : ("호적 정보 정정")}
-              </button>
-              <button style={tabStyle("certificate4")} onClick={() => setActiveTab4("certificate4")}>
-                {language === "VI" ? (<>Đăng ký thông tin công dân</>) : ("베트남 국민 신고 • 업데이트")}
-              </button>
-              <button style={tabStyle("visa4")} onClick={() => setActiveTab4("visa4")}>
-                {language === "VI" ? (<>Xác nhận gốc Việt Nam</>) : ("베트남 출신 증명서 발급 ")}
-              </button>
-              <button style={tabStyle("cc4")} onClick={() => setActiveTab4("cc4")}>
-                {language === "VI" ? (<>Bản sao giấy tờ hộ tịch</>) : ("호적증서 반사오 재발급 ")}
-              </button>
+              {[
+                { key: "korea4", labelVI: "Cấp, bổ sung hộ chiếu", labelKR: "일반 여권 발급 • 변경 • 추가", slug: "cap-bo-sung-ho-chieu" },
+                { key: "vietnam4", labelVI: "Thay đổi thông tin hộ tịch", labelKR: "호적 정보 정정", slug: "thay-doi-thong-tin-ho-tich" },
+                { key: "certificate4", labelVI: "Đăng ký thông tin công dân", labelKR: "베트남 국민 신고 • 업데이트", slug: "dang-ky-thong-tin-cong-dan" },
+                { key: "visa4", labelVI: "Xác nhận gốc Việt Nam", labelKR: "베트남 출신 증명서 발급 ", slug: "xac-nhan-goc-viet-nam" },
+                { key: "cc4", labelVI: "Bản sao giấy tờ hộ tịch", labelKR: "호적증서 반사오 재발급 ", slug: "ban-sao-giay-to-ho-tich" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/ho-chieu-ho-tich/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab4(tab.key);
+                    window.history.pushState({}, '', `/service/ho-chieu-ho-tich/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
             </div>
 
             {/* Table */}
@@ -3443,15 +3562,42 @@ const handleSubmitService = async (e) => {
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea5")} onClick={() => setActiveTab5("korea5")}>
-                {language === "VI" ? (<>Đăng ký / chấm dứt việc giám hộ </>) : ("보호자 신청 • 해지 신고")}
-              </button>
-              <button style={tabStyle("vietnam5")} onClick={() => setActiveTab5("vietnam5")}>
-                {language === "VI" ? (<>Nhận cha, mẹ, con</>) : (" 베트남 혼외자 자녀 인지")}
-              </button>
-              <button style={tabStyle("certificate5")} onClick={() => setActiveTab5("certificate5")}>
-                {language === "VI" ? (<>Đăng ký nhận con nuôi</>) : (" 입양 절차 대행")}
-              </button>
+              {[
+                { key: "korea5", labelVI: "Đăng ký / chấm dứt việc giám hộ", labelKR: "보호자 신청 • 해지 신고", slug: "dang-ky-cham-dut-giam-ho" },
+                { key: "vietnam5", labelVI: "Nhận cha, mẹ, con", labelKR: "베트남 혼외자 자녀 인지", slug: "nhan-cha-me-con" },
+                { key: "certificate5", labelVI: "Đăng ký nhận con nuôi", labelKR: "입양 절차 대행", slug: "dang-ky-nhan-con-nuoi" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/nhan-nuoi/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab5(tab.key);
+                    window.history.pushState({}, '', `/service/nhan-nuoi/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
 
             </div>
 
@@ -3740,18 +3886,43 @@ const handleSubmitService = async (e) => {
               }}
             >
               
-              <button style={tabStyle("vietnam6")} onClick={() => setActiveTab6("vietnam6")}>
-                {language === "VI" ? (<>Visa thăm thân C-3-1</>) : ("초청(단기방문 C-3-1 비자)")}
-              </button>
-              <button style={tabStyle("certificate6")} onClick={() => setActiveTab6("certificate6")}>
-                {language === "VI" ? (<>Visa thăm thân F-1-5</>) : ("초청(단기방문 F-1-5 비자)")}
-              </button>
-              <button style={tabStyle("visa6")} onClick={() => setActiveTab6("visa6")}>
-                {language === "VI" ? (<>Cấp giấy miễn thị thực </>) : ("베트남 비자면제증 발급")}
-              </button>
-              <button style={tabStyle("cc6")} onClick={() => setActiveTab6("cc6")}>
-                {language === "VI" ? (<>Visa điện tử / công tác</>) : ("베트남 전자비자 • 상용비자")}
-              </button>
+              {[
+                { key: "vietnam6", labelVI: "Visa thăm thân C-3-1", labelKR: "초청(단기방문 C-3-1 비자)", slug: "visa-tham-than-c-3-1" },
+                { key: "certificate6", labelVI: "Visa thăm thân F-1-5", labelKR: "초청(단기방문 F-1-5 비자)", slug: "visa-tham-than-f-1-5" },
+                { key: "visa6", labelVI: "Cấp giấy miễn thị thực", labelKR: "베트남 비자면제증 발급", slug: "cap-giay-mien-thi-thuc" },
+                { key: "cc6", labelVI: "Visa điện tử / công tác", labelKR: "베트남 전자비자 • 상용비자", slug: "visa-dien-tu-cong-tac" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/thi-thuc/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab6(tab.key);
+                    window.history.pushState({}, '', `/service/thi-thuc/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
             </div>
 
             {/* Table */}
@@ -4031,16 +4202,42 @@ const handleSubmitService = async (e) => {
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea7")} onClick={() => setActiveTab7("korea7")}>
-                {language === "VI" ? (<>Liên quan tới ly hôn</>) : ("이혼 소송")}
-              </button>
-              <button style={tabStyle("vietnam7")} onClick={() => setActiveTab7("vietnam7")}>
-                {language === "VI" ? (<>Liên quan tới lao động</>) : ("노동 관련 소송")}
-              </button>
-              <button style={tabStyle("certificate7")} onClick={() => setActiveTab7("certificate7")}>
-                {language === "VI" ? (<>Liên quan tới cư trú</>) : ("불법 체류자 관련 컨설팅")}
-              </button>
-
+              {[
+                { key: "korea7", labelVI: "Liên quan tới ly hôn", labelKR: "이혼 소송", slug: "lien-quan-toi-ly-hon" },
+                { key: "vietnam7", labelVI: "Liên quan tới lao động", labelKR: "노동 관련 소송", slug: "lien-quan-toi-lao-dong" },
+                { key: "certificate7", labelVI: "Liên quan tới cư trú", labelKR: "불법 체류자 관련 컨설팅", slug: "lien-quan-toi-cu-tru" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/tu-van-phap-ly/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab7(tab.key);
+                    window.history.pushState({}, '', `/service/tu-van-phap-ly/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
             </div>
 
             {/* Table */}
@@ -4312,21 +4509,44 @@ const handleSubmitService = async (e) => {
                 scrollbarWidth: "none",
               }}
             >
-              <button style={tabStyle("korea8", activeTab8)} onClick={() => setActiveTab8("korea8")} tabKey="a33">
-                {language === "VI" ? (<>Thành lập công ty </>) : ("법인 • 지사 • 대표사무실 설립")}
-              </button>
-              <button style={tabStyle("end8", activeTab8)} onClick={() => setActiveTab8("end8")} tabKey="a39">
-                {language === "VI" ? (<>Giải thể công ty </>) : ("회사/사업 해산 • 폐업")}
-              </button>
-              <button style={tabStyle("vietnam8", activeTab8)} onClick={() => setActiveTab8("vietnam8")} tabKey="a34">
-                {language === "VI" ? (<>Đăng ký lao động, tạm trú</>) : ("노동 허가서, 임시 거주증 발급")}
-              </button>
-              <button style={tabStyle("certificate8", activeTab8)} onClick={() => setActiveTab8("certificate8")} tabKey="a35">
-                {language === "VI" ? (<>Giấy phép xuất nhập khẩu</>) : ("수입 허가서")}
-              </button>
-              <button style={tabStyle("visa8", activeTab8)} onClick={() => setActiveTab8("visa8")} tabKey="a36">
-                {language === "VI" ? (<>Kết nối khách hàng B2B</>) : ("B2B 바이어 매칭")}
-              </button>
+              {[
+                { key: "korea8", labelVI: "Thành lập công ty", labelKR: "법인 • 지사 • 대표사무실 설립", slug: "thanh-lap-cong-ty" },
+                { key: "end8", labelVI: "Giải thể công ty", labelKR: "회사/사업 해산 • 폐업", slug: "giai-the-cong-ty" },
+                { key: "vietnam8", labelVI: "Đăng ký lao động, tạm trú", labelKR: "노동 허가서, 임시 거주증 발급", slug: "dang-ky-lao-dong-tam-tru" },
+                { key: "certificate8", labelVI: "Xuất nhập khẩu", labelKR: "수입 허가서", slug: "xuat-nhap-khau" },
+                { key: "visa8", labelVI: "Kết nối khách hàng B2B", labelKR: "B2B 바이어 매칭", slug: "ket-noi-b2b" }
+              ].map(tab => (
+                <Link
+                  key={tab.key}
+                  to={`/service/dich-vu-b2b/${tab.slug}`}
+                  style={{ textDecoration: 'none', flex: 1, display: 'flex', justifyContent: 'center' }}
+                  onClick={e => {
+                    e.preventDefault();
+                    setActiveTab8(tab.key);
+                    window.history.pushState({}, '', `/service/dich-vu-b2b/${tab.slug}`);
+                  }}
+                >
+                  <button style={{
+                    ...tabStyle(tab.key),
+                    minWidth: 110,
+                    maxWidth: 180,
+                    margin: 0,
+                    borderRadius: 0,
+                    background: 'transparent',
+                    borderBottom: tabStyle(tab.key).borderBottom,
+                    fontWeight: tabStyle(tab.key).fontWeight,
+                    color: tabStyle(tab.key).color,
+                    fontSize: 14,
+                    padding: '8px 0',
+                    textAlign: 'center',
+                    transition: 'color 0.2s',
+                    width: '100%',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {language === "VI" ? tab.labelVI : tab.labelKR}
+                  </button>
+                </Link>
+              ))}
 
             </div>
 
@@ -4703,7 +4923,7 @@ const handleSubmitService = async (e) => {
               </span>
             </div>
             <div style={{ fontWeight: 600, fontSize: 16, marginTop: 2 }}>
-              (+82) 02-737-0607
+              (+82) 051-715-0607
             </div>
           </div>
 

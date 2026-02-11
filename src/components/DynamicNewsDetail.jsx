@@ -369,6 +369,51 @@ export default function DynamicNewsDetail() {
                 font-size: 13px !important;
                 color: #444 !important;
               }
+              .news-detail-left-menu {
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                width: 100% !important;
+                padding: 0 8px !important;
+              }
+              .news-detail-left-menu > div {
+                width: 100% !important;
+                max-width: 100vw !important;
+                padding: 12px 8px !important;
+                flex-direction: row !important;
+                border-radius: 16px !important;
+                gap: 6px !important;
+              }
+              .news-detail-left-menu button {
+                width: auto !important;
+                padding: 10px 10px !important;
+                font-size: 12px !important;
+                margin-bottom: 0 !important;
+                white-space: nowrap !important;
+                flex: 1 1 auto !important;
+                min-width: auto !important;
+              }
+              .news-detail-left-menu span {
+                font-size: 16px !important;
+              }
+              @media (max-width: 420px) {
+                .news-detail-left-menu {
+                  gap: 6px !important;
+                  padding: 0 4px !important;
+                }
+                .news-detail-left-menu > div {
+                  padding: 10px 4px !important;
+                  gap: 4px !important;
+                  max-width: calc(100vw - 16px) !important;
+                  overflow-x: auto !important;
+                }
+                .news-detail-left-menu button {
+                  padding: 8px 8px !important;
+                  font-size: 11px !important;
+                  min-width: 85px !important;
+                }
+              }
             }
           `
         }}

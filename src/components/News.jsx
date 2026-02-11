@@ -164,20 +164,47 @@ const stripHtmlTags = (html) => {
         return fallback ? stripHtmlTags(fallback).substring(0, 140) + (stripHtmlTags(fallback).length > 140 ? "..." : "") : "";
   };
 
-  // Luôn ưu tiên lấy ảnh đại diện (UrlHinhAnh) nếu có
+  // Ưu tiên lấy ảnh đại diện (UrlHinhAnh), không phải ảnh bên trong bài
   const getImage = (item) => {
     if (!item) return null;
-    if (item.UrlHinhAnh) return item.UrlHinhAnh;
+    
+    // Ưu tiên UrlHinhAnh (ảnh đại diện chính)
+    if (item.UrlHinhAnh) {
+      return item.UrlHinhAnh;
+    }
+    
+    // Nếu không có UrlHinhAnh, thì mới lấy từ blocks (ảnh bên trong bài)
+    
+    // Kiểm tra trường blocks trực tiếp
+    if (Array.isArray(item.blocks) && item.blocks.length > 0) {
+      const imgBlock = item.blocks.find((b) => b.type === "image" && b.imageUrl);
+      if (imgBlock?.imageUrl) return imgBlock.imageUrl;
+    }
+    
+    // Thử parse từ NoiDungVN
     try {
-      const blocks = JSON.parse(item.NoiDungVN || "[]");
-      if (Array.isArray(blocks)) {
-        const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
-        if (imgBlock) return imgBlock.imageUrl;
+      const blocksVN = JSON.parse(item.NoiDungVN || "[]");
+      if (Array.isArray(blocksVN)) {
+        const imgBlock = blocksVN.find((b) => b.type === "image" && b.imageUrl);
+        if (imgBlock?.imageUrl) return imgBlock.imageUrl;
       }
     } catch (e) {
-      // ignore
+      // không phải JSON, bỏ qua
     }
-    return null;
+
+    // Thử parse từ NoiDungKR
+    try {
+      const blocksKR = JSON.parse(item.NoiDungKR || "[]");
+      if (Array.isArray(blocksKR)) {
+        const imgBlock = blocksKR.find((b) => b.type === "image" && b.imageUrl);
+        if (imgBlock?.imageUrl) return imgBlock.imageUrl;
+      }
+    } catch (e) {
+      // không phải JSON, bỏ qua
+    }
+
+    return null;    // Fallback về ảnh đại diện nếu không có ảnh trong blocks
+    return item.UrlHinhAnh || null;
   };
 
   const formatDate = (dateString) => {

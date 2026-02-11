@@ -112,11 +112,11 @@ export default function DynamicNewsDetail() {
 
   const heroImage = useMemo(() => {
     if (!item) return null;
-    // Ưu tiên ảnh đại diện chính thức (UrlHinhAnh) trước
-    if (item.UrlHinhAnh) return item.UrlHinhAnh;
-    // Nếu không có, mới lấy ảnh đầu tiên từ blocks content
+    // Ưu tiên lấy ảnh từ blocks content (ảnh bên trong tin tức)
     const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
-    return imgBlock?.imageUrl || placeholder;
+    if (imgBlock) return imgBlock.imageUrl;
+    // Fallback về ảnh đại diện nếu không có ảnh bên trong
+    return item.UrlHinhAnh || placeholder;
   }, [item, blocks]);
 
   const renderBlock = (block) => {

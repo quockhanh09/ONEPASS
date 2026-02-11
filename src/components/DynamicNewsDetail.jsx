@@ -112,11 +112,8 @@ export default function DynamicNewsDetail() {
 
   const heroImage = useMemo(() => {
     if (!item) return null;
-    // Ưu tiên lấy ảnh từ blocks content (ảnh bên trong tin tức)
     const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
-    if (imgBlock) return imgBlock.imageUrl;
-    // Fallback về ảnh đại diện nếu không có ảnh bên trong
-    return item.UrlHinhAnh || placeholder;
+    return imgBlock?.imageUrl || item.UrlHinhAnh || placeholder;
   }, [item, blocks]);
 
   const renderBlock = (block) => {
@@ -297,12 +294,18 @@ export default function DynamicNewsDetail() {
             @media (max-width: 600px) {
               .news-detail-left-menu {
                 margin-top: 18px !important;
+                margin-bottom: 12px !important;
+              }
+              .news-detail-left {
+                margin-bottom: 12px !important;
+                flex: 0 0 auto !important;
               }
               .news-detail-hero {
                 padding: 60px 0 40px !important;
               }
               .news-detail-main-layout {
                 padding: 0 0 24px !important;
+                flex: 0 0 60px !important;
               }
               .news-detail-content {
                 font-size: 15px !important;

@@ -130,16 +130,43 @@ export default function ArticlesPage() {
 
   const getImage = (item) => {
     if (!item) return null;
+    
+    // Ưu tiên ảnh đại diện (UrlHinhAnh) cho trang danh sách
+    if (item.UrlHinhAnh) {
+      return item.UrlHinhAnh;
+    }
+    
+    // Chỉ lấy từ blocks nếu không có UrlHinhAnh
+    
+    // Kiểm tra trường blocks trực tiếp
+    if (Array.isArray(item.blocks) && item.blocks.length > 0) {
+      const imgBlock = item.blocks.find((b) => b.type === "image" && b.imageUrl);
+      if (imgBlock?.imageUrl) return imgBlock.imageUrl;
+    }
+    
+    // Thử parse từ NoiDungVN
     try {
-      const blocks = JSON.parse(item.NoiDungVN || "[]");
-      if (Array.isArray(blocks)) {
-        const imgBlock = blocks.find((b) => b.type === "image" && b.imageUrl);
-        if (imgBlock) return imgBlock.imageUrl;
+      const blocksVN = JSON.parse(item.NoiDungVN || "[]");
+      if (Array.isArray(blocksVN)) {
+        const imgBlock = blocksVN.find((b) => b.type === "image" && b.imageUrl);
+        if (imgBlock?.imageUrl) return imgBlock.imageUrl;
       }
     } catch (e) {
-      // ignore
+      // không phải JSON, bỏ qua
     }
-    return item.UrlHinhAnh || null;
+    
+    // Thử parse từ NoiDungKR
+    try {
+      const blocksKR = JSON.parse(item.NoiDungKR || "[]");
+      if (Array.isArray(blocksKR)) {
+        const imgBlock = blocksKR.find((b) => b.type === "image" && b.imageUrl);
+        if (imgBlock?.imageUrl) return imgBlock.imageUrl;
+      }
+    } catch (e) {
+      // không phải JSON, bỏ qua
+    }
+    
+    return null;
   };
 
   const formatDateTimeRich = (dateString) => {

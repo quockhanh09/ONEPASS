@@ -786,7 +786,7 @@ const stripHtmlTags = (html) => {
           `}
         </style>
       </section>
-   <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+   {/* <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div
             className="news-top-header"
@@ -902,11 +902,11 @@ const stripHtmlTags = (html) => {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
       
-      <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
+      {/* <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          {/* Header */}
+         
           <div className="news-top-header"
             style={{
               display: "flex",
@@ -931,7 +931,7 @@ const stripHtmlTags = (html) => {
             </a>
           </div>
 
-          {/* News Cards */}
+          
           <div className="news-top-card"
             style={{
               display: "flex",
@@ -1014,7 +1014,7 @@ const stripHtmlTags = (html) => {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       
 

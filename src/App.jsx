@@ -290,12 +290,12 @@ function App() {
       activeIcon: adoptionActive,
       hoverIcon: adoptionHover
     },
-    {
-      title: "비자 대행",
-      icon: visaIcon,
-      activeIcon: visaActive,
-      hoverIcon: visaHover
-    },
+    // {
+    //   title: "비자 대행",
+    //   icon: visaIcon,
+    //   activeIcon: visaActive,
+    //   hoverIcon: visaHover
+    // },
     {
       title: "법률 컨설팅",
       icon: lawIcon,
@@ -322,15 +322,13 @@ function App() {
       { img: a34, title: "번역 공증", desc: "베트남어, 한국어, 영어 등 각종 언어의 서류를 정확하고 신속하게 번역 및 공증", tabKey: "a1", },
       { img: a1, title: "인증 센터", desc: "영사 확인, 사실인증", tabKey: "a2" },
       { img: a37, title: "사실 공증", desc: "문서, 서류, 개인 서명 및 개인 정보의 정확성과 합법성 인증, 내용 사실 공증", tabKey: "a2" },
-
     ],
     "결혼 이민": [
       { img: a2, title: "한국에서 혼인 신고 ", desc: "한국에서의 결혼 등록 절차 전반을 대행하고 지원", tabKey: "a3" },
       { img: a3, title: "혼인관계증명서 발급 신청", desc: "혼인 관계 증명서 발급에 필요한 서류 컨설팅및 지원", tabKey: "a4" },
       { img: a35, title: "혼인요건인증서 발급 신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a5" },
       { img: a36, title: "혼인 재신고", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a6" },
-      { img: a4, title: "결혼이민 비자신청", desc: "결혼 이민 비자 신청에 필요한 서류 준비 및 절차 지원", tabKey: "a7" },
-
+      // { img: a4, title: "결혼이민 비자신청", desc: "결혼 이민 비자 신청에 필요한 서류 chuẩn bị 및 절차 지원", tabKey: "a7" },
     ],
     "출생신고": [
       { img: a5, title: "출생 신고", desc: "신생아 출생 신고를 정확하고 신속하게 대행", tabKey: "a8" },
@@ -340,7 +338,6 @@ function App() {
     ],
     "국적": [
       { img: a9, title: "베트남 국적 포기 신청", desc: "베트남 국적 포기 신청 및 서류 절차 대행", tabKey: "a12" },
-      
       { img: a11, title: "베트남 국적 재귀화 신청", desc: "베트남 국적 재귀화를 위한 신청 및 행정 절차 대행", tabKey: "a14" },
       { img: a12, title: "베트남으로 시체, 유해, 유골 송환 허가 신청", desc: "베트남으로 시체, 유해, 유골을 송환하기 위한 서류 및 허가 절차 대행", tabKey: "a15" },
       { img: a13, title: "베트남 국적 사실 확인", desc: "재외 베트남인의 베트남 국적 사실 확인 절차를 안내하고 대행", tabKey: "a16" },
@@ -356,15 +353,13 @@ function App() {
       { img: a19, title: "보호자 인지·해지 신고", desc: "재외 베트남인 간 또는 외국인과의 보호자 신청 등록, 해지 신고 대행", tabKey: "a22" },
       { img: a20, title: "혼외자 자녀 인지", desc: "혼외자 자녀 인지 등록 절차 대행", tabKey: "a23" },
       { img: a21, title: "입양 절차 대행", desc: "베트남 국적 아동의 입양 등록 및 재등록 절차 대행", tabKey: "a24" },
-
     ],
-    "비자 대행": [
-    
-      { img: a23, title: "초청 (단기방문 C-3-1 비자)", desc: "한국 단기 방문 비자(C-3-1) 신청 및 발급 절차 지원", tabKey: "a26" },
-      { img: a24, title: "초청 (방문동거 F-1-5 비자)", desc: "한국 방문동거 비자(F-1-5) 신청에 필요한 서류 준비 및 절차 대행", tabKey: "a27" },
-      { img: a25, title: "베트남 비자면제증 발급", desc: "베트남 비자 면제서의 신규 등록 및 재등록 절차 대행", tabKey: "a28" },
-      { img: a26, title: "베트남 전자비자·상용비자 발급", desc: "전자 비자(E-Visa) 및 상용 비자의 발급 등록 대행", tabKey: "a29" },
-    ],
+    // "비자 대행": [
+    //   { img: a23, title: "초청 (단기방문 C-3-1 비자)", desc: "한국 단기 방문 비자(C-3-1) 신청 및 발급 절차 지원", tabKey: "a26" },
+    //   { img: a24, title: "초청 (방문동거 F-1-5 비자)", desc: "한국 방문동거 비자(F-1-5) 신청에 필요한 서류 준비 및 절차 대행", tabKey: "a27" },
+    //   { img: a25, title: "베트남 비자면제증 발급", desc: "베트남 비자 면제서의 신규 등록 및 재등록 절차 대행", tabKey: "a28" },
+    //   { img: a26, title: "베트남 전자비자·상용비자 발급", desc: "전자 비자(E-Visa) 및 상용 비자의 발급 등록 대행", tabKey: "a29" },
+    // ],
     "법률 컨설팅": [
       { img: a27, title: "이혼 소송", desc: "베트남-한국 간 국제 이혼 소송의 제기 및 진행에 필요한 법적 절차 대행", tabKey: "a30" },
       { img: a28, title: "노동 관련 소송", desc: "베트남/한국 노동법 관련 분쟁 발생 시 소송 제기 및 법률 자문", tabKey: "a31" },
@@ -376,7 +371,6 @@ function App() {
       { img: a31, title: "베트남·한국 내 노동 허가서, 임시 거주증 발급", desc: "한국/베트남 외국인 근로자의 취업 허가 및 임시 거주증 발급 절차 대행", tabKey: "a34" },
       { img: a32, title: "수출입 허가서", desc: "기업의 원활한 무역 활동을 위한 수출입 허가증 발급 및 관련 규제 준수 절차 대행", tabKey: "a35" },
       { img: a33, title: "B2B 바이어 매칭", desc: "B2B 파트너를 매칭하여 기업의 성공적인 시장 진출과 매출 확대", tabKey: "a36" },
-
     ],
   };
 
@@ -959,7 +953,7 @@ function App() {
                       <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
                       <option value="여권 • 호적 대행">{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적 대행")}</option>
                       <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
-                      <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
+                      {/* <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option> */}
                       <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
                       <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
                       <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>
@@ -1579,7 +1573,7 @@ function App() {
                                         : card.title === "혼인관계증명서 발급 신청" ? "Cấp giấy xác nhận tình trạng hôn nhân"
                                           : card.title === "혼인요건인증서 발급 신청" ? "Giấy xác nhận đủ điều kiện kết hôn"
                                             : card.title === "혼인 재신고" ? "Đăng ký lại việc kết hôn"
-                                              : card.title === "결혼이민 비자신청" ? "Đăng ký Visa kết hôn"
+                                              // : card.title === "결혼이민 비자신청" ? "Đăng ký Visa kết hôn"
                                                 : card.title === "사실 공증" ? "Chứng thực"
                                                 : card.title === "출생 신고" ? "Đăng ký khai sinh"
                                                   : card.title === "출생 재신고" ? "Đăng ký lại khai sinh"

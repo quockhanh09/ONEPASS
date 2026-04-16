@@ -254,7 +254,7 @@ export default function DynamicNewsDetail() {
             { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
             { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
             { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
-            { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
+            // { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" }, // Ẩn visa
             { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
             { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
           ]}

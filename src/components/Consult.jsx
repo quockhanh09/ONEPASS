@@ -62,7 +62,7 @@ export default function Consult() {
     { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
     { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
     { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
-    { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
+    // { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" }, // Ẩn dịch vụ visa
     { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
     { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
   ];
@@ -78,7 +78,7 @@ export default function Consult() {
     { ko: "국적 대행", vi: "Quốc tịch" },
     { ko: "여권 • 호적 대행", vi: "Hộ chiếu, Hộ tịch" },
     { ko: "입양 절차 대행", vi: "Nhận nuôi" },
-    { ko: "비자 대행", vi: "Thị thực" },
+    // { ko: "비자 대행", vi: "Thị thực" }, // Ẩn dịch vụ visa
     { ko: "법률 컨설팅", vi: "Tư vấn pháp lý" },
     { ko: "B2B 서비스", vi: "Dịch vụ B2B" },
   ];

@@ -256,7 +256,7 @@ function Header() {
                   <li><Link to="/Service" state={{ serviceIndex: 3 }}>{language === "VI" ? (<>Quốc tịch</>) : ("국적")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 4 }}>{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 5 }}>{language === "VI" ? (<>Nhận nuôi</>) : ("입양 • 자녀 인지")}</Link></li>
-                  <li><Link to="/Service" state={{ serviceIndex: 6 }}>{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</Link></li>
+                  {/* <li><Link to="/Service" state={{ serviceIndex: 6 }}>{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</Link></li> */}
                   <li><Link to="/Service" state={{ serviceIndex: 7 }}>{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</Link></li>
                   <li><Link to="/Service" state={{ serviceIndex: 8 }}>{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</Link></li>
                 </ul>

@@ -344,7 +344,7 @@ const stripHtmlTags = (html) => {
               { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
               { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
               { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
-              { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
+              // { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" }, // Ẩn visa
               { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
               { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
             ]}
@@ -467,7 +467,7 @@ const stripHtmlTags = (html) => {
                 <option value="국적 대행">{language === "VI" ? (<>Quốc tịch</>) : ("국적 대행")}</option>
                 <option value="여권 • 호적 대행">{language === "VI" ? (<>Hộ chiếu, Hộ tịch</>) : ("여권 • 호적 대행")}</option>
                 <option value="입양 절차 대행">{language === "VI" ? (<>Nhận nuôi </>) : ("입양 절차 대행")}</option>
-                <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option>
+                {/* <option value="비자 대행">{language === "VI" ? (<>Thị thực</>) : ("비자 대행")}</option> */}
                 <option value="법률 컨설팅">{language === "VI" ? (<>Tư vấn pháp lý</>) : ("법률 컨설팅")}</option>
                 <option value="B2B 서비스">{language === "VI" ? (<>Dịch vụ B2B</>) : ("B2B 서비스")}</option>
                 <option value="기타">{language === "VI" ? (<>Khác </>) : ("기타")}</option>

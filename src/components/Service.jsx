@@ -805,7 +805,7 @@ const services = [
   { icon: travelIcon, hoverIcon: travelHover, activeIcon: travelActive, title: "국적" },
   { icon: idIcon, hoverIcon: idHover, activeIcon: idActive, title: "여권 • 호적" },
   { icon: adoptionIcon, hoverIcon: adoptionHover, activeIcon: adoptionActive, title: "입양 • 자녀 인지" },
-  { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" },
+  // { icon: visaIcon, hoverIcon: visaHover, activeIcon: visaActive, title: "비자 대행" }, // Ẩn dịch vụ visa
   { icon: lawIcon, hoverIcon: lawHover, activeIcon: lawActive, title: "법률 컨설팅" },
   { icon: etcIcon, hoverIcon: etcHover, activeIcon: etcActive, title: "B2B 서비스" },
 ];
@@ -818,7 +818,7 @@ const serviceSlugs = [
   "quoc-tich",
   "ho-chieu-ho-tich",
   "nhan-nuoi",
-  "thi-thuc",
+  // "thi-thuc", // Ẩn slug visa
   "tu-van-phap-ly",
   "dich-vu-b2b",
 ];
@@ -2160,7 +2160,7 @@ const handleSubmitService = async (e) => {
           vietnam1: "Xac-nhan-tinh-trang-hon-nhan",
           certificate1: "Giay-du-dieu-kien-ket-hon",
           cc1: "Dang-ky-lai-viec-ket-hon",
-          visa1: "Dang-ky-Visa-ket-hon"
+          // visa1: "Dang-ky-Visa-ket-hon" // Ẩn visa kết hôn
         };
         // Map tab key sang tên tiếng Hàn cho slug nếu cần
 
@@ -2175,7 +2175,7 @@ const handleSubmitService = async (e) => {
             </h1>
             <p className="main-case1-p" style={{ textAlign: "center", fontSize: 16, color: "#4b5563", marginBottom: 32, lineHeight: "22px" }}>
               {language === "VI" ? (<>Xử lý hồ sơ và thực hiện các thủ tục hành chính liên quan tới <br />
-                đăng ký kết hôn, đăng ký visa kết hôn F-6</>) : (<>국제 결혼 신고, F-6 비자 발급 등 베트남-한국 간의 법적 및 행정 절차를 <br />
+                đăng ký kết hôn</>) : (<>국제 결혼 신고 등 베트남-한국 간의 법적 및 행정 절차를 <br />
                   단순화하여 한 번에 불편함 없이 처리해 드립니다.</>)}
             </p>
             <div className="main-case1-buttton"
@@ -2198,7 +2198,7 @@ const handleSubmitService = async (e) => {
                 { key: "vietnam1", labelVI: "Xác nhận tình trạng hôn nhân", labelKR: "혼인관계증명서" },
                 { key: "certificate1", labelVI: "Giấy đủ điều kiện kết hôn", labelKR: "혼인요건인증서" },
                 { key: "cc1", labelVI: "Đăng ký lại việc kết hôn", labelKR: "결혼 재신고" },
-                { key: "visa1", labelVI: "Đăng ký Visa kết hôn", labelKR: "결혼이민 비자신청" }
+                // { key: "visa1", labelVI: "Đăng ký Visa kết hôn", labelKR: "결혼이민 비자신청" } // Ẩn visa kết hôn
               ].map(tab => (
                 <Link
                   key={tab.key}

@@ -161,7 +161,21 @@ const handleKeyPress = (e) => {
               <div>{language === "VI" ? (<>Busan: Phòng 915 - 916, Tòa nhà Byucksan e-Centum Classone, 99 Centumdong-ro, Haeundae-gu,  Hàn Quốc (48059) | +82 51-715-0607</>) : (<>부산: (48059) 부산광역시 해운대구 센텀동로 99, 915 - 916호 (재송동, 벽산이센텀클래스원) | +82 51-715-0607</>)}</div>
 
               
-              <div>{language === "VI" ? (<>Số đăng ký kinh doanh: 740-87-03727</>) : ("사업자등록번호: 740-87-03727")}</div>
+              <div>
+                {language === "VI" ? (
+                  <>
+                    ONE PASS INC.<br />
+                    Người đại diện: Lee Jung Seop<br />
+                    Số đăng ký kinh doanh: 740-87-03727
+                  </>
+                ) : (
+                  <>
+                    (주)원패스<br />
+                    대표자:이중섭<br />
+                    사업자등록번호: 740-87-03727
+                  </>
+                )}
+              </div>
             </div>
             <div className="reserve" style={{ color: "#AFC4E8", fontSize: 13, marginTop: 24 }}>
               ONE PASS INC. © all right reserve

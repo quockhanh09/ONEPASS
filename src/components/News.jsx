@@ -786,6 +786,7 @@ const stripHtmlTags = (html) => {
           `}
         </style>
       </section>
+      
    {/* <section className="news-top" style={{ background: "#fff", padding: "60px 0", width: "100vw" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div

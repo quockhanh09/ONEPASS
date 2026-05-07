@@ -166,13 +166,15 @@ const handleKeyPress = (e) => {
                   <>
                     ONE PASS INC.<br />
                     Người đại diện: Lee Jung Seop<br />
-                    Số đăng ký kinh doanh: 740-87-03727
+                    Số đăng ký kinh doanh: 740-87-03727<br />
+                    Email: onepass.kr@gmail.com / onepass_kr@naver.com
                   </>
                 ) : (
                   <>
                     (주)원패스<br />
                     대표자:이중섭<br />
-                    사업자등록번호: 740-87-03727
+                    사업자등록번호: 740-87-03727<br />
+                    이메일: onepass.kr@gmail.com / onepass_kr@naver.com
                   </>
                 )}
               </div>

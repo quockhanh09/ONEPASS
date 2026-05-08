@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./assets/img/Logo-name.png";
+import logo from "./assets/img/Logo-name-(1).jpeg";
 
 const BlueLogoPage = () => {
   return (

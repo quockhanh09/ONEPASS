@@ -87,6 +87,7 @@ import { Link } from "react-router-dom";
 import axiosClient from "./axiosClient";
 // import { io } from "socket.io-client";
 // import Layout from "./Layout.jsx";
+import { Navigate } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Countdown from "./components/Countdown.jsx";
 import Footer from "./components/Footer.jsx";
@@ -98,6 +99,7 @@ import Register from "./signup-in/Register.jsx";
 import Login from "./signup-in/Login.jsx";
 import Consult from "./components/Consult.jsx";
 import AllNewsPage from "./components/AllNewsPage.jsx";
+import BlueLogoPage from "./BlueLogoPage.jsx";
 import ConsulateNews from "./components/ConsulateNews.jsx";
 import ArticlesPage from "./components/ArticlesPage.jsx";
 import NewsDetail from "./components/NewDeatail.jsx";
@@ -152,6 +154,18 @@ function toSlug(str) {
 }
 
 function App() {
+  // Maintenance mode: show only BlueLogoPage as homepage, redirect all routes
+  const isMaintenanceMode = true;
+  if (isMaintenanceMode) {
+    return (
+      <Routes>
+        {/* Đặt BlueLogoPage làm trang chủ */}
+        <Route path="/" element={<BlueLogoPage />} />
+        {/* Chuyển hướng tất cả các truy cập khác về trang chủ */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  }
   const { language } = useLanguage();
   const location = useLocation();
 
@@ -762,10 +776,9 @@ function App() {
   return (
 
     <div className="index-page" style={{ background: "#ffffffff" }}>
-
       <Header />
       <Routes>
-
+        <Route path="/logo-blue" element={<BlueLogoPage />} />
         <Route
           path="/"
           element={
